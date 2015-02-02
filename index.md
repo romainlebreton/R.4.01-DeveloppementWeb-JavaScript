@@ -4,6 +4,8 @@ title: AWS – Applications web et sécurité
 ---
 
 # AWS – Applications web et sécurité
+ 
+Ceci est la version du cours <http://defeo.lu/aws/> donnée en 2013-2014.
 
 ## Informations pratiques
 
