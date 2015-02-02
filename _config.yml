@@ -1,4 +1,4 @@
-baseurl: /aws
+baseurl: /aws-2014
 permalink: /:categories/:title
 
 kramdown:
