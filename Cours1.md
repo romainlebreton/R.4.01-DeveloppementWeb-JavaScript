@@ -1,5 +1,7 @@
-!! Attention - le 1er cours est après le 1er TD !!
-
+---
+title : Cours 1 - Bases du Javascript
+layout : class
+---
 
 Historique:
 -----------
