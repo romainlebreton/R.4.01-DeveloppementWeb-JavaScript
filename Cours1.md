@@ -1,6 +1,5 @@
 ---
 title : Cours 1 - Bases du Javascript
-layout : class
 ---
 
 Historique:
