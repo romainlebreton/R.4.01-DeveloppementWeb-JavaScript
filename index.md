@@ -1,3 +1,8 @@
+---
+title: This is my title
+layout: post
+---
+
 # Programmation Web - Client Riche
 Cours à l'IUT de Montpellier - 2ème année
 
