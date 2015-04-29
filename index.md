@@ -1,6 +1,6 @@
 ---
-title: This is my title
-layout: post
+title: Homepage of Romain Lebreton
+layout: main
 ---
 
 # Programmation Web - Client Riche
