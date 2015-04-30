@@ -3,6 +3,8 @@ title : Cours 1 - Bases du Javascript
 layout : main
 ---
 
+<!-- TODO : Rajouter une bouton pour exécuter le code dans la console -->
+
 Historique
 -----------
 
@@ -28,7 +30,7 @@ Nom du standard : ECMAScript standard (synonyme de Javascript dans les faits).
 // Trouver une capture d'écran d'un "Ce site est optimisé pour Internet Explorer en résolution 800x600"
 -->
 
-Autres domaines d'applications du Javascript :
+Autres domaines d'applications du Javascript
 - pour la gestion de bases de données (MongoDB, CouchDB, ...)
 - comme language de scripting côté serveur (Node.js, ...)
 
@@ -37,6 +39,26 @@ Autres domaines d'applications du Javascript :
 ** Sources : **
 [A Short History of JavaScript](https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript)
 
+Plan du cours:
+--------------
+- Javascript de base
+- DOM
+- Sélecteur
+- AJAX et JSON
+- Gestion d'évènements et de déclencheur
+- sécurité : injections XSS
+
+Exemple de fonctionnalités : 
+où est-ce qu'on retrouve du javascript partout dans les pages ?
+montrer les objectifs ?
+  Autocomplétion de google
+  tchat (plutôt Websocket que XMLHttpRequest)
+  Changement de styles pour slides
+  Puissance 4 (il y a une place pour les jeux en HTML 5)
+  toggleDisplay (e.g. vérification de formulaire, résumé d'un post)
+
+
+<!-- plus tard pour l'évolution de la dynamique des pages Web -->
 
 Déclaration variable
 ----------------------
@@ -173,39 +195,64 @@ console.log("con" + "cat" + "é" + "nation");
 ```
 
 Objets et tableaux:
--------------------
-## Tableaux classiques (non typés)
+-------------------	
+
+### Tableaux classiques (non typés)
+
+TODO : finir l'exemple
+
 
 ```javascript
 var t = [1,2,3,"un autre type"];
 console.log(t[0]);
 // → 1
+console.log(t.length);
+t.push(5);
+console.log();
+console.log(t.slice(1,3));
 ```
 
-## Les objets
+<!-- ATTENTION : complexité d'un vidage de tableau par slice(1)-->
 
-Parler de JSON
-
-Les tableaux classiques ne sont qu'un cas particulier des &laquo;tableaux associatifs&raquo; qui associent des valeurs à des noms (chaines de charactères)
+### Les objets
 
 ```javascript
-t["bonjour"]=10;
-console.log(t["bonjour"]);
-// → 10
+// Affectation d'un objet litéral
+var point = {coord1:1, coord2:0, thickness: 1.0}
+// Modification d'un attribut
+point.coord1 = 2;
 ```
 
-En fait, les tableaux associatifs ne sont que des objets
+On accède aux propriétés des objets avec obj.nom1 ou obj["nom1"].
+L'avantage de la syntaxe obj[expr] est que l'expression va être évaluée.
 
 ```javascript
-var obj = {nom1:valeur1, nom2:valeur2, ...}
+for (var i = 1; i < 3; i++)
+  point["coord" + i] = 0;
+console.log(point);
 ```
 
-On accède aux propriétés des objets avec
-obj.nom1 ou obj["nom1"]
+Contrairement au Java qui est un language de classe, c-à-d où la structure de l'objet est rigidifiée,
+en Javascript on peut rajouter des attributs dynamiquement.
 
-#2ème forme plus générale obj[expr] avec expr un expression qui s'évalue en une chaine de charactères
+```javascript
+// Mon point devient 3D
+point.coord3 = 1;
+```
 
+### Constructeurs ???
+
+
+<!-- 
+Il y d'autres façons de faire des objets avec des constructeurs.
+
+Un autre aspect important sont les prototypes en Javascript 
+mais on ne va pas faire par manque de temps 
+(ou peut-être mentionné au dernier cours)
 #p108 Prototypes - constructeurs
+-->
+
+
 
 Logique
 -------
@@ -410,8 +457,84 @@ console.log(square(256));
 console.log(cube(256));
 ```
 
+Méthodes des objets:
+--------------------
+
+Q/ Comment fait-on pour avoir des méthodes ?
+R/ On assigne une valeur 'fonction' à un attribut
+
+Comme en Java, on référence l'objet courant avec `this`.
+
+```javascript
+point.print = function() {
+  console.log("Mes coordonnées sont " + this.coord1 + "," + this.coord2);
+}
+```
+
+
 Parameters and scopes:
 ----------------------
+
+scope global : i=5 dans fonction
+
+Qu'est-ce qu'un scope ? Zone de portée de variable 
+TODO : chercher meilleure définition (You don't know JS)
+
+portée d'une variable
+
+Le scope est donc limité par :
+-les fonctions de fonctions (et pas les acolades "{" donc pas dans les for et while etc...
+
+=> Convention / Règle : définir les variables locales d'une fonction en début et avec un var 
+
+Les scopes sont imbriqués comme un arbre vu du dessus ou comme des poupées russes vu du dessous
+
+Dans un scope, nous avons toujours accès aux scopes d'au-dessus
+ => faire le dialogue de résolution d'une variable aux travers des scopes parents
+
+```javascript
+var x = "I live in the global scope";
+var f1 = function () {
+  var x = "I live in the first nested scope";
+  console.log("f1: " + x);
+  var f2 = function () {
+    var x = "I live in the second nested scope";
+    console.log("f2: " + x);
+  }
+  var f3 = function () {
+    console.log("f3: " + x);
+  }
+  f2();
+  f3();
+}
+f1();
+console.log(x);
+```
+
+<!-- 
+Remettre une couche de peinture plus tard lors des callbacks ? 
+-->
+
+
+Q/ Que répond le code suivant ?
+
+```javascript
+for (var i = 0; i < 10; i++) {
+  //N'importe quoi
+}
+console.log(i);
+```
+
+```javascript
+var coucou = function () {
+  message = "Bien le bonjour !";
+  console.log(message);
+}
+console.log(message)
+```
+
+<!-- Pour info, window est le scope global -->
+
 p.43 with nested scope
 
 #p.47 function declarations are not part of the regular top-to-bottom flow of control
@@ -475,4 +598,25 @@ Exemple de getElementsByClass ( http://caniuse.com mais moins incompatible)
 [Eloquent javascript](http://fr.eloquentjavascript.net) (plus licence)
 [MDN (Mozilla Developer network)](https://developer.mozilla.org/fr/)
 
+<!--
 
+Exemple : 
+
+Parler de JSON
+
+Les tableaux classiques ne sont qu'un cas particulier des &laquo;tableaux associatifs&raquo; qui associent des valeurs à des noms (chaines de charactères)
+
+```javascript
+t["bonjour"]=10;
+console.log(t["bonjour"]);
+// → 10
+```
+
+En fait, les tableaux associatifs ne sont que des objets
+
+```javascript
+var obj = {nom1:valeur1, nom2:valeur2, ...}
+```
+
+
+-->
