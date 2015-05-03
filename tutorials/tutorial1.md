@@ -3,7 +3,7 @@ title: Programmation Web - Client Riche
 layout: main
 ---
 
-# Td1 -- Javascript et callbacks
+# Td1 -- Prise en main de Javascript
 
 ## Les outils de développements
 
@@ -45,8 +45,8 @@ L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger vo
 
 C'est ici que nous allons passer le reste du Tds. L'onglet **Console** présente deux avantages :
 
-1. c'est une console Javascript. Ce sera donc notre bac à sable pour expérimenter du code Javascript;
-2. nous avons accès au DOM de la page Web courante. Ceci nous permettra d'interagir avec la page Web.
+ - c'est une console Javascript. Ce sera donc notre bac à sable pour expérimenter du code Javascript;
+ - nous avons accès au DOM de la page Web courante. Ceci nous permettra d'interagir avec la page Web.
 
 ## Le Document Object Model (DOM)
 
@@ -55,10 +55,27 @@ Le Document Object Model (DOM) de Javascript est un objet Javascript qui modéli
 Le DOM est accessible dans la console Javascript dans la variable `document`.
 
 <div class="exercice">
-1. Explorez dans la console quelques attributs de la variable document, par exemple `URL`, `head`, `body`.
+1. Explorez dans la console quelques attributs de la variable `document`, par exemple `document.URL`, `document.head`, `document.body`.
 </div>
 
-TODO: Rajouter quelques méthodes comme firstChild ?
+#### Trouver un élément de la page Web
+
+La manière la plus pratique de trouver un élément de la page Web est via les méthodes `getElementById`, `getElementsByTagName` et `getElementsByClassName` de l'objet `document`. Les trois méthodes prennent une chaîne de charactères et renvoient le tableau des éléments correspondants, sauf `getElementById` qui ne renvoie qu'un élément puisqu'un identifiant est unique.
+
+<div class="exercice">
+1. Accédez dans la console à l'élément d'identifiant **le-document-object-model-dom** à l'aide du code
+
+        var e1 = document.getElementById("le-document-object-model-dom");
+        console.log(e1);
+
+2. Dans le même ordre d'idée, sélectionnez tous les *list items* `<li>` à l'aide de `getElementsByTagName`.
+
+3. Enfin, sélectionnez tous les éléments ayant la classe *exercice* à l'aide de `getElementsByClassName`.
+
+</div>
+
+Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que Javascript utilise les mêmes sélecteurs ([rappels sur les sélecteurs](http://www.w3.org/TR/CSS2/selector.html)). 
+
 
 
 ### Sources
