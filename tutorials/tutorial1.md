@@ -24,7 +24,7 @@ Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe tou
   * Éditez la page HTML. Modifiez le texte du TD. Rajouter ou enlevez des balises de la page HTML. <br/>
 **Note:** Pour éditer le HTML, il faut faire clic droit > 'Edit as HTML'.
   * Changez des éléments de style, par exemple la façon dont les bouts de code en ligne (e.g. `margin`, `padding`) sont stylisés. Ou passez à une numérotation binaire des listes d'exercices (`list-style-type: binary` - [Ne marche pas sur Firefox ni IE](http://www.quirksmode.org/css/lists.html)).
-  * Rajouter votre premier gestionaire d'évènement (event handler)
+  * Rajouter votre premier gestionaire d'évènement (event handler). Pour cela, rajoutez l'attribut `onclick="alert('Action!')"` comme attribut à l'une des balises HTML. Vous n'avez alors plus qu'à cliquer dessus pour voir le message s'afficher.
 </div>
 
 Les modifications que vous avez faites sont temporaires et disparaîtrons lors du rechargement de la page. Il faudrait reporter les modifications côté serveur pour les enregistrer.
@@ -36,7 +36,7 @@ L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger vo
 <div class="exercice">
 1. Cliquez sur la ligne de la page Web *Td1.html* et observez l'onglet **Headers**. On y voit les caractéristiques principales de la requête HTTP qui demande la page au serveur :
   * l'adresse du serveur : **romainlebreton.github.io**
-  * l'url de la page demandée : **http://romainlebreton.github.io/ProgWeb-ClientRiche/tutorials/Td1.html**
+  * l'url de la page demandée :  **http://romainlebreton.github.io/ProgWeb-ClientRiche/tutorials/Td1.html**
   * la méthode de requête : **GET**
   * le code de status de la réponse : 200 OK ou 304 Not modified (ou 404 Not Found)
 </div>
@@ -44,10 +44,21 @@ L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger vo
 #### La console Javascript
 
 C'est ici que nous allons passer le reste du Tds. L'onglet **Console** présente deux avantages :
+
 1. c'est une console Javascript. Ce sera donc notre bac à sable pour expérimenter du code Javascript;
-2. nous avons accès au DOM de la page Web courante. Ceci nous permettra d'interagir avec la page Web. Nous y reviendrons bientôt.
+2. nous avons accès au DOM de la page Web courante. Ceci nous permettra d'interagir avec la page Web.
 
+## Le Document Object Model (DOM)
 
+Le Document Object Model (DOM) de Javascript est un objet Javascript qui modélise le document (la page Web). Cet objet possède un ensemble de méthodes qui nous permettent d'interagir avec le document. Nous allons aborder le DOM d'un point de vue très pratique. 
+
+Le DOM est accessible dans la console Javascript dans la variable `document`.
+
+<div class="exercice">
+1. Explorez dans la console quelques attributs de la variable document, par exemple `URL`, `head`, `body`.
+</div>
+
+TODO: Rajouter quelques méthodes comme firstChild ?
 
 
 ### Sources
