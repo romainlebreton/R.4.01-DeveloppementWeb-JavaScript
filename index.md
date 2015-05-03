@@ -9,7 +9,7 @@ Cours à l'IUT de Montpellier - 2ème année
 **Mots clés :** Javascript, DOM, JSON, Jquery, AJAX
 
 ## Cours
-6 Mai 2015 -- [Cours 1](classes/Cours1.html) -- La language Javascript
+6 Mai 2015 -- [Cours 1](classes/class1.html) -- La language Javascript
 
 ## TDs
-5-6 Mai 2015 -- [TD 1](tutorials/Td1.html) -- Javascript et callbacks
+5-6 Mai 2015 -- [TD 1](tutorials/tutorial1.html) -- Javascript et callbacks
