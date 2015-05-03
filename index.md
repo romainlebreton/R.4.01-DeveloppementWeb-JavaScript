@@ -1,5 +1,5 @@
 ---
-title: Homepage of Romain Lebreton
+title: Programmation Web - Client Riche
 layout: main
 ---
 
@@ -9,7 +9,7 @@ Cours à l'IUT de Montpellier - 2ème année
 **Mots clés :** Javascript, DOM, JSON, Jquery, AJAX
 
 ## Cours
-[Cours 1](Cours1.html)
+6 Mai 2015 -- [Cours 1](classes/Cours1.html) -- La language Javascript
 
 ## TDs
-TBA
+5-6 Mai 2015 -- [TD 1](tutorials/Td1.html) -- Javascript et callbacks
