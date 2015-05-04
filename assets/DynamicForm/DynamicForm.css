@@ -1,0 +1,25 @@
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+   border: 1px solid black;
+}
+
+table input {
+     border: none;
+     background-color:inherit;
+}
+
+tr:nth-child(odd) {
+    background-color: #F5F5F5;
+}
+
+tr:first-child {
+    background-color: aliceblue;
+}
+
+.hidden {
+    display:none;
+}
