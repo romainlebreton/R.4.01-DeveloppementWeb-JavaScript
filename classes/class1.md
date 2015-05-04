@@ -4,10 +4,6 @@ subtitle : un tour d'horizon
 layout : slideshow
 ---
 
-<script>
-setTimeout(function () {Dz.play() }, 1000);
-</script>
-
 <!-- TODO : Rajouter une bouton pour exécuter le code dans la console -->
 
 <section>
@@ -726,6 +722,10 @@ En fait, les tableaux associatifs ne sont que des objets
 ```javascript
 var obj = {nom1:valeur1, nom2:valeur2, ...}
 ```
+-->
 
-
+<!--
+<script>
+setTimeout(function () {Dz.play() }, 1000);
+</script>
 -->
