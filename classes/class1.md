@@ -15,7 +15,7 @@ Javascript est ce qui a rendu possible les applications Web modernes, c'est-à-d
 
 Le nom Javascript a été choisi pour des raisons commerciales car Java est en vogue à la création de Javascript. La syntaxe est plus proche du C.
 
-Après son adoption générale, le language Javascript a été standardisé, c'est-à-dire qu'on a fixé tous les aspects de ce language sur papiers. Actuellement, nous en sommes à ECMAScript version 5. La version 6 est prévue en 2015 ([Discussions actuelles autour du futur standard ECMAScript 6](https://github.com/tc39)).
+Après son adoption générale, le langage Javascript a été standardisé, c'est-à-dire qu'on a fixé tous les aspects de ce langage sur papier. Actuellement, nous en sommes à ECMAScript version 5. La version 6 est prévue en 2015 ([Discussions actuelles autour du futur standard ECMAScript 6](https://github.com/tc39)).
 
 <!--
 Q/ Quel est l'intérêt d'avoir des standards ?
@@ -32,7 +32,7 @@ Nom du standard : ECMAScript standard (synonyme de Javascript dans les faits).
 
 Autres domaines d'application du Javascript
 - pour la gestion de bases de données (MongoDB, CouchDB, ...)
-- comme language de scripting côté serveur (Node.js, ...)
+- comme langage de scripting côté serveur (Node.js, ...)
 
 => une tendance est de n'utiliser qu'un langage dans la pile Web : e.g. remplacer le PHP par du Javascript
 
@@ -45,7 +45,7 @@ Plan du cours:
 - DOM
 - Sélecteur
 - AJAX et JSON
-- Gestion d'évènements et de déclencheur
+- Gestion d'événements et de déclencheur
 - sécurité : injections XSS
 
 Exemple de fonctionnalités : 
