@@ -30,7 +30,7 @@ Nom du standard : ECMAScript standard (synonyme de Javascript dans les faits).
 // Trouver une capture d'écran d'un "Ce site est optimisé pour Internet Explorer en résolution 800x600"
 -->
 
-Autres domaines d'applications du Javascript
+Autres domaines d'application du Javascript
 - pour la gestion de bases de données (MongoDB, CouchDB, ...)
 - comme language de scripting côté serveur (Node.js, ...)
 
