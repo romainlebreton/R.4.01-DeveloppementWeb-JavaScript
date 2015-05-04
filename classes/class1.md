@@ -1,26 +1,47 @@
 ---
-title : Cours 1 - Bases du Javascript
+title : Cours 1 <br> Bases du Javascript
 subtitle : un tour d'horizon
 layout : slideshow
 ---
 
+<script>
+setTimeout(function () {Dz.play() }, 1000);
+</script>
+
 <!-- TODO : Rajouter une bouton pour exécuter le code dans la console -->
 
-Historique
------------
+<section>
 
-Inventé par Brendan Eich en 10 jours chez Netscape pour ajouter une manière d'associer du code (Java à l'origine) à des éléments HTML.
+## Historique 1/3
 
-Présenté en 1995 avec l'objectif de pouvoir avoir des programmes en plus des pages Web dans le navigateur Netscape. Depuis, Javascript a été adopté par tous les navigateurs.
-Javascript est ce qui a rendu possible les applications Web modernes, c'est-à-dire les applications avec lesquelles on peut interagir directement, sans rechargement de la page Web. 
+Le prototype de JavaScript a été conçu par Brendan Eich en 10 jours chez Netscape pour ajouter une manière d'associer du code (Java à l'origine) à des éléments HTML.
 
-Le nom Javascript a été choisi pour des raisons commerciales car Java est en vogue à la création de Javascript. La syntaxe est plus proche du C.
+<div class="incremental">
+JavaScript a été présenté en 1995 avec l'objectif de pouvoir avoir des programmes en plus des pages Web dans le navigateur Netscape. Depuis, Javascript a été adopté par tous les navigateurs.
 
-Après son adoption générale, le langage Javascript a été standardisé, c'est-à-dire qu'on a fixé tous les aspects de ce langage sur papier. Actuellement, nous en sommes à ECMAScript version 5. La version 6 est prévue en 2015 ([Discussions actuelles autour du futur standard ECMAScript 6](https://github.com/tc39)).
+Javascript a grandement contribué à rendre possible les applications Web modernes, c'est-à-dire les applications permettant d'agir directement avec la page Web, c'est-à-dire sans rechargement de cette page Web. 
+
+<div class="myfootnote">
+#### Sources 
+
+[A Short History of JavaScript](https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript)
+</div>
+</div>
+</section>
+<section>
+
+## Historique 2/3
+
+Le nom Javascript a été choisi pour des raisons commerciales car Java était très en vogue à la création de Javascript. La syntaxe de JavaScript est plus proche du C.
+
+<div class="incremental">
+Après son adoption générale, le langage Javascript a été standardisé, c'est-à-dire qu'on a fixé tous les aspects de ce langage sur papier. 
+	
+Actuellement, nous en sommes à ECMAScript version 5. La version 6 est prévue en 2015 .
+
+**Question:** Quel est l'intérêt d'avoir des standards ?
 
 <!--
-Q/ Quel est l'intérêt d'avoir des standards ?
-
 R/ Pour faciliter l'inter-opérabilité (qu'un code Javascript marche pareil sur tous les navigateurs) et donc faciliter l'adoption de Javascript.
 
 Contre-exemple pour le HTML : Guerre des navigateurs dans les années 2000 où Internet Explorer a profité de sa position dominante (95%, même sur Mac) pour imposer ses développements du HTML (et des techno Web en général : CSS ...). Il fallait presque écrire un site Web par navigateur.
@@ -31,14 +52,27 @@ Nom du standard : ECMAScript standard (synonyme de Javascript dans les faits).
 // Trouver une capture d'écran d'un "Ce site est optimisé pour Internet Explorer en résolution 800x600"
 -->
 
-Autres domaines d'application du Javascript
+<div class="myfootnote">
+#### Liens complémentaires
+
+[Discussions actuelles autour du futur standard ECMAScript 6](https://github.com/tc39)
+</div>
+</div>
+
+</section>
+<section>
+
+## Historique 3/3
+
+Autres domaines d'application du Javascript:
+
 - pour la gestion de bases de données (MongoDB, CouchDB, ...)
 - comme langage de scripting côté serveur (Node.js, ...)
 
-=> une tendance est de n'utiliser qu'un langage dans la pile Web : e.g. remplacer le PHP par du Javascript
+Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple de remplacer le PHP par du Javascript.
 
-** Sources : **
-[A Short History of JavaScript](https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript)
+</section>
+<section>
 
 Plan du cours:
 --------------
@@ -61,8 +95,17 @@ montrer les objectifs ?
 
 <!-- plus tard pour l'évolution de la dynamique des pages Web -->
 
-Déclaration variable
-----------------------
+
+</section>
+<section>
+
+# Les bases du Javascript
+
+</section>
+<section>
+
+## Déclaration de variable
+
 <!-- 
 Mot clé 'var' (pas de déclaration de type comme en Java)
 Mettre un ';' à la fin de chaque ligne (optionel mais recommandé)
@@ -78,6 +121,7 @@ x = 1;
 var x = 1;
 ```
 
+<!--
 ```javascript
 var x;
 // x a la valeur 'undefined'
@@ -85,7 +129,6 @@ x = 1;
 // x a la valeur 1
 ```
 
-<!--
 Les variables sont des pointeurs sur des objects comme en java ?? plus loin lors des objets ??
 
 !!!!!!!!!!!!!!!
@@ -117,30 +160,42 @@ Par défaut, les variables sont accessibles dans les scopes dessous (=nested) (n
 +
 x = 1 déclare la variable comme globale (accessible même dans les scopes supérieurs)
 !!!!!!!!!!!!!!!
--->
 
 Syntaxe proche du C
 
 Valeurs : 11, 2.998e8
 Arithmetique classique : (100 + 4 * 11) % 4
 Valeurs spéciales :  `undefined` et null
+-->
+
+</section>
+<section>
 
 La console Javascript
 ---------------------
 
-Environnement d'exécution du Javascript
-Firefox ou Chrome (raccourci clavier `F12`)
+Une console Javascript est présente dans les outils de développement de Firefox ou Chrome (raccourci clavier `F12`)
 
-Exemple :
+**Exemple :**
+
+```javascript
 var x = 1;
 x;
 console.log(x);
+```
+
+```javascript
 alert("Coucou !")
+```
 
 
-Les types en Javascript
------------------------
-Les valeurs ont des types. Mais on n'a pas besoin de spécifier le type lors de la déclaration d'une variable. (Language faiblement typé)
+</section>
+<section>
+
+## Les types en Javascript
+
+Toute valeur a un type en JavaScript. Mais ce type n'est pas spécifié lors de la déclaration d'une variable. 
+<!-- On parle d'un language faiblement typé -->
 
 ```javascript
 var x = 1;
@@ -151,7 +206,7 @@ typeof y;
 // → string
 ```
 
-Les types sont dynamiques <!-- W3school -->
+Les types sont dynamiques
 
 ```javascript
 var x;               // Now x is undefined
@@ -159,11 +214,10 @@ var x = 5;           // Now x is a Number
 var x = "John";      // Now x is a String
 ```
 
-Types : 
-  string, number, boolean,
-  null, undefined
-  object, function  
-<!-- on reviendra sur les fonctions -->
+<!--
+Les différents types de JavaScript sont: (W3Schools)
+  string, number, boolean, null, undefined, object, function  
+on reviendra sur les fonctions 
 
 ```javascript
 typeof "abc"
@@ -173,47 +227,64 @@ typeof [1,2,3]
 typeof undefined
 // → undefined
 ```
+-->
 
-Chaines de charactères:
------------------------
-Guillemets simples ou doubles (peu de différence)
-Pas de retour à la ligne
+</section>
+<section>
 
-Échappement de charactère: \" -> ", ...
+## Chaines de charactères:
 
-Exercice : Comment créer la chaîne de caractères 'Un retour à la ligne s'écrit "\n"'
+Entre guillemets simples `'coucou'` ou `"coucou"` doubles
 
+Échappement de charactère avec **\\** : `\"` &#8594; **"**, `\n` &#8594;  **&#8626;**
+
+**Exercice :** Comment créer la chaîne de caractères &laquo;Un retour à la ligne s'écrit "\n".&raquo;
+
+<div class="incremental">
 ```javascript
 console.log("Un retour à la ligne s'écrit \"\\n\".");
 // → "Un retour à la ligne s'écrit "\n".
 ```
 
+<div>
 Concaténation avec + : 
 
 ```javascript
 console.log("con" + "cat" + "é" + "nation");
 // → "concaténation"
 ```
+</div>
+</div>
+
+</section>
+<section>
 
 Objets et tableaux:
 -------------------	
 
 ### Tableaux classiques (non typés)
 
-TODO : finir l'exemple
-
-
 ```javascript
-var t = [1,2,3,"un autre type"];
+var t = [1,3.14159,10e10,"un autre type"];
 console.log(t[0]);
 // → 1
 console.log(t.length);
+// → 4
+
+t = t.slice(1,3);
+console.log(t);
+// → [3.14159, 100000000000]
+
 t.push(5);
-console.log();
-console.log(t.slice(1,3));
+console.log(t);
+// → [3.14159, 100000000000, 5]
 ```
 
 <!-- ATTENTION : complexité d'un vidage de tableau par slice(1)-->
+
+
+</section>
+<section>
 
 ### Les objets
 
@@ -241,10 +312,8 @@ en Javascript on peut rajouter des attributs dynamiquement.
 point.coord3 = 1;
 ```
 
-### Constructeurs ???
-
-
 <!-- 
+### Constructeurs ???
 Il y d'autres façons de faire des objets avec des constructeurs.
 
 Un autre aspect important sont les prototypes en Javascript 
@@ -253,7 +322,8 @@ mais on ne va pas faire par manque de temps
 #p108 Prototypes - constructeurs
 -->
 
-
+</section>
+<section>
 
 Logique
 -------
@@ -272,6 +342,9 @@ console.log ("Itchy" != "Scratchy")
 console.log ("Aardvark" < "Zoroaster")
 // → true
 ```
+
+</section>
+<section>
 
 Javascript est très permissif (peut-être trop)
 ----------------------------------------------
@@ -319,6 +392,9 @@ console.log( 1 + 1 + "1" + 1 + 1);
  = 2111
 ```
 
+</section>
+<section>
+
 Logique (suite)
 ---------------
 
@@ -338,6 +414,9 @@ qui teste l'égalité de type puis de valeur (comme en PHP).
 ```javascript
 console.log(false === "0");
 ```
+
+</section>
+<section>
 
 Subtilité des opérateurs logiques :
 -----------------------------------
@@ -373,6 +452,8 @@ console.log ("Karl" || "user");
 De plus, si Boolean(expr1) est vrai alors expr2 n'est pas évalué
 (évaluation paresseuse)
 
+</section>
+<section>
 
 If, for and while
 ------------------
@@ -412,6 +493,9 @@ switch (expression) {
     [break;]
 }
 ```
+
+</section>
+<section>
 
 Functions:
 ----------
@@ -458,6 +542,9 @@ console.log(square(256));
 console.log(cube(256));
 ```
 
+</section>
+<section>
+
 Méthodes des objets:
 --------------------
 
@@ -472,6 +559,8 @@ point.print = function() {
 }
 ```
 
+</section>
+<section>
 
 Parameters and scopes:
 ----------------------
@@ -542,9 +631,14 @@ p.43 with nested scope
 #p.10 closure
 
 
-------------------------
-| Javascript et le DOM |
-------------------------
+</section>
+<section>
+
+# Javascript et le DOM
+
+</section>
+<section>
+
 
 Insertion de Javascript dans un document HTML
 ----------------------------------------------
@@ -559,12 +653,20 @@ Insertion de Javascript dans un document HTML
 <button onclick =" alert ( 'Boom !') ;"> DO NOT PRESS </button>
 ```
 
+</section>
+<section>
+
+
 Le DOM
 ------
 Le DOM (« Document Object Model », ou modèle objet de document) est une interface de programmation (API) avec le document HTML
 
 Les documents HTML ont une structure d'arbre que l'on retrouve dans le DOM
 #Insérer code HTML, et représentation arbre
+
+</section>
+<section>
+
 
 Naviguer dans l'arbre:
 ----------------------
@@ -587,17 +689,23 @@ Renvoie un (tableau de) noeud + ces méthodes s'appliquent à n'importe quel noe
 
 !! querySelector !! 
 
+</section>
 
-
+<!--
 # Parler ici de Jquery 
 => Utile en production pour problème de compatibilité
 Exemple de getElementById (mais pas dans http://caniuse.com)
 Exemple de getElementsByClass ( http://caniuse.com mais moins incompatible)
+-->
 
+<section>
 
 ## Sources : 
 [Eloquent javascript](http://fr.eloquentjavascript.net) (plus licence)
 [MDN (Mozilla Developer network)](https://developer.mozilla.org/fr/)
+
+</section>
+
 
 <!--
 

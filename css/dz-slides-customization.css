@@ -164,3 +164,11 @@ section[aria-selected] ~ section { left: +150%; }
 #exit-slide h3 {
     margin-top: 200px;
 }
+
+/* Romain Lebreton */
+.myfootnote {
+  position: absolute;
+  bottom: 10px;
+  font-size: 90%;
+}
+

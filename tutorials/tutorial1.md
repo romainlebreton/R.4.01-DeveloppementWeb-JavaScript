@@ -192,7 +192,7 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
    2. Actuellement, notre élément `e` représente juste le code HTML `<tr></tr>`. Nous allons le remplir en éditant son intérieur via `e.innerHTML` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML)).
       Ajoutez le code HTML nécessaire en assignant la bonne chaîne de caractères à `e.innerHTML`.
 
-      **Remarque:** Les chaînes de caractères en JavaScript commencent et finissent par **"** (ou **'**). Le caractère d'échappement **\\** est nécessaire pour les caractères spéciaux comme les guillemets `\` &#8594; **"**, le saut de ligne `\n` &#8594;  **&#8626;**.
+      **Remarque:** Les chaînes de caractères en JavaScript commencent et finissent par **"** (ou **'**). Le caractère d'échappement **\\** est nécessaire pour les caractères spéciaux comme les guillemets `\"` &#8594; **"**, le saut de ligne `\n` &#8594;  **&#8626;**.
 
    3. Il ne reste plus qu'à ajouter notre élément `e` à la fin de body. Pour cela, utilisons `table_enfants.`[`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild)`(e)`.
 -->
