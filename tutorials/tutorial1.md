@@ -1,6 +1,6 @@
 ---
-title: Td1 &ndash; Prise en main de Javascript
-subtitle: Javascript et DOM
+title: Td1 &ndash; Prise en main de JavaScript
+subtitle: JavaScript et DOM
 layout: tutorial
 ---
 
@@ -11,8 +11,7 @@ Nous allons utiliser les outils de développements de Chrome pour nos Tds. Pour 
 
 #### L'inspecteurs d'éléments de page Web 
 
-L'onglet **Élément** contient le code HTML de la page Web courante.
-En survolant le code HTML, l'inspecteur vous indique où se trouve la boîte englobant l'élement courant. Les rectangles affichés de couleurs différentes représentent les quatres boites englobantes : la marge extérieure (`margin`), la bordure, la marge intérieure (`padding`) et le contenu.
+L'onglet **Élément** contient le code HTML de la page Web courante. En survolant le code HTML, l'inspecteur vous indique où se trouve la boîte englobant l'élément courant. Les rectangles affichés de couleurs différentes représentent les quatre boites englobantes&nbsp;: la marge extérieure (`margin`), la bordure, la marge intérieure (`padding`) et le contenu.
 
 Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe toutes les règles CSS s'appliquant à cet élément.
 
@@ -23,7 +22,7 @@ Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe tou
 2. Éditez la page HTML. Modifiez le texte du TD. Rajouter ou enlevez des balises de la page HTML. <br/>
 **Note:** Pour éditer le HTML, il faut faire clic droit > 'Edit as HTML'.
 3. Changez des éléments de style, par exemple la façon dont les bouts de code en ligne (e.g. `margin`, `padding`) sont stylisés. Ou passez à une numérotation binaire des listes d'exercices (`list-style-type: binary` ; [Ne marche pas sur Firefox ni IE](http://www.quirksmode.org/css/lists.html)).
-4. Rajouter votre premier gestionaire d'évènement (event handler). Pour cela, rajoutez `onclick="alert('À Malibu!')"` comme attribut à l'une des balises HTML. Vous n'avez alors plus qu'à cliquer dessus pour voir le message s'afficher.
+4. Rajouter votre premier gestionnaire d'événement (event handler). Pour cela, rajoutez `onclick="alert('À Malibu!')"` comme attribut à l'une des balises HTML. Vous n'avez alors plus qu'à cliquer dessus pour voir le message s'afficher.
 </div>
 
 L'un des grands avantages de l'onglet **Élément** est que l'on voit le code HTML de la page en direct. L'affichage classique des sources `Ctrl+U` ne montre que le source envoyé par le serveur.
@@ -36,23 +35,23 @@ L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger vo
 <div class="exercice">
 1. Cliquez sur la ligne de la page Web *tutorial1.html* et observez l'onglet **Headers**. On y voit les caractéristiques principales de la [requête HTTP](http://openclassrooms.com/courses/les-requetes-http) qui demande la page au serveur :
   * l'adresse du serveur : **romainlebreton.github.io**
-  * l'url de la page demandée :  **http://romainlebreton.github.io/ProgWeb-ClientRiche/tutorials/tutorial1.html**
+  * l'URL de la page demandée :  **http://romainlebreton.github.io/ProgWeb-ClientRiche/tutorials/tutorial1.html**
   * la méthode de requête : **GET**
   * le [code de statut](http://fr.wikipedia.org/wiki/Liste_des_codes_HTTP) de la réponse : 200 OK ou 304 Not modified (ou 404 Not Found)
 </div>
 
-#### La console Javascript
+#### La console JavaScript
 
 C'est ici que nous allons passer le reste du Tds. L'onglet **Console** (caché tout à droite) présente deux avantages :
 
- - c'est une console Javascript. Ce sera donc notre bac à sable pour expérimenter du code Javascript;
+ - c'est une console JavaScript. Ce sera donc notre bac à sable pour expérimenter du code JavaScript;
  - nous avons accès au DOM de la page Web courante. Ceci nous permettra d'interagir avec la page Web.
 
 ## Le Document Object Model (DOM)
 
-Le Document Object Model (DOM) de Javascript est un objet Javascript qui modélise le document (la page Web). Cet objet possède un ensemble de méthodes qui nous permettent d'interagir avec le document. Nous allons aborder le DOM d'un point de vue très pratique. 
+Le Document Object Model (DOM) de JavaScript est un objet JavaScript qui modélise le document (la page Web). Cet objet possède un ensemble de méthodes qui nous permettent d'interagir avec le document. Nous allons aborder le DOM d'un point de vue très pratique. 
 
-Le DOM est accessible dans la console Javascript dans la variable `document`.
+Le DOM est accessible dans la console JavaScript dans la variable `document`.
 
 <div class="exercice">
 1. Explorez dans la console quelques attributs de la variable `document`, par exemple `document.URL`, `document.head`, `document.body`.
@@ -60,7 +59,7 @@ Le DOM est accessible dans la console Javascript dans la variable `document`.
 
 #### Trouver un élément de la page Web
 
-La manière la plus pratique de trouver un élément de la page Web est via les méthodes `getElementById`, `getElementsByTagName` et `getElementsByClassName` de l'objet `document`. Les trois méthodes prennent une chaîne de charactères et renvoient le tableau des éléments correspondants, sauf `getElementById` qui ne renvoie qu'un élément puisqu'un identifiant est unique.
+La manière la plus pratique de trouver un élément de la page Web est via les méthodes `getElementById`, `getElementsByTagName` et `getElementsByClassName` de l'objet `document`. Les trois méthodes prennent une chaîne de caractères et renvoient le tableau des éléments correspondants, sauf `getElementById` qui ne renvoie qu'un élément puisqu'un identifiant est unique.
 
 <div class="exercice">
 1. Accédez dans la console à l'élément d'identifiant **le-document-object-model-dom** à l'aide du code
@@ -74,7 +73,7 @@ La manière la plus pratique de trouver un élément de la page Web est via les 
 
 </div>
 
-Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que Javascript possède une fonction `document.querySelector` qui prend un sélecteur en entrée et renvoie le premier élément correspondant. 
+Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que JavaScript possède une fonction `document.querySelector` qui prend un sélecteur en entrée et renvoie le premier élément correspondant. De même, `querySelectorAll` renvoie tous les éléments correspondants.
 
 <div class="exercice">
 1. sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelector`  ([rappels sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)).
@@ -83,7 +82,7 @@ Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des e
 
 Nous allons ici faire un petit tour d'horizon des méthodes pour modifier une page Web. Nous utiliserons ces méthodes dans la section suivante : [Mise en application -- Formulaire dynamique](#mise-en-application----formulaire-dynamique).
 
-Pour créer des éléments (ou noeuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createElement). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément correspondant.
+Pour créer des éléments (ou nœuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createElement). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément correspondant.
 
 Une fois un élément créé, il faut l'insérer dans la page Web. Les fonctions à votre disposition sont [`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild) et [`insertBefore`](https://developer.mozilla.org/fr/docs/Web/API/Node/insertBefore).
 
@@ -95,19 +94,19 @@ Enfin, la fonction [`setAttribute`](https://developer.mozilla.org/fr/docs/Web/AP
    ~~~
    <tr>
      <td>Nom:<input type="text" name="nom"></td>
-     <td>Prenom:<input type="text" name="prenom"></td>
+     <td>Prénom:<input type="text" name="prenom"></td>
    </tr>
    ~~~
    {:.html}
-   **Aide:** Créer les noeuds de l'intérieur vers l'extérieur.
+   **Aide:** Créer les nœuds de l'intérieur vers l'extérieur.
 
-2.   Sauvegarder votre code quelque part car nous nous en reservirons dans ce Td.
+2.   Sauvegarder votre code quelque part car nous nous en resservirons dans ce Td.
 </div>
 
 
 ## Mise en application -- Formulaire dynamique
 
-Nous allons utiliser Javascript pour rajouter du dynamisme <span style="text-decoration: line-through">aux étudiants</span> à un formulaire. Dans notre cas, nous allons développer un formulaire avec une partie facultative et de taille variable. Veuillez récupérer le [fichier HTML]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.html) et [fichier CSS]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.css) qui vous serviront de base pour notre formulaire dynamique.
+Nous allons utiliser JavaScript pour rajouter du dynamisme <span style="text-decoration: line-through">aux étudiants</span> à un formulaire. Dans notre cas, nous allons développer un formulaire avec une partie facultative et de taille variable. Veuillez récupérer le [fichier HTML]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.html) et [fichier CSS]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.css) qui vous serviront de base pour notre formulaire dynamique.
 
 Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
 
@@ -123,11 +122,11 @@ Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
    ~~~
    {:.css}
 
-2. Pour l'instant, nous allons développer notre code dans la console Javascript de Chrome. Sélectionnez l'élément d'identifiant "enfants" à l'aide de `document.getElementById()` et stockez le dans une variable `enfants`
+2. Pour l'instant, nous allons développer notre code dans la console JavaScript de Chrome. Sélectionnez l'élément d'identifiant "enfants" à l'aide de `document.getElementById()` et stockez le dans une variable `enfants`
 
 3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons utiliser sa propriété `enfants.classList` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList))
 
-4. Une fonction très pratique est la fonction toggle qui agit commme un interupteur : il active/désactive un objet selon si il était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez donc `e.classList.toggle("hidden")` pour afficher/cacher le formulaire enfant.
+4. Une fonction très pratique est la fonction toggle qui agit comme un interrupteur : il active/désactive un objet selon si il était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez donc `e.classList.toggle("hidden")` pour afficher/cacher le formulaire enfant.
 
 5. Veuillez regrouper le code précédant au sein d'une fonction `ActiverEnfants`
 
@@ -140,16 +139,16 @@ Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
   
 6. Nous allons maintenant associer cette fonction au clic sur le bouton de *"Avez-vous des enfants ?"*
    1. Pour cela, donnez à `querySelector` le sélecteur qui sélectionne les inputs d'attribut `type='checkbox'` ([documentation sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)). Mettez cet élément dans une variable `aEnfant`
-   2. On va associer à l'élément `aEnfant` un gestionnaire d'évènement qui lancera notre fonction `ActiverEnfants` lors de chaque clic sur le bouton.
+   2. On va associer à l'élément `aEnfant` un gestionnaire d'événement qui lancera notre fonction `ActiverEnfants` lors de chaque clic sur le bouton.
 
       ~~~
       aEnfant.addEventListener("click",ActiverEnfants);
       ~~~
       {:.javascript}
 
-      La fonction `addEventListener` prend en premier argument le nom de l'évènement à écouter et en deuxième argument la fonction à appeler.
+      La fonction `addEventListener` prend en premier argument le nom de l'événement à écouter et en deuxième argument la fonction à appeler.
 
-7. *Last but not least:* Maintenant que notre code est prêt, nous allons le déployer côté serveur pour qu'il soit envoyé et éxécuté avec la page Web. 
+7. *Last but not least:* Maintenant que notre code est prêt, nous allons le déployer côté serveur pour qu'il soit envoyé et exécute avec la page Web. 
    1. Créez donc un ficher **DynamicForm.js** contenant ce code dans le répertoire de votre projet **DynamicForm**. 
    2. Pour lier le script **DynamicForm.js** à notre page Web **DynamicForm.html**, ajouter dans cette dernière une balise
 
@@ -158,7 +157,7 @@ Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
       ~~~
       {:.html}
       juste avant la balise fermante `</body>`.
-      Votre script sera ainsi executé au chargement de la page ; l'action d'affichage du formulaire 'enfant' sera donc lié à la *checkbox*.
+      Votre script sera ainsi exécuté au chargement de la page ; l'action d'affichage du formulaire 'enfant' sera donc lié à la *checkbox*.
 
 
 </div>
@@ -170,7 +169,7 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
 <div class="exercice">
 
 1. Sélectionnez l'élément de balise `tbody` inclus dans l'élément d'identifiant "enfants" à l'aide de `document.querySelector()` et stockez le dans une variable `table_enfants`
-2. Nous souhaitons maintenant ajouter une nouvelle ligne à notre tableau. Notre objectif est donc d'ajouter le code HTML suivant à la fin du tableau
+2. Nous souhaitons maintenant ajouter une nouvelle ligne à notre tableau. Ajoutez le code HTML suivant à la fin du tableau
 
    ~~~
    <tr>
@@ -180,7 +179,7 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
    </tr>
    ~~~
    {:.html}
-
+<!--
    Nous allons procéder en plusieurs étapes :
 
    1. Créer un nouvel élément HTML de type `<tr>` à l'aide de 
@@ -193,15 +192,15 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
    2. Actuellement, notre élément `e` représente juste le code HTML `<tr></tr>`. Nous allons le remplir en éditant son intérieur via `e.innerHTML` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML)).
       Ajoutez le code HTML nécessaire en assignant la bonne chaîne de caractères à `e.innerHTML`.
 
-      **Remarque:** Les chaînes de caractères en Javascript commencent et finissent par **"** (ou **'**). Le caractère d'échappement **\\** est nécessaire pour les caractères spéciaux comme les guillemets `\` &#8594; **"**, le saut de ligne `\n` &#8594;  **&#8626;**.
+      **Remarque:** Les chaînes de caractères en JavaScript commencent et finissent par **"** (ou **'**). Le caractère d'échappement **\\** est nécessaire pour les caractères spéciaux comme les guillemets `\` &#8594; **"**, le saut de ligne `\n` &#8594;  **&#8626;**.
 
    3. Il ne reste plus qu'à ajouter notre élément `e` à la fin de body. Pour cela, utilisons `table_enfants.`[`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild)`(e)`.
+-->
 
-
-3. Associons notre action à l'évènement 'clic' sur le bouton *Ajouter un enfant* 
+3. Associons notre action à l'événement 'clic' sur le bouton *Ajouter un enfant* 
    1. Empaquetons tout cela dans une fonction `function AjoutEnfant()`.
-   2. Sélectionner notre bouton à l'aide de `querySelector` (c'est le premier bouton qui provient de la balise d'indentifiant *enfants*).
-   3. Associer lui le gestionnaire d'évènement qui associe au clic l'action `AjoutEnfant`.
+   2. Sélectionner notre bouton à l'aide de `querySelector` (c'est le premier bouton qui provient de la balise d'identifiant *enfants*).
+   3. Associer lui le gestionnaire d'événement qui associe au clic l'action `AjoutEnfant`.
 
 4. Actuellement, nous rajoutons toujours la même ligne n°2 au tableau lors de clic successifs. 
    1. Pour garder trace du numéro de la ligne actuelle, nous allons créer une variable globale `enf_count` que nous incrémenterons dans `AjoutEnfant`.
@@ -225,4 +224,5 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
 
 - [La présentation des outils de développements sur le site de Chrome](https://developer.chrome.com/devtools)
 - [Le site de Mozilla sur les technologies Web](https://developer.mozilla.org/fr/)
+- [La structure d'arbre du HTML](http://fr.eloquentjavascript.net/chapter12.html)
 
