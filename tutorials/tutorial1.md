@@ -113,7 +113,7 @@ Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre 
 #### Affichage de la partie facultative du formulaire
 
 <div class="exercice">
-1. rajouter class="hidden" et créer la règle de style 
+1. On souhaite cacher par défaut la partie facultative du formulaire correspondant à la liste des enfants. Rajouter `class="hidden"` comme attribut au `<div>` contenant la liste des enfants.  Créer la règle de style suivante qui a pour effet de cacher le contenu.
 
    ~~~
    .hidden {
@@ -124,9 +124,8 @@ Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre 
 
 2. Pour l'instant, nous allons développer notre code dans la console JavaScript de Chrome. Sélectionnez l'élément d'identifiant "enfants" à l'aide de `document.getElementById()` et stockez le dans une variable `enfants`
 
-3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons utiliser sa propriété `enfants.classList` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList))
-
-4. Une fonction très pratique est la fonction `toggle()` qui agit comme un interrupteur : il active/désactive un objet selon si il était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez donc `e.classList.toggle("hidden")` pour afficher/cacher le formulaire enfant.
+3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons utiliser sa propriété `enfants.classList` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList)).
+   Une fonction très pratique de `classList` est la fonction `toggle()` qui agit comme un interrupteur : il active/désactive la classe selon si elle était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez-la pour afficher/cacher le formulaire enfant.
 
 5. Veuillez regrouper le code précédant au sein d'une fonction `ActiverEnfants`
 
@@ -137,16 +136,17 @@ Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre 
    ~~~
    {:.javascript}
   
-6. Nous allons maintenant associer cette fonction au clic sur le bouton de *"Avez-vous des enfants ?"*
+6. Nous allons maintenant associer cette fonction au clic sur le bouton <input type='checkbox' checked> de *"Avez-vous des enfants ?"*
    1. Pour cela, donnez à `querySelector` le sélecteur qui sélectionne les inputs d'attribut `type='checkbox'` ([documentation sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)). Mettez cet élément dans une variable `aEnfant`
    2. On va associer à l'élément `aEnfant` un gestionnaire d'événement qui lancera notre fonction `ActiverEnfants` lors de chaque clic sur le bouton.
+      La fonction `addEventListener` prend en premier argument le nom de l'événement à écouter et en deuxième argument la fonction à appeler.
 
       ~~~
       aEnfant.addEventListener("click",ActiverEnfants);
       ~~~
       {:.javascript}
 
-      La fonction `addEventListener` prend en premier argument le nom de l'événement à écouter et en deuxième argument la fonction à appeler.
+      
 
 7. *Last but not least:* Maintenant que notre code est prêt, nous allons le déployer côté serveur pour qu'il soit envoyé et exécuté avec la page Web. 
    1. Créez donc un ficher **DynamicForm.js** contenant ce code dans le répertoire de votre projet **DynamicForm**. 
@@ -168,8 +168,8 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
 
 <div class="exercice">
 
-1. Sélectionnez l'élément de balise `tbody` inclus dans l'élément d'identifiant "enfants" à l'aide de `document.querySelector()` et stockez le dans une variable `table_enfants`
-2. Nous souhaitons maintenant ajouter une nouvelle ligne à notre tableau. Ajoutez le code HTML suivant à la fin du tableau
+1. Sélectionnez l'élément de balise `<tbody>` inclus dans l'élément d'identifiant *enfants* à l'aide de `document.querySelector()` et stockez le dans une variable `table_enfants`
+2. Nous souhaitons maintenant ajouter une nouvelle ligne à notre tableau. Ajoutez le code HTML suivant à la fin du tableau comme nous avons vu à la section [Modifier une page Web](modifier-une-page-web).
 
    ~~~
    <tr>
