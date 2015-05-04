@@ -1,6 +1,7 @@
 ---
 title : Cours 1 - Bases du Javascript
-layout : main
+subtitle : un tour d'horizon
+layout : slideshow
 ---
 
 <!-- TODO : Rajouter une bouton pour exécuter le code dans la console -->
