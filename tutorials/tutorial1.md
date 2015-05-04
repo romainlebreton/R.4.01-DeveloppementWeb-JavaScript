@@ -1,9 +1,9 @@
 ---
-title: Programmation Web - Client Riche
-layout: main
+title: Td1 &ndash; Prise en main de Javascript
+subtitle: Javascript et DOM
+layout: tutorial
 ---
 
-# Td1 -- Prise en main de Javascript
 
 ## Les outils de développements
 
@@ -23,9 +23,10 @@ Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe tou
 2. Éditez la page HTML. Modifiez le texte du TD. Rajouter ou enlevez des balises de la page HTML. <br/>
 **Note:** Pour éditer le HTML, il faut faire clic droit > 'Edit as HTML'.
 3. Changez des éléments de style, par exemple la façon dont les bouts de code en ligne (e.g. `margin`, `padding`) sont stylisés. Ou passez à une numérotation binaire des listes d'exercices (`list-style-type: binary` ; [Ne marche pas sur Firefox ni IE](http://www.quirksmode.org/css/lists.html)).
-4. Rajouter votre premier gestionaire d'évènement (event handler). Pour cela, rajoutez `onclick="alert('Action!')"` comme attribut à l'une des balises HTML. Vous n'avez alors plus qu'à cliquer dessus pour voir le message s'afficher.
+4. Rajouter votre premier gestionaire d'évènement (event handler). Pour cela, rajoutez `onclick="alert('À Malibu!')"` comme attribut à l'une des balises HTML. Vous n'avez alors plus qu'à cliquer dessus pour voir le message s'afficher.
 </div>
 
+L'un des grands avantages de l'onglet **Élément** est que l'on voit le code HTML de la page en direct. L'affichage classique des sources `Ctrl+U` ne montre que le source envoyé par le serveur.
 Les modifications que vous avez faites sont temporaires et disparaîtrons lors du rechargement de la page. Il faudrait reporter les modifications côté serveur pour les enregistrer.
 
 #### Le moniteur réseau
@@ -67,9 +68,9 @@ La manière la plus pratique de trouver un élément de la page Web est via les 
         var e1 = document.getElementById("le-document-object-model-dom");
         console.log(e1);
 
-2. Dans le même ordre d'idée, sélectionnez tous les *list items* `<li>` à l'aide de `getElementsByTagName`.
+2. Dans le même ordre d'idée, sélectionnez tous les *list items* `<li>` à l'aide de `getElementsByTagName` et comptez les en utilisant leur propriété `.length`.
 
-3. Enfin, sélectionnez tous les éléments ayant la classe *exercice* à l'aide de `getElementsByClassName`.
+3. Enfin, sélectionnez tous les éléments ayant la classe *exercice* à l'aide de `getElementsByClassName` et comptez les en utilisant leur propriété `.length`.
 
 </div>
 
@@ -80,6 +81,14 @@ Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des e
 
 #### Modifier une page Web
 
+appendChild
+insertBefore , which inserts the node given
+as the first argument before the node given as the second argument.
+removeChild
+
+document.createElement
+document.createTextNode
+
     - createElement, setAttribute(,), appendChild, ?style.color?
     - innerHTML = "..." (parse le HTML)
 
@@ -88,6 +97,8 @@ Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des e
 Nous allons utiliser Javascript pour rajouter du dynamisme <span style="text-decoration: line-through">aux étudiants</span> à un formulaire. Dans notre cas, nous allons développer un formulaire avec une partie facultative et de taille variable. Veuillez récupérer le [fichier HTML]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.html) et [fichier CSS]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.css) qui vous serviront de base pour notre formulaire dynamique.
 
 Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
+
+#### Affichage de la partie facultative du formulaire
 
 <div class="exercice">
 1. rajouter class="hidden" et créer la règle de style 
@@ -116,7 +127,89 @@ Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
   
 6. Nous allons maintenant associer cette fonction au clic sur le bouton de *"Avez-vous des enfants ?"*
     - Pour cela, donnez à `querySelector` le sélecteur qui sélectionne les inputs d'attribut `type='checkbox'` ([documentation sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)). Mettez cet élément dans une variable `aEnfant`
-    - On a associer à l'élément `aEnfant`
+    - On va associer à l'élément `aEnfant` un gestionnaire d'évènement qui lancera notre fonction `ActiverEnfants` lors de chaque clic sur le bouton.
+
+      ~~~
+      aEnfant.addEventListener("click",ActiverEnfants);
+      ~~~
+      {:.javascript}
+
+      La fonction `addEventListener` prend en premier argument le nom de l'évènement à écouter et en deuxième argument la fonction à appeler.
+
+7. *Last but not least:* Maintenant que notre code est prêt, nous allons le déployer côté serveur pour qu'il soit envoyé et éxécuté avec la page Web. 
+   1. Créez donc un ficher **DynamicForm.js** contenant ce code dans le répertoire de votre projet **DynamicForm**. 
+   2. Pour lier le script **DynamicForm.js** à notre page Web **DynamicForm.html**, ajouter dans cette dernière une balise
+
+      ~~~
+      <script src="DynamicForm.js"></script>
+      ~~~
+      {:.html}
+      juste avant la balise fermante `</body>`.
+      Votre script sera ainsi executé au chargement de la page ; l'action d'affichage du formulaire 'enfant' sera donc lié à la *checkbox*.
+
+
+</div>
+
+#### Avoir un formulaire de taille variable
+
+Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à un formulaire en cliquant sur un bouton.
+
+<div class="exercice">
+
+1. Sélectionnez l'élément de balise `tbody` inclus dans l'élément d'identifiant "enfants" à l'aide de `document.querySelector()` et stockez le dans une variable `table_enfants`
+2. Nous souhaitons maintenant ajouter une nouvelle ligne à notre tableau. Notre objectif est donc d'ajouter le code HTML suivant à la fin du tableau
+
+   ~~~
+   <tr>
+     <td>2</td>
+     <td><input type="text" name="nom-e2"></td>
+     <td><input type="text" name="prenom-e2"></td>
+   </tr>
+   ~~~
+   {:.html}
+
+   Nous allons procéder en plusieurs étapes :
+
+   1. Créer un nouvel élément HTML de type `<tr>` à l'aide de 
+
+      ~~~
+      var e = document.createElement("tr");
+      ~~~
+      {:.javascript}
+
+   2. Actuellement, notre élément `e` représente juste le code HTML `<tr></tr>`. Nous allons le remplir en éditant son intérieur via `e.innerHTML` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML)).
+      Ajoutez le code HTML nécessaire en assignant la bonne chaîne de caractères à `e.innerHTML`.
+
+      **Remarque:** Les chaînes de caractères en Javascript commencent et finissent par **"** (ou **'**). Le caractère d'échappement **\\** est nécessaire pour les caractères spéciaux comme les guillemets `\` &#8594; **"**, le saut de ligne `\n` &#8594;  **&#8626;**.
+
+      ~~~
+      var e = document.createElement("tr");
+      ~~~
+      {:.javascript}
+
+   3. Il ne reste plus qu'à ajouter notre élément `e` à la fin de body. Pour cela, utilisons `table_enfants.`[`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild)`(e)`.
+
+
+3. Associons notre action à l'évènement 'clic' sur le bouton *Ajouter un enfant* 
+   1. Empaquetons tout cela dans une fonction `function AjoutEnfant()`.
+   2. Sélectionner notre bouton à l'aide de `querySelector` (c'est le premier bouton qui provient de la balise d'indentifiant *enfants*).
+   3. Associer lui le gestionnaire d'évènement qui associe au clic l'action `AjoutEnfant`.
+
+4. Actuellement, nous rajoutons toujours la même ligne n°2 au tableau lors de clic successifs. 
+   1. Pour garder trace du numéro de la ligne actuelle, nous allons créer une variable globale `enf_count` que nous incrémenterons dans `AjoutEnfant`.
+
+      ~~~
+      var enf_count = 2;
+      function AjoutEnfant () {
+        // ...
+        enf_count++;
+      }
+      ~~~
+      {:.javascript}
+
+   2. Changer le corps de la fonction `AjoutEnfant` pour créer la ligne n° `enf_count`.
+
+5. Déployez votre code avec un copier/coller dans **DynamicForm.js**. Quand tout marche bien, profiter de l'instant.
 
 </div>
 
