@@ -7,8 +7,7 @@ layout: main
 
 ## Les outils de développements
 
-Nous allons utiliser les outils de développements de Chrome pour nos Tds. 
-Pour ouvrir les outils de développements de Chrome, appuyez sur `F12` (ou `Ctrl+Shift+I` ou Onglet Outils > Outils de développement).
+Nous allons utiliser les outils de développements de Chrome pour nos Tds. Pour ouvrir les outils de développements de Chrome, appuyez sur `F12` (ou `Ctrl+Shift+I` ou Outils > Outils de développement).
 
 #### L'inspecteurs d'éléments de page Web 
 
@@ -17,7 +16,7 @@ En survolant le code HTML, l'inspecteur vous indique où se trouve la boîte eng
 
 Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe toutes les règles CSS s'appliquant à cet élément.
 
-À l'inverse, vous pouvez vous servir de la loupe ![loupe]({{ site.baseurl }}/assets/magnifying.png) pour explorer visuellement le rendu de la page Web. La loupe vous montre alors le code HTML de l'élément sous votre souris.
+À l'inverse, vous pouvez vous servir de la loupe ![loupe]({{ site.baseurl }}/assets/magnifying.png) (`Ctrl+Shift+C`) pour explorer visuellement le rendu de la page Web. La loupe vous montre alors le code HTML de l'élément sous votre souris.
 
 <div class="exercice">
 1. Inspectez la page courante dans l'onglet **Élément**. 
@@ -36,7 +35,7 @@ L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger vo
 <div class="exercice">
 1. Cliquez sur la ligne de la page Web *tutorial1.html* et observez l'onglet **Headers**. On y voit les caractéristiques principales de la [requête HTTP](http://openclassrooms.com/courses/les-requetes-http) qui demande la page au serveur :
   * l'adresse du serveur : **romainlebreton.github.io**
-  * l'url de la page demandée :  **http://romainlebreton.github.io/ProgWeb-ClientRiche/tutorials/Td1.html**
+  * l'url de la page demandée :  **http://romainlebreton.github.io/ProgWeb-ClientRiche/tutorials/tutorial1.html**
   * la méthode de requête : **GET**
   * le [code de statut](http://fr.wikipedia.org/wiki/Liste_des_codes_HTTP) de la réponse : 200 OK ou 304 Not modified (ou 404 Not Found)
 </div>
@@ -74,10 +73,10 @@ La manière la plus pratique de trouver un élément de la page Web est via les 
 
 </div>
 
-Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que Javascript possède une fonction `document.querySelector` qui prend un sélecteur en entrée. 
+Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que Javascript possède une fonction `document.querySelector` qui prend un sélecteur en entrée et renvoie le premier élément correspondant. 
 
 <div class="exercice">
-1. sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelector`  ([rappels sur les sélecteurs](http://www.w3.org/TR/CSS2/selector.html)).
+1. sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelector`  ([rappels sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)).
 
 #### Modifier une page Web
 
@@ -86,6 +85,43 @@ Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des e
 
 ## Mise en application -- Formulaire dynamique
 
+Nous allons utiliser Javascript pour rajouter du dynamisme <span style="text-decoration: line-through">aux étudiants</span> à un formulaire. Dans notre cas, nous allons développer un formulaire avec une partie facultative et de taille variable. Veuillez récupérer le [fichier HTML]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.html) et [fichier CSS]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.css) qui vous serviront de base pour notre formulaire dynamique.
+
+Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
+
+<div class="exercice">
+1. rajouter class="hidden" et créer la règle de style 
+
+   ~~~
+   .hidden {
+     display:none;
+   }
+   ~~~
+   {:.css}
+
+2. Pour l'instant, nous allons développer notre code dans la console Javascript de Chrome. Sélectionnez l'élément d'identifiant "enfants" à l'aide de `document.getElementById()` et stockez le dans une variable `enfants`
+
+3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons utiliser sa propriété `enfants.classList` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList))
+
+4. Une fonction très pratique est la fonction toggle qui agit commme un interupteur : il active/désactive un objet selon si il était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez donc `e.classList.toggle("hidden")` pour afficher/cacher le formulaire enfant.
+
+5. Veuillez regrouper le code précédant au sein d'une fonction `ActiverEnfants`
+
+   ~~~
+   function ActiverEnfants () {
+     // Votre code ici
+   }
+   ~~~
+   {:.javascript}
+  
+6. Nous allons maintenant associer cette fonction au clic sur le bouton de *"Avez-vous des enfants ?"*
+    - Pour cela, donnez à `querySelector` le sélecteur qui sélectionne les inputs d'attribut `type='checkbox'` ([documentation sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)). Mettez cet élément dans une variable `aEnfant`
+    - On a associer à l'élément `aEnfant`
+
+</div>
+
 ## Quelques liens
 
 - [La présentation des outils de développements sur le site de Chrome](https://developer.chrome.com/devtools)
+- [Le site de Mozilla sur les technologies Web](https://developer.mozilla.org/fr/)
+
