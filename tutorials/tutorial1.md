@@ -98,9 +98,8 @@ Enfin, la fonction [`setAttribute`](https://developer.mozilla.org/fr/docs/Web/AP
    </tr>
    ~~~
    {:.html}
-   **Aide:** Créer les nœuds de l'intérieur vers l'extérieur.
-
-2.   Sauvegarder votre code quelque part car nous nous en resservirons dans ce Td.
+   **Aide:** Créer les nœuds de l'intérieur vers l'extérieur. 
+   Sauver votre code au fur et à mesure quelque part car nous nous en resservirons dans ce Td.
 </div>
 
 
@@ -108,7 +107,7 @@ Enfin, la fonction [`setAttribute`](https://developer.mozilla.org/fr/docs/Web/AP
 
 Nous allons utiliser JavaScript pour rajouter du dynamisme <span style="text-decoration: line-through">aux étudiants</span> à un formulaire. Dans notre cas, nous allons développer un formulaire avec une partie facultative et de taille variable. Veuillez récupérer le [fichier HTML]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.html) et [fichier CSS]({{ site.baseurl }}/assets/DynamicForm/DynamicForm.css) qui vous serviront de base pour notre formulaire dynamique.
 
-Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
+Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre IDE préféré).
 
 #### Affichage de la partie facultative du formulaire
 
@@ -126,7 +125,7 @@ Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
 
 3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons utiliser sa propriété `enfants.classList` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList))
 
-4. Une fonction très pratique est la fonction toggle qui agit comme un interrupteur : il active/désactive un objet selon si il était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez donc `e.classList.toggle("hidden")` pour afficher/cacher le formulaire enfant.
+4. Une fonction très pratique est la fonction `toggle()` qui agit comme un interrupteur : il active/désactive un objet selon si il était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez donc `e.classList.toggle("hidden")` pour afficher/cacher le formulaire enfant.
 
 5. Veuillez regrouper le code précédant au sein d'une fonction `ActiverEnfants`
 
@@ -148,7 +147,7 @@ Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
 
       La fonction `addEventListener` prend en premier argument le nom de l'événement à écouter et en deuxième argument la fonction à appeler.
 
-7. *Last but not least:* Maintenant que notre code est prêt, nous allons le déployer côté serveur pour qu'il soit envoyé et exécute avec la page Web. 
+7. *Last but not least:* Maintenant que notre code est prêt, nous allons le déployer côté serveur pour qu'il soit envoyé et exécuté avec la page Web. 
    1. Créez donc un ficher **DynamicForm.js** contenant ce code dans le répertoire de votre projet **DynamicForm**. 
    2. Pour lier le script **DynamicForm.js** à notre page Web **DynamicForm.html**, ajouter dans cette dernière une balise
 
