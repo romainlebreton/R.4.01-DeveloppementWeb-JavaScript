@@ -27,7 +27,7 @@ Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe tou
 </div>
 
 L'un des grands avantages de l'onglet **Élément** est que l'on voit le code HTML de la page en direct. L'affichage classique des sources `Ctrl+U` ne montre que le source envoyé par le serveur.
-Les modifications que vous avez faites sont temporaires et disparaîtrons lors du rechargement de la page. Il faudrait reporter les modifications côté serveur pour les enregistrer.
+Les modifications que vous avez faites sont temporaires et disparaîtrons lors du rechargement de la page. Il faudra reporter les modifications côté serveur pour les enregistrer.
 
 #### Le moniteur réseau
 
@@ -43,7 +43,7 @@ L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger vo
 
 #### La console Javascript
 
-C'est ici que nous allons passer le reste du Tds. L'onglet **Console** présente deux avantages :
+C'est ici que nous allons passer le reste du Tds. L'onglet **Console** (caché tout à droite) présente deux avantages :
 
  - c'est une console Javascript. Ce sera donc notre bac à sable pour expérimenter du code Javascript;
  - nous avons accès au DOM de la page Web courante. Ceci nous permettra d'interagir avec la page Web.
@@ -81,16 +81,29 @@ Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des e
 
 #### Modifier une page Web
 
-appendChild
-insertBefore , which inserts the node given
-as the first argument before the node given as the second argument.
-removeChild
+Nous allons ici faire un petit tour d'horizon des méthodes pour modifier une page Web. Nous utiliserons ces méthodes dans la section suivante : [Mise en application -- Formulaire dynamique](#mise-en-application----formulaire-dynamique).
 
-document.createElement
-document.createTextNode
+Pour créer des éléments (ou noeuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createElement). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément correspondant.
 
-    - createElement, setAttribute(,), appendChild, ?style.color?
-    - innerHTML = "..." (parse le HTML)
+Une fois un élément créé, il faut l'insérer dans la page Web. Les fonctions à votre disposition sont [`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild) et [`insertBefore`](https://developer.mozilla.org/fr/docs/Web/API/Node/insertBefore).
+
+Enfin, la fonction [`setAttribute`](https://developer.mozilla.org/fr/docs/Web/API/Element/setAttribute) permet de modifier les attributs d'un élément.
+
+<div class="exercice">
+1. À l'aide des fonctions précédentes, créez l'élément correspondant au code HTML suivant :
+
+   ~~~
+   <tr>
+     <td>Nom:<input type="text" name="nom"></td>
+     <td>Prenom:<input type="text" name="prenom"></td>
+   </tr>
+   ~~~
+   {:.html}
+   **Aide:** Créer les noeuds de l'intérieur vers l'extérieur.
+
+2.   Sauvegarder votre code quelque part car nous nous en reservirons dans ce Td.
+</div>
+
 
 ## Mise en application -- Formulaire dynamique
 
@@ -126,8 +139,8 @@ Créez un projet Netbeans **DynamicForm** avec ces deux fichiers.
    {:.javascript}
   
 6. Nous allons maintenant associer cette fonction au clic sur le bouton de *"Avez-vous des enfants ?"*
-    - Pour cela, donnez à `querySelector` le sélecteur qui sélectionne les inputs d'attribut `type='checkbox'` ([documentation sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)). Mettez cet élément dans une variable `aEnfant`
-    - On va associer à l'élément `aEnfant` un gestionnaire d'évènement qui lancera notre fonction `ActiverEnfants` lors de chaque clic sur le bouton.
+   1. Pour cela, donnez à `querySelector` le sélecteur qui sélectionne les inputs d'attribut `type='checkbox'` ([documentation sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)). Mettez cet élément dans une variable `aEnfant`
+   2. On va associer à l'élément `aEnfant` un gestionnaire d'évènement qui lancera notre fonction `ActiverEnfants` lors de chaque clic sur le bouton.
 
       ~~~
       aEnfant.addEventListener("click",ActiverEnfants);
@@ -181,11 +194,6 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
       Ajoutez le code HTML nécessaire en assignant la bonne chaîne de caractères à `e.innerHTML`.
 
       **Remarque:** Les chaînes de caractères en Javascript commencent et finissent par **"** (ou **'**). Le caractère d'échappement **\\** est nécessaire pour les caractères spéciaux comme les guillemets `\` &#8594; **"**, le saut de ligne `\n` &#8594;  **&#8626;**.
-
-      ~~~
-      var e = document.createElement("tr");
-      ~~~
-      {:.javascript}
 
    3. Il ne reste plus qu'à ajouter notre élément `e` à la fin de body. Pour cela, utilisons `table_enfants.`[`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild)`(e)`.
 
