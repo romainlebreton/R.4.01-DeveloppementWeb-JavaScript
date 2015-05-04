@@ -1,5 +1,5 @@
 ---
-title: Td1 &ndash; Prise en main de JavaScript
+title: TD1 &ndash; Prise en main de JavaScript
 subtitle: JavaScript et DOM
 layout: tutorial
 ---
@@ -7,13 +7,11 @@ layout: tutorial
 
 ## Les outils de développements
 
-Nous allons utiliser les outils de développements de Chrome pour nos Tds. Pour ouvrir les outils de développements de Chrome, appuyez sur `F12` (ou `Ctrl+Shift+I` ou Outils > Outils de développement).
+Nous allons utiliser les outils de développements de Chrome pour nos TDs. Pour ouvrir les outils de développements de Chrome, appuyez sur `F12` (ou `Ctrl+Shift+I` ou Outils > Outils de développement).
 
 #### L'inspecteurs d'éléments de page Web 
 
-L'onglet **Élément** contient le code HTML de la page Web courante. En survolant le code HTML, l'inspecteur vous indique où se trouve la boîte englobant l'élément courant. Les rectangles affichés de couleurs différentes représentent les quatre boites englobantes&nbsp;: la marge extérieure (`margin`), la bordure, la marge intérieure (`padding`) et le contenu.
-
-Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe toutes les règles CSS s'appliquant à cet élément.
+L'onglet **Élément** contient le code HTML de la page Web courante. En survolant le code HTML, l'inspecteur vous indique où se trouve la boîte englobant l'élément courant. Les rectangles affichés de couleurs différentes représentent les quatre boites englobantes&nbsp;: la marge extérieure (`margin`), la bordure, la marge intérieure (`padding`) et le contenu. Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe toutes les règles CSS s'appliquant à cet élément.
 
 À l'inverse, vous pouvez vous servir de la loupe ![loupe]({{ site.baseurl }}/assets/magnifying.png) (`Ctrl+Shift+C`) pour explorer visuellement le rendu de la page Web. La loupe vous montre alors le code HTML de l'élément sous votre souris.
 
@@ -21,19 +19,21 @@ Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe tou
 1. Inspectez la page courante dans l'onglet **Élément**. 
 2. Éditez la page HTML. Modifiez le texte du TD. Rajouter ou enlevez des balises de la page HTML. <br/>
 **Note:** Pour éditer le HTML, il faut faire clic droit > 'Edit as HTML'.
-3. Changez des éléments de style, par exemple la façon dont les bouts de code en ligne (e.g. `margin`, `padding`) sont stylisés. Ou passez à une numérotation binaire des listes d'exercices (`list-style-type: binary` ; [Ne marche pas sur Firefox ni IE](http://www.quirksmode.org/css/lists.html)).
+3. Changez des éléments de style. Par exemple la façon dont les bouts de code en ligne comme `margin`, `padding` sont stylisés. Ou passez à une numérotation binaire des listes d'exercices (`list-style-type: binary` ; [Ne marche pas sur Firefox ni IE](http://www.quirksmode.org/css/lists.html)).
+**Note:** Vous pouvez faire ces modifications de style dans la sous-partie **Styles** de l'onglet **Élément** ou directement dans le ficher *CSS* qui se trouve dans l'onglet **Sources**.
 4. Rajouter votre premier gestionnaire d'événement (event handler). Pour cela, rajoutez `onclick="alert('À Malibu!')"` comme attribut à l'une des balises HTML. Vous n'avez alors plus qu'à cliquer dessus pour voir le message s'afficher.
 </div>
 
-L'un des grands avantages de l'onglet **Élément** est que l'on voit le code HTML de la page en direct. L'affichage classique des sources `Ctrl+U` ne montre que le source envoyé par le serveur.
-Les modifications que vous avez faites sont temporaires et disparaîtrons lors du rechargement de la page. Il faudra reporter les modifications côté serveur pour les enregistrer.
+L'un des grands avantages de l'onglet **Élément** est que l'on voit le code HTML de la page en direct. L'affichage classique des sources `Ctrl+U` ne montre que le code source original envoyé par le serveur.
+Les modifications que vous avez faites sont temporaires et disparaîtrons lors du rechargement de la page. Il faudra reporter les modifications côté serveur pour les enregistrer (cf. plus bas).
 
 #### Le moniteur réseau
 
 L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger votre page. On y voit le chargement de la page HTML, des styles CSS et des images liées.
 
 <div class="exercice">
-1. Cliquez sur la ligne de la page Web *tutorial1.html* et observez l'onglet **Headers**. On y voit les caractéristiques principales de la [requête HTTP](http://openclassrooms.com/courses/les-requetes-http) qui demande la page au serveur :
+1. Cliquez sur l'onglet **Network** et observez les différentes fichiers échangés lors du chargement de la page. Si l'onglet est vide, rechargez la page.
+2. Cliquez sur la ligne de la page Web *tutorial1.html* et observez le sous-onglet **Headers**. On y voit les caractéristiques principales de la [requête HTTP](http://openclassrooms.com/courses/les-requetes-http) qui demande la page au serveur :
   * l'adresse du serveur : **romainlebreton.github.io**
   * l'URL de la page demandée :  **http://romainlebreton.github.io/ProgWeb-ClientRiche/tutorials/tutorial1.html**
   * la méthode de requête : **GET**
@@ -42,7 +42,7 @@ L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger vo
 
 #### La console JavaScript
 
-C'est ici que nous allons passer le reste du Tds. L'onglet **Console** (caché tout à droite) présente deux avantages :
+C'est ici que nous allons passer le reste du TD. L'onglet **Console** (caché tout à droite) présente deux avantages :
 
  - c'est une console JavaScript. Ce sera donc notre bac à sable pour expérimenter du code JavaScript;
  - nous avons accès au DOM de la page Web courante. Ceci nous permettra d'interagir avec la page Web.
@@ -76,13 +76,14 @@ La manière la plus pratique de trouver un élément de la page Web est via les 
 Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que JavaScript possède une fonction `document.querySelector` qui prend un sélecteur en entrée et renvoie le premier élément correspondant. De même, `querySelectorAll` renvoie tous les éléments correspondants.
 
 <div class="exercice">
-1. sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelector`  ([rappels sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp)).
+1. Sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelector`<br>
+   **Aide:** Vous pouvez consulter ce [rappel sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp).
 
 #### Modifier une page Web
 
 Nous allons ici faire un petit tour d'horizon des méthodes pour modifier une page Web. Nous utiliserons ces méthodes dans la section suivante : [Mise en application -- Formulaire dynamique](#mise-en-application----formulaire-dynamique).
 
-Pour créer des éléments (ou nœuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createElement). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément correspondant.
+Pour créer des éléments (ou nœuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createElement). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément de type balise correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément de type texte correspondant.
 
 Une fois un élément créé, il faut l'insérer dans la page Web. Les fonctions à votre disposition sont [`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild) et [`insertBefore`](https://developer.mozilla.org/fr/docs/Web/API/Node/insertBefore).
 
@@ -93,13 +94,13 @@ Enfin, la fonction [`setAttribute`](https://developer.mozilla.org/fr/docs/Web/AP
 
    ~~~
    <tr>
-     <td>Nom:<input type="text" name="nom"></td>
-     <td>Prénom:<input type="text" name="prenom"></td>
+     <TD>Nom:<input type="text" name="nom"></TD>
+     <TD>Prénom:<input type="text" name="prenom"></TD>
    </tr>
    ~~~
    {:.html}
    **Aide:** Créer les nœuds de l'intérieur vers l'extérieur. 
-   Sauver votre code au fur et à mesure quelque part car nous nous en resservirons dans ce Td.
+   Sauver votre code au fur et à mesure quelque part car nous nous en resservirons dans ce TD.
 </div>
 
 
@@ -172,9 +173,9 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
 
    ~~~
    <tr>
-     <td>2</td>
-     <td><input type="text" name="nom-e2"></td>
-     <td><input type="text" name="prenom-e2"></td>
+     <TD>2</TD>
+     <TD><input type="text" name="nom-e2"></TD>
+     <TD><input type="text" name="prenom-e2"></TD>
    </tr>
    ~~~
    {:.html}

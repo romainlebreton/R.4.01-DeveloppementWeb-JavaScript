@@ -12,14 +12,11 @@ table input {
      background-color:inherit;
 }
 
-tr:nth-child(odd) {
+tbody tr:nth-child(even) {
     background-color: #F5F5F5;
 }
 
-tr:first-child {
+thead tr{
     background-color: aliceblue;
 }
 
-.hidden {
-    display:none;
-}
