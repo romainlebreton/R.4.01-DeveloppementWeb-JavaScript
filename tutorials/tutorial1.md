@@ -158,6 +158,7 @@ Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre 
       {:.html}
       juste avant la balise fermante `</body>`.
       Votre script sera ainsi exécuté au chargement de la page ; l'action d'affichage du formulaire 'enfant' sera donc lié à la *checkbox*.
+      Note : Comme le script DynamicForm.js est mis après le formulaire dans la page, nous sommes sûr de pouvoir modifier des éléments existants en javascript (l'élément d'id "enfants" existe, etc). Si nous avions fait l'inverse, cela ne serait pas forcément le cas.
 
 
 </div>
