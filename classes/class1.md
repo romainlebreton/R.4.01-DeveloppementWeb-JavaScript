@@ -4,8 +4,13 @@ subtitle : un tour d'horizon
 layout : slideshow
 ---
 
-<!-- TODO : Rajouter une bouton pour exécuter le code dans la console -->
+<section>
 
+## Objectif du cours
+
+### Vous présenter JavaScript et tout ce qui le rend très différent de Java, C...
+
+</section>
 <section>
 
 ## Historique 1/3
@@ -68,9 +73,10 @@ Autres domaines d'application du Javascript:
 Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple de remplacer le PHP par du Javascript.
 
 </section>
+<!--
 <section>
 
-Plan du cours:
+#Plan du cours:
 --------------
 - Javascript de base
 - DOM
@@ -88,11 +94,9 @@ montrer les objectifs ?
   Puissance 4 (il y a une place pour les jeux en HTML 5)
   toggleDisplay (e.g. vérification de formulaire, résumé d'un post)
 
-
-<!-- plus tard pour l'évolution de la dynamique des pages Web -->
-
-
 </section>
+-->
+<!-- plus tard pour l'évolution de la dynamique des pages Web -->
 <section>
 
 # Les bases du Javascript
@@ -188,7 +192,7 @@ alert("Coucou !")
 </section>
 <section>
 
-## Les types en Javascript
+## Les types en Javascript 1/2
 
 Toute valeur a un type en JavaScript. Mais ce type n'est pas spécifié lors de la déclaration d'une variable. 
 <!-- On parle d'un language faiblement typé -->
@@ -210,20 +214,25 @@ var x = 5;           // Now x is a Number
 var x = "John";      // Now x is a String
 ```
 
-<!--
-Les différents types de JavaScript sont: (W3Schools)
-  string, number, boolean, null, undefined, object, function  
-on reviendra sur les fonctions 
+</section>
+<section>
+
+## Les types en Javascript 2/2
+
+Il y a 6 types en Javascript :
+
+ * 5 types primitifs (`Boolean`,  `Number`, `String`, `Null`, `Undefined`) 
+ * les objets `Object`.
+
+`Undefined` est le type des variables qui n'ont pas été définies.<br>
+`Null` est le type de `null`, l'objet qui pointe à une adresse qui n'existe pas.
 
 ```javascript
-typeof "abc"
-// → string
-typeof [1,2,3]
-// → object
-typeof undefined
+var x;
+typeof x;
 // → undefined
 ```
--->
+
 
 </section>
 <section>
@@ -232,15 +241,7 @@ typeof undefined
 
 Entre guillemets simples `'coucou'` ou `"coucou"` doubles
 
-Échappement de charactère avec **\\** : `\"` &#8594; **"**, `\n` &#8594;  **&#8626;**
-
-**Exercice :** Comment créer la chaîne de caractères &laquo;Un retour à la ligne s'écrit "\n".&raquo;
-
-<div class="incremental">
-```javascript
-console.log("Un retour à la ligne s'écrit \"\\n\".");
-// → "Un retour à la ligne s'écrit "\n".
-```
+Échappement de charactère avec **\\** : `\"` &#8594; **"**, `\n` &#8594;  **&#8626;**, ...
 
 <div>
 Concaténation avec + : 
@@ -250,29 +251,39 @@ console.log("con" + "cat" + "é" + "nation");
 // → "concaténation"
 ```
 </div>
+
+**Exercice :** Comment créer la chaîne de caractères &laquo;Un retour à la ligne s'écrit "\n".&raquo;
+
+<div class="incremental">
+```javascript
+console.log("Un retour à la ligne s'écrit \"\\n\".");
+// → "Un retour à la ligne s'écrit "\n".
+```
 </div>
 
 </section>
-<section>
+<section>	
 
-Objets et tableaux:
--------------------	
+## Les tableaux 
 
-### Tableaux classiques (non typés)
+Les tableaux ne sont pas typés
 
 ```javascript
 var t = [1,3.14159,10e10,"un autre type"];
+```
+
+Quelques fonctions usuelles
+
+```javascript
 console.log(t[0]);
 // → 1
 console.log(t.length);
 // → 4
 
-t = t.slice(1,3);
-console.log(t);
+t = t.slice(1,3); console.log(t);
 // → [3.14159, 100000000000]
 
-t.push(5);
-console.log(t);
+t.push(5); console.log(t);
 // → [3.14159, 100000000000, 5]
 ```
 
@@ -282,52 +293,45 @@ console.log(t);
 </section>
 <section>
 
-### Les objets
+## Les objets
 
+<!-- Affectation d'un objet litéral -->
 ```javascript
-// Affectation d'un objet litéral
-var point = {coord1:1, coord2:0, thickness: 1.0}
-// Modification d'un attribut
-point.coord1 = 2;
+var point = {coord1:1, coord2:3, size: "normal"};
+console.log(point);
+// → Object {coord1: 1, coord2: 3, size: "normal"}
 ```
 
-On accède aux propriétés des objets avec obj.nom1 ou obj["nom1"].
-L'avantage de la syntaxe obj[expr] est que l'expression va être évaluée.
+Accès aux propriétés : `point.coord1` ou `point["coord1"]`.<br>
+L'avantage de la syntaxe `obj[expr]` est que l'expression `expr` va être évaluée :
 
 ```javascript
 for (var i = 1; i < 3; i++)
   point["coord" + i] = 0;
 console.log(point);
+// → Object { coord1: 0, coord2: 0, size: "normal"}
 ```
 
-Contrairement au Java qui est un language de classe, c-à-d où la structure de l'objet est rigidifiée,
-en Javascript on peut rajouter des attributs dynamiquement.
+<!-- Contrairement au Java qui est un language de classe, c-à-d où la structure de l'objet est rigidifiée-->
+En Javascript on peut rajouter des attributs dynamiquement.
 
 ```javascript
 // Mon point devient 3D
 point.coord3 = 1;
+// → Object { coord1: 0, coord2: 0, size: "normal", coord3: 1 }
 ```
-
-<!-- 
-### Constructeurs ???
-Il y d'autres façons de faire des objets avec des constructeurs.
-
-Un autre aspect important sont les prototypes en Javascript 
-mais on ne va pas faire par manque de temps 
-(ou peut-être mentionné au dernier cours)
-#p108 Prototypes - constructeurs
--->
 
 </section>
 <section>
 
-Logique
--------
-Booléen, comparaison, opérateurs logiques: classique
-true / false
->= (greater than or equal to), <= (less than or equal to), == (equal to), and != (not equal to).
-&& (and), || (or), ! (not), ^ (xor)
-(condition?actiontrue:actionfalse)
+## Logique
+
+On retrouve les opérateurs classiques: 
+
+* de comparaisons : `==`, `!=`, `>`, `<`, `>=`, `<=`
+* de logique : `&&` (and), `||` (or), `!` (not), `^` (xor), 
+* le `if/then/else` condensé : `(condition?actiontrue:actionfalse)`
+
 
 ```javascript
 console.log (3 > 2)
@@ -342,83 +346,104 @@ console.log ("Aardvark" < "Zoroaster")
 </section>
 <section>
 
-Javascript est très permissif (peut-être trop)
-----------------------------------------------
+## Javascript est très permissif !
+
 Conversions automatiques de type
 
 ```javascript
-console.log (8 * null)
+console.log (8 * null);
 // → 0
-// * est nécessairement la multiplication de deux nombres
-// donc null est converti en un nombre
-Number(null)
+```
+
+En effet, `*` est nécessairement la multiplication de deux nombres donc `null` est converti en un nombre
+
+```javascript
+Number(null);
 // → 0
 // ATTENTION : çà ne marche que dans les cas simples
-Number("five")
+Number("five");
 // → NaN
-Number("5")
+Number("5");
 // → 5
-Number(undefined)
+Number(undefined);
 // → NaN
 ```
 
-```javascript
-console.log ("5" - 1)
-// → 4
-// - est nécessairement la soustraction de deux nombres
-// donc "5" est converti en un nombre
-```
+**Question :** Que rend le code suivant ?
 
 ```javascript
-console.log ("5" + 1)
-// → 51
-// Ici, il y a ambiguité entre addition et concaténation et l'opérateur le plus probable 
-// (i.e. le plus prioritaire dans la conception du language)
-// est la concaténation
+console.log ("5" - 1);
 ```
+
+<div class="incremental">
+**Réponse :** `4` car `-` est nécessairement la soustraction de deux nombres donc `"5"` est converti en un nombre
+
+<div>
+**Question :** Que rend le code suivant ?
+
+```javascript
+console.log ("5" + 1);
+```
+</div>
+
+
+**Réponse :** `"51"` ! <br>
+Il y a ambiguité entre addition de nombres et concaténation de chaines de caractères. L'opérateur le plus prioritaire en JavaScript est la concaténation
+
+<div>
+**Question :** Que rend le code suivant ?
 
 ```javascript
 console.log( 1 + 1 + "1" + 1 + 1);
-// → "2111"
-// ceci est équivalent dans l'ordre d'application des opérations à 
-((((1 + 1) + "1") + 1) + 1)
+```
+</div>
+
+<div>
+**Réponse :** `"2111"` ! <br>
+En effet, le code est interprété comme suit
+
+```javascript
+   ((((1 + 1) + "1") + 1) + 1)
  = (((2 + "1") + 1) + 1)
  = (("21" + 1) + 1)
  = "211" + 1
  = 2111
 ```
-
+</div>
+</div>
 </section>
 <section>
 
-Logique (suite)
----------------
+## Logique (suite)
 
-Exemple de comportement non voulu
-Quizz : qu'affiche ?
+Autre type de comportement non voulu
 
 ```javascript
 console.log(false == "0");
+// → true
 ```
 
-
-if (false == 0) alert("Mais bien sûr !");
-
-Pour bien gérer cette situation, il ya l'opérateur `===` (et sa négation `!==`)
+Du coup, on utilise `===` (et sa négation `!==`)
 qui teste l'égalité de type puis de valeur (comme en PHP).
 
 ```javascript
 console.log(false === "0");
+// → false
 ```
 
 </section>
 <section>
 
-Subtilité des opérateurs logiques :
------------------------------------
-Ne renvoient pas nécessairement un booléen
+## Subtilité des opérateurs logiques
 
-`(expr1 || expr2)` est exactement comme la fonction suivante
+L'opérateur logique `||` (OR) ne renvoit pas nécessairement un booléen
+
+```javascript
+console.log("Romain" || false);
+// → "Romain"
+```
+
+En fait, `(expr1 || expr2)` est exactement comme la fonction suivante
 
 ```javascript
 function myOR (expr1,expr2) {
@@ -428,36 +453,25 @@ function myOR (expr1,expr2) {
   return expr2;
 }
 ```
-Intérêt : permet de programmer un valeur par défaut
+**Intérêt :** cela permet de programmer une valeur par défaut
 
 ```javascript
 var input = prompt("Quel est votre nom ?");
 print("Bien le bonjour " + (input || "cher ami"));
 ```
 
-Si on clique sur annuler, alors input vaut null 
-et (input || "cher ami") renvoie "cher ami"
+Si on clique sur annuler, alors `input` vaut `null` 
+et `(input || "cher ami")` renvoie `"cher ami"`
 
-```javascript
-console.log ( null || "user");
-// → user
-console.log ("Karl" || "user");
-// → Karl
-```
-
-De plus, si Boolean(expr1) est vrai alors expr2 n'est pas évalué
-(évaluation paresseuse)
+Enfin, si `Boolean(expr1)` est vrai alors `expr2` n'est pas évalué
+<!-- évaluation paresseuse ou short-circuiting -->
 
 </section>
 <section>
 
-If, for and while
-------------------
-Comme en java / C++
+## If, for, while et switch
 
-Exemples 
-
-// TODO Remplacer par des exemples !
+Comme en Java, C++
 
 ```javascript
 if (condition) {
@@ -475,6 +489,7 @@ while (condition) {
   instruction
 }
 ```
+<!--
 ```javascript
 switch (expression) {
   case valeur1:
@@ -489,13 +504,13 @@ switch (expression) {
     [break;]
 }
 ```
-
+-->
 </section>
 <section>
 
-Functions:
-----------
-Declaration comme en Java/C++
+## Fonctions
+
+Declaration comme en Java, C++
 
 ```javascript
 function square(x) {
@@ -503,8 +518,7 @@ function square(x) {
 };
 ```
 
-Les variables peuvent stocker des fonctions
-Le code dessus est (quasiment) équivalent à
+Les variables peuvent stocker des fonctions ! Le code dessus est équivalent à
 
 ```javascript
 var square = function (x) {
@@ -514,7 +528,7 @@ var square = function (x) {
 
 Une fonction revoie toujours quelque chose.
 Si on ne retourne rien ( `return;` ) ou que l'on omet le return, 
-la fonction renvoie `undefined`
+la fonction renvoie `undefined`.
 
 Une fonction peut prendre en argument une fonction
 
@@ -541,25 +555,27 @@ console.log(cube(256));
 </section>
 <section>
 
-Méthodes des objets:
---------------------
+## Méthodes des objets
 
-Q/ Comment fait-on pour avoir des méthodes ?
-R/ On assigne une valeur 'fonction' à un attribut
+**Question :** Comment feriez-vous pour avoir des méthodes ?
 
+**Réponse :** Il suffit d'assigner une valeur de type `function` à un attribut. <br> 
 Comme en Java, on référence l'objet courant avec `this`.
 
 ```javascript
+var point = {coord1:1, coord2:3, size: "normal"};
 point.print = function() {
-  console.log("Mes coordonnées sont " + this.coord1 + "," + this.coord2);
+  console.log("Mes coordonnées sont " + 
+              this.coord1 + "," + this.coord2);
 }
+point.print();
+// → "Mes coordonnées sont 1,3"
 ```
 
 </section>
 <section>
 
-Parameters and scopes:
-----------------------
+## La portée des variables
 
 scope global : i=5 dans fonction
 
@@ -628,64 +644,6 @@ p.43 with nested scope
 
 
 </section>
-<section>
-
-# Javascript et le DOM
-
-</section>
-<section>
-
-
-Insertion de Javascript dans un document HTML
-----------------------------------------------
-
-```html
-<script> alert ("hello!") ; </script>
-<script src =" code/hello.js "> </script>
-```
-
-# aussi dans les évènements 
-```html
-<button onclick =" alert ( 'Boom !') ;"> DO NOT PRESS </button>
-```
-
-</section>
-<section>
-
-
-Le DOM
-------
-Le DOM (« Document Object Model », ou modèle objet de document) est une interface de programmation (API) avec le document HTML
-
-Les documents HTML ont une structure d'arbre que l'on retrouve dans le DOM
-#Insérer code HTML, et représentation arbre
-
-</section>
-<section>
-
-
-Naviguer dans l'arbre:
-----------------------
-- Méthodes pour naviguer dans l'arbre
-# Insérer image page 233
-
-Mais çà ne serait pas pratique !
-Ce que l'on veut, c'est trouver un élément en particulier (un bouton, une zone de texte)
-
-- Méthodes de recherche
-```javascript
-document.getElementsById("id1")
-// Identifiant unique donc on renvoie qu'un élément
-document.getElementsByTagName("button")
-document.getElementsByClassName("myclass")
-// Renvoient un tableau d'éléments
-```
-
-Renvoie un (tableau de) noeud + ces méthodes s'appliquent à n'importe quel noeud
-
-!! querySelector !! 
-
-</section>
 
 <!--
 # Parler ici de Jquery 
@@ -697,8 +655,9 @@ Exemple de getElementsByClass ( http://caniuse.com mais moins incompatible)
 <section>
 
 ## Sources : 
-[Eloquent javascript](http://fr.eloquentjavascript.net) (plus licence)
-[MDN (Mozilla Developer network)](https://developer.mozilla.org/fr/)
+
+* [Eloquent javascript](http://fr.eloquentjavascript.net)
+* [MDN (Mozilla Developer network)](https://developer.mozilla.org/fr/)
 
 </section>
 
@@ -729,3 +688,21 @@ var obj = {nom1:valeur1, nom2:valeur2, ...}
 setTimeout(function () {Dz.play() }, 1000);
 </script>
 -->
+
+<!-- TODO : Rajouter un bouton pour exécuter le code dans la console -->
+<!-- Rajouter processus de chargement de la page. Vue avec Network ? -->
+<!-- binder du code ? -->
+<!-- Structure en arbre de la page Web -->
+<!-- console JavaScript qui montre la page originale 
+     avec le bootstrap par le serveur -->
+<!-- 
+### Constructeurs ???
+Il y d'autres façons de faire des objets avec des constructeurs.
+
+Un autre aspect important sont les prototypes en Javascript 
+mais on ne va pas faire par manque de temps 
+(ou peut-être mentionné au dernier cours)
+#p108 Prototypes - constructeurs
+-->
+
+
