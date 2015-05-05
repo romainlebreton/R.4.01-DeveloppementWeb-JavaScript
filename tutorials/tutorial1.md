@@ -76,7 +76,7 @@ La manière la plus pratique de trouver un élément de la page Web est via les 
 Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que JavaScript possède une fonction `document.querySelector` qui prend un sélecteur en entrée et renvoie le premier élément correspondant. De même, `querySelectorAll` renvoie tous les éléments correspondants.
 
 <div class="exercice">
-1. Sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelector`<br>
+1. Sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelectorAll`. Combien y en a-t-il ?<br>
    **Aide:** Vous pouvez consulter ce [rappel sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp).
 
 #### Modifier une page Web
