@@ -83,7 +83,7 @@ Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des e
 
 Nous allons ici faire un petit tour d'horizon des méthodes pour modifier une page Web. Nous utiliserons ces méthodes dans la section suivante : [Mise en application -- Formulaire dynamique](#mise-en-application----formulaire-dynamique).
 
-Pour créer des éléments (ou nœuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createElement). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément de type balise correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément de type texte correspondant.
+Pour créer des éléments (ou nœuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément de type balise correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément de type texte correspondant.
 
 Une fois un élément créé, il faut l'insérer dans la page Web. Les fonctions à votre disposition sont [`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild) et [`insertBefore`](https://developer.mozilla.org/fr/docs/Web/API/Node/insertBefore).
 
