@@ -124,7 +124,7 @@ Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre 
 
 2. Pour l'instant, nous allons développer notre code dans la console JavaScript de Chrome. Sélectionnez l'élément d'identifiant "enfants" à l'aide de `document.getElementById()` et stockez le dans une variable `enfants`
 
-3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons utiliser sa propriété `enfants.classList` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList)).
+3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons utiliser sa propriété `enfants.classList` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList)[Ne marche pas sur IE <=9](http://caniuse.com/#search=classlist)).
    Une fonction très pratique de `classList` est la fonction `toggle()` qui agit comme un interrupteur : il active/désactive la classe selon si elle était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez-la pour afficher/cacher le formulaire enfant.
 
 5. Veuillez regrouper le code précédant au sein d'une fonction `ActiverEnfants`
