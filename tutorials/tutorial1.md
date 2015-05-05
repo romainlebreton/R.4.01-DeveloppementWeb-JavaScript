@@ -76,14 +76,14 @@ La manière la plus pratique de trouver un élément de la page Web est via les 
 Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que JavaScript possède une fonction `document.querySelector` qui prend un sélecteur en entrée et renvoie le premier élément correspondant. De même, `querySelectorAll` renvoie tous les éléments correspondants.
 
 <div class="exercice">
-1. Sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelector`<br>
+1. Sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelectorAll`. Combien y en a-t-il ?<br>
    **Aide:** Vous pouvez consulter ce [rappel sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp).
 
 #### Modifier une page Web
 
 Nous allons ici faire un petit tour d'horizon des méthodes pour modifier une page Web. Nous utiliserons ces méthodes dans la section suivante : [Mise en application -- Formulaire dynamique](#mise-en-application----formulaire-dynamique).
 
-Pour créer des éléments (ou nœuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createElement). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément de type balise correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément de type texte correspondant.
+Pour créer des éléments (ou nœuds), il y a principalement deux fonctions : [`document.createElement`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode) et [`document.createTextNode`](https://developer.mozilla.org/fr/docs/Web/API/Document/createTextNode). La fonction `createElement` prend en paramètre un nom de balise HTML et crée l'élément de type balise correspondant. La fonction `createTextNode` prend en paramètre le texte et crée l'élément de type texte correspondant.
 
 Une fois un élément créé, il faut l'insérer dans la page Web. Les fonctions à votre disposition sont [`appendChild`](https://developer.mozilla.org/fr/docs/Web/API/Node/appendChild) et [`insertBefore`](https://developer.mozilla.org/fr/docs/Web/API/Node/insertBefore).
 
