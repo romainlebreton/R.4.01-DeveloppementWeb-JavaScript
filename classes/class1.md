@@ -551,6 +551,8 @@ var square = function (x) {
 };
 ```
 
+Les fonctions sont des objets de première classe : elles peuvent être manipulées et échangées comme tous les autres objets JavaScript. 
+
 </section>
 <section>
 
@@ -608,48 +610,16 @@ Comme en Java, on référence l'objet courant avec `this`.
 
 ## La portée des variables
 
-scope global : i=5 dans fonction
+La portée de base d'une variable est celle de la fonction qui l'englobe.<br>
+Le code en dehors de toute fonction agit comme si il était dans une grande fonction *globale*.
 
-Qu'est-ce qu'un scope ? Zone de portée de variable 
-TODO : chercher meilleure définition (You don't know JS)
+**Bonne pratique:** Définir les variables locales en début de fonction et avec le mot-clé `var` 
 
-portée d'une variable
+<div class="incremental">
+<div>
+**Attention**, les `if`, `for`, `while`, les blocs `{ ... }` ne limitent pas la portée d'une variable.
 
-Le scope est donc limité par :
--les fonctions de fonctions (et pas les accolades "{" donc pas dans les for et while etc...
-
-=> Convention / Règle : définir les variables locales d'une fonction en début et avec un var 
-
-Les scopes sont imbriqués comme un arbre vu du dessus ou comme des poupées russes vu du dessous
-
-Dans un scope, nous avons toujours accès aux scopes au-dessus
- => faire le dialogue de résolution d'une variable aux travers des scopes parents
-
-```javascript
-var x = "I live in the global scope";
-var f1 = function () {
-  var x = "I live in the first nested scope";
-  console.log("f1: " + x);
-  var f2 = function () {
-    var x = "I live in the second nested scope";
-    console.log("f2: " + x);
-  }
-  var f3 = function () {
-    console.log("f3: " + x);
-  }
-  f2();
-  f3();
-}
-f1();
-console.log(x);
-```
-
-<!-- 
-Remettre une couche de peinture plus tard lors des callbacks ? 
--->
-
-
-Q/ Que répond le code suivant ?
+**Question :** Que répond le code suivant ?
 
 ```javascript
 for (var i = 0; i < 10; i++) {
@@ -657,32 +627,93 @@ for (var i = 0; i < 10; i++) {
 }
 console.log(i);
 ```
+</div>
+
+**Réponse:** 10 ; la première valeur de `i` qui ne satisfait pas `i < 10`.
+</div>
+</section>
+<section>
+
+## La portée des variables
+
+Cependant, si une fonction `fun2()` est incluse dans une autre fonction `fun1()`, elle a accès aux variables de `fun1()`.
 
 ```javascript
-var coucou = function () {
-  message = "Bien le bonjour !";
-  console.log(message);
+fun1();
+function fun1 () {
+  var x1 = "x1 de fun1";
+  fun2();
+  function fun2 () {
+     console.log(x1);
+  };
 }
-console.log(message)
+// → "x1 de fun 1"
+```
+</section>
+<section>
+
+## La portée des variables
+En particulier, les variables dans la fonction globale (en dehors de toute fonction) sont **globales**.
+
+```javascript
+var x1 = "x1 global";
+f2();
+function f2 () {
+   console.log(x1); // → "x1 global"
+};
 ```
 
-<!-- Pour info, window est le scope global -->
+Si une variable locale et une variable globale ont le même nom, c'est la variable locale qui l'emporte.
 
-p.43 with nested scope
-
-#p.47 function declarations are not part of the regular top-to-bottom flow of control
-#p.10 closure
-
+```javascript
+fun1();
+function fun1 () {
+  var x1 = "x1 de fun1";
+  fun2();
+  function fun2 () { console.log(x1); };
+} // → "x1 de fun 1"
+```
 
 </section>
+<section>
 
-<!--
-# Parler ici de Jquery 
-=> Utile en production pour problème de compatibilité
-Exemple de getElementById (mais pas dans http://caniuse.com)
-Exemple de getElementsByClass ( http://caniuse.com mais moins incompatible)
--->
+## La portée des variables
 
+**Note:** La déclaration de variable sans `var` (déconseillé) revient à déclarer une variable gloable.
+
+```javascript
+function fun1 () {
+  x1 = "x1 global défini dans fun1";
+  console.log(x1); 
+}
+fun1();          // → "x1 global défini dans fun1"
+console.log(x1); // → "x1 global défini dans fun1"
+```
+</section>
+<section>
+
+## Testez votre compréhension
+
+```javascript
+var x = "I am global";
+f1();
+console.log(x); // Que renvoie ce bloc de code ?
+function f1 () {
+  var x = "I live in f1";
+  console.log("f1: " + x);
+  f2();
+  f3();
+  function f2 () {
+    var x = "I live in f2";
+    console.log("f2: " + x);
+  }
+  function f3 () {
+    console.log("f3: " + x);
+  }
+}
+```
+
+</section>
 <section>
 
 ## Sources : 
@@ -691,49 +722,3 @@ Exemple de getElementsByClass ( http://caniuse.com mais moins incompatible)
 * [MDN (Mozilla Developer network)](https://developer.mozilla.org/fr/)
 
 </section>
-
-
-<!--
-
-Exemple : 
-
-Parler de JSON
-
-Les tableaux classiques ne sont qu'un cas particulier des &laquo;tableaux associatifs&raquo; qui associent des valeurs à des noms (chaines de charactères)
-
-```javascript
-t["bonjour"]=10;
-console.log(t["bonjour"]);
-// → 10
-```
-
-En fait, les tableaux associatifs ne sont que des objets
-
-```javascript
-var obj = {nom1:valeur1, nom2:valeur2, ...}
-```
--->
-
-
-<script>
-setTimeout(function () {Dz.play() }, 500);
-</script>
-
-
-<!-- TODO : Rajouter un bouton pour exécuter le code dans la console -->
-<!-- Rajouter processus de chargement de la page. Vue avec Network ? -->
-<!-- binder du code ? -->
-<!-- Structure en arbre de la page Web -->
-<!-- console JavaScript qui montre la page originale 
-     avec le bootstrap par le serveur -->
-<!-- 
-### Constructeurs ???
-Il y d'autres façons de faire des objets avec des constructeurs.
-
-Un autre aspect important sont les prototypes en JavaScript 
-mais on ne va pas faire par manque de temps 
-(ou peut-être mentionné au dernier cours)
-#p108 Prototypes - constructeurs
--->
-
-
