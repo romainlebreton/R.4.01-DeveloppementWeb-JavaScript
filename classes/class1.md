@@ -1,5 +1,5 @@
 ---
-title : Cours 1 <br> Bases du Javascript
+title : Cours 1 <br> Bases du JavaScript
 subtitle : un tour d'horizon
 layout : slideshow
 ---
@@ -18,9 +18,9 @@ layout : slideshow
 Le prototype de JavaScript a été conçu par Brendan Eich en 10 jours chez Netscape pour ajouter une manière d'associer du code (Java à l'origine) à des éléments HTML.
 
 <div class="incremental">
-JavaScript a été présenté en 1995 avec l'objectif de pouvoir avoir des programmes en plus des pages Web dans le navigateur Netscape. Depuis, Javascript a été adopté par tous les navigateurs.
+JavaScript a été présenté en 1995 avec l'objectif de pouvoir avoir des programmes en plus des pages Web dans le navigateur Netscape. Depuis, JavaScript a été adopté par tous les navigateurs.
 
-Javascript a grandement contribué à rendre possible les applications Web modernes, c'est-à-dire les applications permettant d'agir directement avec la page Web, c'est-à-dire sans rechargement de cette page Web. 
+JavaScript a grandement contribué à rendre possible les applications Web modernes, c'est-à-dire les applications permettant d'agir directement avec la page Web, c'est-à-dire sans rechargement de cette page Web. 
 
 <div class="myfootnote">
 #### Sources 
@@ -33,21 +33,21 @@ Javascript a grandement contribué à rendre possible les applications Web moder
 
 ## Historique 2/3
 
-Le nom Javascript a été choisi pour des raisons commerciales car Java était très en vogue à la création de Javascript. La syntaxe de JavaScript est plus proche du C.
+Le nom JavaScript a été choisi pour des raisons commerciales car Java était très en vogue à la création de JavaScript. La syntaxe de JavaScript est plus proche du C.
 
 <div class="incremental">
-Après son adoption générale, le langage Javascript a été standardisé, c'est-à-dire qu'on a fixé tous les aspects de ce langage sur papier. 
+Après son adoption générale, le langage JavaScript a été standardisé, c'est-à-dire qu'on a fixé tous les aspects de ce langage sur papier. 
 	
 Actuellement, nous en sommes à ECMAScript version 5. La version 6 est prévue en 2015 .
 
 **Question:** Quel est l'intérêt d'avoir des standards ?
 
 <!--
-R/ Pour faciliter l'inter-opérabilité (qu'un code Javascript marche pareil sur tous les navigateurs) et donc faciliter l'adoption de Javascript.
+R/ Pour faciliter l'inter-opérabilité (qu'un code JavaScript marche pareil sur tous les navigateurs) et donc faciliter l'adoption de JavaScript.
 
 Contre-exemple pour le HTML : Guerre des navigateurs dans les années 2000 où Internet Explorer a profité de sa position dominante (95%, même sur Mac) pour imposer ses développements du HTML (et des techno Web en général : CSS ...). Il fallait presque écrire un site Web par navigateur.
 
-Nom du standard : ECMAScript standard (synonyme de Javascript dans les faits).
+Nom du standard : ECMAScript standard (synonyme de JavaScript dans les faits).
 
 // getElementbyId problem
 // Trouver une capture d'écran d'un "Ce site est optimisé pour Internet Explorer en résolution 800x600"
@@ -65,12 +65,12 @@ Nom du standard : ECMAScript standard (synonyme de Javascript dans les faits).
 
 ## Historique 3/3
 
-Autres domaines d'application du Javascript:
+Autres domaines d'application du JavaScript:
 
 - pour la gestion de bases de données (MongoDB, CouchDB, ...)
 - comme langage de scripting côté serveur (Node.js, ...)
 
-Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple de remplacer le PHP par du Javascript.
+Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple de remplacer le PHP par du JavaScript.
 
 </section>
 <!--
@@ -78,7 +78,7 @@ Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple
 
 #Plan du cours:
 --------------
-- Javascript de base
+- JavaScript de base
 - DOM
 - Sélecteur
 - AJAX et JSON
@@ -99,7 +99,7 @@ montrer les objectifs ?
 <!-- plus tard pour l'évolution de la dynamique des pages Web -->
 <section>
 
-# Les bases du Javascript
+# Les bases du JavaScript
 
 </section>
 <section>
@@ -129,7 +129,7 @@ x = 1;
 // x a la valeur 1
 ```
 
-Les variables sont des pointeurs sur des objects comme en java ?? plus loin lors des objets ??
+Les variables sont des pointeurs sur des objets comme en java ?? plus loin lors des objets ??
 
 !!!!!!!!!!!!!!!
 !! Mettre au bon endroit
@@ -164,23 +164,25 @@ x = 1 déclare la variable comme globale (accessible même dans les scopes supé
 Syntaxe proche du C
 
 Valeurs : 11, 2.998e8
-Arithmetique classique : (100 + 4 * 11) % 4
-Valeurs spéciales :  `undefined` et null
+Arithmétique classique : (100 + 4 * 11) % 4
+Valeurs spéciales :  `undefined` et nulle
 -->
 
 </section>
 <section>
 
-La console Javascript
----------------------
+## La console JavaScript
 
-Une console Javascript est présente dans les outils de développement de Firefox ou Chrome (raccourci clavier `F12`)
+Une console JavaScript est présente dans les outils de développement de Firefox ou Chrome (raccourci clavier `F12`)
 
 **Exemple :**
 
 ```javascript
 var x = 1;
 x;
+```
+
+```javascript
 console.log(x);
 ```
 
@@ -192,10 +194,10 @@ alert("Coucou !")
 </section>
 <section>
 
-## Les types en Javascript 1/2
+## Les types en JavaScript 1/2
 
 Toute valeur a un type en JavaScript. Mais ce type n'est pas spécifié lors de la déclaration d'une variable. 
-<!-- On parle d'un language faiblement typé -->
+<!-- On parle d'un langage faiblement typé -->
 
 ```javascript
 var x = 1;
@@ -217,9 +219,9 @@ var x = "John";      // Now x is a String
 </section>
 <section>
 
-## Les types en Javascript 2/2
+## Les types en JavaScript 2/2
 
-Il y a 6 types en Javascript :
+Il y a 6 types en JavaScript :
 
  * 5 types primitifs (`Boolean`,  `Number`, `String`, `Null`, `Undefined`) 
  * les objets `Object`.
@@ -237,11 +239,11 @@ typeof x;
 </section>
 <section>
 
-## Chaines de charactères:
+## Chaînes de caractères:
 
 Entre guillemets simples `'coucou'` ou `"coucou"` doubles
 
-Échappement de charactère avec **\\** : `\"` &#8594; **"**, `\n` &#8594;  **&#8626;**, ...
+Échappement de caractère avec **\\** : `\"` &#8594; **"**, `\n` &#8594;  **&#8626;**, ...
 
 <div>
 Concaténation avec + : 
@@ -303,7 +305,7 @@ console.log(point);
 ```
 
 Accès aux propriétés : `point.coord1` ou `point["coord1"]`.<br>
-L'avantage de la syntaxe `obj[expr]` est que l'expression `expr` va être évaluée :
+Avantage de la syntaxe `obj[expr]` : `expr` est évalué
 
 ```javascript
 for (var i = 1; i < 3; i++)
@@ -312,13 +314,12 @@ console.log(point);
 // → Object { coord1: 0, coord2: 0, size: "normal"}
 ```
 
-<!-- Contrairement au Java qui est un language de classe, c-à-d où la structure de l'objet est rigidifiée-->
-En Javascript on peut rajouter des attributs dynamiquement.
+<!-- Contrairement au Java qui est un langage de classe, c-à-d où la structure de l'objet est rigidifiée-->
+En JavaScript on peut rajouter des attributs dynamiquement.
 
 ```javascript
-// Mon point devient 3D
 point.coord3 = 1;
-// → Object { coord1: 0, coord2: 0, size: "normal", coord3: 1 }
+// → Object { coord1: 0, coord2: 0, coord3: 1, ... }
 ```
 
 </section>
@@ -330,7 +331,8 @@ On retrouve les opérateurs classiques:
 
 * de comparaisons : `==`, `!=`, `>`, `<`, `>=`, `<=`
 * de logique : `&&` (and), `||` (or), `!` (not), `^` (xor), 
-* le `if/then/else` condensé : `(condition?actiontrue:actionfalse)`
+* `if/then/else` condensé : <br>
+`(condition?actiontrue:actionfalse)`
 
 
 ```javascript
@@ -338,7 +340,7 @@ console.log (3 > 2)
 // → true
 console.log ("Itchy" != "Scratchy")
 // → true
-// Ordre du dictionnaire avec A-Z < a-z (on se sert du codage ASCI (ou Unicode))
+// Ordre du dictionnaire avec A-Z < a-z (on se sert du codage ASCII (ou Unicode))
 console.log ("Aardvark" < "Zoroaster")
 // → true
 ```
@@ -346,7 +348,7 @@ console.log ("Aardvark" < "Zoroaster")
 </section>
 <section>
 
-## Javascript est très permissif !
+## JavaScript est très permissif !
 
 Conversions automatiques de type
 
@@ -369,6 +371,11 @@ Number(undefined);
 // → NaN
 ```
 
+</section>
+<section>
+
+## Quizz 1/3
+
 **Question :** Que rend le code suivant ?
 
 ```javascript
@@ -377,27 +384,37 @@ console.log ("5" - 1);
 
 <div class="incremental">
 **Réponse :** `4` car `-` est nécessairement la soustraction de deux nombres donc `"5"` est converti en un nombre
+</div>
+</section>
+<section>
 
-<div>
+## Quizz 2/3
+
+
 **Question :** Que rend le code suivant ?
 
 ```javascript
 console.log ("5" + 1);
 ```
-</div>
 
-
+<div class="incremental">
 **Réponse :** `"51"` ! <br>
-Il y a ambiguité entre addition de nombres et concaténation de chaines de caractères. L'opérateur le plus prioritaire en JavaScript est la concaténation
+Il y a ambiguïté entre addition de nombres et concaténation de chaînes de caractères. L'opérateur le plus prioritaire en JavaScript est la concaténation
+</div>
+</section>
+<section>
 
-<div>
+## Quizz 3/3
+
+
 **Question :** Que rend le code suivant ?
 
 ```javascript
 console.log( 1 + 1 + "1" + 1 + 1);
 ```
-</div>
 
+
+<div class="incremental">
 <div>
 **Réponse :** `"2111"` ! <br>
 En effet, le code est interprété comme suit
@@ -436,7 +453,7 @@ console.log(false === "0");
 
 ## Subtilité des opérateurs logiques
 
-L'opérateur logique `||` (OR) ne renvoit pas nécessairement un booléen
+L'opérateur logique `||` (OR) ne renvoie pas nécessairement un booléen
 
 ```javascript
 console.log("Romain" || false);
@@ -453,6 +470,11 @@ function myOR (expr1,expr2) {
   return expr2;
 }
 ```
+
+</section>
+<section>
+
+## Subtilité des opérateurs logiques
 **Intérêt :** cela permet de programmer une valeur par défaut
 
 ```javascript
@@ -463,7 +485,10 @@ print("Bien le bonjour " + (input || "cher ami"));
 Si on clique sur annuler, alors `input` vaut `null` 
 et `(input || "cher ami")` renvoie `"cher ami"`
 
-Enfin, si `Boolean(expr1)` est vrai alors `expr2` n'est pas évalué
+<br>
+<br>
+**Évaluation paresseuse:**
+Si `Boolean(expr1)` est vrai alors `expr2` n'est pas évalué
 <!-- évaluation paresseuse ou short-circuiting -->
 
 </section>
@@ -481,7 +506,7 @@ if (condition) {
 }
 ```
 ```javascript
-for ([initialisation]; [condition]; [expression_finale])
+for ([init]; [cond]; [expr])
    instruction
 ```
 ```javascript
@@ -510,7 +535,7 @@ switch (expression) {
 
 ## Fonctions
 
-Declaration comme en Java, C++
+Déclaration comme en Java, C++
 
 ```javascript
 function square(x) {
@@ -526,41 +551,45 @@ var square = function (x) {
 };
 ```
 
-Une fonction revoie toujours quelque chose.
-Si on ne retourne rien ( `return;` ) ou que l'on omet le return, 
-la fonction renvoie `undefined`.
+</section>
+<section>
 
-Une fonction peut prendre en argument une fonction
+## Fonctions
 
-```javascript
-function boum() {alert('Boum!');}
-setTimeout(boum,2000);
-```
+1. Une fonction renvoie toujours quelque chose.
+   Par défaut, la fonction renvoie `undefined`.
 
-Une fonction peut renvoyer une fonction
+2. Une fonction peut prendre en argument une fonction
 
-```javascript
-function puissance (x) {
-  return function (y) {
-    return Math.pow(y,x);
-  }
-}
+   ```javascript
+   function boum() {alert('Boum!');}
+   setTimeout(boum,2000);
+   ```
 
-var square = puissance(2);
-var cube = puissance(3);
-console.log(square(256));
-console.log(cube(256));
-```
+3. Une fonction peut renvoyer une fonction
+
+   ```javascript
+   function puissance (x) {
+     return function (y) {
+       return Math.pow(y,x);
+     }
+   }
+   var square = puissance(2);
+   var cube = puissance(3);
+   console.log(square(256),cube(256));
+   ```
 
 </section>
 <section>
 
 ## Méthodes des objets
 
-**Question :** Comment feriez-vous pour avoir des méthodes ?
+**Question :** Comment définir une méthode d'un objet ?
 
+<div class="incremental">
+<div>
 **Réponse :** Il suffit d'assigner une valeur de type `function` à un attribut. <br> 
-Comme en Java, on référence l'objet courant avec `this`.
+
 
 ```javascript
 var point = {coord1:1, coord2:3, size: "normal"};
@@ -571,7 +600,9 @@ point.print = function() {
 point.print();
 // → "Mes coordonnées sont 1,3"
 ```
-
+Comme en Java, on référence l'objet courant avec `this`.
+</div>
+</div>
 </section>
 <section>
 
@@ -585,13 +616,13 @@ TODO : chercher meilleure définition (You don't know JS)
 portée d'une variable
 
 Le scope est donc limité par :
--les fonctions de fonctions (et pas les acolades "{" donc pas dans les for et while etc...
+-les fonctions de fonctions (et pas les accolades "{" donc pas dans les for et while etc...
 
 => Convention / Règle : définir les variables locales d'une fonction en début et avec un var 
 
 Les scopes sont imbriqués comme un arbre vu du dessus ou comme des poupées russes vu du dessous
 
-Dans un scope, nous avons toujours accès aux scopes d'au-dessus
+Dans un scope, nous avons toujours accès aux scopes au-dessus
  => faire le dialogue de résolution d'une variable aux travers des scopes parents
 
 ```javascript
@@ -683,11 +714,11 @@ var obj = {nom1:valeur1, nom2:valeur2, ...}
 ```
 -->
 
-<!--
+
 <script>
-setTimeout(function () {Dz.play() }, 1000);
+setTimeout(function () {Dz.play() }, 500);
 </script>
--->
+
 
 <!-- TODO : Rajouter un bouton pour exécuter le code dans la console -->
 <!-- Rajouter processus de chargement de la page. Vue avec Network ? -->
@@ -699,7 +730,7 @@ setTimeout(function () {Dz.play() }, 1000);
 ### Constructeurs ???
 Il y d'autres façons de faire des objets avec des constructeurs.
 
-Un autre aspect important sont les prototypes en Javascript 
+Un autre aspect important sont les prototypes en JavaScript 
 mais on ne va pas faire par manque de temps 
 (ou peut-être mentionné au dernier cours)
 #p108 Prototypes - constructeurs
