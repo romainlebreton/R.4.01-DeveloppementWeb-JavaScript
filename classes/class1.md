@@ -73,30 +73,7 @@ Autres domaines d'application du JavaScript:
 Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple de remplacer le PHP par du JavaScript.
 
 </section>
-<!--
-<section>
 
-#Plan du cours:
---------------
-- JavaScript de base
-- DOM
-- Sélecteur
-- AJAX et JSON
-- Gestion d'événements et de déclencheur
-- sécurité : injections XSS
-
-Exemple de fonctionnalités : 
-où est-ce qu'on retrouve du javascript partout dans les pages ?
-montrer les objectifs ?
-  Autocomplétion de google
-  tchat (plutôt Websocket que XMLHttpRequest)
-  Changement de styles pour slides
-  Puissance 4 (il y a une place pour les jeux en HTML 5)
-  toggleDisplay (e.g. vérification de formulaire, résumé d'un post)
-
-</section>
--->
-<!-- plus tard pour l'évolution de la dynamique des pages Web -->
 <section>
 
 # Les bases du JavaScript
@@ -121,52 +98,6 @@ x = 1;
 var x = 1;
 ```
 
-<!--
-```javascript
-var x;
-// x a la valeur 'undefined'
-x = 1;
-// x a la valeur 1
-```
-
-Les variables sont des pointeurs sur des objets comme en java ?? plus loin lors des objets ??
-
-!!!!!!!!!!!!!!!
-!! Mettre au bon endroit
-Sans var => variable globale
-```javascript
-function func () {
- toto = 1;
- var tutu = 1;
-};
-func();
-console.log(toto);
-console.log(tutu);
-```
-!!!!!!!!!!!!!!!
-
-!!!!!!!!!!!!!!!
-hoisting de variables 
-tata();
-function tata() { console.log("hello");}
-!!!!!!!!!!!!!!!
-! Attention, les scopes ne viennent que des fonctions
-! Donc dans l'exemple suivant, la déclaration var undef est remonteé (hoisting)
-! et le premier undef est défini
-undef;
-for (var undef = 0; undef < 10; undef++ ) {}
-!!!!!!!!!!!!!!!
-Par défaut, les variables sont accessibles dans les scopes dessous (=nested) (notion de fermeture)
-+
-x = 1 déclare la variable comme globale (accessible même dans les scopes supérieurs)
-!!!!!!!!!!!!!!!
-
-Syntaxe proche du C
-
-Valeurs : 11, 2.998e8
-Arithmétique classique : (100 + 4 * 11) % 4
-Valeurs spéciales :  `undefined` et nulle
--->
 
 </section>
 <section>
@@ -722,3 +653,76 @@ function f1 () {
 * [MDN (Mozilla Developer network)](https://developer.mozilla.org/fr/)
 
 </section>
+
+<!--
+<section>
+
+#Plan du cours:
+--------------
+- JavaScript de base
+- DOM
+- Sélecteur
+- AJAX et JSON
+- Gestion d'événements et de déclencheur
+- sécurité : injections XSS
+
+Exemple de fonctionnalités : 
+où est-ce qu'on retrouve du javascript partout dans les pages ?
+montrer les objectifs ?
+  Autocomplétion de google
+  tchat (plutôt Websocket que XMLHttpRequest)
+  Changement de styles pour slides
+  Puissance 4 (il y a une place pour les jeux en HTML 5)
+  toggleDisplay (e.g. vérification de formulaire, résumé d'un post)
+
+</section>
+-->
+<!-- plus tard pour l'évolution de la dynamique des pages Web -->
+
+<!--
+```javascript
+var x;
+// x a la valeur 'undefined'
+x = 1;
+// x a la valeur 1
+```
+
+Les variables sont des pointeurs sur des objets comme en java ?? plus loin lors des objets ??
+
+!!!!!!!!!!!!!!!
+!! Mettre au bon endroit
+Sans var => variable globale
+```javascript
+function func () {
+ toto = 1;
+ var tutu = 1;
+};
+func();
+console.log(toto);
+console.log(tutu);
+```
+!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!
+hoisting de variables 
+tata();
+function tata() { console.log("hello");}
+!!!!!!!!!!!!!!!
+! Attention, les scopes ne viennent que des fonctions
+! Donc dans l'exemple suivant, la déclaration var undef est remonteé (hoisting)
+! et le premier undef est défini
+undef;
+for (var undef = 0; undef < 10; undef++ ) {}
+!!!!!!!!!!!!!!!
+Par défaut, les variables sont accessibles dans les scopes dessous (=nested) (notion de fermeture)
++
+x = 1 déclare la variable comme globale (accessible même dans les scopes supérieurs)
+!!!!!!!!!!!!!!!
+
+Syntaxe proche du C
+
+Valeurs : 11, 2.998e8
+Arithmétique classique : (100 + 4 * 11) % 4
+Valeurs spéciales :  `undefined` et nulle
+-->
+

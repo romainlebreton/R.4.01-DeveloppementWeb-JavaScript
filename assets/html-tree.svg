@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="469.79391"
+   height="265"
+   viewBox="-2 -2 469.79391 265"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="html-tree.svg">
+  <metadata
+     id="metadata130">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview128"
+     showgrid="false"
+     inkscape:zoom="2.0166234"
+     inkscape:cx="225.82973"
+     inkscape:cy="119.20661"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5" />
+  <style
+     id="style4">
+    @font-face {
+      font-family: 'PT Mono';
+      font-style: normal;
+      font-weight: 400;
+      src: local('PT Mono'), local('PTMono-Regular'), url(http://themes.googleusercontent.com/static/fonts/ptmono/v1/jmle3kzCPnW8O7_gZGRDlQ.woff) format('woff');
+    }
+    .box {
+      stroke: #666;
+      fill: url(#boxgrad);
+      border-radius: 4px;
+    }
+    .leafbox {
+      fill: url(#leafgrad);
+    }
+    .boxtext {
+      font-size: 20px;
+      font-family: &quot;PT Mono&quot;;
+      stroke: none;
+      fill: black;
+    }
+    .leafboxtext { font-family: &quot;Georgia&quot;; }
+    .arrow { stroke: black; }
+  </style>
+  <defs
+     id="defs6">
+    <linearGradient
+       id="boxgrad"
+       x1="0"
+       x2="0"
+       y1="0"
+       y2="1">
+      <stop
+         stop-color="#f8f8f8"
+         offset="0%"
+         id="stop9" />
+      <stop
+         stop-color="#d8d8f2"
+         offset="100%"
+         id="stop11" />
+    </linearGradient>
+    <linearGradient
+       id="leafgrad"
+       x1="0"
+       x2="0"
+       y1="0"
+       y2="1">
+      <stop
+         stop-color="#f8f8f8"
+         offset="0%"
+         id="stop14" />
+      <stop
+         stop-color="#70f0f0"
+         offset="100%"
+         id="stop16" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#boxgrad"
+       id="linearGradient3458"
+       x1="0"
+       y1="0"
+       x2="0"
+       y2="45.574116"
+       gradientTransform="matrix(1.4701328,0,0,0.68021068,3,3)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#boxgrad"
+       id="linearGradient3460"
+       x1="61.899174"
+       y1="0"
+       x2="61.899174"
+       y2="45.574116"
+       gradientTransform="matrix(1.4701328,0,0,0.68021068,3,3)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#boxgrad"
+       id="linearGradient3462"
+       x1="114.00888"
+       y1="0"
+       x2="114.00888"
+       y2="49.487373"
+       gradientTransform="matrix(1.5963668,0,0,0.62642243,3,3)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#leafgrad"
+       id="linearGradient3464"
+       x1="127.45587"
+       y1="0"
+       x2="127.45587"
+       y2="67.082039"
+       gradientTransform="matrix(2.6069608,0,0,0.44704339,-44.315616,3.0399645)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#boxgrad"
+       id="linearGradient3466"
+       x1="61.899174"
+       y1="66.155975"
+       x2="61.899174"
+       y2="111.73009"
+       gradientTransform="matrix(1.4701328,0,0,0.68021068,3,3)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#boxgrad"
+       id="linearGradient3468"
+       x1="114.00888"
+       y1="71.83651"
+       x2="114.00888"
+       y2="121.32388"
+       gradientTransform="matrix(1.5963668,0,0,0.62642243,3,3)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#leafgrad"
+       id="linearGradient3470"
+       x1="127.45587"
+       y1="100.62306"
+       x2="127.45587"
+       y2="167.70509"
+       gradientTransform="matrix(2.6069608,0,0,0.44704339,-44.315616,3.0399645)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#boxgrad"
+       id="linearGradient3472"
+       x1="114.00888"
+       y1="143.67302"
+       x2="114.00888"
+       y2="193.16039"
+       gradientTransform="matrix(1.5963668,0,0,0.62642243,3,3)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#leafgrad"
+       id="linearGradient3474"
+       x1="127.45587"
+       y1="201.24612"
+       x2="127.45587"
+       y2="268.32816"
+       gradientTransform="matrix(2.6069608,0,0,0.44704339,-44.315616,3.0399645)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#boxgrad"
+       id="linearGradient3476"
+       x1="114.00888"
+       y1="215.50952"
+       x2="114.00888"
+       y2="264.99689"
+       gradientTransform="matrix(1.5963668,0,0,0.62642243,3,3)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#leafgrad"
+       id="linearGradient3478"
+       x1="127.45587"
+       y1="301.86917"
+       x2="127.45587"
+       y2="368.95123"
+       gradientTransform="matrix(2.6069608,0,0,0.44704339,-44.315616,3.0399645)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#leafgrad"
+       id="linearGradient3480"
+       x1="268.11584"
+       y1="252.42821"
+       x2="268.11584"
+       y2="294.49957"
+       gradientTransform="matrix(1.8729861,0,0,0.71097274,-118.09158,3.5403724)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#boxgrad"
+       id="linearGradient3482"
+       x1="193.86005"
+       y1="264.6239"
+       x2="193.86005"
+       y2="310.198"
+       gradientTransform="matrix(1.4701328,0,0,0.68021068,3,3)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#leafgrad"
+       id="linearGradient3484"
+       x1="318.63968"
+       y1="201.24612"
+       x2="318.63968"
+       y2="228.07893"
+       gradientTransform="matrix(0.89442719,0,0,1.118034,3,3)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <rect
+     style="fill:url(#linearGradient3458);stroke:#666666"
+     id="rect20"
+     ry="4"
+     rx="4"
+     class="box"
+     height="30"
+     width="66"
+     y="3.5"
+     x="3.5" />
+  <text
+     style="font-size:20px;font-family:'PT Mono';fill:#000000;stroke:none"
+     id="text22"
+     class="boxtext"
+     y="26"
+     x="12.7">html</text>
+  <rect
+     style="fill:url(#linearGradient3460);stroke:#666666"
+     id="rect24"
+     ry="4"
+     rx="4"
+     class="box"
+     height="30"
+     width="66"
+     y="3.5"
+     x="94.5" />
+  <text
+     style="font-size:20px;font-family:'PT Mono';fill:#000000;stroke:none"
+     id="text26"
+     class="boxtext"
+     y="26"
+     x="103.7">head</text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path28"
+     class="arrow"
+     d="m 69.5,18.5 25,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path30"
+     d="m 94.5,18.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3462);stroke:#666666"
+     id="rect32"
+     ry="4"
+     rx="4"
+     class="box"
+     height="30"
+     width="78"
+     y="3.5"
+     x="185.5" />
+  <text
+     style="font-size:20px;font-family:'PT Mono';fill:#000000;stroke:none"
+     id="text34"
+     class="boxtext"
+     y="26"
+     x="194.7">title</text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path36"
+     class="arrow"
+     d="m 160.5,18.5 25,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path38"
+     d="m 185.5,18.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3464);fill-opacity:1;stroke:#666666;stroke-width:1.07954824;stroke-opacity:1"
+     id="rect40"
+     ry="3.9984775"
+     rx="4.6634731"
+     class="box leafbox"
+     height="28.988962"
+     width="173.71437"
+     y="3.5397742"
+     x="288.53976" />
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke:none"
+     id="text42"
+     class="boxtext leafboxtext"
+     y="25.25"
+     x="297.29999"
+     sodipodi:linespacing="125%">
+    <tspan
+       sodipodi:role="line"
+       id="tspan3540"
+       x="297.29999"
+       y="25.25">Ma page d'accueil</tspan>
+  </text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path44"
+     class="arrow"
+     d="m 263.5,18.5 25,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path46"
+     d="m 288.5,18.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3466);stroke:#666666"
+     id="rect48"
+     ry="4"
+     rx="4"
+     class="box"
+     height="30"
+     width="66"
+     y="48.5"
+     x="94.5" />
+  <text
+     style="font-size:20px;font-family:'PT Mono';fill:#000000;stroke:none"
+     id="text50"
+     class="boxtext"
+     y="71"
+     x="103.7">body</text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path52"
+     class="arrow"
+     d="m 77.5,18.5 0,41 a 4,4 0 0 0 4,4 l 13,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path54"
+     d="m 94.5,63.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3468);stroke:#666666"
+     id="rect56"
+     ry="4"
+     rx="4"
+     class="box"
+     height="30"
+     width="78"
+     y="48.5"
+     x="185.5" />
+  <text
+     style="font-size:20px;font-family:'PT Mono';fill:#000000;stroke:none"
+     id="text58"
+     width="78"
+     class="boxtext"
+     y="71"
+     x="194.7">h1</text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path60"
+     class="arrow"
+     d="m 160.5,63.5 25,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path62"
+     d="m 185.5,63.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3470);stroke:#666666;stroke-width:1.07954824"
+     id="rect64"
+     ry="3.9984775"
+     rx="4.6634731"
+     class="box leafbox"
+     height="28.988962"
+     width="173.71437"
+     y="48.522648"
+     x="288.53976" />
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke:none"
+     id="text66"
+     class="boxtext leafboxtext"
+     y="70.25"
+     x="297.29999"
+     sodipodi:linespacing="125%">
+    <tspan
+       sodipodi:role="line"
+       id="tspan3542"
+       x="297.29999"
+       y="70.25">Ma page d'accueil</tspan>
+  </text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path68"
+     class="arrow"
+     d="m 263.5,63.5 25,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path70"
+     d="m 288.5,63.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3472);stroke:#666666"
+     id="rect72"
+     ry="4"
+     rx="4"
+     class="box"
+     height="30"
+     width="78"
+     y="93.5"
+     x="185.5" />
+  <text
+     style="font-size:20px;font-family:'PT Mono';fill:#000000;stroke:none"
+     id="text74"
+     width="78"
+     class="boxtext"
+     y="116"
+     x="194.7">p</text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path76"
+     class="arrow"
+     d="m 168.5,63.5 0,41 a 4,4 0 0 0 4,4 l 13,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path78"
+     d="m 185.5,108.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3474);stroke:#666666;stroke-width:1.07954824"
+     id="rect80"
+     ry="3.9984775"
+     rx="4.6634731"
+     class="box leafbox"
+     height="28.988962"
+     width="173.71437"
+     y="93.505516"
+     x="288.53976" />
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke:none"
+     id="text82"
+     width="149"
+     class="boxtext leafboxtext"
+     y="115.25"
+     x="297.29999"
+     sodipodi:linespacing="125%">
+    <tspan
+       sodipodi:role="line"
+       id="tspan3544"
+       x="297.29999"
+       y="115.25">Bonjour, je ...</tspan>
+  </text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path84"
+     class="arrow"
+     d="m 263.5,108.5 25,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path86"
+     d="m 288.5,108.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3476);stroke:#666666"
+     id="rect88"
+     ry="4"
+     rx="4"
+     class="box"
+     height="30"
+     width="78"
+     y="138.5"
+     x="185.5" />
+  <text
+     style="font-size:20px;font-family:'PT Mono';fill:#000000;stroke:none"
+     id="text90"
+     width="78"
+     class="boxtext"
+     y="161"
+     x="194.7">p</text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path92"
+     class="arrow"
+     d="m 168.5,63.5 0,86 a 4,4 0 0 0 4,4 l 13,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path94"
+     d="m 185.5,153.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3478);stroke:#666666;stroke-width:1.07954824"
+     id="rect96"
+     ry="3.9984775"
+     rx="4.6634731"
+     class="box leafbox"
+     height="28.988962"
+     width="173.71437"
+     y="138.48839"
+     x="288.53976" />
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke:none"
+     id="text98"
+     width="149"
+     class="boxtext leafboxtext"
+     y="160.25"
+     x="297.29999"
+     sodipodi:linespacing="125%">
+    <tspan
+       sodipodi:role="line"
+       id="tspan3546"
+       x="297.29999"
+       y="160.25">Allez voir...</tspan>
+  </text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path100"
+     class="arrow"
+     d="m 263.5,153.5 25,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path102"
+     d="m 288.5,153.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3480);stroke:#666666;stroke-width:1.15396786"
+     id="rect104"
+     ry="3.9882126"
+     rx="5.3423109"
+     class="box leafbox"
+     height="28.914543"
+     width="77.463509"
+     y="183.50848"
+     x="384.75342" />
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke:none"
+     id="text106"
+     class="boxtext leafboxtext"
+     y="205.25"
+     x="388.29999"
+     sodipodi:linespacing="125%">
+    <tspan
+       sodipodi:role="line"
+       id="tspan3548"
+       x="388.29999"
+       y="205.25">cette ...</tspan>
+  </text>
+  <rect
+     style="fill:url(#linearGradient3482);stroke:#666666"
+     id="rect108"
+     ry="4"
+     rx="4"
+     class="box"
+     height="30"
+     width="66"
+     y="183.5"
+     x="288.5" />
+  <text
+     style="font-size:20px;font-family:'PT Mono';fill:#000000;stroke:none"
+     id="text110"
+     width="66"
+     class="boxtext"
+     y="206"
+     x="297.70001">a</text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path112"
+     class="arrow"
+     d="m 271.5,153.5 0,41 a 4,4 0 0 0 4,4 l 13,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path114"
+     d="m 288.5,198.5 -8,3 1,-3 -1,-3 z" />
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path116"
+     class="arrow"
+     d="m 354.5,198.5 25,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path118"
+     d="m 379.5,198.5 -8,3 1,-3 -1,-3 z" />
+  <rect
+     style="fill:url(#linearGradient3484);stroke:#666666"
+     id="rect120"
+     ry="4"
+     rx="4"
+     class="box leafbox"
+     height="29"
+     width="23"
+     y="228.5"
+     x="288.5" />
+  <text
+     style="font-size:20px;font-family:Georgia;fill:#000000;stroke:none"
+     id="text122"
+     class="boxtext leafboxtext"
+     y="250.25"
+     x="297.29999">.</text>
+  <path
+     style="fill:none;stroke:#000000"
+     inkscape:connector-curvature="0"
+     id="path124"
+     class="arrow"
+     d="m 271.5,153.5 0,86 a 4,4 0 0 0 4,4 l 13,0" />
+  <path
+     style="fill:#000000;stroke:none"
+     inkscape:connector-curvature="0"
+     id="path126"
+     d="m 288.5,243.5 -8,3 1,-3 -1,-3 z" />
+</svg>
