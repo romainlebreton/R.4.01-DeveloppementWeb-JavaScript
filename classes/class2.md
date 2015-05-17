@@ -10,6 +10,7 @@ layout : slideshow
 
 ### Les Web APIs : des interfaces entre JavaScript et les pages Web
 
+1. Le Web 2.0
 1. Le Document Object Model
 2. Les événements en JavaScript
 
@@ -22,7 +23,39 @@ layout : slideshow
 </section>
 <section>
 
-# Le Document Object Model
+# Le Web 2.0
+
+</section>
+<section>
+
+## Le rôle du JavaScript
+
+![Role du JavaScript]({{site.baseurl}}/assets/RoleJavaScript.png)
+
+**TODO**
+
+Laïus web dynamique:
+
+* Web 1.0 : Pages statiques
+  Une adresse = une page qui ne bouge pas
+  Pas de persistance : Pas d'informations sauvegardées d'une page sur l'autre
+* Web 1.1 : Pages dynamiques 
+  Début de persistance : cookies, sessions, 
+  Génération de page côté serveur (PHP)
+  Mais une page ne varie pas entre deux requête serveur
+* Web 1.2 ???
+  Script côté-client : 
+  on peut avoir des applications côté client (des calculs)
+  Une partie des actions peut être fait directement côté client (pré-vérification formulaire ...)
+* Web 2.0 :
+  Cours prochain :
+  Communications persistantes, non-bloquantes, asynchrones (non liés au chargement des pages) entre le serveur et le client
+  XMLHttpRequest, Ajax, WebSocket
+
+<!-- 
+Voir cours de Luca
+HTTP 1.1 ?
+ -->
 
 </section>
 <section>
@@ -49,6 +82,11 @@ layout : slideshow
    <button onclick="alert('Boom !');">DO NOT PRESS</button>
    ```
 	
+</section>
+<section>
+
+# Le Document Object Model
+
 </section>
 <section>
 
