@@ -6,20 +6,23 @@ layout : slideshow
 
 <section>
 
-# Javascript et le DOM
+## Plan du cours
+
+### Les Web APIs : des interfaces entre JavaScript et les pages Web
+
+1. Le Document Object Model
+2. Les événements en JavaScript
+
+<!-- 3. JavaScript est asynchrone -->
+<!--
+4. Le processus de chargement d'une page Web (chargement du DOM, lancement des scripts, chargements des liens annexes)
+5. JavaScript est asynchone : ordre d'exécution entre la pile et la callback queue
+-->
 
 </section>
 <section>
 
-## Plan du cours
-
-Sous-titre : Les WebAPIs, c-à-d les liens entre Javascript et les pages Web
-
-1. Insertion de Javascript dans une page HTML
-2. Le Document Object Model
-3. La gestion des évènements en Javascript
-4. Le processus de chargement d'une page Web (chargement du DOM, lancement des scripts, chargements des liens annexes)
-5. JavaScript est asynchone : ordre d'exécution entre la pile et la callback queue
+# Le Document Object Model
 
 </section>
 <section>
@@ -31,13 +34,13 @@ Sous-titre : Les WebAPIs, c-à-d les liens entre Javascript et les pages Web
 1. Chargement d'un script JavaScript externe
 
    ```html
-   <script src="code/hello.js "></script>
+   <script src="code/hello.js"></script>
    ```
 
 2. Du script directement dans le HTML (peu conseillé)
 
    ```html
-   <script> alert("hello!"); </script>
+   <script>alert("hello!");</script>
    ```
 
 3. Et aussi des actions associées à des évènements (déconseillé)
@@ -97,9 +100,14 @@ Ce code HTML correspond à l'arbre suivant
 Dans le DOM, on retrouve cette structure d'arbre. Chaque noeud a une propriété `nodeType`. Les plus courants sont :
 
 * les noeuds *balise* : `ELEMENT_NODE`   
-  <br>Leur valeur `document.ELEMENT_NODE` est `1`
+  <br>Leur valeur interne `document.ELEMENT_NODE` est `1`
 * les noeuds *texte* `TEXT_NODE` 
 * les noeuds *commentaires* `COMMENT_NODE`.
+
+```javascript
+// var li correspond à l'une des balises <li>
+console.log(li.nodeType); // → 1
+```
 
 </section>
 <section>
@@ -147,20 +155,21 @@ Ces fonctions renvoient un tableau de noeuds, sauf `getElementById` qui ne renvo
 </section>
 <section>
 
-## Recherche avancée dans le DOM - Sélecteur CSS
+## Recherche avancée dans le DOM - Les sélecteurs
 
-Comment faire des recherches avancées par nom de balise, classe ?
+**Q.** Comment faire des recherches avancées par nom de balise, classe ?
 
-Déjà vu dans les feuilles CSS. <!-- pour appliquer du style à des éléments particuliers. -->
-Réutilisons donc les *sélecteurs CSS*:
+Problèmatique déjà vue dans les feuilles CSS. <!-- pour appliquer du style à des éléments particuliers. -->
+Réutilisons donc les **sélecteurs**:
 
-**Rappel sur les sélecteurs CSS :**
+**Rappel sur les sélecteurs :**
 
  * **Sélecteurs de base**: `#id`, `.className`, `tagName` (nom de balise) et `[attribut]`
 
  * **Composition de sélecteurs `sel1` et `sel2`**
 
-   * `se1sel2` : mis bout à bout, il faut satisfaire tous les sélecteurs (ET logique)
+   * `sel1sel2` : mis bout à bout, il faut satisfaire tous les sélecteurs (ET logique)<br>
+      **Exemple:** `"p.menu#main"` -- Balise `<p>` de classe `menu` et d'identifiant `main`
    * `sel1, sel2` : il faut satisfaire l'un des sélecteurs (OU logique)
    * `sel1 sel2` : les éléments satisfaisants `sel2` qui descendent d'un élément satisfaisant `sel1`
 
@@ -195,25 +204,50 @@ La fonction `document.querySelectorAll(sel)` permet de trouver tous les élémen
 </section>
 <section>
 
-## Notes Eloquent à répartir
+## Les gestionnaires d'événements
 
-Gestion des évènements :
-Meilleure façon de gérer les évènements actuellement :
+Les systèmes modernes gèrent les événements à l'aide de gestionnaire d'événements (*event handler*).
 
-Principe :
-on donne au système sous-jacent un code qu'il essayera de lancer dès que l'évènement associé se produit.
+**Principe :**
+On donne au système sous-jacent une fonction qu'il essayera de lancer dès que l'évènement associé se produit.
+
+
+### 3 manières d'associer une action à un événement
+
+<!-- Il y a plusieurs façons d'associer une action à un évènement sur un élément.<br> -->
+Par exemple, pour exécuter la fonction `act()` lors d'un clic sur un `<button>`, on peut :
+
+1. Si la variable Javascript `b` pointe sur le bouton `<button>`
+    1. ```javascript
+       b.addEventListener('click',act);
+       ```
+    2. ```javascript
+       b.onclick = act;
+       ```
+2. ```html
+   <button onclick='act()'>
+   ```
+
+**Utilisez la première syntaxe `addEventListener`** car
+
+* on peut associer plusieurs actions au même évènement
+* on peut supprimer une action d'un évènement
+
+  ```javascript
+  b.removeEventListener('click',act);
+  ```
 
 </section>
 <section>
 
 ## L'objet événement
 
-La fonction donnée au gestionnaire reçoit un paramètre : l'objet événement.
+La fonction donnée au gestionnaire reçoit un paramètre : l'*objet événement*.
 
 Par exemple, pour savoir quel bouton de la souris a été cliqué, on peut accéder à la propriété `which` de l'objet événement.
 
 ```html
-<button>Click me any way you want</button>
+<button>Cliquez-moi de toutes les manières</button>
 <script>
   var button = document.querySelector("button");
   button.addEventListener("mousedown", function(event) {
@@ -228,7 +262,7 @@ Par exemple, pour savoir quel bouton de la souris a été cliqué, on peut accé
 ```
 
 <div class="codeexample">
-<button class="eventwhich">Click me any way you want</button>
+<button class="eventwhich" style="font-size:large">Cliquez-moi de toutes les manières</button>
 </div>
 <script>
   var button = document.querySelector("button.eventwhich");
@@ -245,15 +279,42 @@ Par exemple, pour savoir quel bouton de la souris a été cliqué, on peut accé
 </section>
 <section>
 
+## Les différents évènements possibles
+
+Quelques événements courants :
+
+* Clavier : 
+  * `keydown` : À chaque appui ou répétition d'une touche
+  * `keyup` : À chaque relachement d'une touche
+  * `keypress` : Comme `keydown` mais pour les touches *écrivant* quelque chose **TODO**
+* Souris : 
+  * `mousedown`, `mouseup`, `click` : Clics de souris
+  * `mousemove`, `mouseenter`, `mouseout` : Déplacements de souris
+* Défilement d'écran : `scroll`
+* Élément actif : `focus`, `blur`
+* Chargement terminé : `load`, **TODO** DOMReady onready
+ "load" event fires on the window.
+
+Lien sur MDN
+
+Action utilisateur
+
+Chargement de page (on y reviendra)
+
+</section>
+<section>
+
 ## Propagation des événements
 
-Un gestionnaire d'événement va recevoir les événements qui se produisent sur ces fils.
+Un gestionnaire d'événement va recevoir les événements qui se produisent sur ses fils.
 
 En fait, un événement déclenche d'abord le noeud sur lequel il s'est déroulé, puis il déclenche son noeud parent, son noeud grand-parent et ainsi de suite jusqu'à la racine de l'événement.
 
 Cette propagation vers la racine peut être arrétée à l'aide de la fonction `stopPropagation`. La cible réelle de l'événement se récupère dans la propriété `target`.
 
+<!--
 Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
+-->
 
 ```html
 <p>A paragraph with a <button>button</button>.</p>
@@ -261,10 +322,10 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. Sauf s
   var para = document.querySelector("p");
   var button = document.querySelector("button");
   para.addEventListener("mousedown", function() {
-    console.log("Handler for paragraph.");
+    console.log("Gestionnaire du paragraphe : ", event.target);
   });
   button.addEventListener("mousedown", function(event) {
-    console.log("Handler for button.");
+    console.log("Gestionnaire du bouton : ", event.target);
     if (event.which == 3)
       event.stopPropagation();
   });
@@ -272,22 +333,24 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. Sauf s
 ```
 
 <div class="codeexample">
-<p class="propagation">A paragraph with a <button class="propagation">button</button>.</p>
+<p class="propagation">Un paragraphe avec un <button class="propagation" style="font-size:large">bouton</button>.</p>
 </div>
 <script>
   var para = document.querySelector("p.propagation");
   var button = document.querySelector("button.propagation");
   para.addEventListener("mousedown", function() {
-    console.log("Handler for paragraph.");
+    console.log("Gestionnaire du paragraphe : ", event.target);
   });
   button.addEventListener("mousedown", function(event) {
-    console.log("Handler for button.");
+    console.log("Gestionnaire du bouton : ", event.target);
     if (event.which == 3)
       event.stopPropagation();
   });
 </script>
 
 Plus de détails sur les gestion du clavier, des mouvements de la souris, du déroulement de la page et des actions par défaut sur le [site de *Eloquent Javascript*]() TODO 
+
+Stoper l'action par défaut (ouverture du menu ?, changement d'adresse ors du clic sur un lien) avec `event.preventDefault()`.
 
 </section>
 <section>
@@ -340,50 +403,7 @@ Each event has a type ("keydown", "focus", and so on) that identifies it. Most e
 
 When an event handler is called, it is passed an event object with additional information about the event. This object also has methods that allow us to stop further propagation (stopPropagation) and prevent the browser’s default handling of the event (preventDefault).
 
-Pressing a key fires "keydown", "keypress", and "keyup" events. Pressing a mouse button fires "mousedown", "mouseup", and "click" events. Moving the mouse fires "mousemove" and possibly "mouseenter" and "mouseout" events.
-
-Scrolling can be detected with the "scroll" event, and focus changes can be detected with the "focus" and "blur" events. When the document finishes loading, a "load" event fires on the window.
-
 Only one piece of JavaScript program can run at a time. Thus, event handlers and other scheduled scripts have to wait until other scripts finish before they get their turn.
-
-</section>
-<section>
-
-## Association d'évènements 
-
-Il y a plusieurs façons d'associer une action à un évènement sur un élément.<br>
-Par exemple, pour exécuter `act()` lors d'un clic sur un bouton `<button>`, on peut :
-
-1. Si la variable Javascript `b` pointe sur le bouton `<button>`
-    1. ```javascript
-       b.addEventListener('click',act);
-       ```
-    2. ```javascript
-       b.onclick = act;
-       ```
-2. ```html
-   <button onclick='act()'>
-   ```
-
-**Utilisez la première syntaxe `addEventListener`** car
-
-* on peut associer plusieurs actions au même évènement
-* on peut supprimer une action d'un évènement
-
-  ```javascript
-  b.removeEventListener('click',act);
-  ```
-
-</section>
-<section>
-
-## Les différents évènements possibles
-
-Lien sur MDN
-
-Action utilisateur
-
-Chargement de page (on y reviendra)
 
 </section>
 <section>
@@ -449,7 +469,7 @@ Faire des Affichages des DOM incomplets lors du chargement d'une page
 
 Event loop lors du Cours sur Ajax : asynchronisme de JavaScript
 
-Regarder aussi requestAnimationFrame, preventDefault, debouncing (en td - 2 façons) et autre trucs exotiques
+Regarder aussi requestAnimationFrame (et repaint (loupe)), preventDefault, load event, debouncing (en td - 2 façons) et autre trucs exotiques
 
 Sources :
 Eloquent JavaScript (et pour les images)
