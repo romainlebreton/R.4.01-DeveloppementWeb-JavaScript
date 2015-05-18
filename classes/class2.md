@@ -438,23 +438,24 @@ La fonction donnée au gestionnaire reçoit un paramètre : l'*objet événement
 * Clavier : 
   * `keydown` : À chaque appui ou répétition d'une touche
   * `keyup` : À chaque relâchement d'une touche
-  * `keypress` : Comme `keydown` mais pour les touches *écrivant* quelque chose **TODO**
+  <!-- * `keypress` : Comme `keydown` mais pour les touches *écrivant* quelque chose -->
 * Souris : 
   * `mousedown`, `mouseup`, `click` : Clics de souris
-  * `mousemove`, `mouseenter`, `mouseout` : Déplacements de souris
+  * `mousemove`, `mouseenter`, `mouseout` : Déplacements
 * Défilement d'écran : `scroll`
 * Élément actif : `focus`, `blur`
-* Chargement terminé : `load`, `DOMContentLoaded`
- "load" event fires on the window.
+* Chargement terminé : 
+  * `load` : chargement terminé d'une ressource et de ses dépendances
+  * `DOMContentLoaded` : chargement terminé du DOM
+
+<!--
+The DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading. A very different event - load - should be used only to detect a fully-loaded page. It is an insanely popular mistake for people to use load where DOMContentLoaded would be much more appropriate, so be cautious.
+-->
 
 
-DOMContentLoaded
-
-[Liste complète des événements](https://developer.mozilla.org/en-US/docs/Web/Events)
-
-Action utilisateur
-
-Chargement de page (on y reviendra)
+<div class="myfootnote">
+**Références :** [Liste complète des événements](https://developer.mozilla.org/en-US/docs/Web/Events)
+</div>
 
 </section>
 <section>
@@ -463,20 +464,64 @@ Chargement de page (on y reviendra)
 
 Un gestionnaire d'événement va recevoir les événements qui se produisent sur ses fils.
 
+<!--
 En fait, un événement déclenche d'abord le nœud sur lequel il s'est déroulé, puis il déclenche son nœud parent, son nœud grand-parent et ainsi de suite jusqu'à la racine de l'événement.
 
-Cette propagation vers la racine peut être arrêtée à l'aide de la fonction `stopPropagation`. La cible réelle de l'événement se récupère dans la propriété `target`.
-
-<!--
-Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
+Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. 
 -->
 
+<div style="font-size:90%">
+
 ```html
-<p>Un paragraphe avec un <button style="font-size:large">bouton</button>.</p>
+<p>Un paragraphe avec un <button>bouton</button>.</p>
 <script>
-  var para = document.querySelector("p");
+  var par = document.querySelector("p");
   var button = document.querySelector("button");
-  para.addEventListener("mousedown", function() {
+
+  par.addEventListener("mousedown", function() {
+    console.log("Gestionnaire du paragraphe.");
+  });
+  button.addEventListener("mousedown", function() {
+    console.log("Gestionnaire du bouton.");
+  });
+</script>
+```
+</div>
+
+<div class="codeexample">
+<p class="propagation">Un paragraphe avec un <button class="propagation" style="font-size:large">bouton</button>.</p>
+</div>
+<script>
+  var par = document.querySelector("p.propagation");
+  var button = document.querySelector("button.propagation");
+  par.addEventListener("mousedown", function() {
+    console.log("Gestionnaire du paragraphe.");
+  });
+  button.addEventListener("mousedown", function() {
+    console.log("Gestionnaire du bouton.");
+  });
+</script>
+
+</section>
+<section>
+
+## Propagation des événements
+
+`event.stopPropagation()` arrête la propagation vers la racine.  
+La propriété `target` contient la cible réelle de l'événement.
+
+<!--
+Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
+-->
+
+<div style="font-size:80%">
+
+```html
+<p>Un paragraphe avec un <button>bouton</button>.</p>
+<script>
+  var par = document.querySelector("p");
+  var button = document.querySelector("button");
+  par.addEventListener("mousedown", function(event) {
     console.log("Gestionnaire du paragraphe : ", event.target);
   });
   button.addEventListener("mousedown", function(event) {
@@ -486,14 +531,15 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. Sauf s
   });
 </script>
 ```
+</div>
 
 <div class="codeexample">
-<p class="propagation">Un paragraphe avec un <button class="propagation" style="font-size:large">bouton</button>.</p>
+<p class="propagation2">Un paragraphe avec un <button class="propagation2" style="font-size:large">bouton</button>.</p>
 </div>
 <script>
-  var para = document.querySelector("p.propagation");
-  var button = document.querySelector("button.propagation");
-  para.addEventListener("mousedown", function() {
+  var para = document.querySelector("p.propagation2");
+  var button = document.querySelector("button.propagation2");
+  para.addEventListener("mousedown", function(event) {
     console.log("Gestionnaire du paragraphe : ", event.target);
   });
   button.addEventListener("mousedown", function(event) {
@@ -503,14 +549,17 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. Sauf s
   });
 </script>
 
-Plus de détails sur les gestion du clavier, des mouvements de la souris, du déroulement de la page et des actions par défaut sur le [site de *Eloquent JavaScript*]() TODO 
+**Remarque :** `event.preventDefault()` stoppe l'action par défaut.
 
-Stopper l'action par défaut (ouverture du menu ?, changement d'adresse ors du clic sur un lien) avec `event.preventDefault()`.
+Plus de détails sur la gestion du clavier, les mouvements de la souris, le déroulement de la page et les actions par défaut sur le [site de *Eloquent JavaScript*](http://eloquentjavascript.net/14_event.html).
+
 
 </section>
 <section>
 
 ## Compte à rebours
+
+<!-- HERE ICI -->
 
 La fonction `setTimeout` permet de lancer une fonction après un intervalle de temps donné en millisecondes. On peut arrêter le compte à rebours à l'aide de `clearTimeout`.
 
@@ -546,6 +595,7 @@ if (Math.random() < 0.5) {  // 50% chance
 `setInterval` permet de répéter une fonction indéfiniment après un laps de temps. On l'interrompt avec `clearInterval`.
 
 </section>
+<!--
 <section>
 
 ## Summary
@@ -559,6 +609,8 @@ When an event handler is called, it is passed an event object with additional in
 Only one piece of JavaScript program can run at a time. Thus, event handlers and other scheduled scripts have to wait until other scripts finish before they get their turn.
 
 </section>
+-->
+
 <section>
 
 ## Structure du code
@@ -588,8 +640,9 @@ De la même manière que nous séparons le style CSS du document HTML, nous voul
 
 ## Chargement des pages Web
 
-Reprendre le stack overflow
+<!-- Reprendre le stack overflow
 ** Spécifique à Chrome - V8 ** ?
+-->
 
 1. Récupération de la page HTML
 2. Lecture du document HTML au fur et à mesure
@@ -600,15 +653,19 @@ Reprendre le stack overflow
    4. En cas de chargement d'image, vidéo, le fichier est chargé de manière non bloquante
 
 **Conséquences :**
+
 * Attention à ne pas interagir avec le document avant qu'il soit chargé
 * Exemples de problèmes 
-* Apprendre à attendre que le document soit chargé 
+* Apprendre à attendre que le document soit chargé  `DOMContentLoaded`
 
 <!-- lier explication avec l'affichage Network de Chrome -->
 <!-- Voir "load event" de Eloquent JavaScript -->
 
 </section>
 
+<!--
+<script>setTimeout(function () {Dz.play();}, 500);</script>
+-->
 
 <!--
 
