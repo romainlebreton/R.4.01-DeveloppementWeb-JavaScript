@@ -93,7 +93,7 @@ certaines sont de classe **case player**. Comment fabriquer ces `<div>` me direz
   la propriété **display**. [Petit
   rappel pour ceux qui aiment comprendre.](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)
 
-#### Le joueur-serpent (**objet player2**)
+#### Le joueur-serpent (**objet player**)
 
 La programmation aisée de ce jeu repose sur l'objet
 **player** défini au début de la fonction **loadGame**. Ses attributs
