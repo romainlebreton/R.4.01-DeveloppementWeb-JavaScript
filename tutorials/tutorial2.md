@@ -71,7 +71,7 @@ ensemble de fonctions et de l'appel de la fonction principale
    {:.javascript}
 
 Quelques rappels sur les
-[écouteurs](http://www.xul.fr/ecmascript/event.php) et les [événements
+[gestionnaires d'événements](http://www.xul.fr/ecmascript/event.php) et les [événements
 périodiques](http://www.w3schools.com/jsref/met_win_setinterval.asp).
 
 Remarque : cette structure de programme permet de transmettre les
@@ -93,7 +93,7 @@ certaines sont de classe **case player**. Comment fabriquer ces `<div>` me direz
   la propriété **display**. [Petit
   rappel pour ceux qui aiment comprendre.](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)
 
-#### Le joueur-serpent (objet *player*)
+#### Le joueur-serpent (**objet player2**)
 
 La programmation aisée de ce jeu repose sur l'objet
 **player** défini au début de la fonction **loadGame**. Ses attributs
