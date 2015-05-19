@@ -265,8 +265,8 @@ paramètre la direction courante du serpent (appelée
 ~~~
 function checkForFruit(){
   var allCases = document.querySelectorAll(".board .case");
-  var indice = player.head().positionX * DIM_X
-               + player.head().positionY;
+  var indice = player.head().positionX
+               + player.head().positionY * DIM_X;
   return allCases[indice].classList.contains("fruit");
 };
 ~~~
@@ -274,8 +274,9 @@ function checkForFruit(){
 
 Pour résumer, la méthode **moveOnDirection** teste si une pomme se
 trouve sur la route (**checkFruit**), modifie les extrémités du
-tableau **body** (en fonction de la direction *oneDirection*), met à
-jour l'attribut **lastDirection** et appelle finalement la fonction
+tableau **body** (en fonction de la direction *oneDirection*)
+<!-- , met à jour l'attribut **lastDirection**-->
+et appelle finalement la fonction
 **updatePlayerPosition** pour synchroniser le contenu de **body** avec
 les classes des cases du plateau.
 
