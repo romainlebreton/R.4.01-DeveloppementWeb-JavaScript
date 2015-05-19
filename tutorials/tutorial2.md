@@ -24,52 +24,101 @@ l'industrie agro-alimentaire, prend exactement une case.
 
 #### game.html
 
-Votre programme Javascript sera lancé par un court fichier
+Votre programme JavaScript sera lancé par un court fichier
 **game.html**. Celui contiendra un titre, une ligne d'explication pour
-donner la règle du jeu à l'utilisateur et chargera le fichier
+donner la règle du jeu à l'utilisateur et un 
+
+```html
+<div class='board'>Activer JavaScript pour jouer</div>
+```
+
+Ce `<div>` contiendra plus tard le plateau de jeu. En attendant, il affiche un message par défaut aux utilisateurs n'ayant pas activé JavaScript.
+
+Le fichier **game.html** chargera le fichier **game.css** et aussi le fichier
 **game.js** grâce à la balise `<script>` comme nous l'avons vu lors du
 TD 1.
 
-Il devra lancer le programme Javascript immédiatement après le
-chargement du fichier en utilisant l'attribut `onload` de la balise
-`<body>`. 
-[Une explication sur cet attribut ?](http://www.w3schools.com/jsref/event_onload.asp)
 
 #### game.css
 
 Le fichier CSS précisera notamment la taille et la couleur des différents éléments graphiques :
 
-- le plateau de jeu ;
-- une case quelconque ;
-- une case particulière qui est la pomme ;
-- le joueur-serpent.
+- le plateau de jeu -- classe **board**;
+- une case quelconque -- classe **case**;
+- une case particulière qui est la pomme -- classe **fruit**;
+- le joueur-serpent -- classe **player**.
 
 En fait, chaque case sera représentée par une `<div>` et différentes
 classes permettront de différencier les éléments graphiques.
 
 Nous préciserons plus loin une dernière propriété qui sera ajoutée à certains sélecteurs.
 
-## Le programme Javascript (**game.js**)
+## Le programme JavaScript (**game.js**)
 
 #### Structure générale
+
+<!--
+Il devra lancer le programme JavaScript immédiatement après le
+chargement du fichier en utilisant l'attribut `onload` de la balise
+`<body>`. 
+[Une explication sur cet attribut ?](http://www.w3schools.com/jsref/event_onload.asp)
+-->
 
 Le programme se résumera à une fonction principale **loadGame**
 contenant la définition d'un ensemble de variables et de constantes
 (taille du plateau, code des touches **Key_UP**, **Key_RIGHT**, etc) d'un
 ensemble de fonctions et de l'appel de la fonction principale
-**initGame** définie comme suit :
+**initGame**.
 
-~~~
-function initGame(){
-    createBoard();
-    updatePlayerPosition();
-    // Ici: associer la fonction listenToEvent à un événement
-    //      "touche (flèche) enfoncée"
-    // Ici: déclencher une fonction onTick à intervalles 
-    //      réguliers (ex: 0.1 seconde)
-};
-~~~
-{:.javascript}
+```javascript
+function loadGame(){
+
+    //static variables
+    var DIM_X = 100;
+    var DIM_Y = 100;
+
+    var DIR_NONE = "";
+    
+    var Key_UP = 38;     // Code ASCII de la flèche basse
+    var Key_RIGHT = 39;
+    var Key_BOTTOM = 40;
+    var Key_LEFT = 37;
+
+    //attribute variables
+    var player = {};
+
+    function checkForEnding(){
+	// Optional : Check if :
+	// - player head is crashed on his own body,
+	// - isMoveOk return false
+    };
+
+    function listenToEvent(e){};
+
+    function isMoveOk(player,oneDirection){};
+
+    function onTick(){};
+
+    function checkForFruit(){};
+
+    function updatePlayerPosition(){};
+
+    function createBoard(){};
+
+    function initGame(){
+        createBoard();
+        updatePlayerPosition();
+        // Ici: associer la fonction listenToEvent à un événement
+        //      "touche (flèche) enfoncée"
+        // Ici: déclencher une fonction onTick à intervalles 
+        //      réguliers (ex: 0.1 seconde)
+    };
+
+    initGame();
+}; // Fin de loadGame
+
+// Ici: associer la fonction loadGame à la fin du chargement de la page HTML
+```
 
 Quelques rappels sur les [gestionnaires d'événements](http://www.xul.fr/ecmascript/event.php) et les [événements
 périodiques](http://www.w3schools.com/jsref/met_win_setinterval.asp).
@@ -80,23 +129,21 @@ autres fonctions.
 
 #### Dessiner le plateau (fonction **createBoard**)
 
-Une façon simple de procéder consiste à créer une `<div>` de classe
-**board** contenant de nombreuses `<div>` de classe **case**, dont
+Une façon simple de procéder consiste vider la `<div>` de classe
+**board**, et d'y mettre de nombreuses `<div>` de classe **case**, dont
 certaines sont de classe **case player**. Comment fabriquer ces `<div>` me direz-vous ?
 
 - Vous avez appris à faire des boucles ? C'est l'occasion de les
-  utiliser pour créer les cases/div de haut en bas et de gauche à
-  droite. 
-
-- Facile à dire, mais plus difficile à faire sans utiliser les méthodes **createElement** et 
-**appendChild** que vous maîtrisez depuis une semaine déjà.
+  utiliser pour créer les cases `<div class='case'>` de haut en bas et de gauche à
+  droite. Utiliser les méthodes **createElement**, **appendChild** 
+  que vous maîtrisez depuis une semaine déjà.
 
 - Hum, il manque quelque chose. Quand on a parlé du CSS, on a bien dit
-  que chaque case appartenait à une classe précise. Il faut donc
+  que chaque case appartenait à une ou plusieurs classes précises. Il faut donc
   ajouter une classe à (la liste des classes de) la **div** créée en
   utilisant
-  [element.classList](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
-  N'oubliez pas d'ajouter des pommes quand-même, sans quoi votre jeu
+  [**element.classList.add**](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
+  N'oubliez pas d'ajouter des pommes (classes **case** et **fruit**) quand-même, sans quoi votre jeu
   serait ennuyeux. Ce qui différencie une jolie pomme verte d'une
   vilaine case bleue est simplement sa classe CSS. Pour l'emplacement
   des pommes, l'idéal serait de les placer un peu aléatoirement sur le
@@ -106,7 +153,7 @@ certaines sont de classe **case player**. Comment fabriquer ces `<div>` me direz
 - Et comment les cases se mettraient dans le bonne ordre ? Il faut
   effectivement ajouter dans le CSS (à vous de réfléchir précisément où quand-même !) la bonne valeur `inline-block` à
   la propriété **display**. [Petit
-  rappel <span style="text-decoration: line-through">pour ceux qui aiment comprendre.</span>](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)
+  rappel ](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)[<span style="text-decoration: line-through">pour ceux qui aiment comprendre.</span>](https://developer.mozilla.org/fr/docs/Web/CSS/display)
 
 
 #### Le joueur-serpent (**objet player**)
@@ -122,13 +169,13 @@ et méthodes sont les suivants :
   mettre la tête du serpent à la fin du tableau. Pourquoi ? Parce
   qu'il ne faut pas oublier que notre serpent doit grandir d'une case
   quand il mange une pomme (d'une case). Il s'allonge donc par
-  l'avant. Et comme il est facile en Javascript d'ajouter un élément
+  l'avant. Et comme il est facile en JavaScript d'ajouter un élément
   en queue de tableau, géré en fait comme une file, en utilisant un
   [push](http://www.w3schools.com/jsref/jsref_push.asp), on trouve
-  notre tête de serpent en queue de tableau ! Elémentaire non ?
+  notre tête de serpent en queue de tableau ! Élémentaire non ?
 
   Sérieusement, lisez-bien les deux liens ci-dessus pour bien
-  comprendre les tableaux en Javascript, sinon on vous casse la tête
+  comprendre les tableaux en JavaScript, sinon on vous casse la tête
   et la queue !
 
 - La méthode **head** qui permet de récupérer la tête du serpent, en
@@ -162,7 +209,7 @@ paramètre la direction courante du serpent (appelée
 
 - Et comment sait-on si la tête passe sur une pomme ? Et bien on
   fabrique une fonction booléenne **checkForFruit**. Comme c'est
-  l'anniversaire de la soeur d'un de vos enseignants, on vous fait
+  l'anniversaire de la sœur d'un de vos enseignants, on vous fait
   cadeau d'une version, certes peu efficace en temps de calcul
   (pourquoi ?), et à condition de bien comprendre.
 
