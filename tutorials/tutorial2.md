@@ -45,8 +45,8 @@ Le fichier CSS précisera notamment la taille et la couleur des différents él�
 
 - le plateau de jeu -- classe **board**;
 - une case quelconque -- classe **case**;
-- une case particulière qui est la pomme -- classe **fruit**;
-- le joueur-serpent -- classe **player**.
+- une case particulière qui est la pomme -- classe **fruit** (en plus de **case**);
+- le joueur-serpent -- classe **player** (en plus de **case**).
 
 En fait, chaque case sera représentée par une `<div>` et différentes
 classes permettront de différencier les éléments graphiques.
@@ -124,17 +124,19 @@ function loadGame(){
 
 **Remarque :** cette structure de programme permet de transmettre les
 variables et les constantes définies dans **loadGame** à toutes les
-autres fonctions.
+autres fonctions.  
+De plus, les variables et fonctions définies dans **loadGame** sont locales à cette fonction (et à ses sous-fonctions). Ces variables ne sont pas globales et ne risquent pas de rentrer en conflit avec d'autres script.
 
 #### Lancer le jeu au chargement de la page
 
 À la fin de **game.js**, associer notre fonction **loadGame** à l'événement `DOMContentLoaded`. Cet événement se produit quand la page a fini de se construire.
-
 Quelques rappels sur les [gestionnaires d'événements](http://www.xul.fr/ecmascript/event.php).
 <!-- 
 et les [événements
 périodiques](http://www.w3schools.com/jsref/met_win_setinterval.asp).
 -->
+
+Vérifiez que le message "Chargement du jeu" est bien affiché dans la console des outils de développement.
 
 #### Dessiner le plateau (fonction **createBoard**)
 
@@ -181,14 +183,13 @@ La programmation aisée de ce jeu repose sur l'objet
 **player** défini au début de la fonction **loadGame**. Ses attributs
 et méthodes sont **body**, **head**, **lastDirection** et **moveOnDirection**.
 
-Commençons par créer le corps du serpent.
+Commençons par créer le corps du serpent **player.body**.
 
-L'attribut **body** qui est un
-  [array](http://www.w3schools.com/js/js_arrays.asp) d'objets
-  `{PositionX, PositionY}` correspondant aux différents éléments/cases
+L'attribut **body** qui est un tableau de points, chaque point étant un objet comme
+  `{PositionX:1, PositionY:2}`. Les points correspondent aux différents éléments/cases
   ("anneaux" dans le langage animalier) du serpent.  
   **Rappel :** Syntaxe des [objets](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-objets) et des 
-[tableaux en JavaScript](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-tableaux)..
+[tableaux en JavaScript](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-tableaux).
   
 
   On propose de
@@ -207,17 +208,20 @@ L'attribut **body** qui est un
 #### La fonction **updatePlayerPosition**
 
 Cette fonction affiche le serpent sur le plateau en fonction de
-**player.body**. Une manière simple et peu efficace consiste à faire
-un peu comme pour **checkFruit** :
+**player.body**. Une manière simple et peu efficace est la suivante :
+<!-- consiste à faire un peu comme pour **checkFruit** : -->
 
 1. On récupère toutes les `<div>` de classe `player` et on leur
 [enlève cette
 classe](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
 
-2. On récupère ensuite toutes les `<div>` du plateau dans un
-tableau. Puis, pour chaque anneau dans **player.body**, on calcule son
+2. On récupère ensuite toutes les `<div>` de class **case** du plateau dans un
+tableau. 
+
+3. Puis, pour chaque anneau dans **player.body**, on calcule son
 indice dans le tableau et on ajoute la classe **player** à la **div**
-correspondante.
+correspondante.  
+**Remarque :** Prenez le temps d'écrire la formule pour calculer l'indice dans le tableau en fonction de **DIM_X**, **DIM_Y** et des coordonnées de l'anneau du serpent **PositionX** et **PositionY** ?
 
 #### Déplacements du serpent
 
