@@ -155,6 +155,9 @@ certaines sont de classe **case player**. Comment fabriquer ces `<div>` me direz
   la propriété **display**. [Petit
   rappel ](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)[<span style="text-decoration: line-through">pour ceux qui aiment comprendre.</span>](https://developer.mozilla.org/fr/docs/Web/CSS/display)
 
+#### Lancer le jeu au chargement de la page
+
+À la fin de **game.js**, associer notre fonction **loadGame** à l'événement `DOMContentLoaded`. Cet événement se produit quand la page a fini de se construire.
 
 #### Le joueur-serpent (**objet player**)
 
