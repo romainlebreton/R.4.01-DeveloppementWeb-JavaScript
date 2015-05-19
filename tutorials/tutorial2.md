@@ -79,7 +79,7 @@ function loadGame(){
 
     var DIR_NONE = "";
     
-    var Key_UP = 38;     // Code ASCII de la flèche basse
+    var Key_UP = 38;     // Code ASCII des flèches
     var Key_RIGHT = 39;
     var Key_BOTTOM = 40;
     var Key_LEFT = 37;
@@ -106,6 +106,7 @@ function loadGame(){
     function createBoard(){};
 
     function initGame(){
+        console.log("Chargement du jeu");
         createBoard();
         updatePlayerPosition();
         // Ici: associer la fonction listenToEvent à un événement
@@ -120,18 +121,31 @@ function loadGame(){
 // Ici: associer la fonction loadGame à la fin du chargement de la page HTML
 ```
 
-Quelques rappels sur les [gestionnaires d'événements](http://www.xul.fr/ecmascript/event.php) et les [événements
-périodiques](http://www.w3schools.com/jsref/met_win_setinterval.asp).
 
-Remarque : cette structure de programme permet de transmettre les
+**Remarque :** cette structure de programme permet de transmettre les
 variables et les constantes définies dans **loadGame** à toutes les
 autres fonctions.
 
+#### Lancer le jeu au chargement de la page
+
+À la fin de **game.js**, associer notre fonction **loadGame** à l'événement `DOMContentLoaded`. Cet événement se produit quand la page a fini de se construire.
+
+Quelques rappels sur les [gestionnaires d'événements](http://www.xul.fr/ecmascript/event.php).
+<!-- 
+et les [événements
+périodiques](http://www.w3schools.com/jsref/met_win_setinterval.asp).
+-->
+
 #### Dessiner le plateau (fonction **createBoard**)
 
-Une façon simple de procéder consiste vider la `<div>` de classe
-**board**, et d'y mettre de nombreuses `<div>` de classe **case**, dont
-certaines sont de classe **case player**. Comment fabriquer ces `<div>` me direz-vous ?
+Une façon simple de procéder consiste d'abord à vider la `<div>` de classe
+**board** de son texte 
+(utilisez [removeChild](https://developer.mozilla.org/fr/docs/Web/API/Node/removeChild)
+ ou [innerHTML](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML)).
+
+Puis mettez dans le plateau de nombreuses `<div>` de classe **case**.
+<!-- dont certaines sont de classe **case fruit**. -->
+Comment fabriquer ces `<div>` me direz-vous ?
 
 - Vous avez appris à faire des boucles ? C'est l'occasion de les
   utiliser pour créer les cases `<div class='case'>` de haut en bas et de gauche à
@@ -140,35 +154,44 @@ certaines sont de classe **case player**. Comment fabriquer ces `<div>` me direz
 
 - Hum, il manque quelque chose. Quand on a parlé du CSS, on a bien dit
   que chaque case appartenait à une ou plusieurs classes précises. Il faut donc
-  ajouter une classe à (la liste des classes de) la **div** créée en
+  ajouter une classe à (la liste des classes de) la `<div>` créée en
   utilisant
   [**element.classList.add**](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
-  N'oubliez pas d'ajouter des pommes (classes **case** et **fruit**) quand-même, sans quoi votre jeu
-  serait ennuyeux. Ce qui différencie une jolie pomme verte d'une
-  vilaine case bleue est simplement sa classe CSS. Pour l'emplacement
-  des pommes, l'idéal serait de les placer un peu aléatoirement sur le
-  plateau, mais vous pouvez commencer par les placer régulièrement,
-  comme vos paresseux professeurs l'ont fait (cf. figure 1).
 
 - Et comment les cases se mettraient dans le bonne ordre ? Il faut
   effectivement ajouter dans le CSS (à vous de réfléchir précisément où quand-même !) la bonne valeur `inline-block` à
   la propriété **display**. [Petit
-  rappel ](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)[<span style="text-decoration: line-through">pour ceux qui aiment comprendre.</span>](https://developer.mozilla.org/fr/docs/Web/CSS/display)
+  rappel ](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)[<span style="text-decoration: line-through">pour ceux qui aiment comprendre.</span>](https://developer.mozilla.org/fr/docs/Web/CSS/display).  
+  **Note :** Si vos cases s'affichent plutôt comme des rayures, rajouter le style CSS `line-height:0` au plateau **board**. 
+<!-- Ou `font-size:0` si çà ne marche toujours pas, mais seulement au chargement du JS -->
 
-#### Lancer le jeu au chargement de la page
+- N'oubliez pas d'ajouter des pommes quand-même, sans quoi votre jeu
+  serait ennuyeux. Ce qui différencie une jolie pomme verte d'une
+  vilaine case bleue est simplement qu'elle possède les classes **case** ET **fruit**.
+  - Pour l'emplacement
+    des pommes, l'idéal serait de les placer un peu aléatoirement sur le
+    plateau, mais vous pouvez commencer par les placer régulièrement,
+    comme vos paresseux professeurs l'ont fait (cf. figure 1).
+  - N'oubliez pas de changer le style CSS des `<div>` de classes **case** et **fruit**.
 
-À la fin de **game.js**, associer notre fonction **loadGame** à l'événement `DOMContentLoaded`. Cet événement se produit quand la page a fini de se construire.
 
 #### Le joueur-serpent (**objet player**)
 
 La programmation aisée de ce jeu repose sur l'objet
 **player** défini au début de la fonction **loadGame**. Ses attributs
-et méthodes sont les suivants :
+et méthodes sont **body**, **head**, **lastDirection** et **moveOnDirection**.
 
-- L'attribut **body** qui est un
+Commençons par créer le corps du serpent.
+
+L'attribut **body** qui est un
   [array](http://www.w3schools.com/js/js_arrays.asp) d'objets
   `{PositionX, PositionY}` correspondant aux différents éléments/cases
-  ("anneaux" dans le langage animalier) du serpent. On propose de
+  ("anneaux" dans le langage animalier) du serpent.  
+  **Rappel :** Syntaxe des [objets](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-objets) et des 
+[tableaux en JavaScript](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-tableaux)..
+  
+
+  On propose de
   mettre la tête du serpent à la fin du tableau. Pourquoi ? Parce
   qu'il ne faut pas oublier que notre serpent doit grandir d'une case
   quand il mange une pomme (d'une case). Il s'allonge donc par
@@ -180,6 +203,25 @@ et méthodes sont les suivants :
   Sérieusement, lisez-bien les deux liens ci-dessus pour bien
   comprendre les tableaux en JavaScript, sinon on vous casse la tête
   et la queue !
+
+#### La fonction **updatePlayerPosition**
+
+Cette fonction affiche le serpent sur le plateau en fonction de
+**player.body**. Une manière simple et peu efficace consiste à faire
+un peu comme pour **checkFruit** :
+
+1. On récupère toutes les `<div>` de classe `player` et on leur
+[enlève cette
+classe](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
+
+2. On récupère ensuite toutes les `<div>` du plateau dans un
+tableau. Puis, pour chaque anneau dans **player.body**, on calcule son
+indice dans le tableau et on ajoute la classe **player** à la **div**
+correspondante.
+
+#### Déplacements du serpent
+
+Le déplacement du serpent requiert de nouveaux attributs ou méthodes de l'objet **player**:
 
 - La méthode **head** qui permet de récupérer la tête du serpent, en
   queue de tableau si vous avez suivi.
@@ -236,21 +278,6 @@ les classes des cases du plateau.
 Cette fonction vous dit quelque chose ? Et oui, elle est déjà appelée
 au tout début du jeu, après la création du plateau, histoire
 d'afficher le serpent. Quelques mots sur cette fonction alors.
-
-#### La fonction **updatePlayerPosition**
-
-Cette fonction affiche le serpent sur le plateau en fonction de
-**player.body**. Une manière simple et peu efficace consiste à faire
-un peu comme pour **checkFruit** :
-
-1. On récupère toutes les `<div>` de classe `player` et on leur
-[enlève cette
-classe](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
-
-2. On récupère ensuite toutes les `<div>` du plateau dans un
-tableau. Puis, pour chaque anneau dans **player.body**, on calcule son
-indice dans le tableau et on ajoute la classe **player** à la **div**
-correspondante.
 
 #### La fonction **onTick**
 
