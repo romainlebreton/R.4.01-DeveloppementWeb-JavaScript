@@ -48,10 +48,11 @@ layout : slideshow
 
 * Web 1.5 : Pages dynamiques 
   * Génération de page côté serveur (ex: PHP)  
-    Mais une page ne varie pas entre deux requêtes serveur
+    Mais une page ne varie pas entre deux requêtes
   * Script côté client  (ex: JavaScript)  
     Permet des applications côté client (des calculs ...)  
-    Permet des activités sur la page sans la recharger (pré-vérification formulaire ...)  
+    Permet des activités sur la page sans la recharger  
+    (changement de la page, de son style ...)  
   
 * Web 2.0 (*Cours prochain*)  
   Communications asynchrones (non liés au chargement des pages) entre le serveur et le client  
@@ -266,8 +267,8 @@ tag[att=val]        /* Tout <tag> ayant attribut att égal à val */
 **Exemples:**
 
 * `li:nth-child(2*n)` -- Éléments pairs d'une liste
-* `p::first-letter` -- Première lettre d'un paragraphe
 * `a:hover` -- Lien survolé
+* `p::first-letter` -- Première lettre d'un paragraphe
 
 </section>
 <section>
@@ -278,7 +279,7 @@ tag[att=val]        /* Tout <tag> ayant attribut att égal à val */
 
 <div style="font-size:80%">
 ~~~
-sel1, sel2        /* Chacun des sélecteurs                     */
+sel1, sel2        /* Chacun des sélecteurs                   */
 parent child      /* child s'il est un fils de parent        */
 parent > child    /* child seulement s'il est un fils direct */
 sister ~ brother  /* brother s'il suit sister                */
@@ -289,9 +290,13 @@ sister + brother  /* brother s'il suit immédiatement sister  */
 
 **Exemples:**
 
-* `parent > * > child` -- `child` si petit-fils exact de `parent`
-* `parent > * child` -- `child` si au moins petit-fils de `parent`
 
+* **Q.** Que sélectionne `body > * > p` ?
+* **R.** Les paragraphes qui sont des petit-fils exact de `<body>`
+
+* **Q.** Que sélectionne `ul > * li` ?
+* **R.** Les `<li>` qui sont au moins petit-fils d'un `<ul>`
+{:.incremental}
 
 <!--
 **Sélecteurs de base**:
@@ -358,12 +363,14 @@ On donne au système sous-jacent une fonction qu'il essayera de lancer dès que 
 Par exemple, pour exécuter la fonction `act()` lors d'un clic sur un `<button>`, on peut :
 
 1. Si la variable JavaScript `b` pointe sur le bouton `<button>`
-    1. ```javascript
-       b.addEventListener('click',act);
-       ```
-    2. ```javascript
-       b.onclick = act;
-       ```
+   1. ```javascript
+      b.addEventListener('click',act);
+      ```
+
+   2. ```javascript
+      b.onclick = act;
+      ```
+
 2. ```html
    <button onclick='act()'>
    ```
@@ -565,7 +572,8 @@ La fonction `setTimeout` permet de lancer une fonction après un intervalle de t
 
 
 ```html
-var bombTimer = setTimeout(function() {console.log("BOOM!");}, 500);
+function boom () {console.log("BOOM!");}
+var bombTimer = setTimeout(boom, 500);
 
 if (Math.random() < 0.5) {  // 50% chance
   console.log("Defused.");
@@ -579,9 +587,8 @@ if (Math.random() < 0.5) {  // 50% chance
 <script>
   var b = document.querySelector("button.cleartimeout");
   b.addEventListener("click", function () {
-    var bombTimer = setTimeout(function() {
-      console.log("BOOM!");
-    }, 500);
+    function boom () {console.log("BOOM!");}
+    var bombTimer = setTimeout(boom, 500);
     
     if (Math.random() < 0.5) {  // 50% chance
       console.log("Defused.");
@@ -620,13 +627,11 @@ De la même manière que nous séparons le style CSS du document HTML, nous voul
 
 **Question :** Pourquoi séparait-on le style du document HTML ?
 
-**Réponse :** 
-
 * *Clarté :* Cela donne de la structure au code.
    * Le document HTML décrit la structure du document et son sens (sa *sémantique*). Par exemple tel élément est un titre `<h1>`, tel élément est un menu `class=menu`. 
    * Le CSS associe un style à chaque élément en fonction de son sens.
 * *Maintenabilité :* Le style étant regroupé dans les feuilles CSS, il est plus simple de le retrouver et l'éditer. De plus, on évite les répétitions en associant plusieurs fois le même style à des éléments différents.
-
+{:.incremental}
 
 **Structuration du code JavaScript :**
 
@@ -647,24 +652,49 @@ De la même manière que nous séparons le style CSS du document HTML, nous voul
 1. Récupération de la page HTML
 2. Lecture du document HTML au fur et à mesure
    1. On crée les nœuds *balise*, *texte* au fur et à mesure
-   2. En cas de balise `<script>`, on charge le JavaScript et on l'exécute immédiatement
-      (action bloquante ?? - exécution bloquante dès le chargement du fichier)
-   3. En cas de chargement de style CSS
+   2. En cas de balise `<script>`, on charge le JavaScript et on l'exécute immédiatement  
+      Bloque la construction du DOM !
+<!-- (action bloquante ?? - exécution bloquante dès le chargement du fichier) -->
+   3. En cas de chargement de style CSS, on charge la feuille et l'applique immédiatement
    4. En cas de chargement d'image, vidéo, le fichier est chargé de manière non bloquante
 
 **Conséquences :**
 
-* Attention à ne pas interagir avec le document avant qu'il soit chargé
-* Exemples de problèmes 
-* Apprendre à attendre que le document soit chargé  `DOMContentLoaded`
+* Ne pas interagir avec le document avant qu'il soit chargé
+* Attendre l'événement `DOMContentLoaded` pour interagir.  
+  Voir l'onglet *Network* pour une visualisation.
 
-<!-- lier explication avec l'affichage Network de Chrome -->
-<!-- Voir "load event" de Eloquent JavaScript -->
+<!-- Parler de l'onglet NetWork -->
+
+<!-- 
+lier explication avec l'affichage Network de Chrome Voir "load event" de Eloquent JavaScript 
+
+https://developer.chrome.com/devtools/docs/network#resource-network-timing
+DOMContentLoad event marker ... 
+
+http://stackoverflow.com/questions/1795438/load-and-execution-sequence-of-a-web-page 
+http://wprof.cs.washington.edu/tests/
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path/
+-->
+
+</section>
+<section>
+
+## Exemples de chargement
+
+<a href="{{site.baseurl}}/assets/DOMLoadingError.html">Erreur en cas d'interaction trop tôt</a>.
+
+<a href="{{site.baseurl}}/assets/DOMLoading.html">Page montrant le chargement progressif</a>.
+
+
 
 </section>
 
 <!--
-<script>setTimeout(function () {Dz.play();}, 500);</script>
+<script>
+// document.addEventListener("load",function() {Dz.play(); });
+setTimeout(function () {Dz.play();}, 1500);
+</script>
 -->
 
 <!--

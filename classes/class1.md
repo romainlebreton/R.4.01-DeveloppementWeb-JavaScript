@@ -222,6 +222,7 @@ t.push(5); console.log(t);
 
 <!-- ATTENTION : complexité d'un vidage de tableau par slice(1)-->
 
+<!-- for (var i of tableau) Nouvelle syntaxe pratique -->
 
 </section>
 <section>
