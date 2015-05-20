@@ -16,12 +16,6 @@ layout : slideshow
 
 3. Les événements en JavaScript
 
-<!-- 3. JavaScript est asynchrone -->
-<!--
-4. Le processus de chargement d'une page Web (chargement du DOM, lancement des scripts, chargements des liens annexes)
-5. JavaScript est asynchrone : ordre d'exécution entre la pile et la callback queue
--->
-
 </section>
 <section>
 
@@ -58,28 +52,6 @@ layout : slideshow
   Communications asynchrones (non liés au chargement des pages) entre le serveur et le client  
   XMLHttpRequest, Ajax, WebSocket ...
 {:.incremental}
-
-<!--
-<div class="centered">
-![Web 1.0]({{site.baseurl}}/assets/web1.0.png)
-</div>
-
-<div class="centered">
-![Web 2.0]({{site.baseurl}}/assets/web2.0.png)
-</div>
-
-* Pas de persistance : Pas d'informations sauvegardées d'une page sur l'autre
-* Persistance par passage de paramètres en GET/POST
-* Cookies : Persistance côté client
-* Session : Persistance côté serveur
-  Utilise les cookies pour l'identifiant de session mais données stockées côté serveur
-* Stockage persistant : par base de données, système de fichiers
--->
-
-<!-- 
-Voir cours de Luca
-HTTP 1.1 ?
- -->
 
 </section>
 <section>
@@ -193,6 +165,7 @@ console.log(li.nodeType); // → 1
 ```
 
 </section>
+<!-- Remettre createElement, setAttribute, classList, style du TD vers ici -->
 <section>
 
 ## Navigation dans l'arbre
@@ -298,25 +271,6 @@ sister + brother  /* brother s'il suit immédiatement sister  */
 * **R.** Les `<li>` qui sont au moins petit-fils d'un `<ul>`
 {:.incremental}
 
-<!--
-**Sélecteurs de base**:
-`#id`, `.className`, `tagName` (nom de balise), `[att=val]`, `:pseudoclass`
-
-#### Composition de sélecteurs `sel1` et `sel2`
-
-* `sel1sel2` : Il faut satisfaire tous les sélecteurs (ET logique)  
-      **Exemple:** `"p.menu#main"` -- Balise `<p>` de classe `menu` et d'identifiant `main`
-* `sel1, sel2` : Il faut satisfaire l'un des sélecteurs (OU logique)
-* `sel1 sel2` : les éléments satisfaisants `sel2` qui descendent d'un élément satisfaisant `sel1`
--->
-
-<!--
-descendent strictement
->
-> * > 
--->
-
-
 <div class="myfootnote">
 **Références :** 
 [W3schools](http://www.w3schools.com/cssref/css_selectors.asp), [le standard CSS2](http://www.w3.org/TR/CSS2/selector.html) et le [brouillon CSS3](http://www.w3.org/TR/css3-selectors/)
@@ -359,7 +313,7 @@ On donne au système sous-jacent une fonction qu'il essayera de lancer dès que 
 
 ### 3 manières d'associer une action à un événement
 
-<!-- Il y a plusieurs façons d'associer une action à un événement sur un élément.<br> -->
+<!-- Il y a plusieurs façons d'associer une action à un événement sur un élément. -->
 Par exemple, pour exécuter la fonction `act()` lors d'un clic sur un `<button>`, on peut :
 
 1. Si la variable JavaScript `b` pointe sur le bouton `<button>`
@@ -651,22 +605,16 @@ De la même manière que nous séparons le style CSS du document HTML, nous voul
 
 1. Récupération de la page HTML
 2. Lecture du document HTML au fur et à mesure
-   1. On crée les nœuds *balise*, *texte* au fur et à mesure
-   2. En cas de balise `<script>`, on charge le JavaScript et on l'exécute immédiatement  
-      Bloque la construction du DOM !
-<!-- (action bloquante ?? - exécution bloquante dès le chargement du fichier) -->
-   3. En cas de chargement de style CSS, on charge la feuille et l'applique immédiatement
+   1. On crée les nœuds *balise*, *texte*, ... du DOM au fur et à mesure
+   2. En cas de feuille CSS, on charge la feuille et ses règles en parallèle du DOM
+   3. En cas de balise `<script>`, on charge le JavaScript et on l'exécute immédiatement
+      **Attention :** Bloque la construction du DOM et du CSS !
    4. En cas de chargement d'image, vidéo, le fichier est chargé de manière non bloquante
 
-**Conséquences :**
-
-* Ne pas interagir avec le document avant qu'il soit chargé
-* Attendre l'événement `DOMContentLoaded` pour interagir.  
-  Voir l'onglet *Network* pour une visualisation.
-
-<!-- Parler de l'onglet NetWork -->
-
 <!-- 
+
+Impossibilité d'interagir avec un document si JavaScript est occupé (bloquant)
+
 lier explication avec l'affichage Network de Chrome Voir "load event" de Eloquent JavaScript 
 
 https://developer.chrome.com/devtools/docs/network#resource-network-timing
@@ -675,6 +623,7 @@ DOMContentLoad event marker ...
 http://stackoverflow.com/questions/1795438/load-and-execution-sequence-of-a-web-page 
 http://wprof.cs.washington.edu/tests/
 https://developers.google.com/web/fundamentals/performance/critical-rendering-path/
+http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/
 -->
 
 </section>
@@ -686,10 +635,24 @@ https://developers.google.com/web/fundamentals/performance/critical-rendering-pa
 
 <a href="{{site.baseurl}}/assets/DOMLoading.html">Page montrant le chargement progressif</a>.
 
+**Conséquences :**
+
+* Ne pas interagir avec le document avant qu'il soit chargé
+* Attendre l'événement `DOMContentLoaded` pour interagir.  
+  Voir l'onglet *Network* pour une visualisation.
 
 
 </section>
+<section>
 
+## Sources
+
+* [Eloquent javascript](http://fr.eloquentjavascript.net)
+* [MDN (Mozilla Developer network)](https://developer.mozilla.org/fr/)
+* [You don't know JavaScript](https://github.com/getify/You-Dont-Know-JS)
+* [Google developers](https://developers.google.com/web/fundamentals/)
+
+</section>
 <!--
 <script>
 // document.addEventListener("load",function() {Dz.play(); });
@@ -698,17 +661,7 @@ setTimeout(function () {Dz.play();}, 1500);
 -->
 
 <!--
-
-setAttribute
-
-Les événements en JavaScript
-
-Impossibilité d'interagir avec un document si JavaScript est occupé (bloquant)
 Action de JavaScript pour réafficher la page 
-
-Faire des Affichages des DOM incomplets lors du chargement d'une page
-
-Event loop lors du Cours sur Ajax : asynchronisme de JavaScript
 
 Regarder aussi requestAnimationFrame (et repaint (loupe)), preventDefault, load event, debouncing (en td - 2 façons) et autre trucs exotiques
 
