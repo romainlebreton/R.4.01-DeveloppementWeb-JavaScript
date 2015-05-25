@@ -30,7 +30,7 @@ body {
     min-width: 200px;
     margin: auto;
     padding-left: 20px;
-    counter-reset: section;
+    counter-reset: section exercise subsection subsubsection;
 }
 h1 {
     font-size: 2em;
@@ -43,16 +43,29 @@ h1, h2, footer { margin-left: -20px }
 h2:before {
     counter-increment: section;
     content: counter(section) ". ";
+
 }
-h2 {
-    counter-reset: exercise;
+h3:before{
+    counter-increment: subsection;
+    content: counter(section) "." counter(subsection) " ";
+}
+h4:before{
+    counter-increment: subsubsection;
+    content: counter(subsubsection,lower-roman) ". ";
+    font-style: italic;
+}
+.exercise {
+    margin-left: 1em;
 }
 .exercise:before {
-    margin-left: -10px;
+    margin-left: -1em;
     counter-increment: exercise;
-    content: $exercise " " counter(section) "." counter(exercise);
+    content: $exercise " " counter(exercise);
     font-weight: bold;
     font-size: 110%;
+}
+.exercise p:first-of-type {
+    margin-top: 0.5em
 }
 
 /* Inline style */
