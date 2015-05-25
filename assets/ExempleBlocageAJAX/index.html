@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="Completion.css" type="text/css">
+        <title>Autocomplétion en Javascript</title>
+    </head>
+    <body>
+
+        <form action="" method="get">
+            <fieldset>
+                <legend>Autocomplétion en Javascript</legend>
+                <p>
+                    <label for="select-continent">Continent :</label>
+                    <select name="continent">
+                    </select>
+                </p>
+                <p>
+                    <label for="select-country">Pays :</label>
+                    <select name="country">
+                    </select>
+                </p>
+                <div>
+                    <label for="select-city">Ville :</label>
+                    <div id="acdiv">
+                        <input type="text" name="city"/>
+                        <div id="myac"></div>
+                    </div>
+                    <img src="url.gif" alt="loading" height="21px">
+                </div>
+                <p>
+                    <input type="submit" value="Envoyer"/>
+                </p>
+            </fieldset>
+        </form>
+        <p>
+            Lors du chargement de l'autocomplétion, la requête AJAX est ici synchrone donc bloquante. <br>
+            En pratique, tant que le serveur n'a pas renvoyé sa page, le JavaScript est bloqué en attente. <br>
+            Du coup, l'interaction avec la page est suspendu : déroulement de la page, animation GIF, sélection des pays ...
+        </p>
+        <script src="cityAutocomplete.js"></script>
+        <script src="countries.js"></script>
+        <script src="countryAutoSelect.js"></script>
+    </body>
+</html>

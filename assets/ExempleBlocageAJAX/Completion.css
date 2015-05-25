@@ -1,0 +1,22 @@
+#myac{
+    width: inherit;
+    background-color: white;
+    border: 1px solid black;
+    line-height:1.5;
+    position: absolute;
+}
+
+#myac p {
+    margin: 0 5px 0 5px;
+}
+
+#myac p:hover {
+    background-color:aliceblue;
+    cursor:default;
+}
+
+#acdiv {
+    display:inline-block;    
+  
+    vertical-align: top;
+}
