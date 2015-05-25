@@ -119,6 +119,10 @@ function myajax(url, callBack) {
 
 3. La fonction `cityResponse` transforme la réponse texte au format JSON de `cityRequest.php` (propriété `response` de `httpRequest`) en une valeur JavaScript. Utilisez la fonction [JSON.parse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/JSON/parse) pour décoder le JSON.
    Reste à appeler la fonction `afficheVilles` avec ce tableau pour effectivement afficher les villes.
+
+4. Testez votre fonction `cityRequest` en l'appelant à partir de la console.
+
+5. Reste maintenant à lier l'appel de la fonction `cityRequest` aux modifications sur le champ texte *Ville*. Servez-vous de l'événement [`input`](https://developer.mozilla.org/fr/docs/Web/Events/input) qui est lancé à chaque modification du contenu d'un `<input>`.
 </div>
 
 ### Comportements supplémentaires
@@ -133,6 +137,8 @@ function myajax(url, callBack) {
 <!-- 
 init : display:none & maj qui display:none si vide
 -->
+
+## Sélection du pays
 
 
 

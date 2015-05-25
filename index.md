@@ -17,4 +17,4 @@ Cours à l'IUT de Montpellier - 2ème année
 ## TDs
 1. 5-6 Mai 2015 -- [TD 1](tutorials/tutorial1.html) -- Prise en main de Javascript
 2. 19-20 Mai 2015 -- [TD 2](tutorials/tutorial2.html) -- Jeu du serpent
-2. 26-27 Mai 2015 -- [TD 3](tutorials/tutorial3.html) -- Autocomplétion
+2. 26-27 Mai 2015 -- [TD 3](tutorials/tutorial3.html) -- Auto-complétion par requêtes asynchrones
