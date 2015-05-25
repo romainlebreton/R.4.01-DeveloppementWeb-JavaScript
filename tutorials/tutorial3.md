@@ -20,8 +20,8 @@ Commençons par l'approche la plus intéressante conceptuellement : les requête
 
 Nous allons démarrer d'un squelette de la page de formulaire. Veuillez donc télécharger les fichiers suivants et créer un projet PHP avec :
 
-* La page HTML : [Completion.html]({{site.baseurl}}/assets/CitySelect/Completion.html);
-* La feuille de style CSS : [Completion.css]({{site.baseurl}}/assets/CitySelect/Completion.css);
+* La page HTML : [Completion.html]({{site.baseurl}}/assets/CitySelect/Completion.html) ;
+* La feuille de style CSS : [Completion.css]({{site.baseurl}}/assets/CitySelect/Completion.css) ;
 * La page côté serveur avec qui le client ira communiquer : [cityRequest.php]({{site.baseurl}}/assets/CitySelect/cityRequest.php) ;
 * un script **cityAutocomplete.js**, vide pour l'instant, et qui contiendra vos fonctions JavaScript.
 

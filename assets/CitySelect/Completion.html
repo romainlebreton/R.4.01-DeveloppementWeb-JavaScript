@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="Completion.css" type="text/css">
+        <title>Autocomplétion en Javascript</title>
+    </head>
+    <body>
+
+        <form action="" method="get">
+            <fieldset>
+                <legend>Autocomplétion en Javascript</legend>
+                <p>
+                    <label for="select-continent">Continent :</label>
+                    <select name="continent">
+                        <option disabled selected>Choose your continent</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="select-country">Pays :</label>
+                    <select name="country">
+                    </select>
+                </p>
+                <div>
+                    <label for="select-city">Ville :</label>
+                    <div id="acdiv">
+                        <input type="text" name="city"/>
+                        <div id="myac"></div>
+                    </div>
+                </div>
+                <p>
+                    <input type="submit" value="Envoyer"/> 
+                </p>
+            </fieldset>
+        </form>
+    </body>
+</html>
