@@ -8,13 +8,31 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+
+
+ <style type="text/css">
+#blinking {text-decoration: blink;}
+.hidden {visibility:hidden;}
+</style>
+
     </head>
     <body>
+
+	<span id="blinking" class="hiden" >Je clignote si la page est pas figée!</span>
+
         <p>
             <button id="sr">Lancer une requête synchrone</button>
         </p>
         <p>
             <button id="ar">Lancer une requête asynchrone</button>
+        </p>
+
+	<p>
+            <button id="ar-order">Lancer une requête asynchrone ordonnée</button>
+        </p>
+
+ 	<p>
+            <button id="clean-up">Supression des anciens logs</button>
         </p>
 
 
@@ -26,6 +44,7 @@ and open the template in the editor.
 
         </div>
         <script>
+
             function asyncRequest(url, callBack) {
                 var httpRequest = new XMLHttpRequest();
                 httpRequest.open("GET", url, true);
@@ -46,6 +65,7 @@ and open the template in the editor.
                 var div = document.querySelector("#reponse");
                 var p = document.createElement("p");
                 p.innerHTML = a;
+		console.log(a);
                 div.appendChild(p);
             }
 
@@ -78,9 +98,38 @@ and open the template in the editor.
                     writeAnswer("Arrivé de la réponse 3");
                 });
             }
-            
+           
+	function launchRequestAsyncOrdered(){
+   		writeAnswer("Lancement de la requête 1");
+                asyncRequest("myRequest.php?order=1", function (req) {
+			writeAnswer("Arrivé de la réponse 1");
+  			writeAnswer("Lancement de la requête 2");
+			asyncRequest("myRequest.php?order=2", function (req) {
+                    		writeAnswer("Arrivé de la réponse 2");
+				writeAnswer("Lancement de la requête 3");
+		                asyncRequest("myRequest.php?order=3", function (req) {
+                			writeAnswer("Arrivé de la réponse 3");
+		                });
+	                });
+                });
+
+	}
+
+ 
             document.querySelector("#ar").addEventListener("click",launchasyncRequest);
             document.querySelector("#sr").addEventListener("click",launchsyncRequest);
+  	    document.querySelector("#ar-order").addEventListener("click",launchRequestAsyncOrdered);
+            document.querySelector("#clean-up").addEventListener("click",function()
+			{
+			 document.querySelector("#reponse").innerHTML = "";
+			});
+
+
+	setInterval(function(){
+		document.querySelector("#blinking").classList.toggle("hidden");
+	},500);
+
         </script>
     </body>
+
 </html>
