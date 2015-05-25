@@ -7,10 +7,10 @@ layout: tutorial
 
 ## Brève présentation du TD
 
-Nous souhaitons coder un fonction d'auto-complétion pour des entrées de formulaire. Aujourd’hui, notre formulaire va demander de renseigner son pays et sa ville. Nous allons développer deux mécanismes différent d'aide à la complétion :
+Nous souhaitons coder une fonction d'auto-complétion pour des entrées de formulaire. Aujourd’hui, notre formulaire va demander de renseigner son pays et sa ville. Nous allons développer deux mécanismes différents d'aide à la complétion :
 
 1. Une aide locale pour le choix du pays :  
-   On envoie la liste des pays (et des continents à l'utilisateur). Le JavaScript travaille en local, c'est-à-dire qu'il n'a pas besoin de communiquer avec le serveur.
+   On envoie la liste des pays (et des continents) à l'utilisateur. Le JavaScript travaille en local, c'est-à-dire qu'il n'a pas besoin de communiquer avec le serveur.
 2. Une aide à distance pour le choix de la ville :  
    La liste des villes de France (ou du monde) étant trop grande, le serveur ne peut pas raisonnablement l'envoyer au client à chaque chargement de la page. Le JavaScript va donc faire une requête au serveur qui lui renverra la liste des villes correspondantes.
 
@@ -18,11 +18,11 @@ Commençons par l'approche la plus intéressante conceptuellement : les requête
 
 ## Auto-complétion des villes par requêtes asynchrones
 
-Nous allons démarrer d'un squelette de la page de formulaire. Veuillez donc télécharger les fichiers suivants et créer un projet PHP avec :
+Nous allons démarrer avec un squelette de la page de formulaire. Veuillez donc télécharger les fichiers suivants et créer un projet PHP avec :
 
-* La page HTML : [Completion.html]({{site.baseurl}}/assets/CitySelect/Completion.html) ;
-* La feuille de style CSS : [Completion.css]({{site.baseurl}}/assets/CitySelect/Completion.css) ;
-* La page côté serveur avec qui le client ira communiquer : [cityRequest.php]({{site.baseurl}}/assets/CitySelect/cityRequest.php) ;
+* la page HTML : [Completion.html]({{site.baseurl}}/assets/CitySelect/Completion.html) ;
+* la feuille de style CSS : [Completion.css]({{site.baseurl}}/assets/CitySelect/Completion.css) ;
+* la page côté serveur avec qui le client ira communiquer : [cityRequest.php]({{site.baseurl}}/assets/CitySelect/cityRequest.php) ;
 * un script **cityAutocomplete.js**, vide pour l'instant, et qui contiendra vos fonctions JavaScript.
 
 <!--
@@ -41,12 +41,12 @@ Voici un aperçu du scénario que nous allons coder :
 Dans cette page HTML, on trouve un `<div id="myac">` vide après le champ texte *Ville*. C'est ce `<div>` que l'on va remplir avec notre liste de villes.
 
 <div class="exercise">
-Créez une fonction `afficheVilles` qui prendra un tableau de villes qui prendra un tableau de villes comme 
+Créez une fonction `afficheVilles` qui prendra un tableau de villes comme 
 
 ```javascript
 ["Brion", "Briord"]
 ```
-et qui remplit le `<div id="myac">` avec un paragraphe par nom de villes
+et qui remplit le `<div id="myac">` avec un paragraphe par nom de villes.
 
 ```html
 <div id="myac">
@@ -67,21 +67,21 @@ TODO :Lorsque l'on réappelle afficheVilles avec un nouveau tableau, on doit sup
 
 Il nous faut mettre en place une page PHP côté serveur qui recevra les premières lettres d'une ville et renverra le tableau des villes commençant par ces lettres. Nous donnerons les premières lettres, par exemple `brio`, à notre page **cityRequest.php** à la manière des formulaires **GET**, c'est-à-dire en appelant la page (cette syntaxe s'appelle les *query string*) `cityRequest.php?name=brio`. Notre page **cityRequest.php** doit donc :
 
-1. Récupérer la valeur de `name` du *query string* ; 
-2. Faire une requête SQL à une base de donnée contenant toutes les villes françaises ; 
-3. Renvoyer ces villes au client dans un format compréhensible par les deux parties.
+1. récupérer la valeur de `name` du *query string* ; 
+2. faire une requête SQL à une base de données contenant toutes les villes françaises ; 
+3. renvoyer ces villes au client dans un format compréhensible par les deux parties.
 
-Un format commun d'échange de donnée est le [JSON](https://developer.mozilla.org/fr/docs/JSON) (*JavaScript Object Notation*). Il permet de passer tout type de données (entiers, chaînes de caractères, tableaux, objets) sont la forme d'une chaîne de caractères. Comme son nom l'indique, ce format reprend très fortement la syntaxe JavaScript.
+Un format commun d'échange de données est le [JSON](https://developer.mozilla.org/fr/docs/JSON) (*JavaScript Object Notation*). Il permet de passer tout type de données (entiers, chaînes de caractères, tableaux, objets) sous la forme d'une chaîne de caractères. Comme son nom l'indique, ce format reprend très fortement la syntaxe JavaScript.
 Les langages de programmation Web implémentent les fonctions qui permettent d'encoder et de décoder le JSON. **Pour PHP**, les fonctions sont [json_encode](http://php.net/manual/fr/function.json-encode.php) et [json_decode](http://php.net/manual/fr/function.json-decode.php).
 
-La base de donnée des villes française a déjà été mise en place sur **infolimon**. Dans un élan de bonté, nous vous donnons déjà les fonctions liées à la base de donnée dans le squelette **cityRequest.php**. 
+La base de données des villes françaises a déjà été mise en place sur **infolimon**. Dans un élan de bonté, nous vous donnons déjà les fonctions liées à la base de données dans le squelette **cityRequest.php**. 
 
 <div class="exercise">
 C'est à vous de faire le reste en utilisant le format d'échange JSON.
 </div>
 
 
-**Note :** Voici [les sources](https://github.com/pixelastic/sql-french-cities) de la base de donnée SQL si vous souhaitez en faire votre propre copie pour expérimenter.
+**Note :** Voici [les sources](https://github.com/pixelastic/sql-french-cities) de la base de données SQL si vous souhaitez en faire votre propre copie pour expérimenter.
 
 ### La requête asynchrone
 
@@ -94,7 +94,7 @@ http://en.wikipedia.org/wiki/Ajax_%28programming%29 :
 In the article that coined the term Ajax,[3] Jesse James Garrett explained that the following technologies are incorporated:
 
 HTML (or XHTML) and CSS for presentation
-The Document Object Model (DOM) for dynamic display of and interaction with data
+The Document Object Model (DOM) for dynamic display and interaction with data
 XML for the interchange of data, and XSLT for its manipulation
 The XMLHttpRequest object for asynchronous communication
 JavaScript to bring these technologies together
@@ -114,7 +114,7 @@ function myajax(url, callBack) {
 ```
 
 <div class="exercise">
-1. Expérimentez avec la fonction `myajax`. Par exemple, donnez lui l'URL de la page actuelle et un fonction `callback` qui affiche la variable httpRequest pour voir ce qu'elle contient.
+1. Expérimentez avec la fonction `myajax`. Par exemple, donnez lui l'URL de la page actuelle et une fonction `callback` qui affiche la variable httpRequest pour voir ce qu'elle contient.
 
 2. Créez une fonction `cityRequest` qui prend en argument une chaîne de caractères (les premières lettres d'un nom de ville). Cette fonction va appeler `cityRequest.php` avec les bons paramètres en *query string*. Le callback de `myajax` sera la fonction `cityResponse` suivante.
 
