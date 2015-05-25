@@ -7,8 +7,7 @@
 }
 
 #myac p {
-    margin-top:0;
-    margin-bottom:0;
+    margin: 0 2 0 2;
 }
 
 
@@ -18,7 +17,6 @@
 }
 
 #acdiv {
-    display:inline-block;    
-  
+    display:inline-block;  
     vertical-align: top;
 }

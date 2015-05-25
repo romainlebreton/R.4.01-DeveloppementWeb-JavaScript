@@ -54,9 +54,10 @@ class Model {
     public static function selectByName($name) {
         try {
             $table = 'cities';
-            $sql = "SELECT name FROM cities WHERE name LIKE :name LIMIT 5";
+            $sql = "SELECT * FROM cities WHERE name LIKE :name LIMIT 5";
             // Preparation de la requete
             $req = self::$pdo->prepare($sql);
+            $name .= "%";
             $req->bindParam(':name', $name);
             // execution de la requete
             $req->execute();
@@ -69,21 +70,7 @@ class Model {
 
 }
 
-// On initiliase la connexion $pdo un fois pour toute
+// On initialise la connexion $pdo un fois pour toute
 Model::set_static();
 
-$name = filter_input(INPUT_GET, "name");
-
-$citiessql = Model::selectByName($name . "%");
-
-$cities = [];
-foreach ($citiessql as $citysql) {
-    $cities[] = $citysql->name;
-}
-
-// sleep(5);
-
-// Affichage du tableau de villes $cities
-var_dump($cities);
-
-?>
+// Remplir ici !
