@@ -127,12 +127,14 @@ function myajax(url, callBack) {
 
 ### Comportements supplémentaires
 
+<div class="exercise">
 1. Nous souhaitons pouvoir cliquer sur un nom de ville proposé et que cela l'écrive dans le champ texte. Créez donc un gestionnaire d'événements `click` sur le `<div id="myac">` dont le callback procède en trois étapes :
    * Il récupère le texte du paragraphe sur lequel on a cliqué. La cible réelle du clic s'obtient à l'aide de `event.target` ;
    * Il remplace la valeur du champ texte *Ville* avec ce nom de ville ;
    * Il cache la liste d'auto-complétion et la vide.
 
 2. Enfin, le cadre du `<div id="myac">` affiche un petit carré noir quand il est vide. Codez une manière de ne pas afficher ce `<div>` dans cette situation.
+</div>
 
 <!-- 
 init : display:none & maj qui display:none si vide
@@ -140,7 +142,26 @@ init : display:none & maj qui display:none si vide
 
 ## Sélection du pays
 
+Nous voudrions que la liste des pays corresponde au continent choisi. La liste des pays et des continents auquels ils appartiennent se trouve dans le fichier **countries.js**. Ce fichier déclare une variable `countries` qui va contenir les continents, qui eux mêmes contiennent leur pays.
 
+<div class="exercise">
+Voici ce que vous devez implémenter.
+
+1. Au chargement de la page, vous devez lire la liste de ses continents de `countries` et créer les `<option>` correspondant du `<select>` *Continents*.  
+  **Indice :** Quel est le bon événement à écouter pour détecter la fin du chargement de la page ? On en parlait dans le TD précédent.  
+  **Indice :** Comment accède-t-on à la liste des continents de `countries` ? La page [suivante sur la syntaxe du JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements) peut vous aider.
+
+2. Lors d'un changement de valeur du `<select>` *Continents*, il faut modifier les valeurs du `<select>` *Pays*. L'[événement suivant](https://developer.mozilla.org/en-US/docs/Web/Events/change) devrait satisfaire vos besoins.
+
+3. **Optionnel :** Une manière ergonomique d'aider l'utilisateur à comprendre le cheminement de la page est d'avoir une `<option>` affichée par défaut qui explique ce qu'il faut faire, mais que l'on ne peut pas sélectionner.  
+   Voici un exemple
+   <select name="continent-example">
+     <option disabled selected>Choose your continent</option>
+     <option>Afrique</option>
+     <option>Europe</option>
+   </select>
+   dont vous pouvez vous inspirer en allant voir le code source.
+</div>
 
 
 <!-- fonction onClick qui remplira le champ texte avec la valeur --> 

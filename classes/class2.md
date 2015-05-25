@@ -423,6 +423,8 @@ The DOMContentLoaded event is fired when the initial HTML document has been comp
 
 ## Propagation des événements
 
+<!-- Rajouter la capture d'événement cf http://www.w3.org/TR/DOM-Level-2-Events/events.html -->
+
 Un gestionnaire d'événement va recevoir les événements qui se produisent sur ses fils.
 
 <!--
