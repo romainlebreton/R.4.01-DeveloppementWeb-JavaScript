@@ -55,7 +55,8 @@ et qui remplit le `<div id="myac">` avec un paragraphe par nom de villes
 </div>
 ```
 
-**Conseil :** Commencez à développer votre code dans la console JavaScript avant de le récupérer dans le fichier JavaScript **cityAutocomplete.js** que l'on chargera à la fin de la page HTML.
+**Conseil :** Commencez à développer votre code dans la console JavaScript avant de le récupérer dans le fichier JavaScript **cityAutocomplete.js** que l'on chargera à la fin de la page HTML.  
+**Attention :** Un deuxième appel à `afficheVilles` doit effacer les villes du premier appel.
 </div>
 
 <!-- 
@@ -66,7 +67,7 @@ TODO :Lorsque l'on réappelle afficheVilles avec un nouveau tableau, on doit sup
 
 Il nous faut mettre en place une page PHP côté serveur qui recevra les premières lettres d'une ville et renverra le tableau des villes commençant par ces lettres. Nous donnerons les premières lettres, par exemple `brio`, à notre page **cityRequest.php** à la manière des formulaires **GET**, c'est-à-dire en appelant la page (cette syntaxe s'appelle les *query string*) `cityRequest.php?name=brio`. Notre page **cityRequest.php** doit donc :
 
-1. Récupérer les premières lettres ; 
+1. Récupérer la valeur de `name` du *query string* ; 
 2. Faire une requête SQL à une base de donnée contenant toutes les villes françaises ; 
 3. Renvoyer ces villes au client dans un format compréhensible par les deux parties.
 
@@ -80,7 +81,7 @@ C'est à vous de faire le reste en utilisant le format d'échange JSON.
 </div>
 
 
-**Note :** Si vous souhaitez en faire votre propre copie pour expérimenter avec, voici [les sources](https://github.com/pixelastic/sql-french-cities) de cette base de donnée SQL.
+**Note :** Voici [les sources](https://github.com/pixelastic/sql-french-cities) de la base de donnée SQL si vous souhaitez en faire votre propre copie pour expérimenter.
 
 ### La requête asynchrone
 
@@ -115,9 +116,9 @@ function myajax(url, callBack) {
 <div class="exercise">
 1. Expérimentez avec la fonction `myajax`. Par exemple, donnez lui l'URL de la page actuelle et un fonction `callback` qui affiche la variable httpRequest pour voir ce qu'elle contient.
 
-2. Créez une fonction `cityRequest` qui prend en argument une chaîne de caractères (les premières lettres d'un nom de ville) et qui reverra un tableau JavaScript des villes correspondantes. Cette fonction va appeler `cityRequest.php` avec les bons paramètres en *query string*. Le callback de `myajax` sera la fonction `cityResponse` suivante.
+2. Créez une fonction `cityRequest` qui prend en argument une chaîne de caractères (les premières lettres d'un nom de ville). Cette fonction va appeler `cityRequest.php` avec les bons paramètres en *query string*. Le callback de `myajax` sera la fonction `cityResponse` suivante.
 
-3. La fonction `cityResponse` transforme la réponse texte au format JSON de `cityRequest.php` (propriété `response` de `httpRequest`) en une valeur JavaScript. Utilisez la fonction [JSON.parse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/JSON/parse) pour décoder le JSON.
+3. La fonction `cityResponse` renverra un tableau JavaScript des villes correspondantes. Son boulot est de transformer la réponse texte au format JSON de `cityRequest.php` (propriété `response` de `httpRequest`) en une valeur JavaScript, puis de filtrer l'information pour ne garder qu'un tableau de villes. Utilisez la fonction [JSON.parse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/JSON/parse) pour décoder le JSON.
    Reste à appeler la fonction `afficheVilles` avec ce tableau pour effectivement afficher les villes.
 
 4. Testez votre fonction `cityRequest` en l'appelant à partir de la console.
@@ -142,12 +143,14 @@ init : display:none & maj qui display:none si vide
 
 ## Sélection du pays
 
-Nous voudrions que la liste des pays corresponde au continent choisi. La liste des pays et des continents auquels ils appartiennent se trouve dans le fichier **countries.js**. Ce fichier déclare une variable `countries` qui va contenir les continents, qui eux mêmes contiennent leur pays.
+Nous voudrions que la liste des pays corresponde au continent choisi. La liste des pays et des continents auquels ils appartiennent se trouve dans le fichier 
+[countries.js]({{site.baseurl}}/assets/CitySelect/countries.js). 
+Ce fichier déclare une variable `countries` qui va contenir les continents, qui eux mêmes contiennent leur pays. **Chargez** ce fichier dans votre page Web.
 
 <div class="exercise">
-Voici ce que vous devez implémenter.
+Voici ce que vous devez implémenter dans un nouveau fichier **countryAutoSelect.js** qui vous n'oublierez pas de charger dans votre page Web.
 
-1. Au chargement de la page, vous devez lire la liste de ses continents de `countries` et créer les `<option>` correspondant du `<select>` *Continents*.  
+1. Au chargement de la page, vous devez lire la liste des continents de `countries` et créer les `<option>` correspondant du `<select>` *Continents*.  
   **Indice :** Quel est le bon événement à écouter pour détecter la fin du chargement de la page ? On en parlait dans le TD précédent.  
   **Indice :** Comment accède-t-on à la liste des continents de `countries` ? La page [suivante sur la syntaxe du JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements) peut vous aider.
 
