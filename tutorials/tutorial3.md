@@ -83,6 +83,7 @@ C'est à vous de faire le reste en utilisant le format d'échange JSON.
 Les navigateurs modernes fournissent une interface JavaScript (WebAPI) nommée `XMLHttpRequest` (XHR) qui permet de faire des requêtes HTTP de manière asynchrone, c'est-à-dire sans bloquer la page Web courante.
 
 L'ensemble des technologies autour des pages Web asynchrones s'appelle plus communement AJAX (*Asynchronous JAvascript and Xml*).
+
 <!--
 http://en.wikipedia.org/wiki/Ajax_%28programming%29 :
 In the article that coined the term Ajax,[3] Jesse James Garrett explained that the following technologies are incorporated:
