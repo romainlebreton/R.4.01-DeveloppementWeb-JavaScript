@@ -65,10 +65,10 @@ chargement du fichier en utilisant l'attribut `onload` de la balise
 -->
 
 Le programme se résumera à une fonction principale **loadGame**
-contenant la définition d'un ensemble de variables et de constantes
-(taille du plateau, code des touches **Key_UP**, **Key_RIGHT**, etc) d'un
-ensemble de fonctions et de l'appel de la fonction principale
-**initGame**.
+contenant (a) la définition d'un ensemble de variables et de
+constantes (taille du plateau, code des touches **Key_UP**,
+**Key_RIGHT**, etc), (b) la définition d'un ensemble de fonctions et
+(c) l'appel de la fonction principale **initGame**.
 
 ```javascript
 function loadGame(){
@@ -118,14 +118,17 @@ function loadGame(){
     initGame();
 }; // Fin de loadGame
 
-// Ici: associer la fonction loadGame à la fin du chargement de la page HTML
+// Ici: associer la fonction loadGame à 
+//      la fin du chargement de la page HTML
 ```
-
 
 **Remarque :** cette structure de programme permet de transmettre les
 variables et les constantes définies dans **loadGame** à toutes les
-autres fonctions.  
-De plus, les variables et fonctions définies dans **loadGame** sont locales à cette fonction (et à ses sous-fonctions). Ces variables ne sont pas globales et ne risquent pas de rentrer en conflit avec d'autres script.
+autres fonctions. 
+De plus, les variables et fonctions définies dans **loadGame** sont
+locales à cette fonction (et à ses sous-fonctions). Ces variables ne
+sont pas globales et ne risquent pas de rentrer en conflit avec
+d'autres scripts.
 
 #### Lancer le jeu au chargement de la page
 
@@ -173,7 +176,7 @@ Comment fabriquer ces `<div>` me direz-vous ?
   - Pour l'emplacement
     des pommes, l'idéal serait de les placer un peu aléatoirement sur le
     plateau, mais vous pouvez commencer par les placer régulièrement,
-    comme vos paresseux professeurs l'ont fait (cf. figure 1).
+    comme vos professeurs l'ont fait (cf. figure 1).
   - N'oubliez pas de changer le style CSS des `<div>` de classes **case** et **fruit**.
 
 
@@ -186,18 +189,18 @@ et méthodes sont **body**, **head**, **lastDirection** et **moveOnDirection**.
 Commençons par créer le corps du serpent **player.body**.
 
 L'attribut **body** qui est un tableau de points, chaque point étant un objet comme
-  `{PositionX:1, PositionY:2}`. Les points correspondent aux différents éléments/cases
+  `{positionX:1, positionY:2}`. Les points correspondent aux différents éléments/cases
   ("anneaux" dans le langage animalier) du serpent.  
   **Rappel :** Syntaxe des [objets](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-objets) et des 
 [tableaux en JavaScript](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-tableaux).
   
 
-  On propose de
-  mettre la tête du serpent à la fin du tableau. Pourquoi ? Parce
-  qu'il ne faut pas oublier que notre serpent doit grandir d'une case
-  quand il mange une pomme (d'une case). Il s'allonge donc par
-  l'avant. Et comme il est facile en JavaScript d'ajouter un élément
-  en queue de tableau, géré en fait comme une file, en utilisant un
+  On propose de mettre la tête du serpent à la fin du
+  tableau. Pourquoi ? Parce qu'il ne faut pas oublier que notre
+  serpent doit grandir d'une case quand il mange une pomme (d'une
+  case). Il s'allonge donc par l'avant. Et comme il est facile en
+  JavaScript d'ajouter un élément en queue de tableau, géré en fait
+  comme une file, en utilisant un
   [push](http://www.w3schools.com/jsref/jsref_push.asp), on trouve
   notre tête de serpent en queue de tableau ! Élémentaire non ?
 
@@ -215,13 +218,16 @@ Cette fonction affiche le serpent sur le plateau en fonction de
 [enlève cette
 classe](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
 
-2. On récupère ensuite toutes les `<div>` de class **case** du plateau dans un
+2. On récupère ensuite toutes les `<div>` de classe **case** du plateau dans un
 tableau. 
 
 3. Puis, pour chaque anneau dans **player.body**, on calcule son
 indice dans le tableau et on ajoute la classe **player** à la **div**
 correspondante.  
-**Remarque :** Prenez le temps d'écrire la formule pour calculer l'indice dans le tableau en fonction de **DIM_X**, **DIM_Y** et des coordonnées de l'anneau du serpent **PositionX** et **PositionY** ?
+**Remarque :** Prenez le temps d'écrire la formule
+pour calculer l'indice dans le tableau en fonction de **DIM_X**,
+**DIM_Y** et des coordonnées de l'anneau du serpent **PositionX** et
+**PositionY**. Si vous ne trouvez toujours pas, regardez le code de **checkFruit** plus bas.
 
 #### Déplacements du serpent
 
@@ -278,17 +284,54 @@ tableau **body** (en fonction de la direction *oneDirection*)
 <!-- , met à jour l'attribut **lastDirection**-->
 et appelle finalement la fonction
 **updatePlayerPosition** pour synchroniser le contenu de **body** avec
-les classes des cases du plateau.
+les classes des cases du plateau. (La fonction **updatePlayerPosition** est déjà appelée
+au tout début du jeu, après la création du plateau, afin
+d'afficher le serpent.)
 
-Cette fonction vous dit quelque chose ? Et oui, elle est déjà appelée
-au tout début du jeu, après la création du plateau, histoire
-d'afficher le serpent. Quelques mots sur cette fonction alors.
+Et comme on voudrait avancer un peu sur le TD, on vous donne le code de cette méthode ci-dessous :
+
+~~~
+var player = {
+  body : ... ,
+  head : function() {return ...},
+  lastDirection : DIR_NONE,
+  moveOnDirection : 
+       function (oneDirection) {
+            var fruit = checkForFruit();
+            if (fruit){
+                // TODO remove the fruit on board...
+                console.log("I am eating an apple");
+             }
+             var newHead = {
+                             positionX : this.head().positionX,
+                             positionY : this.head().positionY
+             };
+             if (this.body.length > 1 && !fruit) 
+                 this.body = this.body.slice(1);
+
+             if (oneDirection == Key_UP)          newHead.positionY--;
+             else if (oneDirection == Key_BOTTOM) newHead.positionY++;
+             else if (oneDirection == Key_LEFT)   newHead.positionX--;
+             else if (oneDirection == Key_RIGHT)  newHead.positionX++;
+				
+             this.body.push(newHead);
+             this.lastDirection = oneDirection;
+             updatePlayerPosition();
+      }
+}
+~~~
+{:.javascript}
+
 
 #### La fonction **onTick**
 
-Voilà une fonction très importante déclenchée à intervalles réguliers de temps. Qu'est-ce qu'elle fait à votre avis ? Et bien elle avance ! C'est elle qui fait appel à notre superbe méthode **moveOnDirection**. Une petite condition quand-même : ne pas sortir du plateau. 
+Voilà une fonction très importante déclenchée à intervalles réguliers
+de temps. Qu'est-ce qu'elle fait à votre avis ? Et bien elle fait
+avancer le jeu ! C'est elle qui fait appel à notre superbe méthode
+**moveOnDirection** tous les dixièmes de seconde. 
 
-Merci donc de définir une petite fonction **isMoveOk(player,direction)**.
+Une petite condition quand-même : ne pas sortir du plateau. Merci donc
+de définir une petite fonction **isMoveOk(player,direction)**.
 
 #### La fonction **listenToEvent**
 
@@ -302,16 +345,18 @@ Ce serait bien d'y réfléchir avant de vous lancer tête baissée dans le
 développement, non ? Et bien, débrouillez-vous, l'équipe enseignante
 est un peu débordée !
 
-Non, juste un petit conseil pour les premiers tests : ne pas lancer la
-fonction **onTick** (qu'on a du mal à arrêter comme vous l'imaginez),
-et faites avancer votre serpent avec **listenToEvent** qui appellera
-(momentanément) **updatePlayerPosition**.
+Non, juste un petit conseil pour les premiers tests : dans un premier
+temps, ne pas lancer la fonction **onTick** (qu'on a du mal à arrêter
+comme vous l'imaginez), et faites plutôt avancer votre serpent avec
+**listenToEvent** qui appellera directement
+**updatePlayerPosition**. Dès que ce prototype fonctionne, faites
+comme indiqué ci-dessus.
 
 ## Extensions (bonus)
 
 Si vous avez fini avant la fin de la séance, vous êtes très fort... et nous, enseignants, un peu embêtés. Il vous reste alors à améliorer un peu ce que l'on vous a suggéré ci-dessus, par exemple :
 
-- Supprimer les fruits dès qu'ils sont mangés
+- Supprimer les fruits dès qu'ils sont mangés.
 
 - Trouver un but du jeu, autre que de manger, même si la prise
   d'énergie est une motivation bien connue chez tous les êtres
@@ -319,7 +364,7 @@ Si vous avez fini avant la fin de la séance, vous êtes très fort... et nous, 
 
 - Ajouter un deuxième joueur en "local" avec les touches E, S, D, X par exemple.
 
-- Travailler sur les css pour rendre le jeu un peu plus sexy (couleurs styles animations/transitions).
+- Travailler sur le CSS pour rendre le jeu un peu plus sexy (couleurs styles animations/transitions).
 
 ## Quelques liens
 
