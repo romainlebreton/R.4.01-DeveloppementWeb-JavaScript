@@ -18,7 +18,7 @@ and open the template in the editor.
     </head>
     <body>
 
-	<span id="blinking" class="hiden" >Je clignote si la page est pas figée!</span>
+	<span id="blinking" class="hidden" >Je clignote si la page est pas figée!</span>
 
         <p>
             <button id="sr">Lancer une requête synchrone</button>
