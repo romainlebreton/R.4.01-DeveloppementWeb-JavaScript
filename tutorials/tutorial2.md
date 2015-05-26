@@ -197,8 +197,8 @@ L'attribut **body** qui est un tableau de points, chaque point étant un objet c
 
   On propose de mettre la tête du serpent à la fin du
   tableau. Pourquoi ? Parce qu'il ne faut pas oublier que notre
-  serpent doit grandir d'une case quand il mange une pomme (d'une
-  case). Il s'allonge donc par l'avant. Et comme il est facile en
+  serpent doit grandir d'une case quand il mange une pomme. 
+  Il s'allonge donc par l'avant. Et comme il est facile en
   JavaScript d'ajouter un élément en queue de tableau, géré en fait
   comme une file, en utilisant un
   [push](http://www.w3schools.com/jsref/jsref_push.asp), on trouve
@@ -288,7 +288,8 @@ les classes des cases du plateau. (La fonction **updatePlayerPosition** est déj
 au tout début du jeu, après la création du plateau, afin
 d'afficher le serpent.)
 
-Et comme on voudrait avancer un peu sur le TD, on vous donne le code de cette méthode ci-dessous :
+**Spoiler alert:**
+Si vous bloquez sur cette fonction, on vous donne le code de cette méthode ci-dessous .
 
 ~~~
 var player = {
