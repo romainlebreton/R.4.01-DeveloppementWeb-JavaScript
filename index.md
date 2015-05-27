@@ -12,7 +12,7 @@ Cours à l'IUT de Montpellier - 2ème année
 
 1. 6 Mai 2015 -- [Cours 1](classes/class1.html) -- Le langage Javascript
 2. 20 Mai 2015 -- [Cours 2](classes/class2.html) -- Le Document Object Model
-<!-- 3. 27 Mai 2015 -- [Cours 3](classes/class3.html) -- Asynchronisme en JavaScript -->
+3. 27 Mai 2015 -- [Cours 3](classes/class3.html) -- Asynchronisme en JavaScript
 
 ## TDs
 1. 5-6 Mai 2015 -- [TD 1](tutorials/tutorial1.html) -- Prise en main de Javascript
