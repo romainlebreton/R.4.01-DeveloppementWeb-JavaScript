@@ -7,9 +7,8 @@
 }
 
 #myac p {
-    margin: 0 2 0 2;
+    margin: 0 5px 0 5px;
 }
-
 
 #myac p:hover {
     background-color:aliceblue;
@@ -17,6 +16,6 @@
 }
 
 #acdiv {
-    display:inline-block;  
+    display:inline-block;      
     vertical-align: top;
 }
