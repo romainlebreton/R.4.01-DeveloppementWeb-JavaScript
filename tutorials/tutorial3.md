@@ -25,10 +25,6 @@ Nous allons démarrer avec un squelette de la page de formulaire. Veuillez donc 
 * la page côté serveur avec qui le client ira communiquer : [cityRequest.php]({{site.baseurl}}/assets/CitySelect/cityRequest.php) ;
 * un script **cityAutocomplete.js**, vide pour l'instant, et qui contiendra vos fonctions JavaScript.
 
-<!--
-**Note :** Notre projet contiendra une page dynamique en PHP. Tenez-en compte lorsque vous créez votre dossier contenant la page Web de ce TD.
--->
-
 Voici un aperçu du scénario que nous allons coder :
 
 1. L'utilisateur tape les premières lettres de sa ville dans le champ texte *Ville* ;
@@ -58,10 +54,6 @@ et dont l'effet est de remplir le `<div id="myac">` avec un paragraphe par nom d
 **Conseil :** Commencez à développer votre code dans la console JavaScript avant de le récupérer dans le fichier JavaScript **cityAutocomplete.js** que l'on chargera à la fin de la page HTML.  
 **Attention :** Un deuxième appel à `afficheVilles` doit effacer les villes du premier appel.
 </div>
-
-<!-- 
-TODO :Lorsque l'on réappelle afficheVilles avec un nouveau tableau, on doit supprimer les villes précédentes
--->
 
 ### La page de requête cityRequest.php
 
@@ -153,10 +145,13 @@ Nous souhaitons pouvoir cliquer sur un nom de ville proposé et que cela l'écri
 Un scénario courant est que l'utilisateur tape rapidement le début de son nom de ville, puis s'arrête pour avoir l'auto-complétion. Dans ce cas, nous ne voulons pas lancer de requête d'auto-complétion au serveur tant que l'utilisateur tape rapidement. 
 Nous voulons donc ne lancer une requête au serveur que si l'utilisateur n'a pas tapé de touches depuis disons *200 ms*.
 
+
 <div class="exercise">
 Chaque modification du `<input>` *Villes* appelle maintenant une fonction `debounce` qui lancera `cityRequest` après un délai de *200 ms*. Le compte à rebours sera stocké dans une variable globale `timeout`. Cette variable sera utile pour annuler le compte à rebours précédent avant d'en lancer un nouveau lors du tapage d'une touche.  
 **Rappel :** Pas de `addEventListener` sur le DOM tant que celui-ci n'est pas chargé.
 </div>
+
+**Note culturelle :** Ce mécanisme, qui s'appelle *debouncing* en anglais (anti-rebondissement), consiste à empêcher qu'une fonction soit exécutée trop souvent. L'idée vient d'un interrupteur mécanique qui rebondirait et activerait trop souvent une commande.
 
 #### Signalisation du chargement
 
@@ -173,14 +168,9 @@ lors de l'attente de la réponse du serveur.
 
 Un autre exemple d'utilisation d'action de début et de fin de chargement (que l'on ne codera pas) serait un formulaire dont les données sont envoyés à l'aide de JavaScript de manière asynchrone. Nous pourrions alors désactiver le bouton `submit` lors de l'envoi des données pour que l'utilisateur n'envoie pas d'autres requêtes au lieu de patienter.
 
-
-<!-- 
-init : display:none & maj qui display:none si vide
--->
-
 ## Sélection du pays
 
-Nous voudrions que la liste des pays corresponde au continent choisi. La liste des pays et des continents auquels ils appartiennent se trouve dans le fichier 
+Nous voudrions que la liste des pays corresponde au continent choisi. La liste des pays et des continents auxquels ils appartiennent se trouve dans le fichier 
 [countries.js]({{site.baseurl}}/assets/CitySelect/countries.js). 
 Ce fichier déclare une variable `countries` qui va contenir les continents, qui eux mêmes contiennent leur pays. **Chargez** ce fichier dans votre page Web.
 
@@ -205,4 +195,80 @@ Voici ce que vous devez implémenter dans un nouveau fichier **countryAutoSelect
 
 ## Requête asynchrones ordonnées
 
+Cette section n'a pas de lien avec notre formulaire Pays / Ville. Elle traite d'un sujet lié aux requêtes asynchrones.
+Les requêtes asynchrones ont l'avantage majeur de permettre l'exécution de JavaScript pendant le chargement de la ressource. Cependant, puisqu'elles sont asynchrones, nous n'avons pas de garanties sur l'ordre d'arrivée des ressources.
+
+Imaginez que l'on écrive une application Web qui gère un forum et que toutes les communications avec le serveur soient faites avec AJAX. Notre site aurait l'avantage d'être très réactif car il ne nécessiterait pas de chargement de pages.
+Un scénario sur notre site serait qu'il utilisateur s'authentifie, obtienne le fil de discussion courant, puis reçoive les commentaires et enfin en ajoute un. Nous allons faire toutes ces opérations de manière asynchrone mais nous devons nous assurer qu'elles seront exécutées dans un ordre précis.
+
+Plutôt que de développer un site complet, nous allons simuler nos requêtes au serveur par une fonction `ajaxCallSimulated` qui affichera le message `message`, simulera un processus en attendant une durée `duration` avant d'appeler la fonction de rappel `callback`.
+
+```javascript
+function ajaxCallSimulated(message,duration,callBack){
+    console.log("Init : " + message);
+    // The callback will be executed after 'duration' milliseconds
+    setTimeout(function(){
+            console.log("Done : " + message);            
+            if(callBack !== undefined)
+                callBack();
+     },duration);
+};
+```
+Dans le cadre de notre scénario précédent, nous pourrions vouloir écrire le code suivant.
+
+```javascript
+ajaxCallSimulated("User authentification", 40);
+ajaxCallSimulated("Read current thread", 30);
+ajaxCallSimulated("Read user comments", 20);
+ajaxCallSimulated("Comment added", 10);
+```
+
+<div class="exercise">
+1. Essayez le code précédent et dites en quoi il n'est pas acceptable.
+2. En utilisant le paramètre `callBack` de `ajaxCallSimulated`, faites en sorte que tous ces appels soient fait dans le bon ordre (i.e. que l'ordre des messages dans la console soit cohérent).
+</div>
+
+<!--
+Eventuellement pour ceux qui ont fini :faire le même exo avec les Promise.
+Les Promise sont dispos sur Chrome mais sont très récentes (du moins dans leurs versions natives, des librairies permettaient de les simuler).
+Elles sont là pour résoudre partiellement le problème du "pyramid of doom", ou "call back hell" (http://www.html5rocks.com/en/tutorials/es6/promises/).
+
+Elles permettent d'écrire du code qui se lit "quasiment" comme du synchrone (i.e pas d'indentation et de "parentésage" trop monstrueux)  :
+
+asyncThing1().then(function() {
+  return asyncThing2();
+}).then(function() {
+  return asyncThing3();
+}).catch(function(err) {
+  return asyncRecovery1();
+}).then(function() {
+  return asyncThing4();
+}, function(err) {
+  return asyncRecovery2();
+}).catch(function(err) {
+  console.log("Don't worry about it");
+}).then(function() {
+  console.log("All done!");
+});
+
+
+
+L'idée de cet exercice c'est de sensibiliser à ce problème, pour mieux appréhender les Promise par la suite.
+-->
+
+<!--
+Laïus JavaScript :
+
+JavaScript est un langage simple en apparence (peu de mots clés réservés, syntaxe en apparence identique au C, C++, Java).
+Mais la maîtrise des différentes constructions qu'il permet demande beaucoup de pratique.
+Même de très bons developpeurs ignorent certains aspects du langages (demandez leurs ce que c'est que le hoisting en js, le rapport entre Java et JavaScript, "arguments" est il un tableau, que vaut 0.1 + 0.2, ...)
+
+Comment vous situez en vue de devenir un expert JavaScript ? Pas mal de chemin encore !
+Pour diviser et donc mieux régner, on peut quand même découper le gâteau JavaScript en deux parts  :
+-Les fonctions sont des objets, langage asynchrone, callback, closure, programmation événementielle, event loop, programmation fonctionnelle.
+-La programmation orienté objet via prototype.
+
+Nous vous avons fait goûter à la première part, nous n'avons pas abordé le coté prototypal de JS. C'est que cela prend du temps !
+Il s'agit principalement d'un devoir de déconstruction du pattern d’héritage classique imposé/proposé par Java, C++, PHP (i.e class, super, large hierarchical three,...) et câblés dans nos têtes...
+-->
 
