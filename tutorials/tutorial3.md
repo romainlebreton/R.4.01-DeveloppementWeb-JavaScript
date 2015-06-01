@@ -12,9 +12,9 @@ Nous souhaitons coder une fonction d'auto-complétion pour des entrées de formu
 1. Une aide locale pour le choix du pays :  
    On envoie la liste des pays (et des continents) à l'utilisateur. Le JavaScript travaille en local, c'est-à-dire qu'il n'a pas besoin de communiquer avec le serveur.
 2. Une aide à distance pour le choix de la ville :  
-   La liste des villes de France (ou du monde) étant trop grande, le serveur ne peut pas raisonnablement l'envoyer au client à chaque chargement de la page. Le JavaScript va donc faire une requête au serveur qui lui renverra la liste des villes correspondantes.
+   La liste des villes de France (ou du monde) étant trop grande, le serveur ne peut pas raisonnablement l'envoyer au client à chaque chargement de la page. La liste reste donc le serveur. Le client devra donc demander au serveur la liste des villes correspondantes aux premières lettres actuelles.
 
-Commençons par l'approche la plus intéressante conceptuellement : les requêtes asynchrones.
+Commençons par l'approche la plus intéressante conceptuellement : l'aide à distance pour le choix de la ville car elle nécessite des requêtes asynchrones.
 
 ## Auto-complétion des villes par requêtes asynchrones
 
@@ -41,12 +41,12 @@ Voici un aperçu du scénario que nous allons coder :
 Dans cette page HTML, on trouve un `<div id="myac">` vide après le champ texte *Ville*. C'est ce `<div>` que l'on va remplir avec notre liste de villes.
 
 <div class="exercise">
-Créez une fonction `afficheVilles` qui prendra un tableau de villes comme 
+Créez une fonction `afficheVilles` qui prendra en paramètres un tableau de villes comme 
 
 ```javascript
 ["Brion", "Briord"]
 ```
-et qui remplit le `<div id="myac">` avec un paragraphe par nom de villes.
+et dont l'effet est de remplir le `<div id="myac">` avec un paragraphe par nom de villes comme
 
 ```html
 <div id="myac">
@@ -65,7 +65,7 @@ TODO :Lorsque l'on réappelle afficheVilles avec un nouveau tableau, on doit sup
 
 ### La page de requête cityRequest.php
 
-Il nous faut mettre en place une page PHP côté serveur qui recevra les premières lettres d'une ville et renverra le tableau des villes commençant par ces lettres. Nous donnerons les premières lettres, par exemple `brio`, à notre page **cityRequest.php** à la manière des formulaires **GET**, c'est-à-dire en appelant la page (cette syntaxe s'appelle les *query string*) `cityRequest.php?name=brio`. Notre page **cityRequest.php** doit donc :
+Il nous faut mettre en place une page PHP côté serveur qui recevra les premières lettres d'une ville et renverra le tableau des villes commençant par ces lettres. Nous donnerons les premières lettres, par exemple `brio`, à notre page **cityRequest.php** à la manière des formulaires **GET**, c'est-à-dire en appelant la page `cityRequest.php?name=brio` (cette syntaxe s'appelle les *query string*). Notre page **cityRequest.php** doit donc :
 
 1. récupérer la valeur de `name` du *query string* ; 
 2. faire une requête SQL à une base de données contenant toutes les villes françaises ; 
@@ -100,7 +100,7 @@ The XMLHttpRequest object for asynchronous communication
 JavaScript to bring these technologies together
 -->
 
-Voici le squelette d'une requête AJAX, à mettre dans votre **cityAutocomplete.js**. Notre fonction `myajax` crée un objet `XMLHttpRequest`. Sa méthode `open` donne le type de requête HTTP (GET), l'URL de la page demandée et le troisième argument `true` dit que la requête doit être asynchrone. La requête en elle-même est faite par la méthode `send`. Nous avons au préalable ajouté un gestionnaire d'événement qui sera lancé à la réception de la page.
+Voici le squelette d'une requête AJAX, à mettre dans votre **cityAutocomplete.js**. Notre fonction `myajax` crée un objet `XMLHttpRequest`. Sa méthode `open` donne le type de requête HTTP (GET), l'URL de la page demandée et le troisième argument `true` dit que la requête doit être asynchrone. La requête en elle-même est faite par la méthode `send`.
 
 ```javascript
 function myajax(url, callBack) {
@@ -113,6 +113,12 @@ function myajax(url, callBack) {
 }
 ```
 
+Comme vous l'avez vu [lors du cours 3]({{site.baseurl}}/classes/class3.html), le principe d'une requête asynchrone consiste à ne pas bloquer l'exécution du JavaScript le temps que le serveur renvoie la page demandée. Nous fournissons donc à `myajax` une *fonction de rappel* `callback` qui sera appelé lorsque le serveur aura renvoyé la page demandée.
+Ceci est fait en associant le `callback` à l'événement `load` qui sera lancé à la réception de la page.  
+Cette fonction `callback` sera chargée de traiter la réponse du serveur.
+Cette manière de procéder est dite *asynchrone* car le chargement de la page demandée est fait en arrière-plan par un autre processus.
+
+
 <div class="exercise">
 1. Expérimentez avec la fonction `myajax`. Par exemple, donnez lui l'URL de la page actuelle et une fonction `callback` qui affiche la variable httpRequest pour voir ce qu'elle contient.
 
@@ -123,19 +129,50 @@ function myajax(url, callBack) {
 
 4. Testez votre fonction `cityRequest` en l'appelant à partir de la console.
 
-5. Reste maintenant à lier l'appel de la fonction `cityRequest` aux modifications sur le champ texte *Ville*. Servez-vous de l'événement [`input`](https://developer.mozilla.org/fr/docs/Web/Events/input) qui est lancé à chaque modification du contenu d'un `<input>`.
+5. Reste maintenant à lier l'appel de la fonction `cityRequest` aux modifications sur le champ texte *Ville*. Servez-vous de l'événement [`input`](https://developer.mozilla.org/fr/docs/Web/Events/input) qui est lancé à chaque modification du contenu d'un `<input>`.  
+**Attention :** Aucun accès au DOM ne doit être fait avant qu'il ne soit complètement chargé. Veuillez à regrouper les `addEventListener` et les codes sensibles dans une fonction `init`. Puis faites en sorte que `init` soit lancée au chargement du document.
 </div>
 
 ### Comportements supplémentaires
 
+#### Remplissage de la ville
+
+Nous souhaitons pouvoir cliquer sur un nom de ville proposé et que cela l'écrive dans le champ texte. 
+
 <div class="exercise">
-1. Nous souhaitons pouvoir cliquer sur un nom de ville proposé et que cela l'écrive dans le champ texte. Créez donc un gestionnaire d'événements `click` sur le `<div id="myac">` dont le callback procède en trois étapes :
+1. Créez donc un gestionnaire d'événements `click` sur le `<div id="myac">` dont le callback procède en trois étapes :
    * Il récupère le texte du paragraphe sur lequel on a cliqué. La cible réelle du clic s'obtient à l'aide de `event.target` ;
    * Il remplace la valeur du champ texte *Ville* avec ce nom de ville ;
    * Il cache la liste d'auto-complétion et la vide.
 
 2. Enfin, le cadre du `<div id="myac">` affiche un petit carré noir quand il est vide. Codez une manière de ne pas afficher ce `<div>` dans cette situation.
 </div>
+
+#### Debouncing
+
+Un scénario courant est que l'utilisateur tape rapidement le début de son nom de ville, puis s'arrête pour avoir l'auto-complétion. Dans ce cas, nous ne voulons pas lancer de requête d'auto-complétion au serveur tant que l'utilisateur tape rapidement. 
+Nous voulons donc ne lancer une requête au serveur que si l'utilisateur n'a pas tapé de touches depuis disons *200 ms*.
+
+<div class="exercise">
+Chaque modification du `<input>` *Villes* appelle maintenant une fonction `debounce` qui lancera `cityRequest` après un délai de *200 ms*. Le compte à rebours sera stocké dans une variable globale `timeout`. Cette variable sera utile pour annuler le compte à rebours précédent avant d'en lancer un nouveau lors du tapage d'une touche.  
+**Rappel :** Pas de `addEventListener` sur le DOM tant que celui-ci n'est pas chargé.
+</div>
+
+#### Signalisation du chargement
+
+Lorsqu'un chargement est en cours, nous pouvons vouloir notifier l'utilisateur pour qu'il patiente le temps nécessaire. Dans notre cas, nous voulons juste afficher le [GIF de chargement]({{site.baseurl}}/assets/loading.gif) suivant 
+<img alt="GIF de chargement" src="{{site.baseurl}}/assets/loading.gif" height="21"> 
+lors de l'attente de la réponse du serveur.
+
+<div class="exercise">
+1. Modifiez `myajax` pour prendre en paramètres supplémentaires deux fonctions `startLoadingAction` et `endLoadingAction`. La première fonction sera lancée dès le lancement de la requête. La deuxième sera lancée dès la réception de la réponse.
+2. Modifiez l'appel à `myajax` pour qu'il affiche le GIF de chargement en action de début de chargement et qu'il le cache en action de fin de chargement.
+3. Pour que le comportement soit visible, rajoutez une [temporisation de 1 seconde](http://php.net/manual/fr/function.sleep.php) dans `cityRequest.php`.
+</div>
+
+
+Un autre exemple d'utilisation d'action de début et de fin de chargement (que l'on ne codera pas) serait un formulaire dont les données sont envoyés à l'aide de JavaScript de manière asynchrone. Nous pourrions alors désactiver le bouton `submit` lors de l'envoi des données pour que l'utilisateur n'envoie pas d'autres requêtes au lieu de patienter.
+
 
 <!-- 
 init : display:none & maj qui display:none si vide
@@ -166,6 +203,6 @@ Voici ce que vous devez implémenter dans un nouveau fichier **countryAutoSelect
    dont vous pouvez vous inspirer en allant voir le code source.
 </div>
 
+## Requête asynchrones ordonnées
 
-<!-- fonction onClick qui remplira le champ texte avec la valeur --> 
-<!-- div exercise : content ::before counter -->
+

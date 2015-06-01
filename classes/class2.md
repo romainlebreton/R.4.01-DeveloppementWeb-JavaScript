@@ -349,6 +349,18 @@ car
   b.removeEventListener('click',act);
   ```
 
+<!--
+Mauvais appel de la fonction act
+addEventListener("add") -> Pourquoi çà marche pas
+Plus vicieux
+addEventListener(add())
+equivalent à 
+var x = add();
+addEventListener(x);
+-> Qu'est-ce que çà fait : 
+çà execute add() tout de suite et ne le lie pas à l'événement
+-->
+
 </section>
 <section>
 
