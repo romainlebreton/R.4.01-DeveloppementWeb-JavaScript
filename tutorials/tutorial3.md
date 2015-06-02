@@ -69,7 +69,7 @@ Les langages de programmation Web implémentent les fonctions qui permettent d'e
 La base de données des villes françaises a déjà été mise en place sur **infolimon**. Dans un élan de bonté, nous vous donnons déjà les fonctions liées à la base de données dans le squelette **cityRequest.php**. 
 
 <div class="exercise">
-C'est à vous de faire le reste en utilisant le format d'échange JSON.
+C'est à vous de compléter la page **cityRequest.php** pour qu'elle suive le cahier des charges précédent.
 </div>
 
 
