@@ -85,7 +85,7 @@ Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple
 
 <!-- 
 Mot clé 'var' (pas de déclaration de type comme en Java)
-Mettre un ';' à la fin de chaque ligne (optionel mais recommandé)
+Mettre un ';' à la fin de chaque ligne (optionnel mais recommandé)
 -->
 
 
@@ -611,7 +611,8 @@ function fun1 () {
 
 ## La portée des variables
 
-**Note:** La déclaration de variable sans `var` (déconseillé) revient à déclarer une variable gloable.
+**Note :** 
+Si on oublie le `var`, JavaScript fait une assignation et non une déclaration de variable. Il va chercher la variable dans les fonctions englobant la fonction courante. Cependant, si il ne trouve aucune variable à ce nom, il va bien déclarer la variable dans la portée globale.
 
 ```javascript
 function fun1 () {
