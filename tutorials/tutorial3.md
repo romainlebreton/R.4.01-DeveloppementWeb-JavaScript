@@ -116,7 +116,8 @@ Cette manière de procéder est dite *asynchrone* car le chargement de la page d
 
 2. Créez une fonction `cityRequest` qui prend en argument une chaîne de caractères (les premières lettres d'un nom de ville). Cette fonction va appeler `cityRequest.php` avec les bons paramètres en *query string*. Le callback de `myajax` sera la fonction `cityResponse` suivante.
 
-3. La fonction `cityResponse` renverra un tableau JavaScript des villes correspondantes. Son boulot est de transformer la réponse texte au format JSON de `cityRequest.php` (propriété `responseText` de `httpRequest`) en une valeur JavaScript, puis de filtrer l'information pour ne garder qu'un tableau de villes. Utilisez la fonction [JSON.parse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/JSON/parse) pour décoder le JSON.
+3. La fonction `cityResponse` prendra en paramètre une requête HTTP. 
+Son boulot est de transformer la réponse texte au format JSON de `cityRequest.php` (propriété `responseText` de sa requête HTTP en entrée) en une valeur JavaScript, puis de filtrer l'information pour ne garder qu'un tableau de villes. Utilisez la fonction [JSON.parse](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/JSON/parse) pour décoder le JSON.
    Reste à appeler la fonction `afficheVilles` avec ce tableau pour effectivement afficher les villes.
 
 4. Testez votre fonction `cityRequest` en l'appelant à partir de la console.
