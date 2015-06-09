@@ -20,7 +20,7 @@ Le prototype de JavaScript a été conçu par Brendan Eich en 10 jours chez Nets
 <div class="incremental">
 JavaScript a été présenté en 1995 avec l'objectif de pouvoir avoir des programmes en plus des pages Web dans le navigateur Netscape. Depuis, JavaScript a été adopté par tous les navigateurs.
 
-JavaScript a grandement contribué à rendre possible les applications Web modernes, c'est-à-dire les applications permettant d'agir directement avec la page Web, c'est-à-dire sans rechargement de cette page Web. 
+JavaScript a grandement contribué à rendre possibles les applications Web modernes, c'est-à-dire les applications permettant d'agir directement avec la page Web, c'est-à-dire sans rechargement de cette page Web. 
 
 <div class="myfootnote">
 #### Sources 
@@ -33,7 +33,7 @@ JavaScript a grandement contribué à rendre possible les applications Web moder
 
 ## Historique 2/3
 
-Le nom JavaScript a été choisi pour des raisons commerciales car Java était très en vogue à la création de JavaScript. La syntaxe de JavaScript est plus proche du C.
+Le nom JavaScript a été choisi pour des raisons commerciales, car Java était très en vogue à la création de JavaScript. La syntaxe de JavaScript est plus proche du C.
 
 <div class="incremental">
 Après son adoption générale, le langage JavaScript a été standardisé, c'est-à-dire qu'on a fixé tous les aspects de ce langage sur papier. 
@@ -43,9 +43,9 @@ Actuellement, nous en sommes à ECMAScript version 5. La version 6 est prévue e
 **Question:** Quel est l'intérêt d'avoir des standards ?
 
 <!--
-R/ Pour faciliter l'inter-opérabilité (qu'un code JavaScript marche pareil sur tous les navigateurs) et donc faciliter l'adoption de JavaScript.
+R/ Pour faciliter l'interopérabilité (qu'un code JavaScript marche pareil sur tous les navigateurs) et donc faciliter l'adoption de JavaScript.
 
-Contre-exemple pour le HTML : Guerre des navigateurs dans les années 2000 où Internet Explorer a profité de sa position dominante (95%, même sur Mac) pour imposer ses développements du HTML (et des techno Web en général : CSS ...). Il fallait presque écrire un site Web par navigateur.
+Contre-exemple pour le HTML : Guerre des navigateurs dans les années 2000 où Internet Explorer a profité de sa position dominante (95%, même sur Mac) pour imposer ses développements du HTML (et des technos Web en général : CSS ...). Il fallait presque écrire un site Web par navigateur.
 
 Nom du standard : ECMAScript standard (synonyme de JavaScript dans les faits).
 
@@ -84,8 +84,8 @@ Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple
 ## Déclaration de variable
 
 <!-- 
-Mot clé 'var' (pas de déclaration de type comme en Java)
-Mettre un ';' à la fin de chaque ligne (optionnel mais recommandé)
+Mot-clé 'var' (pas de déclaration de type comme en Java)
+Mettre un ';' à la fin de chaque ligne (optionnel, mais recommandé)
 -->
 
 
@@ -229,7 +229,7 @@ t.push(5); console.log(t);
 
 ## Les objets
 
-<!-- Affectation d'un objet litéral -->
+<!-- Affectation d'un objet littéral -->
 ```javascript
 var point = {coord1:1, coord2:3, size: "normal"};
 console.log(point);
@@ -315,7 +315,7 @@ console.log ("5" - 1);
 ```
 
 <div class="incremental">
-**Réponse :** `4` car `-` est nécessairement la soustraction de deux nombres donc `"5"` est converti en un nombre
+**Réponse :** `4`, car `-` est nécessairement la soustraction de deux nombres donc `"5"` est converti en un nombre
 </div>
 </section>
 <section>
@@ -711,7 +711,7 @@ tata();
 function tata() { console.log("hello");}
 !!!!!!!!!!!!!!!
 ! Attention, les scopes ne viennent que des fonctions
-! Donc dans l'exemple suivant, la déclaration var undef est remonteé (hoisting)
+! Donc dans l'exemple suivant, la déclaration var undef est remontée (hoisting)
 ! et le premier undef est défini
 undef;
 for (var undef = 0; undef < 10; undef++ ) {}
