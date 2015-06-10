@@ -209,7 +209,7 @@ Elles renvoient un tableau de nœuds, sauf `getElementById` qui ne renvoie qu'un
 **Exemple :**
 
 ```javascript
-document.getElementsById("id1");
+document.getElementById("id1");
 // Identifiant unique donc on renvoie qu'un élément
 document.getElementsByTagName("button");
 document.getElementsByClassName("myclass");
