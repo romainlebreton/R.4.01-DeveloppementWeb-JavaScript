@@ -172,7 +172,7 @@ console.log(li.nodeType); // → 1
 
 <div>
 <div style="display:inline-block; width:50%; margin-right:2%; vertical-align:top">
-Les méthodes de bases pour naviguer dans l'arbre :
+Les méthodes de base pour naviguer dans l'arbre :
 
 * `childNodes`, `parentNode`,
 * `firstChild`, `lastChild`,
@@ -265,7 +265,7 @@ sister + brother  /* brother s'il suit immédiatement sister  */
 
 
 * **Q.** Que sélectionne `body > * > p` ?
-* **R.** Les paragraphes qui sont des petit-fils exact de `<body>`
+* **R.** Les paragraphes qui sont des petits-fils exacts de `<body>`
 
 * **Q.** Que sélectionne `ul > * li` ?
 * **R.** Les `<li>` qui sont au moins petit-fils d'un `<ul>`
@@ -354,11 +354,11 @@ Mauvais appel de la fonction act
 addEventListener("add") -> Pourquoi çà marche pas
 Plus vicieux
 addEventListener(add())
-equivalent à 
+équivalent à 
 var x = add();
 addEventListener(x);
 -> Qu'est-ce que çà fait : 
-çà execute add() tout de suite et ne le lie pas à l'événement
+çà exécute add() tout de suite et ne le lie pas à l'événement
 -->
 
 </section>
@@ -411,7 +411,7 @@ La fonction donnée au gestionnaire reçoit un paramètre : l'*objet événement
 * Clavier : 
   * `keydown` : À chaque appui ou répétition d'une touche
   * `keyup` : À chaque relâchement d'une touche
-  <!-- * `keypress` : Comme `keydown` mais pour les touches *écrivant* quelque chose -->
+  <!-- * `keypress` : Comme `keydown`, mais pour les touches *écrivant* quelque chose -->
 * Souris : 
   * `mousedown`, `mouseup`, `click` : Clics de souris
   * `mousemove`, `mouseenter`, `mouseout` : Déplacements
@@ -440,7 +440,7 @@ The DOMContentLoaded event is fired when the initial HTML document has been comp
 Un gestionnaire d'événement va recevoir les événements qui se produisent sur ses fils.
 
 <!--
-En fait, un événement déclenche d'abord le nœud sur lequel il s'est déroulé, puis il déclenche son nœud parent, son nœud grand-parent et ainsi de suite jusqu'à la racine de l'événement.
+En fait, un événement déclenche d'abord le nœud sur lequel il s'est déroulé, puis il déclenche son nœud parent, son nœud grands-parents et ainsi de suite jusqu'à la racine de l'événement.
 
 Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. 
 -->
@@ -596,7 +596,7 @@ De la même manière que nous séparons le style CSS du document HTML, nous voul
 **Question :** Pourquoi séparait-on le style du document HTML ?
 
 * *Clarté :* Cela donne de la structure au code.
-   * Le document HTML décrit la structure du document et son sens (sa *sémantique*). Par exemple tel élément est un titre `<h1>`, tel élément est un menu `class=menu`. 
+   * Le document HTML décrit la structure du document et son sens (sa *sémantique*). Par exemple, tel élément est un titre `<h1>`, tel élément est un menu `class=menu`. 
    * Le CSS associe un style à chaque élément en fonction de son sens.
 * *Maintenabilité :* Le style étant regroupé dans les feuilles CSS, il est plus simple de le retrouver et l'éditer. De plus, on évite les répétitions en associant plusieurs fois le même style à des éléments différents.
 {:.incremental}
@@ -607,7 +607,7 @@ De la même manière que nous séparons le style CSS du document HTML, nous voul
    * Définition des actions
    * Association des actions aux éléments HTML à l'aide des sélecteurs CSS.
 
-* Ainsi, nous séparons le style, les action et le contenu.
+* Ainsi, nous séparons le style, les actions et le contenu.
 </section>
 <section>
 
