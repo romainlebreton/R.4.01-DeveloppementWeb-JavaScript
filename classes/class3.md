@@ -24,7 +24,7 @@ layout : slideshow
 </section>
 <section>
 
-Quand on saisit une URL sur un navigateur, une requête HTTP est envoyée au serveur pour renvoyer au client une page web. Techniquement, si on se souvient des cours de réseaux de l'an dernier :
+Quand on saisit une URL sur un navigateur, une requête HTTP est envoyée au serveur pour renvoyer au client une page Web. Techniquement, si on se souvient des cours de réseaux de l'an dernier :
 
 - Un message TCP  est envoyé du client au serveur (domaine) sur le port 80.  
 Le message contient des lignes du genre :
@@ -114,7 +114,7 @@ Il suffit de :
 - configurer la requête (préparer l'ouverture d'une URL) : méthode `open` ;   
 - envoyer la requête : méthode `send`.  
 
-Après la requête, le document résultant (ainsi que l'entête, *status*, etc) est disponible dans cet objet.
+Après la requête, le document résultant (ainsi que l'entête, *status*, etc.) est disponible dans cet objet.
 
 <div style="font-size:80%">
 ~~~
@@ -129,7 +129,7 @@ if (req.status == 200)
 {:.javascript}
 </div>
 
-**Remarque :** pas terrible d'un point de vue génie logiciel de récupérer le résultat dans le même objet !
+**Remarque :** pas terrible d'un point de vue du génie logiciel de récupérer le résultat dans le même objet !
 
 </section>
 <section>
@@ -208,7 +208,7 @@ en modifiant un sous-arbre seulement ;
 
 - L'objet XHR sert au dialogue asynchrone avec le serveur Web ;
 
-- XML (ou JSON ou ...) structure les informations transmises entre serveur Web et le navigateur.
+- XML (ou JSON ou ...) structure les informations transmises entre le serveur Web et le navigateur.
 
 </section>
 <section>
@@ -272,7 +272,7 @@ echo JSON_encode($resultat_requete_sql);
 </section>
 <section>
 
-## Un dernier exemple montrant la différence entre appels synchrone et asynchrone
+## Un dernier exemple montrant la différence entre appels synchrones et asynchrones
 
 [3 boutons pour 3 comportements différents](http://www.lirmm.fr/~lebreton/PWCR/JavaScriptAsynchrone/)
 
@@ -295,7 +295,7 @@ setTimeout(function () {Dz.play();}, 1500);
 <!--
 Action de JavaScript pour réafficher la page 
 
-Regarder aussi requestAnimationFrame (et repaint (loupe)), preventDefault, load event, debouncing (en td - 2 façons) et autre trucs exotiques
+Regarder aussi requestAnimationFrame (et repaint (loupe)), preventDefault, load event, debouncing (en td - 2 façons) et autres trucs exotiques
 
 Sources :
 Eloquent JavaScript (et pour les images)
