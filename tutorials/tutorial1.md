@@ -9,15 +9,15 @@ layout: tutorial
 
 Nous allons utiliser les outils de développements de Chrome pour nos TDs. Pour ouvrir les outils de développements de Chrome, appuyez sur `F12` (ou `Ctrl+Shift+I` ou Outils > Outils de développement).
 
-#### L'inspecteurs d'éléments de page Web 
+#### L'inspecteur d'éléments de page Web 
 
-L'onglet **Élément** contient le code HTML de la page Web courante. En survolant le code HTML, l'inspecteur vous indique où se trouve la boîte englobant l'élément courant. Les rectangles affichés de couleurs différentes représentent les quatre boites englobantes&nbsp;: la marge extérieure (`margin`), la bordure, la marge intérieure (`padding`) et le contenu. Les dimensions des boîtes sont indiquées dans l'onglet style, qui regroupe toutes les règles CSS s'appliquant à cet élément.
+L'onglet **Élément** contient le code HTML de la page Web courante. En survolant le code HTML, l'inspecteur vous indique où se trouve la boite englobant l'élément courant. Les rectangles affichés de couleurs différentes représentent les quatre boites englobantes&nbsp;: la marge extérieure (`margin`), la bordure, la marge intérieure (`padding`) et le contenu. Les dimensions des boites sont indiquées dans l'onglet style, qui regroupe toutes les règles CSS s'appliquant à cet élément.
 
 À l'inverse, vous pouvez vous servir de la loupe ![loupe]({{ site.baseurl }}/assets/magnifying.png) (`Ctrl+Shift+C`) pour explorer visuellement le rendu de la page Web. La loupe vous montre alors le code HTML de l'élément sous votre souris.
 
 <div class="exercice">
 1. Inspectez la page courante dans l'onglet **Élément**. 
-2. Éditez la page HTML. Modifiez le texte du TD. Rajouter ou enlevez des balises de la page HTML. <br/>
+2. Éditez la page HTML. Modifiez le texte du TD. Rajoutez ou enlevez des balises de la page HTML. <br/>
 **Note:** Pour éditer le HTML, il faut faire clic droit > 'Edit as HTML'.
 3. Changez des éléments de style. Par exemple la façon dont les bouts de code en ligne comme `margin`, `padding` sont stylisés. Ou passez à une numérotation binaire des listes d'exercices (`list-style-type: binary` ; [Ne marche pas sur Firefox ni IE](http://www.quirksmode.org/css/lists.html)).
 **Note:** Vous pouvez faire ces modifications de style dans la sous-partie **Styles** de l'onglet **Élément** ou directement dans le ficher *CSS* qui se trouve dans l'onglet **Sources**.
@@ -25,14 +25,14 @@ L'onglet **Élément** contient le code HTML de la page Web courante. En survola
 </div>
 
 L'un des grands avantages de l'onglet **Élément** est que l'on voit le code HTML de la page en direct. L'affichage classique des sources `Ctrl+U` ne montre que le code source original envoyé par le serveur.
-Les modifications que vous avez faites sont temporaires et disparaîtrons lors du rechargement de la page. Il faudra reporter les modifications côté serveur pour les enregistrer (cf. plus bas).
+Les modifications que vous avez faites sont temporaires et disparaîtront lors du rechargement de la page. Il faudra reporter les modifications côté serveur pour les enregistrer (cf. plus bas).
 
 #### Le moniteur réseau
 
-L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger votre page. On y voit le chargement de la page HTML, des styles CSS et des images liées.
+L'onglet **Network** permet d'observer les requêtes HTTP faites pour charger votre page. On y voit le chargement de la page HTML, des styles CSS et des images liés.
 
 <div class="exercice">
-1. Cliquez sur l'onglet **Network** et observez les différentes fichiers échangés lors du chargement de la page. Si l'onglet est vide, rechargez la page.
+1. Cliquez sur l'onglet **Network** et observez les différents fichiers échangés lors du chargement de la page. Si l'onglet est vide, rechargez la page.
 2. Cliquez sur la ligne de la page Web *tutorial1.html* et observez le sous-onglet **Headers**. On y voit les caractéristiques principales de la [requête HTTP](http://openclassrooms.com/courses/les-requetes-http) qui demande la page au serveur :
   * l'adresse du serveur : **romainlebreton.github.io**
   * l'URL de la page demandée :  **http://romainlebreton.github.io/ProgWeb-ClientRiche/tutorials/tutorial1.html**
@@ -67,16 +67,16 @@ La manière la plus pratique de trouver un élément de la page Web est via les 
         var e1 = document.getElementById("le-document-object-model-dom");
         console.log(e1);
 
-2. Dans le même ordre d'idée, sélectionnez tous les *list items* `<li>` à l'aide de `getElementsByTagName` et comptez les en utilisant leur propriété `.length`.
+2. Dans le même ordre d'idée, sélectionnez tous les *list items* `<li>` à l'aide de `getElementsByTagName` et comptez-les en utilisant leur propriété `.length`.
 
-3. Enfin, sélectionnez tous les éléments ayant la classe *exercice* à l'aide de `getElementsByClassName` et comptez les en utilisant leur propriété `.length`.
+3. Enfin, sélectionnez tous les éléments ayant la classe *exercice* à l'aide de `getElementsByClassName` et comptez-les en utilisant leur propriété `.length`.
 
 </div>
 
-Supposons que nous souhaitons accéder à tous les `<li>` correspondant à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que JavaScript possède une fonction `document.querySelector` qui prend un sélecteur en entrée et renvoie le premier élément correspondant. De même, `querySelectorAll` renvoie tous les éléments correspondants.
+Supposons que nous souhaitons accéder à tous les `<li>` correspondants à des exercices, donc descendant d'un bloc de classe *exercice*. C'est exactement le genre de sélection que l'on fait en CSS pour appliquer du style. Vous ne serez donc pas surpris que JavaScript possède une fonction `document.querySelector` qui prend un sélecteur en entrée et renvoie le premier élément correspondant. De même, `querySelectorAll` renvoie tous les éléments correspondants.
 
 <div class="exercice">
-1. Sélectionnez dans la console tous les `<li>` correspondant à des exercices à l'aide de la fonction `document.querySelectorAll`. Combien y en a-t-il ?<br>
+1. Sélectionnez dans la console tous les `<li>` correspondants à des exercices à l'aide de la fonction `document.querySelectorAll`. Combien y en a-t-il ?<br>
    **Aide:** Vous pouvez consulter ce [rappel sur les sélecteurs](http://www.w3schools.com/cssref/css_selectors.asp).
 
 #### Modifier une page Web
@@ -100,7 +100,7 @@ Enfin, la fonction [`setAttribute`](https://developer.mozilla.org/fr/docs/Web/AP
    ~~~
    {:.html}
    **Aide:** Créer les nœuds de l'intérieur vers l'extérieur. 
-   Sauver votre code au fur et à mesure quelque part car nous nous en resservirons dans ce TD.
+   Sauver votre code au fur et à mesure quelque part, car nous nous en resservirons dans ce TD.
 </div>
 
 
@@ -122,10 +122,10 @@ Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre 
    ~~~
    {:.css}
 
-2. Pour l'instant, nous allons développer notre code dans la console JavaScript de Chrome. Sélectionnez l'élément d'identifiant "enfants" à l'aide de `document.getElementById()` et stockez le dans une variable `enfants`
+2. Pour l'instant, nous allons développer notre code dans la console JavaScript de Chrome. Sélectionnez l'élément d'identifiant "enfants" à l'aide de `document.getElementById()` et stockez-le dans une variable `enfants`
 
 3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons utiliser sa propriété `enfants.classList` ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList), [Ne marche pas sur IE <=9](http://caniuse.com/#search=classlist)).
-   Une fonction très pratique de `classList` est la fonction `toggle()` qui agit comme un interrupteur : il active/désactive la classe selon si elle était désactivé/activé ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez-la pour afficher/cacher le formulaire enfant.
+   Une fonction très pratique de `classList` est la fonction `toggle()` qui agit comme un interrupteur : il active/désactive la classe selon si elle était désactivée/activée ([exemple d'utilisation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList#Exemple)). Utilisez-la pour afficher/cacher le formulaire enfant.
 
 5. Veuillez regrouper le code précédant au sein d'une fonction `ActiverEnfants`
 
@@ -157,8 +157,8 @@ Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre 
       ~~~
       {:.html}
       juste avant la balise fermante `</body>`.
-      Votre script sera ainsi exécuté au chargement de la page ; l'action d'affichage du formulaire 'enfant' sera donc lié à la *checkbox*.
-      Note : Comme le script DynamicForm.js est mis qqaprès le formulaire dans la page, nous sommes sûr de pouvoir modifier des éléments existants en javascript (l'élément d'id "enfants" existe, etc).
+      Votre script sera ainsi exécuté au chargement de la page ; l'action d'affichage du formulaire 'enfant' sera donc liée à la *checkbox*.
+      Note : Comme le script DynamicForm.js est mis après le formulaire dans la page, nous sommes sûr de pouvoir modifier des éléments existants en JavaScript (l'élément d'id "enfants" existe, etc.).
 
 </div>
 
@@ -168,7 +168,7 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
 
 <div class="exercice">
 
-1. Sélectionnez l'élément de balise `<tbody>` inclus dans l'élément d'identifiant *enfants* à l'aide de `document.querySelector()` et stockez le dans une variable `table_enfants`
+1. Sélectionnez l'élément de balise `<tbody>` inclus dans l'élément d'identifiant *enfants* à l'aide de `document.querySelector()` et stockez-le dans une variable `table_enfants`
 2. Nous souhaitons maintenant ajouter une nouvelle ligne à notre tableau. Ajoutez le code HTML suivant à la fin du tableau comme nous avons vu à la section [Modifier une page Web](modifier-une-page-web).
 
    ~~~
@@ -202,7 +202,7 @@ Notre objectif dans cette dernière partie est de pouvoir rajouter des lignes à
    2. Sélectionner notre bouton à l'aide de `querySelector` (c'est le premier bouton qui provient de la balise d'identifiant *enfants*).
    3. Associer lui le gestionnaire d'événement qui associe au clic l'action `AjoutEnfant`.
 
-4. Actuellement, nous rajoutons toujours la même ligne n°2 au tableau lors de clic successifs. 
+4. Actuellement, nous rajoutons toujours la même ligne n°2 au tableau lors de clics successifs. 
    1. Pour garder trace du numéro de la ligne actuelle, nous allons créer une variable globale `enf_count` que nous incrémenterons dans `AjoutEnfant`.
 
       ~~~

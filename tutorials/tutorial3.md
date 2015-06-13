@@ -1,5 +1,5 @@
 ---
-title: TD3 &ndash; Auto-complétion par requêtes asynchrones
+title: TD3 &ndash; Autocomplétion par requêtes asynchrones
 subtitle: AJAX sans trace
 layout: tutorial
 ---
@@ -7,16 +7,16 @@ layout: tutorial
 
 ## Brève présentation du TD
 
-Nous souhaitons coder une fonction d'auto-complétion pour des entrées de formulaire. Aujourd’hui, notre formulaire va demander de renseigner son pays et sa ville. Nous allons développer deux mécanismes différents d'aide à la complétion :
+Nous souhaitons coder une fonction d'autocomplétion pour des entrées de formulaire. Aujourd’hui, notre formulaire va demander de renseigner son pays et sa ville. Nous allons développer deux mécanismes différents d'aide à la complétion :
 
 1. Une aide locale pour le choix du pays :  
    On envoie la liste des pays (et des continents) à l'utilisateur. Le JavaScript travaille en local, c'est-à-dire qu'il n'a pas besoin de communiquer avec le serveur.
 2. Une aide à distance pour le choix de la ville :  
    La liste des villes de France (ou du monde) étant trop grande, le serveur ne peut pas raisonnablement l'envoyer au client à chaque chargement de la page. La liste reste donc le serveur. Le client devra donc demander au serveur la liste des villes correspondantes aux premières lettres actuelles.
 
-Commençons par l'approche la plus intéressante conceptuellement : l'aide à distance pour le choix de la ville car elle nécessite des requêtes asynchrones.
+Commençons par l'approche la plus intéressante conceptuellement : l'aide à distance pour le choix de la ville, car elle nécessite des requêtes asynchrones.
 
-## Auto-complétion des villes par requêtes asynchrones
+## Autocomplétion des villes par requêtes asynchrones
 
 Nous allons démarrer avec un squelette de la page de formulaire. Veuillez donc télécharger les fichiers suivants et créer un projet PHP avec :
 
@@ -92,7 +92,7 @@ The XMLHttpRequest object for asynchronous communication
 JavaScript to bring these technologies together
 -->
 
-Voici le squelette d'une requête AJAX, à mettre dans votre **cityAutocomplete.js**. Notre fonction `myajax` crée un objet `XMLHttpRequest`. Sa méthode `open` donne le type de requête HTTP (GET), l'URL de la page demandée et le troisième argument `true` dit que la requête doit être asynchrone. La requête en elle-même est faite par la méthode `send`.
+Voici le squelette d'une requête AJAX, à mettre dans votre **cityAutocomplete.js**. Notre fonction `myajax` crée un objet `XMLHttpRequest`. Sa méthode `open` donne le type de requête HTTP (GET), l'URL de la page demandée et le troisième argument `true`signifie que la requête doit être asynchrone. La requête en elle-même est faite par la méthode `send`.
 
 ```javascript
 function myajax(url, callBack) {
@@ -108,11 +108,11 @@ function myajax(url, callBack) {
 Comme vous l'avez vu [lors du cours 3]({{site.baseurl}}/classes/class3.html), le principe d'une requête asynchrone consiste à ne pas bloquer l'exécution du JavaScript le temps que le serveur renvoie la page demandée. Nous fournissons donc à `myajax` une *fonction de rappel* `callback` qui sera appelé lorsque le serveur aura renvoyé la page demandée.
 Ceci est fait en associant le `callback` à l'événement `load` qui sera lancé à la réception de la page.  
 Cette fonction `callback` sera chargée de traiter la réponse du serveur.
-Cette manière de procéder est dite *asynchrone* car le chargement de la page demandée est fait en arrière-plan par un autre processus.
+Cette manière de procéder est dite *asynchrone*, car le chargement de la page demandée est fait en arrière-plan par un autre processus.
 
 
 <div class="exercise">
-1. Expérimentez avec la fonction `myajax`. Par exemple, donnez lui l'URL de la page actuelle et une fonction `callback` qui affiche la variable httpRequest pour voir ce qu'elle contient.
+1. Expérimentez avec la fonction `myajax`. Par exemple, donnez-lui l'URL de la page actuelle et une fonction `callback` qui affiche la variable httpRequest pour voir ce qu'elle contient.
 
 2. Créez une fonction `cityRequest` qui prend en argument une chaîne de caractères (les premières lettres d'un nom de ville). Cette fonction va appeler `cityRequest.php` avec les bons paramètres en *query string*. Le callback de `myajax` sera la fonction `cityResponse` suivante.
 
@@ -123,7 +123,7 @@ Son boulot est de transformer la réponse texte au format JSON de `cityRequest.p
 4. Testez votre fonction `cityRequest` en l'appelant à partir de la console.
 
 5. Reste maintenant à lier l'appel de la fonction `cityRequest` aux modifications sur le champ texte *Ville*. Servez-vous de l'événement [`input`](https://developer.mozilla.org/fr/docs/Web/Events/input) qui est lancé à chaque modification du contenu d'un `<input>`.  
-**Attention :** Aucun accès au DOM ne doit être fait avant qu'il ne soit complètement chargé. Veuillez à regrouper les `addEventListener` et les codes sensibles dans une fonction `init`. Puis faites en sorte que `init` soit lancée au chargement du document.
+**Attention :** Aucun accès au DOM ne doit être fait avant qu'il ne soit complètement chargé. Veillez à regrouper les `addEventListener` et les codes sensibles dans une fonction `init`. Puis faites en sorte que `init` soit lancée au chargement du document.
 </div>
 
 ### Comportements supplémentaires
@@ -136,15 +136,15 @@ Nous souhaitons pouvoir cliquer sur un nom de ville proposé et que cela l'écri
 1. Créez donc un gestionnaire d'événements `click` sur le `<div id="myac">` dont le callback procède en trois étapes :
    * Il récupère le texte du paragraphe sur lequel on a cliqué. La cible réelle du clic s'obtient à l'aide de `event.target` ;
    * Il remplace la valeur du champ texte *Ville* avec ce nom de ville ;
-   * Il cache la liste d'auto-complétion et la vide.
+   * Il cache la liste d'autocomplétion et la vide.
 
 2. Enfin, le cadre du `<div id="myac">` affiche un petit carré noir quand il est vide. Codez une manière de ne pas afficher ce `<div>` dans cette situation.
 </div>
 
 #### Debouncing
 
-Un scénario courant est que l'utilisateur tape rapidement le début de son nom de ville, puis s'arrête pour avoir l'auto-complétion. Dans ce cas, nous ne voulons pas lancer de requête d'auto-complétion au serveur tant que l'utilisateur tape rapidement. 
-Nous voulons donc ne lancer une requête au serveur que si l'utilisateur n'a pas tapé de touches depuis disons *200 ms*.
+Un scénario courant est que l'utilisateur tape rapidement le début de son nom de ville, puis s'arrête pour avoir l'autocomplétion. Dans ce cas, nous ne voulons pas lancer de requête d'autocomplétion au serveur tant que l'utilisateur tape rapidement. 
+Nous voulons donc ne lancer une requête au serveur que si l'utilisateur n'a pas tapé de touches depuis, disons *200 ms*.
 
 
 <div class="exercise">
@@ -167,18 +167,18 @@ lors de l'attente de la réponse du serveur.
 </div>
 
 
-Un autre exemple d'utilisation d'action de début et de fin de chargement (que l'on ne codera pas) serait un formulaire dont les données sont envoyés à l'aide de JavaScript de manière asynchrone. Nous pourrions alors désactiver le bouton `submit` lors de l'envoi des données pour que l'utilisateur n'envoie pas d'autres requêtes au lieu de patienter.
+Un autre exemple d'utilisation d'action de début et de fin de chargement (que l'on ne codera pas) serait un formulaire dont les données sont envoyées à l'aide de JavaScript de manière asynchrone. Nous pourrions alors désactiver le bouton `submit` lors de l'envoi des données pour que l'utilisateur n'envoie pas d'autres requêtes au lieu de patienter.
 
 ## Sélection du pays
 
 Nous voudrions que la liste des pays corresponde au continent choisi. La liste des pays et des continents auxquels ils appartiennent se trouve dans le fichier 
 [countries.js]({{site.baseurl}}/assets/CitySelect/countries.js). 
-Ce fichier déclare une variable `countries` qui va contenir les continents, qui eux mêmes contiennent leur pays. **Chargez** ce fichier dans votre page Web.
+Ce fichier déclare une variable `countries` qui va contenir les continents, qui eux-mêmes contiennent leur pays. **Chargez** ce fichier dans votre page Web.
 
 <div class="exercise">
 Voici ce que vous devez implémenter dans un nouveau fichier **countryAutoSelect.js** qui vous n'oublierez pas de charger dans votre page Web.
 
-1. Au chargement de la page, vous devez lire la liste des continents de `countries` et créer les `<option>` correspondant du `<select>` *Continents*.  
+1. Au chargement de la page, vous devez lire la liste des continents de `countries` et créer les `<option>` correspondants du `<select>` *Continents*.  
   **Indice :** Quel est le bon événement à écouter pour détecter la fin du chargement de la page ? On en parlait dans le TD précédent.  
   **Indice :** Comment accède-t-on à la liste des continents de `countries` ? La page [suivante sur la syntaxe du JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements) peut vous aider.
 
@@ -194,13 +194,13 @@ Voici ce que vous devez implémenter dans un nouveau fichier **countryAutoSelect
    dont vous pouvez vous inspirer en allant voir le code source.
 </div>
 
-## Requête asynchrones ordonnées
+## Requêtes asynchrones ordonnées
 
 Cette section n'a pas de lien avec notre formulaire Pays / Ville. Elle traite d'un sujet lié aux requêtes asynchrones.
 Les requêtes asynchrones ont l'avantage majeur de permettre l'exécution de JavaScript pendant le chargement de la ressource. Cependant, puisqu'elles sont asynchrones, nous n'avons pas de garanties sur l'ordre d'arrivée des ressources.
 
-Imaginez que l'on écrive une application Web qui gère un forum et que toutes les communications avec le serveur soient faites avec AJAX. Notre site aurait l'avantage d'être très réactif car il ne nécessiterait pas de chargement de pages.
-Un scénario sur notre site serait qu'il utilisateur s'authentifie, obtienne le fil de discussion courant, puis reçoive les commentaires et enfin en ajoute un. Nous allons faire toutes ces opérations de manière asynchrone mais nous devons nous assurer qu'elles seront exécutées dans un ordre précis.
+Imaginez que l'on écrive une application Web qui gère un forum et que toutes les communications avec le serveur soient faites avec AJAX. Notre site aurait l'avantage d'être très réactif, car il ne nécessiterait pas de chargement de pages.
+Un scénario sur notre site serait qu'il utilisateur s'authentifie, obtienne le fil de discussion courant, puis reçoive les commentaires et enfin en ajoute un. Nous allons faire toutes ces opérations de manière asynchrone, mais nous devons nous assurer qu'elles seront exécutées dans un ordre précis.
 
 Plutôt que de développer un site complet, nous allons simuler nos requêtes au serveur par une fonction `ajaxCallSimulated` qui affichera le message `message`, simulera un processus en attendant une durée `duration` avant d'appeler la fonction de rappel `callback`.
 
@@ -225,16 +225,16 @@ ajaxCallSimulated("Comment added", 10);
 ```
 
 <div class="exercise">
-1. Essayez le code précédent et dites en quoi il n'est pas acceptable.
-2. En utilisant le paramètre `callBack` de `ajaxCallSimulated`, faites en sorte que tous ces appels soient fait dans le bon ordre (i.e. que l'ordre des messages dans la console soit cohérent).
+1. Essayez le code précédent et expliquez pourquoi il n'est pas acceptable.
+2. En utilisant le paramètre `callBack` de `ajaxCallSimulated`, faites en sorte que tous ces appels soient faits dans le bon ordre (c.-à-d. que l'ordre des messages dans la console soit cohérent).
 </div>
 
 <!--
-Eventuellement pour ceux qui ont fini :faire le même exo avec les Promise.
-Les Promise sont dispos sur Chrome mais sont très récentes (du moins dans leurs versions natives, des librairies permettaient de les simuler).
+Éventuellement pour ceux qui ont fini :faire le même exo avec les Promise.
+Les Promise sont dispos sur Chrome, mais sont très récentes (du moins dans leurs versions natives, des librairies permettaient de les simuler).
 Elles sont là pour résoudre partiellement le problème du "pyramid of doom", ou "call back hell" (http://www.html5rocks.com/en/tutorials/es6/promises/).
 
-Elles permettent d'écrire du code qui se lit "quasiment" comme du synchrone (i.e pas d'indentation et de "parentésage" trop monstrueux)  :
+Elles permettent d'écrire du code qui se lit "presque" comme du synchrone (c.-à-d. pas d'indentation et de "parenthésage" trop monstrueux)  :
 
 asyncThing1().then(function() {
   return asyncThing2();
@@ -262,9 +262,9 @@ Laïus JavaScript :
 
 JavaScript est un langage simple en apparence (peu de mots clés réservés, syntaxe en apparence identique au C, C++, Java).
 Mais la maîtrise des différentes constructions qu'il permet demande beaucoup de pratique.
-Même de très bons developpeurs ignorent certains aspects du langages (demandez leurs ce que c'est que le hoisting en js, le rapport entre Java et JavaScript, "arguments" est il un tableau, que vaut 0.1 + 0.2, ...)
+Même de très bons développeurs ignorent certains aspects du langage (demandez leurs ce que c'est que le hoisting en JS, le rapport entre Java et JavaScript, "arguments" est il un tableau, que vaut 0.1 + 0.2, ...)
 
-Comment vous situez en vue de devenir un expert JavaScript ? Pas mal de chemin encore !
+Comment vous situez-vous en vue de devenir un expert JavaScript ? Pas mal de chemin encore !
 Pour diviser et donc mieux régner, on peut quand même découper le gâteau JavaScript en deux parts  :
 -Les fonctions sont des objets, langage asynchrone, callback, closure, programmation événementielle, event loop, programmation fonctionnelle.
 -La programmation orienté objet via prototype.

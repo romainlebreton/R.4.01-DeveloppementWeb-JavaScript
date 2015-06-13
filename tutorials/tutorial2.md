@@ -18,7 +18,7 @@ Nous considérerons en pratique que l'unité de base est la
 "case", un petit carré de taille fixée (à 5x5 pixels par exemple).  Le
 plateau ici représenté est un carré de 100x100 cases ; le serpent a
 une case d'épaisseur ; une pomme, qui a la forme rêvée pour
-l'industrie agro-alimentaire, prend exactement une case.
+l'industrie agroalimentaire, prend exactement une case.
 
 ## Les différents fichiers de code
 
@@ -67,7 +67,7 @@ chargement du fichier en utilisant l'attribut `onload` de la balise
 Le programme se résumera à une fonction principale **loadGame**
 contenant (a) la définition d'un ensemble de variables et de
 constantes (taille du plateau, code des touches **Key_UP**,
-**Key_RIGHT**, etc), (b) la définition d'un ensemble de fonctions et
+**Key_RIGHT**, etc.), (b) la définition d'un ensemble de fonctions et
 (c) l'appel de la fonction principale **initGame**.
 
 ```javascript
@@ -163,14 +163,14 @@ Comment fabriquer ces `<div>` me direz-vous ?
   utilisant
   [**element.classList.add**](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
 
-- Et comment les cases se mettraient dans le bonne ordre ? Il faut
-  effectivement ajouter dans le CSS (à vous de réfléchir précisément où quand-même !) la bonne valeur `inline-block` à
+- Et comment les cases se mettraient-elles dans le bon ordre ? Il faut
+  effectivement ajouter dans le CSS (à vous de réfléchir précisément où quand même !) la bonne valeur `inline-block` à
   la propriété **display**. [Petit
   rappel ](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)[<span style="text-decoration: line-through">pour ceux qui aiment comprendre.</span>](https://developer.mozilla.org/fr/docs/Web/CSS/display).  
   **Note :** Si vos cases s'affichent plutôt comme des rayures, rajouter le style CSS `line-height:0` au plateau **board**. 
 <!-- Ou `font-size:0` si çà ne marche toujours pas, mais seulement au chargement du JS -->
 
-- N'oubliez pas d'ajouter des pommes quand-même, sans quoi votre jeu
+- N'oubliez pas d'ajouter des pommes quand même, sans quoi votre jeu
   serait ennuyeux. Ce qui différencie une jolie pomme verte d'une
   vilaine case bleue est simplement qu'elle possède les classes **case** ET **fruit**.
   - Pour l'emplacement
@@ -204,7 +204,7 @@ L'attribut **body** qui est un tableau de points, chaque point étant un objet c
   [push](http://www.w3schools.com/jsref/jsref_push.asp), on trouve
   notre tête de serpent en queue de tableau ! Élémentaire non ?
 
-  Sérieusement, lisez-bien les deux liens ci-dessus pour bien
+  Sérieusement, lisez bien les deux liens ci-dessus pour bien
   comprendre les tableaux en JavaScript, sinon on vous casse la tête
   et la queue !
 
@@ -246,7 +246,7 @@ Le déplacement du serpent requiert de nouveaux attributs ou méthodes de l'obje
 #### La méthode **moveOnDirection**
 
 Cette méthode va permettre au joueur-serpent de se déplacer sur le
-plateau de une case dans la direction courante. Elle prend en
+plateau d’une case dans la direction courante. Elle prend en
 paramètre la direction courante du serpent (appelée
 *oneDirection*). Deux grands cas de figure :
 
@@ -331,7 +331,7 @@ de temps. Qu'est-ce qu'elle fait à votre avis ? Et bien elle fait
 avancer le jeu ! C'est elle qui fait appel à notre superbe méthode
 **moveOnDirection** tous les dixièmes de seconde. 
 
-Une petite condition quand-même : ne pas sortir du plateau. Merci donc
+Une petite condition quand même : ne pas sortir du plateau. Merci donc
 de définir une petite fonction **isMoveOk(player,direction)**.
 
 #### La fonction **listenToEvent**
