@@ -98,7 +98,10 @@ x = 1;
 var x = 1;
 ```
 
-
+<!-- 
+Insister entre déclaration et définition/assignation -> error ou undefined
+Exception avec a=5 qui déclare dans le global;
+-->
 </section>
 <section>
 

@@ -601,6 +601,8 @@ De la même manière que nous séparons le style CSS du document HTML, nous voul
 * *Maintenabilité :* Le style étant regroupé dans les feuilles CSS, il est plus simple de le retrouver et l'éditer. De plus, on évite les répétitions en associant plusieurs fois le même style à des éléments différents.
 {:.incremental}
 
+<!-- Permet d'utiliser le même code sur plusieurs pages. Le code JS peut être mis en cache -->
+
 **Structuration du code JavaScript :**
 
 * Dans un fichier JavaScript séparé
