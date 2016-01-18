@@ -112,15 +112,20 @@ Une console JavaScript est présente dans les outils de développement de Firefo
 **Exemple :**
 
 ```javascript
-var x = 1;
-x;
+x;            // Variable non définie
+var x; x;     // Variable définie, non initialisée
+var x = 1; x; // Variable définie et initialisée
 ```
 
 ```javascript
+// Affiche une variable dans la console
 console.log(x);
 ```
+<!-- Le code console.log(x) pourrait être dans la page Web, cela afficherait
+quand même dans la console -->
 
 ```javascript
+// Affiche un dialogue d'alerte
 alert("Coucou !")
 ```
 
@@ -160,8 +165,7 @@ Il y a 6 types en JavaScript :
  * 5 types primitifs (`Boolean`,  `Number`, `String`, `Null`, `Undefined`) 
  * les objets `Object`.
 
-`Undefined` est le type des variables qui n'ont pas été définies.<br>
-`Null` est le type de `null`, l'objet qui pointe à une adresse qui n'existe pas.
+`Undefined` est le type des variables qui n'ont pas de valeur (e.g. une variable non initialisée).
 
 ```javascript
 var x;
@@ -169,6 +173,22 @@ typeof x;
 // → undefined
 ```
 
+<!-- Une variable pour laquelle aucune valeur n'a été assignée sera de type
+undefined. Une méthode ou instruction renvoie également undefined si la variable
+à évaluer n'a pas de valeur assignée. Une fonction renvoie undefined si aucune
+valeur n'a été retournée.-->
+
+<!-- `Null` est le type de `null`, l'objet qui pointe à une adresse qui n'existe pas. -->
+
+<!-- ```javascript -->
+<!-- var x = null; typeof x; -->
+<!-- // → undefined -->
+<!-- ``` -->
+
+<!--
+https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/null :
+typeof null        // object (bug ECMAScript, devrait être null)
+-->
 
 </section>
 <section>
@@ -179,15 +199,6 @@ Entre guillemets simples `'coucou'` ou `"coucou"` doubles
 
 Échappement de caractère avec **\\** : `\"` &#8594; **"**, `\n` &#8594;  **&#8626;**, ...
 
-<div>
-Concaténation avec + : 
-
-```javascript
-console.log("con" + "cat" + "é" + "nation");
-// → "concaténation"
-```
-</div>
-
 **Exercice :** Comment créer la chaîne de caractères &laquo;Un retour à la ligne s'écrit "\n".&raquo;
 
 <div class="incremental">
@@ -196,6 +207,25 @@ console.log("Un retour à la ligne s'écrit \"\\n\".");
 // → "Un retour à la ligne s'écrit "\n".
 ```
 </div>
+
+<div class="incremental">
+```javascript
+console.log('Un retour à la ligne s\'écrit "\\n".');
+// → "Un retour à la ligne s'écrit "\n".
+```
+</div>
+
+<div class="incremental">
+<div>
+**Concaténation** avec + : 
+
+```javascript
+console.log("con" + "cat" + "é" + "nation");
+// → "concaténation"
+```
+</div>
+</div>
+
 
 </section>
 <section>	
@@ -240,7 +270,10 @@ console.log(point);
 ```
 
 Accès aux propriétés : `point.coord1` ou `point["coord1"]`.<br>
-Avantage de la syntaxe `obj[expr]` : `expr` est évalué
+
+<div class="incremental">
+<div>
+**Avantage** de la syntaxe `obj[expr]` : `expr` est évalué
 
 ```javascript
 for (var i = 1; i < 3; i++)
@@ -248,7 +281,8 @@ for (var i = 1; i < 3; i++)
 console.log(point);
 // → Object { coord1: 0, coord2: 0, size: "normal"}
 ```
-
+</div>
+<div>
 <!-- Contrairement au Java qui est un langage de classe, c-à-d où la structure de l'objet est rigidifiée-->
 En JavaScript on peut rajouter des attributs dynamiquement.
 
@@ -256,6 +290,8 @@ En JavaScript on peut rajouter des attributs dynamiquement.
 point.coord3 = 1;
 // → Object { coord1: 0, coord2: 0, coord3: 1, ... }
 ```
+</div>
+</div>
 
 </section>
 <section>
@@ -275,10 +311,12 @@ console.log (3 > 2)
 // → true
 console.log ("Itchy" != "Scratchy")
 // → true
-// Ordre du dictionnaire avec A-Z < a-z (on se sert du codage ASCII (ou Unicode))
-console.log ("Aardvark" < "Zoroaster")
-// → true
+// Ordre du dictionnaire avec A-Z < a-z
+console.log ("abba" < "Zorro")
+// → false
 ```
+
+<!-- on se sert du codage ASCII (ou Unicode) pour comparer les caractères avec < -->
 
 </section>
 <section>
@@ -334,7 +372,7 @@ console.log ("5" + 1);
 
 <div class="incremental">
 **Réponse :** `"51"` ! <br>
-Il y a ambiguïté entre addition de nombres et concaténation de chaînes de caractères. L'opérateur le plus prioritaire en JavaScript est la concaténation
+Il y a ambiguïté entre addition de nombres et concaténation de chaînes de caractères. L'opérateur le plus prioritaire en JavaScript est la concaténation.
 </div>
 </section>
 <section>
@@ -373,14 +411,17 @@ Autre type de comportement non voulu
 ```javascript
 console.log(false == "0");
 // → true
+// car == convertit les valeurs dans le même type
 ```
 
+<br>
 Du coup, on utilise `===` (et sa négation `!==`)
-qui teste l'égalité de type puis de valeur (comme en PHP).
+qui teste l'égalité de type **puis** de valeur (comme en PHP).
 
 ```javascript
 console.log(false === "0");
-// → false
+// → false car les types sont différents
+typeof false; typeof "0";
 ```
 
 </section>
