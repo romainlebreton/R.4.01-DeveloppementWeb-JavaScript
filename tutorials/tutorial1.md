@@ -21,10 +21,10 @@ la marge intérieure (`padding`) et le contenu. Les dimensions des boites sont
 indiquées dans l'onglet style, qui regroupe toutes les règles CSS s'appliquant à
 cet élément.
 
-À l'inverse, vous pouvez vous servir de la loupe ![loupe]({{ site.baseurl
-}}/assets/magnifying.png) (`Ctrl+Shift+C`) pour explorer visuellement le rendu
-de la page Web. La loupe vous montre alors le code HTML de l'élément sous votre
-souris.
+À l'inverse, vous pouvez vous servir de la loupe
+![loupe]({{site.baseurl}}/assets/magnifying.png) (`Ctrl+Shift+C`) pour explorer
+visuellement le rendu de la page Web. La loupe vous montre alors le code HTML de
+l'élément sous votre souris.
 
 <div class="exercice">
 1. Inspectez la page courante dans l'onglet **Élément**. 
@@ -34,8 +34,8 @@ de la page HTML. <br/> **Note:** Pour éditer le HTML, il faut faire clic droit 
 3. Changez des éléments de style. Par exemple la façon dont les bouts de code en
 ligne comme `margin`, `padding` sont stylisés. Ou passez à une numérotation
 binaire des listes d'exercices (`list-style-type: binary` ;
-[Ne marche pas sur Firefox ni IE](http://www.quirksmode.org/css/lists.html)).
-**Note:** Vous pouvez faire ces modifications de style dans la sous-partie
+[Ne marche pas sur Firefox ni IE](http://www.quirksmode.org/css/lists.html)).  
+**Notes :** Vous pouvez faire ces modifications de style dans la sous-partie
 **Styles** de l'onglet **Élément** ou directement dans le ficher *CSS* qui se
 trouve dans l'onglet **Sources**.
 4. Rajouter votre premier gestionnaire d'événement (event handler). Pour cela,
@@ -175,10 +175,10 @@ permet de modifier les attributs d'un élément.
 Nous allons utiliser JavaScript pour rajouter du dynamisme <span
 style="text-decoration: line-through">aux étudiants</span> à un formulaire. Dans
 notre cas, nous allons développer un formulaire avec une partie facultative et
-de taille variable. Veuillez récupérer le [fichier HTML]({{ site.baseurl
-}}/assets/DynamicForm/DynamicForm.html) et [fichier CSS]({{ site.baseurl
-}}/assets/DynamicForm/DynamicForm.css) qui vous serviront de base pour notre
-formulaire dynamique.
+de taille variable. Veuillez récupérer le
+[fichier HTML]({{site.baseurl}}/assets/DynamicForm/DynamicForm.html) et
+[fichier CSS]({{site.baseurl}}/assets/DynamicForm/DynamicForm.css) qui vous
+serviront de base pour notre formulaire dynamique.
 
 Créez un projet **DynamicForm** avec ces deux fichiers dans NetBeans (ou votre
 IDE préféré).
