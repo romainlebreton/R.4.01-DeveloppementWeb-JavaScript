@@ -424,6 +424,8 @@ console.log(false === "0");
 typeof false; typeof "0";
 ```
 
+<!-- Sur les objets, == compare les adresses mémoires  -->
+
 </section>
 <section>
 
@@ -455,7 +457,8 @@ function myOR (expr1,expr2) {
 
 ```javascript
 var input = prompt("Quel est votre nom ?");
-print("Bien le bonjour " + (input || "cher ami"));
+console.log("Bien le bonjour " +
+   (input || "cher ami"));
 ```
 
 Si on clique sur annuler, alors `input` vaut `null` 
@@ -519,7 +522,9 @@ function square(x) {
 };
 ```
 
-Les variables peuvent stocker des fonctions ! Le code dessus est équivalent à
+<br>
+Les variables **peuvent stocker** des fonctions ! <br>
+Le code ci-dessus est équivalent à
 
 ```javascript
 var square = function (x) {
@@ -527,35 +532,110 @@ var square = function (x) {
 };
 ```
 
-Les fonctions sont des objets de première classe : elles peuvent être manipulées et échangées comme tous les autres objets JavaScript. 
+</section>
+<section>
+
+## Fonctions
+
+Les fonctions sont des **objets de &laquo;première classe&raquo;** : elles
+peuvent être manipulées et échangées comme tous les autres objets JavaScript.
+
+<br>
+**Exemple :** Mettons une valeur *fonction* dans une variable
+
+```javascript
+function square(x) {
+  return x * x;
+};
+// Affectation de la variable
+var varfonc = square;
+// Exécution de la fonction avec l'opérateur ()
+varfonc(2);
+// → 4
+```
 
 </section>
 <section>
 
 ## Fonctions
 
-1. Une fonction renvoie toujours quelque chose.
-   Par défaut, la fonction renvoie `undefined`.
+**Erreur courante :** Quelle est l'erreur du code suivant ?
 
-2. Une fonction peut prendre en argument une fonction
+```javascript
+function identite(x) { return x; };
+var varfonc = square();
+// au lieu de var varfonc = square;
+varfonc(2);
+```
 
-   ```javascript
-   function boum() {alert('Boum!');}
-   setTimeout(boum,2000);
-   ```
+<div class="incremental">
+* `square` est la variable qui contient la fonction et<br>
+* `square()` est l'exécution de la fonction `square` en lui donnant zéro argument.
 
-3. Une fonction peut renvoyer une fonction
+<!-- Le code renvoie `undefined` car JavaScript ne vérifie pas le nombre -->
+<!-- d'argument. Si on ne donne pas assez de valeurs, il initialise les variables à -->
+<!-- `undefined`. -->
 
-   ```javascript
-   function puissance (x) {
-     return function (y) {
-       return Math.pow(y,x);
-     }
-   }
-   var square = puissance(2);
-   var cube = puissance(3);
-   console.log(square(256),cube(256));
-   ```
+</div>
+<!-- nombre argument variable, rempli avec undefined -->
+
+
+</section>
+<section>
+
+## Fonctions
+
+Une fonction renvoie toujours quelque chose.  Par défaut, la
+fonction renvoie `undefined`.
+
+~~~
+function mauvaiscarre(x) {
+var y = x * x;
+// Le développeur a oublié d'écrire return y;
+}
+mauvaiscarre(2);
+// → undefined
+~~~
+{:.javascript}
+   
+</section>
+<section>
+
+## Fonctions
+
+Une fonction peut prendre en argument une fonction
+
+```javascript
+function boum() {alert('Boum!');}
+// setTimeout execute la fonction dans
+// la variable boum après 2s
+setTimeout(boum,2000);
+```
+
+</section>
+<section>
+
+## Fonctions
+
+Une fonction peut renvoyer une fonction
+
+```javascript
+function puissance (x) {
+  function puissancex (y) {
+    // Math.pow(y,x) calcule y^x
+    return Math.pow(y,x);
+  }
+  return puissancex;
+}
+var square = puissance(2);
+var cube = puissance(3);
+console.log(square(256),cube(256));
+```
+
+<div class="incremental">
+**Note :** Nous reviendrons plus tard sur le fait que `tempfunc(y)` utilise bien
+  la variable `x` de sa fonction parente.
+</div>
 
 </section>
 <section>
@@ -589,11 +669,11 @@ Comme en Java, on référence l'objet courant avec `this`.
 La portée de base d'une variable est celle de la fonction qui l'englobe.<br>
 Le code en dehors de toute fonction agit comme si il était dans une grande fonction *globale*.
 
-**Bonne pratique:** Définir les variables locales en début de fonction et avec le mot-clé `var` 
+**Bonne pratique:** Définir les variables locales en début de fonction et avec le mot-clé `var`.
 
 <div class="incremental">
 <div>
-**Attention**, les `if`, `for`, `while`, les blocs `{ ... }` ne limitent pas la portée d'une variable.
+**Attention :** les `if`, `for`, `while`, les blocs `{ ... }` ne limitent pas la portée d'une variable.
 
 **Question :** Que répond le code suivant ?
 
@@ -615,31 +695,32 @@ console.log(i);
 Cependant, si une fonction `fun2()` est incluse dans une autre fonction `fun1()`, elle a accès aux variables de `fun1()`.
 
 ```javascript
-fun1();
 function fun1 () {
   var x1 = "x1 de fun1";
-  fun2();
   function fun2 () {
      console.log(x1);
   };
+  fun2();
 }
+fun1();
 // → "x1 de fun 1"
 ```
 </section>
 <section>
 
 ## La portée des variables
+
 En particulier, les variables dans la fonction globale (en dehors de toute fonction) sont **globales**.
 
 ```javascript
 var x1 = "x1 global";
+function f2 () {console.log(x1);};
 f2();
-function f2 () {
-   console.log(x1); // → "x1 global"
-};
+// → "x1 global"
 ```
 
-Si une variable locale et une variable globale ont le même nom, c'est la variable locale qui l'emporte.
+**En cas de conflit** de nom entre une variable locale et une variable globale,
+  c'est la variable locale qui l'emporte.
 
 ```javascript
 fun1();
@@ -651,35 +732,37 @@ function fun1 () {
 ```
 
 </section>
-<section>
+<!-- <section> -->
 
-## La portée des variables
+<!-- ## La portée des variables -->
 
-**Note :** 
-Si on oublie le `var`, JavaScript fait une assignation et non une déclaration de variable. Il va chercher la variable dans les fonctions englobant la fonction courante. Cependant, si il ne trouve aucune variable à ce nom, il va bien déclarer la variable dans la portée globale.
+<!-- **Note :** Le mot clé `var` est le seul moyen de déclarer la variable... à une -->
+<!--   exception près. Si l'on fait une affectation `x = 1` et que `x` n'existe dans -->
+<!--   aucune des fonctions parents, alors une variable `x` est définie dans la -->
+<!--   portée globale. -->
 
-```javascript
-function fun1 () {
-  x1 = "x1 global défini dans fun1";
-  console.log(x1); 
-}
-fun1();          // → "x1 global défini dans fun1"
-console.log(x1); // → "x1 global défini dans fun1"
-```
-</section>
+<!-- <\!-- Si on oublie le `var`, JavaScript fait une assignation et non une -\-> -->
+<!-- <\!-- déclaration de variable. Il va chercher la variable dans les fonctions englobant -\-> -->
+<!-- <\!-- la fonction courante. Cependant, si il ne trouve aucune variable à ce nom, il va -\-> -->
+<!-- <\!-- bien déclarer la variable dans la portée globale. -\-> -->
+
+<!-- ```javascript -->
+<!-- function fun1 () { -->
+<!--   x1 = "x1 global défini dans fun1"; -->
+<!-- } -->
+<!-- x1;     // → ReferenceError car x n'est pas défini  -->
+<!-- fun1(); // Défini x1 globalement -->
+<!-- x1;     // → "x1 global défini dans fun1" -->
+<!-- ``` -->
+<!-- </section> -->
 <section>
 
 ## Testez votre compréhension
 
 ```javascript
-var x = "I am global";
-f1();
-console.log(x); // Que renvoie ce bloc de code ?
 function f1 () {
   var x = "I live in f1";
   console.log("f1: " + x);
-  f2();
-  f3();
   function f2 () {
     var x = "I live in f2";
     console.log("f2: " + x);
@@ -687,7 +770,36 @@ function f1 () {
   function f3 () {
     console.log("f3: " + x);
   }
+  f2();
+  f3();
 }
+var x = "I am global";
+f1();
+console.log(x); // Que renvoie ce bloc de code ?
+```
+
+</section>
+<section>
+
+## Testez votre compréhension
+
+```javascript
+function f1 () {
+  x = "I live in f1";
+  console.log("f1: " + x);
+  function f2 () {
+    var x = "I live in f2";
+    console.log("f2: " + x);
+  }
+  function f3 () {
+    console.log("f3: " + x);
+  }
+  f2();
+  f3();
+}
+var x = "I am global";
+f1();
+console.log(x); // Que renvoie ce bloc de code ?
 ```
 
 </section>
