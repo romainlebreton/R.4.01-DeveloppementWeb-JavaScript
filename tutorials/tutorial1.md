@@ -279,7 +279,9 @@ IDE préféré).
       ~~~
       {:.javascript}
 
-      
+      **Référence :** Relisez la partie du
+        [Cours 2 sur la gestion d'évènement](../classes/class2.html#les-vnements-en-javascript)
+        pour plus de détails.
 
 7. *Last but not least:* Maintenant que notre code est prêt, nous allons le
    déployer côté serveur pour qu'il soit envoyé et exécuté avec la page Web.

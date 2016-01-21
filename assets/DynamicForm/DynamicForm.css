@@ -1,15 +1,19 @@
 table {
     border: 1px solid black;
     border-collapse: collapse;
+    width:100%;
+    box-sizing:border-box;
 }
 
 td {
-   border: 1px solid black;
+    border: 1px solid black;
+    white-space: nowrap;
 }
 
 table input {
-     border: none;
-     background-color:inherit;
+    background-color:inherit;
+    width:100%;
+    box-sizing:border-box;
 }
 
 tbody tr:nth-child(even) {
@@ -20,3 +24,37 @@ thead tr{
     background-color: aliceblue;
 }
 
+form {
+    max-width:600px;
+    margin:auto;
+}
+
+.NiceInput {
+    display:flex;
+    margin-bottom:1.5em
+}
+.NiceInput input {
+    flex:1
+}
+.NiceInput input:not(:first-child) {
+    border-left:0
+}
+.NiceInput input:not(:last-child) {
+    border-right:0
+}
+.NiceInput label {
+    background-color:rgba(147,128,108,.1);
+    color:#666;
+    font:inherit;
+    font-weight:400
+}
+.NiceInput * {
+    border:1px solid rgba(147,128,108,.25);
+    padding:.5em .75em
+}
+.NiceInput *:first-child,.NiceInput *:first-child {
+    border-radius:2px 0 0 2px
+}
+.NiceInput *:last-child,.NiceInput *:last-child {
+    border-radius:0 2px 2px 0
+}
