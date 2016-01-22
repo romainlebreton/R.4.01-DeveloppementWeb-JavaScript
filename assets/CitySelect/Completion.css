@@ -3,13 +3,13 @@
     background-color: white;
     border: 1px solid black;
     line-height:1.5;
-    position: absolute;
+    position: absolute;    
 }
 
 #myac p {
-    margin: 0 2 0 2;
+    margin: 0 0 0 0;
+    padding: 0 5px 0 5px;
 }
-
 
 #myac p:hover {
     background-color:aliceblue;
@@ -20,3 +20,8 @@
     display:inline-block;  
     vertical-align: top;
 }
+
+#acdiv * {
+    vertical-align: top;
+}
+

@@ -9,63 +9,57 @@
         <form method="get" action="DynamicForm.html">
             <fieldset>
                 <legend>Situation familiale</legend>
-                <div>
-                    <p>
-                        <label>
-                            Nom:
-                        </label>
-                    </p>
-                    <p>
-                        <input type="text" name="nom">
-                    </p> 
+                <div class="NiceInput">
+                    <label for="i-nom">Nom</label>
+                    <input type="text" id="i-nom" name="nom" required>
                 </div>
-                <div>
-                    <p>
-                        <label>
-                            Prénom:
-                        </label>
-                    </p>
-                    <p>
-                        <input type="text" name="prenom">
-                    </p> 
-                </div> 
+                <div class="NiceInput">
+                    <label for="i-prenom">Prénom</label>
+                    <input type="text" id="i-prenom" name="prenom" required>
+                </div>
+                <div class="NiceInput">
+                    <label for="i-mail">Adresse mail</label>
+                    <input type="email" id="i-mail" name="mail" required>
+                </div>
+                <div class="NiceInput">
+                    <label for="i-mail2">Confirmer email</label>
+                    <input type="email" id="i-mail2" name="mail2" required>
+                </div>
                 <div>
                     <p>
                         <label>
                             Avez-vous des enfants ?
                         </label>
-                    </p>
-                    <p>
-                        <input type="checkbox" name="aEnfants" >
+                        <input type="checkbox" name="aEnfants">
                     </p> 
                 </div> 
-                <div id="enfants">
-                    <p>
-                        <label>
-                            Enfants:
-                        </label>
-                        <button type="button">Ajouter un enfant</button>
-                    </p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td>Nom</td>
-                                <td>Prénom</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>                           
-                                <td><input type="text" name="nom-e1"></td>
-                                <td><input type="text" name="prenom-e1"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div id="enfants" class="hidden">
+                    <fieldset>
+                        <legend>Enfants</legend>                   
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>Nom</td>
+                                    <td>Prénom</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Enfant n°1</td>                           
+                                    <td><input type="text" name="nom-e1"></td>
+                                    <td><input type="text" name="prenom-e1"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+                            <button type="button">Ajouter un enfant</button>
+                        </p>
+                    </fieldset>
                 </div> 
                 <div>
                     <p>
-                        <input type="submit" value="Envoyer" />
+                        <input type="submit" value="Envoyer">
                     </p>
                 </div> 
             </fieldset>

@@ -1,0 +1,33 @@
+.header {
+    line-height: 56px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px lightgray solid;
+}
+.footer {
+    text-align: center;
+    padding-top: 20px;
+}
+.answers div {
+    background-color: #337ab7;
+    color: #FFFFFF;
+    border: 2px lightgray solid;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.answers div.selected {
+    background-color: #286090;
+}
+.answers div:hover {
+    background-color: #31708F;
+}
+.answers div:hover:active {
+    background-color: #286090;
+}
+.answers div.disabled {
+    visibility: hidden;
+    /* opacity: 0; */
+    /* cursor: default; */
+    /* pointer-events: none; */
+}

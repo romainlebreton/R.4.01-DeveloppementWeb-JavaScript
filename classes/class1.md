@@ -20,7 +20,7 @@ Le prototype de JavaScript a été conçu par Brendan Eich en 10 jours chez Nets
 <div class="incremental">
 JavaScript a été présenté en 1995 avec l'objectif de pouvoir avoir des programmes en plus des pages Web dans le navigateur Netscape. Depuis, JavaScript a été adopté par tous les navigateurs.
 
-JavaScript a grandement contribué à rendre possible les applications Web modernes, c'est-à-dire les applications permettant d'agir directement avec la page Web, c'est-à-dire sans rechargement de cette page Web. 
+JavaScript a grandement contribué à rendre possibles les applications Web modernes, c'est-à-dire les applications permettant d'agir directement avec la page Web, c'est-à-dire sans rechargement de cette page Web. 
 
 <div class="myfootnote">
 #### Sources 
@@ -33,7 +33,7 @@ JavaScript a grandement contribué à rendre possible les applications Web moder
 
 ## Historique 2/3
 
-Le nom JavaScript a été choisi pour des raisons commerciales car Java était très en vogue à la création de JavaScript. La syntaxe de JavaScript est plus proche du C.
+Le nom JavaScript a été choisi pour des raisons commerciales, car Java était très en vogue à la création de JavaScript. La syntaxe de JavaScript est plus proche du C.
 
 <div class="incremental">
 Après son adoption générale, le langage JavaScript a été standardisé, c'est-à-dire qu'on a fixé tous les aspects de ce langage sur papier. 
@@ -43,9 +43,9 @@ Actuellement, nous en sommes à ECMAScript version 5. La version 6 est prévue e
 **Question:** Quel est l'intérêt d'avoir des standards ?
 
 <!--
-R/ Pour faciliter l'inter-opérabilité (qu'un code JavaScript marche pareil sur tous les navigateurs) et donc faciliter l'adoption de JavaScript.
+R/ Pour faciliter l'interopérabilité (qu'un code JavaScript marche pareil sur tous les navigateurs) et donc faciliter l'adoption de JavaScript.
 
-Contre-exemple pour le HTML : Guerre des navigateurs dans les années 2000 où Internet Explorer a profité de sa position dominante (95%, même sur Mac) pour imposer ses développements du HTML (et des techno Web en général : CSS ...). Il fallait presque écrire un site Web par navigateur.
+Contre-exemple pour le HTML : Guerre des navigateurs dans les années 2000 où Internet Explorer a profité de sa position dominante (95%, même sur Mac) pour imposer ses développements du HTML (et des technos Web en général : CSS ...). Il fallait presque écrire un site Web par navigateur.
 
 Nom du standard : ECMAScript standard (synonyme de JavaScript dans les faits).
 
@@ -84,8 +84,8 @@ Une tendance est de ne plus utiliser qu'un langage dans la pile Web, par exemple
 ## Déclaration de variable
 
 <!-- 
-Mot clé 'var' (pas de déclaration de type comme en Java)
-Mettre un ';' à la fin de chaque ligne (optionel mais recommandé)
+Mot-clé 'var' (pas de déclaration de type comme en Java)
+Mettre un ';' à la fin de chaque ligne (optionnel, mais recommandé)
 -->
 
 
@@ -98,7 +98,10 @@ x = 1;
 var x = 1;
 ```
 
-
+<!-- 
+Insister entre déclaration et définition/assignation -> error ou undefined
+Exception avec a=5 qui déclare dans le global;
+-->
 </section>
 <section>
 
@@ -109,15 +112,20 @@ Une console JavaScript est présente dans les outils de développement de Firefo
 **Exemple :**
 
 ```javascript
-var x = 1;
-x;
+x;            // Variable non définie
+var x; x;     // Variable définie, non initialisée
+var x = 1; x; // Variable définie et initialisée
 ```
 
 ```javascript
+// Affiche une variable dans la console
 console.log(x);
 ```
+<!-- Le code console.log(x) pourrait être dans la page Web, cela afficherait
+quand même dans la console -->
 
 ```javascript
+// Affiche un dialogue d'alerte
 alert("Coucou !")
 ```
 
@@ -157,8 +165,7 @@ Il y a 6 types en JavaScript :
  * 5 types primitifs (`Boolean`,  `Number`, `String`, `Null`, `Undefined`) 
  * les objets `Object`.
 
-`Undefined` est le type des variables qui n'ont pas été définies.<br>
-`Null` est le type de `null`, l'objet qui pointe à une adresse qui n'existe pas.
+`Undefined` est le type des variables qui n'ont pas de valeur (e.g. une variable non initialisée).
 
 ```javascript
 var x;
@@ -166,6 +173,22 @@ typeof x;
 // → undefined
 ```
 
+<!-- Une variable pour laquelle aucune valeur n'a été assignée sera de type
+undefined. Une méthode ou instruction renvoie également undefined si la variable
+à évaluer n'a pas de valeur assignée. Une fonction renvoie undefined si aucune
+valeur n'a été retournée.-->
+
+<!-- `Null` est le type de `null`, l'objet qui pointe à une adresse qui n'existe pas. -->
+
+<!-- ```javascript -->
+<!-- var x = null; typeof x; -->
+<!-- // → undefined -->
+<!-- ``` -->
+
+<!--
+https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/null :
+typeof null        // object (bug ECMAScript, devrait être null)
+-->
 
 </section>
 <section>
@@ -176,15 +199,6 @@ Entre guillemets simples `'coucou'` ou `"coucou"` doubles
 
 Échappement de caractère avec **\\** : `\"` &#8594; **"**, `\n` &#8594;  **&#8626;**, ...
 
-<div>
-Concaténation avec + : 
-
-```javascript
-console.log("con" + "cat" + "é" + "nation");
-// → "concaténation"
-```
-</div>
-
 **Exercice :** Comment créer la chaîne de caractères &laquo;Un retour à la ligne s'écrit "\n".&raquo;
 
 <div class="incremental">
@@ -193,6 +207,25 @@ console.log("Un retour à la ligne s'écrit \"\\n\".");
 // → "Un retour à la ligne s'écrit "\n".
 ```
 </div>
+
+<div class="incremental">
+```javascript
+console.log('Un retour à la ligne s\'écrit "\\n".');
+// → "Un retour à la ligne s'écrit "\n".
+```
+</div>
+
+<div class="incremental">
+<div>
+**Concaténation** avec + : 
+
+```javascript
+console.log("con" + "cat" + "é" + "nation");
+// → "concaténation"
+```
+</div>
+</div>
+
 
 </section>
 <section>	
@@ -229,7 +262,7 @@ t.push(5); console.log(t);
 
 ## Les objets
 
-<!-- Affectation d'un objet litéral -->
+<!-- Affectation d'un objet littéral -->
 ```javascript
 var point = {coord1:1, coord2:3, size: "normal"};
 console.log(point);
@@ -237,7 +270,10 @@ console.log(point);
 ```
 
 Accès aux propriétés : `point.coord1` ou `point["coord1"]`.<br>
-Avantage de la syntaxe `obj[expr]` : `expr` est évalué
+
+<div class="incremental">
+<div>
+**Avantage** de la syntaxe `obj[expr]` : `expr` est évalué
 
 ```javascript
 for (var i = 1; i < 3; i++)
@@ -245,7 +281,8 @@ for (var i = 1; i < 3; i++)
 console.log(point);
 // → Object { coord1: 0, coord2: 0, size: "normal"}
 ```
-
+</div>
+<div>
 <!-- Contrairement au Java qui est un langage de classe, c-à-d où la structure de l'objet est rigidifiée-->
 En JavaScript on peut rajouter des attributs dynamiquement.
 
@@ -253,6 +290,8 @@ En JavaScript on peut rajouter des attributs dynamiquement.
 point.coord3 = 1;
 // → Object { coord1: 0, coord2: 0, coord3: 1, ... }
 ```
+</div>
+</div>
 
 </section>
 <section>
@@ -272,10 +311,12 @@ console.log (3 > 2)
 // → true
 console.log ("Itchy" != "Scratchy")
 // → true
-// Ordre du dictionnaire avec A-Z < a-z (on se sert du codage ASCII (ou Unicode))
-console.log ("Aardvark" < "Zoroaster")
-// → true
+// Ordre du dictionnaire avec A-Z < a-z
+console.log ("abba" < "Zorro")
+// → false
 ```
+
+<!-- on se sert du codage ASCII (ou Unicode) pour comparer les caractères avec < -->
 
 </section>
 <section>
@@ -315,7 +356,7 @@ console.log ("5" - 1);
 ```
 
 <div class="incremental">
-**Réponse :** `4` car `-` est nécessairement la soustraction de deux nombres donc `"5"` est converti en un nombre
+**Réponse :** `4`, car `-` est nécessairement la soustraction de deux nombres donc `"5"` est converti en un nombre
 </div>
 </section>
 <section>
@@ -331,7 +372,7 @@ console.log ("5" + 1);
 
 <div class="incremental">
 **Réponse :** `"51"` ! <br>
-Il y a ambiguïté entre addition de nombres et concaténation de chaînes de caractères. L'opérateur le plus prioritaire en JavaScript est la concaténation
+Il y a ambiguïté entre addition de nombres et concaténation de chaînes de caractères. L'opérateur le plus prioritaire en JavaScript est la concaténation.
 </div>
 </section>
 <section>
@@ -370,15 +411,20 @@ Autre type de comportement non voulu
 ```javascript
 console.log(false == "0");
 // → true
+// car == convertit les valeurs dans le même type
 ```
 
+<br>
 Du coup, on utilise `===` (et sa négation `!==`)
-qui teste l'égalité de type puis de valeur (comme en PHP).
+qui teste l'égalité de type **puis** de valeur (comme en PHP).
 
 ```javascript
 console.log(false === "0");
-// → false
+// → false car les types sont différents
+typeof false; typeof "0";
 ```
+
+<!-- Sur les objets, == compare les adresses mémoires  -->
 
 </section>
 <section>
@@ -411,7 +457,8 @@ function myOR (expr1,expr2) {
 
 ```javascript
 var input = prompt("Quel est votre nom ?");
-print("Bien le bonjour " + (input || "cher ami"));
+console.log("Bien le bonjour " +
+   (input || "cher ami"));
 ```
 
 Si on clique sur annuler, alors `input` vaut `null` 
@@ -475,7 +522,9 @@ function square(x) {
 };
 ```
 
-Les variables peuvent stocker des fonctions ! Le code dessus est équivalent à
+<br>
+Les variables **peuvent stocker** des fonctions ! <br>
+Le code ci-dessus est équivalent à
 
 ```javascript
 var square = function (x) {
@@ -483,35 +532,110 @@ var square = function (x) {
 };
 ```
 
-Les fonctions sont des objets de première classe : elles peuvent être manipulées et échangées comme tous les autres objets JavaScript. 
+</section>
+<section>
+
+## Fonctions
+
+Les fonctions sont des **objets de &laquo;première classe&raquo;** : elles
+peuvent être manipulées et échangées comme tous les autres objets JavaScript.
+
+<br>
+**Exemple :** Mettons une valeur *fonction* dans une variable
+
+```javascript
+function square(x) {
+  return x * x;
+};
+// Affectation de la variable
+var varfonc = square;
+// Exécution de la fonction avec l'opérateur ()
+varfonc(2);
+// → 4
+```
 
 </section>
 <section>
 
 ## Fonctions
 
-1. Une fonction renvoie toujours quelque chose.
-   Par défaut, la fonction renvoie `undefined`.
+**Erreur courante :** Quelle est l'erreur du code suivant ?
 
-2. Une fonction peut prendre en argument une fonction
+```javascript
+function identite(x) { return x; };
+var varfonc = square();
+// au lieu de var varfonc = square;
+varfonc(2);
+```
 
-   ```javascript
-   function boum() {alert('Boum!');}
-   setTimeout(boum,2000);
-   ```
+<div class="incremental">
+* `square` est la variable qui contient la fonction et<br>
+* `square()` est l'exécution de la fonction `square` en lui donnant zéro argument.
 
-3. Une fonction peut renvoyer une fonction
+<!-- Le code renvoie `undefined` car JavaScript ne vérifie pas le nombre -->
+<!-- d'argument. Si on ne donne pas assez de valeurs, il initialise les variables à -->
+<!-- `undefined`. -->
 
-   ```javascript
-   function puissance (x) {
-     return function (y) {
-       return Math.pow(y,x);
-     }
-   }
-   var square = puissance(2);
-   var cube = puissance(3);
-   console.log(square(256),cube(256));
-   ```
+</div>
+<!-- nombre argument variable, rempli avec undefined -->
+
+
+</section>
+<section>
+
+## Fonctions
+
+Une fonction renvoie toujours quelque chose.  Par défaut, la
+fonction renvoie `undefined`.
+
+~~~
+function mauvaiscarre(x) {
+var y = x * x;
+// Le développeur a oublié d'écrire return y;
+}
+mauvaiscarre(2);
+// → undefined
+~~~
+{:.javascript}
+   
+</section>
+<section>
+
+## Fonctions
+
+Une fonction peut prendre en argument une fonction
+
+```javascript
+function boum() {alert('Boum!');}
+// setTimeout execute la fonction dans
+// la variable boum après 2s
+setTimeout(boum,2000);
+```
+
+</section>
+<section>
+
+## Fonctions
+
+Une fonction peut renvoyer une fonction
+
+```javascript
+function puissance (x) {
+  function puissancex (y) {
+    // Math.pow(y,x) calcule y^x
+    return Math.pow(y,x);
+  }
+  return puissancex;
+}
+var square = puissance(2);
+var cube = puissance(3);
+console.log(square(256),cube(256));
+```
+
+<div class="incremental">
+**Note :** Nous reviendrons plus tard sur le fait que `tempfunc(y)` utilise bien
+  la variable `x` de sa fonction parente.
+</div>
 
 </section>
 <section>
@@ -545,11 +669,11 @@ Comme en Java, on référence l'objet courant avec `this`.
 La portée de base d'une variable est celle de la fonction qui l'englobe.<br>
 Le code en dehors de toute fonction agit comme si il était dans une grande fonction *globale*.
 
-**Bonne pratique:** Définir les variables locales en début de fonction et avec le mot-clé `var` 
+**Bonne pratique:** Définir les variables locales en début de fonction et avec le mot-clé `var`.
 
 <div class="incremental">
 <div>
-**Attention**, les `if`, `for`, `while`, les blocs `{ ... }` ne limitent pas la portée d'une variable.
+**Attention :** les `if`, `for`, `while`, les blocs `{ ... }` ne limitent pas la portée d'une variable.
 
 **Question :** Que répond le code suivant ?
 
@@ -571,31 +695,32 @@ console.log(i);
 Cependant, si une fonction `fun2()` est incluse dans une autre fonction `fun1()`, elle a accès aux variables de `fun1()`.
 
 ```javascript
-fun1();
 function fun1 () {
   var x1 = "x1 de fun1";
-  fun2();
   function fun2 () {
      console.log(x1);
   };
+  fun2();
 }
+fun1();
 // → "x1 de fun 1"
 ```
 </section>
 <section>
 
 ## La portée des variables
+
 En particulier, les variables dans la fonction globale (en dehors de toute fonction) sont **globales**.
 
 ```javascript
 var x1 = "x1 global";
+function f2 () {console.log(x1);};
 f2();
-function f2 () {
-   console.log(x1); // → "x1 global"
-};
+// → "x1 global"
 ```
 
-Si une variable locale et une variable globale ont le même nom, c'est la variable locale qui l'emporte.
+**En cas de conflit** de nom entre une variable locale et une variable globale,
+  c'est la variable locale qui l'emporte.
 
 ```javascript
 fun1();
@@ -607,34 +732,37 @@ function fun1 () {
 ```
 
 </section>
-<section>
+<!-- <section> -->
 
-## La portée des variables
+<!-- ## La portée des variables -->
 
-**Note:** La déclaration de variable sans `var` (déconseillé) revient à déclarer une variable gloable.
+<!-- **Note :** Le mot clé `var` est le seul moyen de déclarer la variable... à une -->
+<!--   exception près. Si l'on fait une affectation `x = 1` et que `x` n'existe dans -->
+<!--   aucune des fonctions parents, alors une variable `x` est définie dans la -->
+<!--   portée globale. -->
 
-```javascript
-function fun1 () {
-  x1 = "x1 global défini dans fun1";
-  console.log(x1); 
-}
-fun1();          // → "x1 global défini dans fun1"
-console.log(x1); // → "x1 global défini dans fun1"
-```
-</section>
+<!-- <\!-- Si on oublie le `var`, JavaScript fait une assignation et non une -\-> -->
+<!-- <\!-- déclaration de variable. Il va chercher la variable dans les fonctions englobant -\-> -->
+<!-- <\!-- la fonction courante. Cependant, si il ne trouve aucune variable à ce nom, il va -\-> -->
+<!-- <\!-- bien déclarer la variable dans la portée globale. -\-> -->
+
+<!-- ```javascript -->
+<!-- function fun1 () { -->
+<!--   x1 = "x1 global défini dans fun1"; -->
+<!-- } -->
+<!-- x1;     // → ReferenceError car x n'est pas défini  -->
+<!-- fun1(); // Défini x1 globalement -->
+<!-- x1;     // → "x1 global défini dans fun1" -->
+<!-- ``` -->
+<!-- </section> -->
 <section>
 
 ## Testez votre compréhension
 
 ```javascript
-var x = "I am global";
-f1();
-console.log(x); // Que renvoie ce bloc de code ?
 function f1 () {
   var x = "I live in f1";
   console.log("f1: " + x);
-  f2();
-  f3();
   function f2 () {
     var x = "I live in f2";
     console.log("f2: " + x);
@@ -642,7 +770,36 @@ function f1 () {
   function f3 () {
     console.log("f3: " + x);
   }
+  f2();
+  f3();
 }
+var x = "I am global";
+f1();
+console.log(x); // Que renvoie ce bloc de code ?
+```
+
+</section>
+<section>
+
+## Testez votre compréhension
+
+```javascript
+function f1 () {
+  x = "I live in f1";
+  console.log("f1: " + x);
+  function f2 () {
+    var x = "I live in f2";
+    console.log("f2: " + x);
+  }
+  function f3 () {
+    console.log("f3: " + x);
+  }
+  f2();
+  f3();
+}
+var x = "I am global";
+f1();
+console.log(x); // Que renvoie ce bloc de code ?
 ```
 
 </section>
@@ -710,7 +867,7 @@ tata();
 function tata() { console.log("hello");}
 !!!!!!!!!!!!!!!
 ! Attention, les scopes ne viennent que des fonctions
-! Donc dans l'exemple suivant, la déclaration var undef est remonteé (hoisting)
+! Donc dans l'exemple suivant, la déclaration var undef est remontée (hoisting)
 ! et le premier undef est défini
 undef;
 for (var undef = 0; undef < 10; undef++ ) {}

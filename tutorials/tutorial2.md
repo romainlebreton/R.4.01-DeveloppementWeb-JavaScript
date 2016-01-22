@@ -1,375 +1,230 @@
 ---
-title: TD2 &ndash; Petit jeu en JavaScript
-subtitle: Snake
+title: TD2 &ndash; Qui veut gagner des millions
+subtitle: Gestion des évènements
 layout: tutorial
 ---
 
+<!--
+Les questions sont plutôt détaillés. Ceux qui veulent être plus libre peuvent
+essayer de construire leur jeu en suivant le déroulé global
+-->
 
-## Brève présentation du jeu de serpent
+Étapes :
 
-Dans ce jeu assez simple jouable sur un navigateur, le joueur-serpent (unique !) se déplace pour manger des pommes, fruits du péché comme chacun sait. En l'occurrence quand le serpent passe sur une pomme, il grandit. La figure suivante donne une idée de ce que vous allez devoir coder.
+ils partent de Quizz.html, Quizz.css et bootstrap.min.css
 
-![Snake game]({{site.baseurl}}/assets/snake.png)
+On leur explique les différents champs :
+- div id game contient le jeu, càd les questions et les réponses
+  - p id question : à remplir du texte de la question
+  - div class answer :
+    - dans leur fils p, on doit mettre les réponses possibles
+    - leur id contient le nom de la réponse (A, B, C ou D)
+  
+- div id results doit afficher les résultats
+- le bouton d'id ok doit valider une réponse 
+- le bouton d'id restart doit permettre de recommencer le jeu
 
-Le plateau (en bleu) contient des pommes (en vert), et le serpent apparaît en rouge.
+- les boutons bonus
+  - la balise d'identifiant call
+  - la balise d'identifiant fifty
 
-Remarque : 
-Nous considérerons en pratique que l'unité de base est la
-"case", un petit carré de taille fixée (à 5x5 pixels par exemple).  Le
-plateau ici représenté est un carré de 100x100 cases ; le serpent a
-une case d'épaisseur ; une pomme, qui a la forme rêvée pour
-l'industrie agro-alimentaire, prend exactement une case.
+Premières fonctions :
 
-## Les différents fichiers de code
+Déjà, on va tout mettre dans un objet game (lien vers la partie du cours sur les objets)
+Créer un premier attribut resultsContainer qui sélectionne l'élément des résultats à l'aide d'un querySelector
+Créer une première méthode start qui cache resultsContainer en lui rajoutant la classe hidden
 
-#### game.html
-
-Votre programme JavaScript sera lancé par un court fichier
-**game.html**. Celui contiendra un titre, une ligne d'explication pour
-donner la règle du jeu à l'utilisateur et un 
-
-```html
-<div class='board'>Activer JavaScript pour jouer</div>
-```
-
-Ce `<div>` contiendra plus tard le plateau de jeu. En attendant, il affiche un message par défaut aux utilisateurs n'ayant pas activé JavaScript.
-
-Le fichier **game.html** chargera le fichier **game.css** et aussi le fichier
-**game.js** grâce à la balise `<script>` comme nous l'avons vu lors du
-TD 1.
+Lier le fichier JavaScript Quizz.js à la page avec la balise script en fin de page Web (juste avant /body)
+Lancer la fonction start en fin de fichier JS
 
 
-#### game.css
+Rajouter à l'objet game l'attribut answerContainers qui contient **toutes** les balises de classe answer
+Rajouter à l'objet game les attributs suivants qui correspondent aux autres éléments utiles de la page Web
 
-Le fichier CSS précisera notamment la taille et la couleur des différents éléments graphiques :
+    questionContainer: document.querySelector("#question"),
+	
+    validateButton: document.querySelector("#ok"),
+    restartButton: document.querySelector("#restart"),
+	
+    callButton: document.querySelector("#call"),	
+    fiftyButton: document.querySelector("#fifty"),
+	
+    gameContainer: document.querySelector("#game"),
 
-- le plateau de jeu -- classe **board**;
-- une case quelconque -- classe **case**;
-- une case particulière qui est la pomme -- classe **fruit** (en plus de **case**);
-- le joueur-serpent -- classe **player** (en plus de **case**).
 
-En fait, chaque case sera représentée par une `<div>` et différentes
-classes permettront de différencier les éléments graphiques.
+Les questions :
 
-Nous préciserons plus loin une dernière propriété qui sera ajoutée à certains sélecteurs.
+Les données des questions sont présentes dans le fichier QA.js ci-joint
 
-## Le programme JavaScript (**game.js**)
+Liez le fichier à votre HTML juste avant Quizz.js Inspectez le fichier QA.js.
 
-#### Structure générale
+Testez dans la console que vous maitrisez le code pour récupérer la 1ère
+question, la 2ème réponse possible à la 1ère question et l'identifiant de la
+bonne réponse à la 1ère question.
+
+
+Écrire les questions :
+
+On souhaite créer une méthode displayNextQuestion qui affiche la prochaine
+question. Rajoutez un attribut questionID que vous initialiserez à -1 dans
+start. Alors displayNextQuestion incrémente questionID puis affiche le texte des
+questions et réponse au bon endroit à l'intérieur des balises stockées dans
+answerContainers et questionContainer.
+
+<!-- utiliser innerHTML pour faciliter -->
+<!-- Attention, il faut écrire dans la balise p des answerContainers[i] -->
+
+Appeler displayNextQuestion à la fin de start.
+
+
+Gérer la sélection d'une réponse :
+
+Nous souhaitons pouvoir sélectionner un réponse. Pour cela, nous rajouterons la
+classe selected au bon answerContainer (ce qui aura aussi pour effet de changer
+sa couleur). Nous allons procéder en plusieurs étapes:
+
+1. Créer un gestionnaire d'évènement click associé à chacun des
+answerContainer. Ce gestionnaire appelera une fonction anonyme à un argument et
+l'affichera dans la console. Testez votre fonction.
+
+**Note :** Comme l'on a vu en cours, la fonction donnée au gestionnaire reçoit
+un paramètre : l’objet événement.
+classes/class2.html#lobjet-vnement
+
+2. Retrouvez l'attribut de l'objet évènement qui indique quel élément HTML a vu
+son gestionnaire d'évènement appeler la fonction de traitement. Ajoutez la
+classe selected à cet élément. Testez votre fonction.
+
+<!-- e.currentTarget -->
+
+3. Nous souhaitons que le code de la fonction soit plutôt dans l'objet game dans
+une méthode appelée select. Créez la méthode et déplacez-ici votre code. Donnez
+la fonction select au gestionnaire d'évènement.
+
+4. Actuellement, les cases restent sélectionnées indéfiniment. Créez une méthode
+   unselectAll qui enlève la classe selected de tous les
+   answerContainers. Appelez cette méthode au début de select.
+   
 
 <!--
-Il devra lancer le programme JavaScript immédiatement après le
-chargement du fichier en utilisant l'attribut `onload` de la balise
-`<body>`. 
-[Une explication sur cet attribut ?](http://www.w3schools.com/jsref/event_onload.asp)
+ICI PB !!! Expliquer le pb avec this
+
+Exemple :
+
+var o1 = {x:1};
+var o2 = {x:2};
+function f_getX () { console.log(this.x); };
+o1.getX = f_getX;
+o1.getX();
+o2.getX = f_getX;
+o2.getX();
+
+OU
+
+var o1 = {x:1, getX: function () { console.log(this.x); }};
+var o2 = {x:2, getX: function () { console.log(this.x); }};
+o1.getX();
+o1.getX = o2.getX;
+o1.getX();
+
+Peut-être solution
+function (e) { game.select(e); }
+
 -->
 
-Le programme se résumera à une fonction principale **loadGame**
-contenant (a) la définition d'un ensemble de variables et de
-constantes (taille du plateau, code des touches **Key_UP**,
-**Key_RIGHT**, etc), (b) la définition d'un ensemble de fonctions et
-(c) l'appel de la fonction principale **initGame**.
+5. Faites en sorte que le bouton Valider soit désactivé au début de chaque
+question. Et qu'il s'active dès qu'une question est validée.
 
-```javascript
-function loadGame(){
-
-    //static variables
-    var DIM_X = 100;
-    var DIM_Y = 100;
-
-    var DIR_NONE = "";
-    
-    var Key_UP = 38;     // Code ASCII des flèches
-    var Key_RIGHT = 39;
-    var Key_BOTTOM = 40;
-    var Key_LEFT = 37;
-
-    //attribute variables
-    var player = {};
-
-    function checkForEnding(){
-	// Optional : Check if :
-	// - player head is crashed on his own body,
-	// - isMoveOk return false
-    };
-
-    function listenToEvent(e){};
-
-    function isMoveOk(player,oneDirection){};
-
-    function onTick(){};
-
-    function checkForFruit(){};
-
-    function updatePlayerPosition(){};
-
-    function createBoard(){};
-
-    function initGame(){
-        console.log("Chargement du jeu");
-        createBoard();
-        updatePlayerPosition();
-        // Ici: associer la fonction listenToEvent à un événement
-        //      "touche (flèche) enfoncée"
-        // Ici: déclencher une fonction onTick à intervalles 
-        //      réguliers (ex: 0.1 seconde)
-    };
-
-    initGame();
-}; // Fin de loadGame
-
-// Ici: associer la fonction loadGame à 
-//      la fin du chargement de la page HTML
-```
-
-**Remarque :** cette structure de programme permet de transmettre les
-variables et les constantes définies dans **loadGame** à toutes les
-autres fonctions. 
-De plus, les variables et fonctions définies dans **loadGame** sont
-locales à cette fonction (et à ses sous-fonctions). Ces variables ne
-sont pas globales et ne risquent pas de rentrer en conflit avec
-d'autres scripts.
-
-#### Lancer le jeu au chargement de la page
-
-À la fin de **game.js**, associer notre fonction **loadGame** à l'événement `DOMContentLoaded`. Cet événement se produit quand la page a fini de se construire.
-Quelques rappels sur les [gestionnaires d'événements](http://www.xul.fr/ecmascript/event.php).
-<!-- 
-et les [événements
-périodiques](http://www.w3schools.com/jsref/met_win_setinterval.asp).
+<!--
+Désactiver à la fin de displayNextQuestion
+Activer à la fin de select
 -->
 
-Vérifiez que le message "Chargement du jeu" est bien affiché dans la console des outils de développement.
-
-#### Dessiner le plateau (fonction **createBoard**)
-
-Une façon simple de procéder consiste d'abord à vider la `<div>` de classe
-**board** de son texte 
-(utilisez [removeChild](https://developer.mozilla.org/fr/docs/Web/API/Node/removeChild)
- ou [innerHTML](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML)).
-
-Puis mettez dans le plateau de nombreuses `<div>` de classe **case**.
-<!-- dont certaines sont de classe **case fruit**. -->
-Comment fabriquer ces `<div>` me direz-vous ?
-
-- Vous avez appris à faire des boucles ? C'est l'occasion de les
-  utiliser pour créer les cases `<div class='case'>` de haut en bas et de gauche à
-  droite. Utiliser les méthodes **createElement**, **appendChild** 
-  que vous maîtrisez depuis une semaine déjà.
-
-- Hum, il manque quelque chose. Quand on a parlé du CSS, on a bien dit
-  que chaque case appartenait à une ou plusieurs classes précises. Il faut donc
-  ajouter une classe à (la liste des classes de) la `<div>` créée en
-  utilisant
-  [**element.classList.add**](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
-
-- Et comment les cases se mettraient dans le bonne ordre ? Il faut
-  effectivement ajouter dans le CSS (à vous de réfléchir précisément où quand-même !) la bonne valeur `inline-block` à
-  la propriété **display**. [Petit
-  rappel ](http://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/le-positionnement-en-css)[<span style="text-decoration: line-through">pour ceux qui aiment comprendre.</span>](https://developer.mozilla.org/fr/docs/Web/CSS/display).  
-  **Note :** Si vos cases s'affichent plutôt comme des rayures, rajouter le style CSS `line-height:0` au plateau **board**. 
-<!-- Ou `font-size:0` si çà ne marche toujours pas, mais seulement au chargement du JS -->
-
-- N'oubliez pas d'ajouter des pommes quand-même, sans quoi votre jeu
-  serait ennuyeux. Ce qui différencie une jolie pomme verte d'une
-  vilaine case bleue est simplement qu'elle possède les classes **case** ET **fruit**.
-  - Pour l'emplacement
-    des pommes, l'idéal serait de les placer un peu aléatoirement sur le
-    plateau, mais vous pouvez commencer par les placer régulièrement,
-    comme vos professeurs l'ont fait (cf. figure 1).
-  - N'oubliez pas de changer le style CSS des `<div>` de classes **case** et **fruit**.
+Activer le bouton Valider à la fin de select
 
 
-#### Le joueur-serpent (**objet player**)
+Validation d'une question :
 
-La programmation aisée de ce jeu repose sur l'objet
-**player** défini au début de la fonction **loadGame**. Ses attributs
-et méthodes sont **body**, **head**, **lastDirection** et **moveOnDirection**.
+La validation est la fonction déclenchée par un click sur le bouton
+Valider. Cette fonction doit incrémenter le nombre de bonne réponse nbGood si la
+bonne réponse (écrite dans data) est égaleq à l'identifiant de la question
+selectionnée. (En profiter pour initialiser nbGood à 0 dans start).
+Puis le jeu doit passer à la question suivante.
 
-Commençons par créer le corps du serpent **player.body**.
+Au passage, on voit que l'on doit rajouter de la réinitialisation au début de
+displayNextQuestion.
 
-L'attribut **body** qui est un tableau de points, chaque point étant un objet comme
-  `{positionX:1, positionY:2}`. Les points correspondent aux différents éléments/cases
-  ("anneaux" dans le langage animalier) du serpent.  
-  **Rappel :** Syntaxe des [objets](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-objets) et des 
-[tableaux en JavaScript](http://romainlebreton.github.io/ProgWeb-ClientRiche/classes/class1.html#les-tableaux).
-  
+<!-- Il manque unselectAll() -->
 
-  On propose de mettre la tête du serpent à la fin du
-  tableau. Pourquoi ? Parce qu'il ne faut pas oublier que notre
-  serpent doit grandir d'une case quand il mange une pomme. 
-  Il s'allonge donc par l'avant. Et comme il est facile en
-  JavaScript d'ajouter un élément en queue de tableau, géré en fait
-  comme une file, en utilisant un
-  [push](http://www.w3schools.com/jsref/jsref_push.asp), on trouve
-  notre tête de serpent en queue de tableau ! Élémentaire non ?
+Fin du jeu :
 
-  Sérieusement, lisez-bien les deux liens ci-dessus pour bien
-  comprendre les tableaux en JavaScript, sinon on vous casse la tête
-  et la queue !
+si on est arrivé à la dernière question, displayNextQuestion appelle une
+nouvelle méthode endGame.
 
-#### La fonction **updatePlayerPosition**
+endGame
 
-Cette fonction affiche le serpent sur le plateau en fonction de
-**player.body**. Une manière simple et peu efficace est la suivante :
-<!-- consiste à faire un peu comme pour **checkFruit** : -->
+Cacher la partie jeu
+Afficher la partie résultat
+Affiche dans le bon paragraphe le résultat de la proportion de bonne réponse.
 
-1. On récupère toutes les `<div>` de classe `player` et on leur
-[enlève cette
-classe](https://developer.mozilla.org/fr/docs/Web/API/Element/classList).
 
-2. On récupère ensuite toutes les `<div>` de classe **case** du plateau dans un
-tableau. 
+Bouton recommencer
 
-3. Puis, pour chaque anneau dans **player.body**, on calcule son
-indice dans le tableau et on ajoute la classe **player** à la **div**
-correspondante.  
-**Remarque :** Prenez le temps d'écrire la formule
-pour calculer l'indice dans le tableau en fonction de **DIM_X**,
-**DIM_Y** et des coordonnées de l'anneau du serpent **PositionX** et
-**PositionY**. Si vous ne trouvez toujours pas, regardez le code de **checkFruit** plus bas.
+Appel la fonction start
+(et du coup, start doit afficher le jeu aussi)
 
-#### Déplacements du serpent
 
-Le déplacement du serpent requiert de nouveaux attributs ou méthodes de l'objet **player**:
+-------- FIN DU JEU DE BASE -----------
 
-- La méthode **head** qui permet de récupérer la tête du serpent, en
-  queue de tableau si vous avez suivi.
+Bouton fiftyfifty
 
-- L'attribut **lastDirection** qui donne la direction courante du
-  serpent, parmi les quatre possibles : **Key_UP**, **Key_RIGHT**,
-  **Key_DOWN**, **Key_LEFT**.
+Associer le bouton à une fonction fiftyFifty.
 
-- La méthode **moveOnDirection** qui va permettre de faire avancer
-  notre serpent et qui mérite bien un paragraphe réservé.
+désactiver le bouton. Tirer au hasard 2 mauvaises réponses et les cacher (avec
+disabled).
+<!-- Personnellement, besoin des fonctions indexOf, push  -->
 
-#### La méthode **moveOnDirection**
+De plus, réafficher les réponses au début de chaque question (e.g. créer
+fonction unhideAll similaire à unselectAll)
 
-Cette méthode va permettre au joueur-serpent de se déplacer sur le
-plateau de une case dans la direction courante. Elle prend en
-paramètre la direction courante du serpent (appelée
-*oneDirection*). Deux grands cas de figure :
 
-- Soit le serpent ne mange pas de pomme (c'est-à-dire la tête du
-  serpent ne passe pas sur une pomme) auquel cas il faudra ajouter un
-  anneau en tête de serpent (en fin de tableau), mais aussi enlever un
-  anneau en queue pour simuler le déplacement. Utiliser
-  [slice](http://www.w3schools.com/jsref/jsref_slice_array.asp) pour
-  supprimer le premier élément du tableau **body**.
 
-- Soit le serpent mange une pomme, et on se contente alors d'ajouter
-  un anneau en tête du serpent (pas de suppression en début de
-  tableau). Dans une version plus avancée, on pourra enlever la pomme
-  mangée, en remettre d'autres si désertification, etc.
+Bouton Call
 
-- Et comment sait-on si la tête passe sur une pomme ? Et bien on
-  fabrique une fonction booléenne **checkForFruit**. Comme c'est
-  l'anniversaire de la sœur d'un de vos enseignants, on vous fait
-  cadeau d'une version, certes peu efficace en temps de calcul
-  (pourquoi ?), et à condition de bien comprendre.
+Associer le bouton à une fonction callFriend.
 
-~~~
-function checkForFruit(){
-  var allCases = document.querySelectorAll(".board .case");
-  var indice = player.head().positionX
-               + player.head().positionY * DIM_X;
-  return allCases[indice].classList.contains("fruit");
+Désactiver le bouton. Affiche une réponse au hasard (ou plus de chance d'avoir
+la bonne réponse). Utilise alert qui affiche le message dans une fenêtre
+
+
+------------ AJOUT DE FONCTION --------------
+
+
+-------------- Autre ---------------------
+
+
++ tard que start affiche bien le div game, et disabled le validateButton
++ tard : questionId trop grand => endGame()
+
+
+<!--
+Idées / Question R
+
+ Besoin de this ou implicite ?
+
+ Rajouter un évènement avec du temps, genre un temps limite de réponse à la question
+ Commencer par sélectionner (unselect, selected du bon, et enlève disabled du bouton valider)
+
+Ordre des questions aléatoire
+
+ This dans les gestionnaires d'évènements ?
+ elt.onclick = function (e) {
+    console.log(this);
+	};
+
+ Est-ce que la ligne suivante ne marche pas à cause du bind de this ?
+ game.callButton.onclick = game.callFriend.bind(game);
+game.callButton.onclick = function () {
+    game.callFriend();
 };
-~~~
-{:.javascript}
-
-Pour résumer, la méthode **moveOnDirection** teste si une pomme se
-trouve sur la route (**checkFruit**), modifie les extrémités du
-tableau **body** (en fonction de la direction *oneDirection*)
-<!-- , met à jour l'attribut **lastDirection**-->
-et appelle finalement la fonction
-**updatePlayerPosition** pour synchroniser le contenu de **body** avec
-les classes des cases du plateau. (La fonction **updatePlayerPosition** est déjà appelée
-au tout début du jeu, après la création du plateau, afin
-d'afficher le serpent.)
-
-**Spoiler alert:**
-Si vous bloquez sur cette fonction, on vous donne le code de cette méthode ci-dessous .
-
-~~~
-var player = {
-  body : ... ,
-  head : function() {return ...},
-  lastDirection : DIR_NONE,
-  moveOnDirection : 
-       function (oneDirection) {
-            var fruit = checkForFruit();
-            if (fruit){
-                // TODO remove the fruit on board...
-                console.log("I am eating an apple");
-             }
-             var newHead = {
-                             positionX : this.head().positionX,
-                             positionY : this.head().positionY
-             };
-             if (this.body.length > 1 && !fruit) 
-                 this.body = this.body.slice(1);
-
-             if (oneDirection == Key_UP)          newHead.positionY--;
-             else if (oneDirection == Key_BOTTOM) newHead.positionY++;
-             else if (oneDirection == Key_LEFT)   newHead.positionX--;
-             else if (oneDirection == Key_RIGHT)  newHead.positionX++;
-				
-             this.body.push(newHead);
-             this.lastDirection = oneDirection;
-             updatePlayerPosition();
-      }
-}
-~~~
-{:.javascript}
-
-
-#### La fonction **onTick**
-
-Voilà une fonction très importante déclenchée à intervalles réguliers
-de temps. Qu'est-ce qu'elle fait à votre avis ? Et bien elle fait
-avancer le jeu ! C'est elle qui fait appel à notre superbe méthode
-**moveOnDirection** tous les dixièmes de seconde. 
-
-Une petite condition quand-même : ne pas sortir du plateau. Merci donc
-de définir une petite fonction **isMoveOk(player,direction)**.
-
-#### La fonction **listenToEvent**
-
-On a failli l'oublier celle-ci. Par chance, elle est simple. On
-récupère l'événement (flèche enfoncée donnant la direction) et on
-modifie la direction de l'objet **player**. Et c'est tout !
-
-## Dans quel ordre tester votre code ?
-
-Ce serait bien d'y réfléchir avant de vous lancer tête baissée dans le
-développement, non ? Et bien, débrouillez-vous, l'équipe enseignante
-est un peu débordée !
-
-Non, juste un petit conseil pour les premiers tests : dans un premier
-temps, ne pas lancer la fonction **onTick** (qu'on a du mal à arrêter
-comme vous l'imaginez), et faites plutôt avancer votre serpent avec
-**listenToEvent** qui appellera directement
-**updatePlayerPosition**. Dès que ce prototype fonctionne, faites
-comme indiqué ci-dessus.
-
-## Extensions (bonus)
-
-Si vous avez fini avant la fin de la séance, vous êtes très fort... et nous, enseignants, un peu embêtés. Il vous reste alors à améliorer un peu ce que l'on vous a suggéré ci-dessus, par exemple :
-
-- Supprimer les fruits dès qu'ils sont mangés.
-
-- Trouver un but du jeu, autre que de manger, même si la prise
-  d'énergie est une motivation bien connue chez tous les êtres
-  vivants, même les serpents...
-
-- Ajouter un deuxième joueur en "local" avec les touches E, S, D, X par exemple.
-
-- Travailler sur le CSS pour rendre le jeu un peu plus sexy (couleurs styles animations/transitions).
-
-## Quelques liens
-
-- [La présentation des outils de développements sur le site de Chrome](https://developer.chrome.com/devtools)
-- [Le site de Mozilla sur les technologies Web](https://developer.mozilla.org/fr/)
-- [La structure d'arbre du HTML](http://fr.eloquentjavascript.net/chapter12.html)
-
+ -->
