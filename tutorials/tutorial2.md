@@ -9,7 +9,7 @@ Les questions sont plutôt détaillés. Ceux qui veulent être plus libre peuven
 essayer de construire leur jeu en suivant le déroulé global
 -->
 
-Étapes :
+## Etapes :
 
 ils partent de Quizz.html, Quizz.css et bootstrap.min.css
 
