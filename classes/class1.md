@@ -4,6 +4,8 @@ subtitle : un tour d'horizon
 layout : slideshow
 ---
 
+<!-- for (var i in array) -->
+
 <section>
 
 ## Objectif du cours
@@ -658,7 +660,12 @@ point.print = function() {
 point.print();
 // → "Mes coordonnées sont 1,3"
 ```
+
 Comme en Java, on référence l'objet courant avec `this`.
+<!--
+Par défaut, this est l'objet window
+Un peu comme toute variable globale est un attribut de window
+-->
 </div>
 </div>
 </section>

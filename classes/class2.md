@@ -283,6 +283,10 @@ sister + brother  /* brother s'il suit immédiatement sister  */
 
 La fonction `document.querySelectorAll(sel)` permet de trouver tous les éléments satisfaisant le sélecteur CSS `sel`.
 
+<!-- $$ et $ seulement sur Chrome et/ou Jquery ? -->
+
+<!-- querySelector et querySelectorAll sont des fonctions de chaque HTMLElement -->
+
 **Note :** 
 
 * `document.querySelectorAll` a deux raccourcis :  
@@ -483,10 +487,16 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires.
 ## Propagation des événements
 
 `event.stopPropagation()` arrête la propagation vers la racine.  
+<!--
+Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
+-->
+
 La propriété `target` contient la cible réelle de l'événement.
 
 <!--
-Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
+https://developer.mozilla.org/en-US/docs/Web/API/Event
+L'élément qui a reçu l'évènement est dans currenttarget (et this ?)
+http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-this
 -->
 
 <div style="font-size:80%">

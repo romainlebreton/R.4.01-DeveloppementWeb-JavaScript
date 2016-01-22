@@ -4,6 +4,7 @@ subtitle: AJAX sans trace
 layout: tutorial
 ---
 
+<!-- Proposer d'étendre le quizz avec de l'asynchronisme . Un serveur gererait les questions et les réponses -->
 
 ## Brève présentation du TD
 
