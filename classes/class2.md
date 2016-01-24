@@ -16,6 +16,8 @@ layout : slideshow
 
 3. Les événements en JavaScript
 
+<!-- XMLHttpRequest  -->
+
 </section>
 <section>
 
@@ -80,6 +82,13 @@ layout : slideshow
 ```
 </div>	
 
+<!--
+Les scripts externes permettent de séparer le JS du HTML.
+
+Le JS directement dans le HTML est vivement déconseillé car perte de temps de
+codage, pas facilement maintenable...
+-->
+
 </section>
 <section>
 
@@ -90,7 +99,8 @@ layout : slideshow
 
 ## Le DOM
 
-Le modèle objet de document DOM (*Document Object Model*) est une interface de programmation (API) avec le document HTML.
+Le modèle objet de document DOM (*Document Object Model*) est une interface de
+programmation (API) avec le document HTML.
 
 Le DOM JavaScript est accessible via l'objet `document`.
 
@@ -102,9 +112,12 @@ Le DOM JavaScript est accessible via l'objet `document`.
 document.documentElement;
 document.body;
 document.head;
-// Renvoie l'adresse et les cookies de la page Web
+// Renvoie l'adresse, les cookies, le titre de la page Web
 document.URL;
 document.cookie;
+document.title;
+// Renvoie la page d'où l'on vient 
+document.referrer;
 ```
 </div>
 
@@ -160,8 +173,9 @@ Dans le DOM, on retrouve cette structure d'arbre. Chaque nœud a une propriété
 **Exemple:**
 
 ```javascript
-// var li correspond à l'une des balises <li>
-console.log(li.nodeType); // → 1
+// body est une balise
+document.body.nodeType;
+// → 1
 ```
 
 </section>
@@ -189,7 +203,10 @@ Les méthodes de base pour naviguer dans l'arbre :
 
 **Problème :** Trouver un élément particulier n'est pas très pratique
 
-<!-- Cela nécessiterait un parcours de l'arbre -->
+<!--
+Cela nécessiterait un parcours de l'arbre.
+En plus, il y a pleins de noeuds texte "vide" ("↵        )
+-->
 
 </section>
 <section>
@@ -197,14 +214,17 @@ Les méthodes de base pour naviguer dans l'arbre :
 ## Recherche dans le DOM
 
 <!-- Souvent, on veut trouver un élément en particulier (un bouton, une zone de texte). -->
-Les méthodes de recherche sont:
+Du coup on utilise les méthodes de recherche
 
-* `getElementById`,
-* `getElementsByTagName`
-* `getElementsByClassName`.
+* `getElementById`, <span style="float:right">(renvoie **un** élément)</span>
+  <!-- un identifiant est unique  -->
+* `getElementsByTagName`, <span style="float:right"> (renvoie un tableau d'éléments)</span>
+* `getElementsByClassName`. <span style="float:right"> (renvoie un tableau d'éléments)</span>
 
 Elles renvoient un tableau de nœuds, sauf `getElementById` qui ne renvoie qu'un nœud (un identifiant est unique).
 
+<!-- Dire que ces méthodes sont accessibles sur les éléments aussi ! -->
+<!-- ICI !!! -->
 
 **Exemple :**
 
