@@ -402,6 +402,10 @@ formulaire.
 [objets évènements](https://developer.mozilla.org/fr/docs/Web/API/Event) pour
 trouver comment faire.
 
+* Empéchez l'ajout d'un enfant supplémentaire tant que les champs du précédent
+  ne sont pas remplis complètement.
+
+
 <!--
 preventDefault
 Afficher un truc propre comme le fait Fundation Abide

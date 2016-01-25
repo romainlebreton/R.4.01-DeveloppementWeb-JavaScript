@@ -8,7 +8,7 @@ layout : slideshow
 
 ## Plan du cours
 
-1. Bref rappel sur le protocole *http*
+1. Bref rappel sur le protocole *HTTP*
 
 2. Requête synchrone avec XMLHttpRequest (XHR) et ses défauts
 
@@ -17,40 +17,92 @@ layout : slideshow
  - via le format JSON
 
 </section>
+
 <section>
 
-# Bref rappel sur le protocole *http*
+## Chargement des pages Web
+
+<!-- Reprendre le stack overflow
+** Spécifique à Chrome - V8 ** ?
+-->
+
+1. Récupération de la page HTML
+2. Lecture du document HTML au fur et à mesure
+   1. On crée les nœuds *balise*, *texte*, ... du DOM au fur et à mesure
+   2. En cas de feuille CSS, on charge la feuille et ses règles en parallèle du DOM
+   3. En cas de balise `<script>`, on charge le JavaScript et on l'exécute immédiatement
+      **Attention :** Bloque la construction du DOM et du CSS !
+   4. En cas de chargement d'image, vidéo, le fichier est chargé de manière non bloquante
+
+<!-- 
+
+Impossibilité d'interagir avec un document si JavaScript est occupé (bloquant)
+
+lier explication avec l'affichage Network de Chrome Voir "load event" de Eloquent JavaScript
+
+Seulement un bout de JS peut s'exécuter en même temps. Donc n'importe quel
+script, gestionnaire d'évènement, rafraîchissement de la page ... peut bloquer
+la page Et les gestionaires d'évènements (et le rafraichissement de la page)
+doive attendre que le script courant ai fini !
+
+https://developer.chrome.com/devtools/docs/network#resource-network-timing
+DOMContentLoad event marker ... 
+
+http://stackoverflow.com/questions/1795438/load-and-execution-sequence-of-a-web-page 
+http://wprof.cs.washington.edu/tests/
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path/
+http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/
+-->
+
+</section>
+<section>
+
+## Exemples de chargement
+
+<a href="{{site.baseurl}}/assets/DOMLoadingError.html">Erreur en cas d'interaction trop tôt</a>.
+
+<a href="{{site.baseurl}}/assets/DOMLoading.html">Page montrant le chargement progressif</a>.
+
+**Conséquences :**
+
+* Ne pas interagir avec le document avant qu'il soit chargé
+* Attendre l'événement `DOMContentLoaded` pour interagir.  
+  Voir l'onglet *Network* pour une visualisation.
+
+
+</section>
+
+
+<section>
+
+# Bref rappel sur le protocole *HTTP*
 
 </section>
 <section>
 
 Quand on saisit une URL sur un navigateur, une requête HTTP est envoyée au serveur pour renvoyer au client une page Web. Techniquement, si on se souvient des cours de réseaux de l'an dernier :
 
-- Un message TCP  est envoyé du client au serveur (domaine) sur le port 80.  
+ - Un message TCP  est envoyé du client au serveur (domaine) sur le port 80.  
 Le message contient des lignes du genre :
 
-<div style="font-size:80%">
-~~~
-GET /page.html HTTP/1.1 
-Host: truc.net
-User-Agent: firefox
-~~~
-{:.http}
-</div>
+   ~~~
+   GET /page.html HTTP/1.1 
+   Host: truc.net
+   User-Agent: firefox
+   ~~~
+   {:.http}
 
-- Un message TCP est renvoyé du serveur vers le client.
+ - Un message TCP est renvoyé du serveur vers le client.
 
-<div style="font-size:80%">
-~~~
-HTTP/1.1 200 OK
-Content-Length: 65585
-Content-Type: text/html
-Last-Modified: Wed, 09 Apr 2014 10:48:09 GMT
-<!doctype html>
-...
-~~~
-{:.http}
-</div>
+   ~~~
+   HTTP/1.1 200 OK
+   Content-Length: 65585
+   Content-Type: text/html
+   Last-Modified: Wed, 09 Apr 2014 10:48:09 GMT
+   <!doctype html>
+   ...
+   ~~~
+   {:.http}
 
 </section>
 <section>
@@ -62,9 +114,7 @@ Last-Modified: Wed, 09 Apr 2014 10:48:09 GMT
   DELETE, PUT)  
   GET : requête sans effet de bord sur le serveur  
   POST : requête pouvant modifier le serveur
-
 - le chemin de la ressource 
-
 - la version du protocole HTTP 
  
 Le reste de l'entête fournit diverses informations.
@@ -72,7 +122,6 @@ Le reste de l'entête fournit diverses informations.
 *Réponse :* La première ligne indique :
 
 - la version du protocole HTTP
-
 - l'état (*status*) de la réponse  
   sous forme numérique (erreur si >= 400) et  
   sous forme d'une chaîne de caractères.

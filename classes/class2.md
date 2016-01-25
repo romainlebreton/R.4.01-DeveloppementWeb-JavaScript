@@ -16,6 +16,8 @@ layout : slideshow
 
 3. Les événements en JavaScript
 
+<!-- XMLHttpRequest  -->
+
 </section>
 <section>
 
@@ -80,6 +82,45 @@ layout : slideshow
 ```
 </div>	
 
+<!--
+Les scripts externes permettent de séparer le JS du HTML.
+
+Le JS directement dans le HTML est vivement déconseillé car perte de temps de
+codage, pas facilement maintenable...
+-->
+
+</section>
+<section>
+
+## Structure du code
+
+De la même manière que nous séparons le style CSS du document HTML, nous
+séparerons les actions JavaScript.
+
+
+**Question :** Pourquoi séparer HTML, CSS et JS ?
+
+* *Clarté :* Cela donne de la structure au code.
+   * Le document HTML décrit la **structure** du document et son sens (sa
+     *sémantique*). Par exemple, tel élément est un titre `<h1>`, tel élément
+     est un menu `class=menu`.
+   * Le CSS associe un **style** à chaque élément en fonction de son sens.
+   * Le JS rajoute des **interactions** avec le document.
+* *Maintenabilité :* Le style étant regroupé dans les feuilles CSS, il est plus
+simple de le retrouver et l'éditer. De plus, on évite les répétitions en
+associant plusieurs fois le même style à des éléments différents. **C'est
+pareil** pour les actions.
+{:.incremental}
+
+<!-- Permet d'utiliser le même code sur plusieurs pages. Le code JS peut être mis en cache -->
+
+**Structuration du code JavaScript :**
+
+* Dans un fichier JavaScript séparé
+   * Définition des actions
+   * Association des actions aux éléments HTML à l'aide des sélecteurs CSS.
+
+* Ainsi, nous séparons le style, les actions et le contenu.
 </section>
 <section>
 
@@ -90,7 +131,8 @@ layout : slideshow
 
 ## Le DOM
 
-Le modèle objet de document DOM (*Document Object Model*) est une interface de programmation (API) avec le document HTML.
+Le modèle objet de document DOM (*Document Object Model*) est une interface de
+programmation (API) avec le document HTML.
 
 Le DOM JavaScript est accessible via l'objet `document`.
 
@@ -102,9 +144,12 @@ Le DOM JavaScript est accessible via l'objet `document`.
 document.documentElement;
 document.body;
 document.head;
-// Renvoie l'adresse et les cookies de la page Web
+// Renvoie l'adresse, les cookies, le titre de la page Web
 document.URL;
 document.cookie;
+document.title;
+// Renvoie la page d'où l'on vient 
+document.referrer;
 ```
 </div>
 
@@ -160,8 +205,9 @@ Dans le DOM, on retrouve cette structure d'arbre. Chaque nœud a une propriété
 **Exemple:**
 
 ```javascript
-// var li correspond à l'une des balises <li>
-console.log(li.nodeType); // → 1
+// body est une balise
+document.body.nodeType;
+// → 1
 ```
 
 </section>
@@ -189,7 +235,10 @@ Les méthodes de base pour naviguer dans l'arbre :
 
 **Problème :** Trouver un élément particulier n'est pas très pratique
 
-<!-- Cela nécessiterait un parcours de l'arbre -->
+<!--
+Cela nécessiterait un parcours de l'arbre.
+En plus, il y a pleins de noeuds texte "vide" ("↵        )
+-->
 
 </section>
 <section>
@@ -197,24 +246,28 @@ Les méthodes de base pour naviguer dans l'arbre :
 ## Recherche dans le DOM
 
 <!-- Souvent, on veut trouver un élément en particulier (un bouton, une zone de texte). -->
-Les méthodes de recherche sont:
+Du coup on utilise les méthodes de recherche
 
-* `getElementById`,
-* `getElementsByTagName`
-* `getElementsByClassName`.
+* `getElementById`, <span style="float:right">(renvoie **un** élément)</span>
+  <!-- un identifiant est unique  -->
+* `getElementsByTagName`, <span style="float:right"> (renvoie un **tableau** d'éléments)</span>
+* `getElementsByClassName`. <span style="float:right"> (renvoie un **tableau** d'éléments)</span>
 
-Elles renvoient un tableau de nœuds, sauf `getElementById` qui ne renvoie qu'un nœud (un identifiant est unique).
+<!-- `getElementById` ne renvoie qu'un nœud car un identifiant est unique. -->
 
+**Remarque :** Ce sont des méthodes de `document` et de tout élément HTML.
 
 **Exemple :**
 
 ```javascript
-document.getElementById("id1");
-// Identifiant unique donc on renvoie qu'un élément
-document.getElementsByTagName("button");
-document.getElementsByClassName("myclass");
-// Renvoient un tableau d'éléments
+// Identifiant unique donc on renvoie un élément
+var i1 = document.getElementById("id1");
+// Tous les enfants de i1 de classe myclass
+var tab_e = i1.getElementsByClassName("myclass");
 ```
+
+<!-- var tab_e = i1.getElementsByTagName("button"); -->
+
 
 </section>
 <section>
@@ -281,15 +334,24 @@ sister + brother  /* brother s'il suit immédiatement sister  */
 
 ## Recherche avancée
 
-La fonction `document.querySelectorAll(sel)` permet de trouver tous les éléments satisfaisant le sélecteur CSS `sel`.
+La fonction `querySelectorAll(sel)` permet de trouver **tous** les éléments
+satisfaisant le sélecteur CSS `sel`.  
+`querySelector` ne sélectionne que le premier élément.
 
-**Note :** 
+<!-- $$ et $ seulement sur Chrome et/ou Jquery ? -->
 
-* `document.querySelectorAll` a deux raccourcis :  
-  `document.$$` et `$$`
+<!-- querySelector et querySelectorAll sont des fonctions de chaque HTMLElement -->
 
-* `document.querySelector` sélectionne la première balise.  
-   Deux raccourcis `document.$` et `$`
+**Notes :**
+
+* Ce sont des méthodes de `document` et de tout élément HTML.
+
+* Si vous voyez dans du code la fonction `$$`, c'est un raccourci classique pour
+`document.querySelectorAll`.  
+  De même `$` est un raccourci classique pour `document.querySelector`.
+
+  Ces raccourcis sont par exemple codés dans les outils de développement de
+  Chrome (mais pas de Firefox) et aussi dans *Jquery*.
 
 </section>
 <section>
@@ -301,29 +363,35 @@ La fonction `document.querySelectorAll(sel)` permet de trouver tous les élémen
 
 ## Gestionnaires d'événements
 
-Les systèmes modernes gèrent les événements à l'aide de gestionnaire d'événements (*event handler*).
+Les systèmes modernes gèrent les événements à l'aide de gestionnaire
+d'événements (*event handler*).
 
-**Principe :**
-On donne au système sous-jacent une fonction qu'il essayera de lancer dès que l'événement associé se produit.
+**Principe :** On donne au système sous-jacent une fonction qui sera lancée dès
+que l'événement associé se produit.
 
 </section>
 <section>
 
 ## Gestionnaires d'événements
 
-### 3 manières d'associer une action à un événement
+**Il y a 3 manières d'associer une action à un événement**
 
-<!-- Il y a plusieurs façons d'associer une action à un événement sur un élément. -->
-Par exemple, pour exécuter la fonction `act()` lors d'un clic sur un `<button>`, on peut :
+<!-- Il y a plusieurs façons d'associer une action à un événement sur un
+élément. --> Par exemple, pour exécuter la fonction `act()` lors d'un clic sur
+un `<button>` (variable `b`) :
 
-1. Si la variable JavaScript `b` pointe sur le bouton `<button>`
-   1. ```javascript
-      b.addEventListener('click',act);
-      ```
+<!-- RL : Hack to have the numbering displayed correctly in Chrome -->
+<style type="text/css">
+  ol pre {overflow:visible;}
+</style>
 
-   2. ```javascript
-      b.onclick = act;
-      ```
+1. ```javascript
+   b.addEventListener('click',act);
+   ```
+
+2. ```javascript
+   b.onclick = act;
+   ```
 
 2. ```html
    <button onclick='act()'>
@@ -366,7 +434,11 @@ addEventListener(x);
 
 ## L'objet événement
 
-La fonction donnée au gestionnaire reçoit un paramètre : l'*objet événement*.
+La fonction donnée au gestionnaire reçoit un paramètre :  
+<p style="text-align:center">
+l'*objet événement*
+</p>
+
 
 **Exemple:** La propriété `which` indique le bouton cliqué de la souris
 
@@ -398,8 +470,11 @@ La fonction donnée au gestionnaire reçoit un paramètre : l'*objet événement
       console.log("Left button");
     else if (event.which == 2)
       console.log("Middle button");
-    else if (event.which == 3)
-      console.log("Right button");
+    else if (event.which == 3) {
+    console.log("Right button");
+	event.preventDefault();
+	event.stopPropagation();
+	}
   });
 </script>
 
@@ -422,7 +497,17 @@ La fonction donnée au gestionnaire reçoit un paramètre : l'*objet événement
   * `DOMContentLoaded` : chargement terminé du DOM
 
 <!--
-The DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading. A very different event - load - should be used only to detect a fully-loaded page. It is an insanely popular mistake for people to use load where DOMContentLoaded would be much more appropriate, so be cautious.
+http://stackoverflow.com/questions/1367700/whats-the-difference-between-keydown-and-keypress-in-net
+-->
+
+<!--
+The DOMContentLoaded event is fired when the initial HTML document has been
+completely loaded and parsed, without waiting for stylesheets, images, and
+subframes to finish loading.
+
+A very different event - load - should be used only to detect a fully-loaded
+page. It is an insanely popular mistake for people to use load where
+DOMContentLoaded would be much more appropriate, so be cautious.
 -->
 
 
@@ -483,10 +568,16 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires.
 ## Propagation des événements
 
 `event.stopPropagation()` arrête la propagation vers la racine.  
+<!--
+Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
+-->
+
 La propriété `target` contient la cible réelle de l'événement.
 
 <!--
-Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
+https://developer.mozilla.org/en-US/docs/Web/API/Event
+L'élément qui a reçu l'évènement est dans currenttarget (et this ?)
+http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-this
 -->
 
 <div style="font-size:80%">
@@ -524,10 +615,29 @@ Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
   });
 </script>
 
-**Remarque :** `event.preventDefault()` stoppe l'action par défaut.
+</section>
+<section>
 
-Plus de détails sur la gestion du clavier, les mouvements de la souris, le déroulement de la page et les actions par défaut sur le [site de *Eloquent JavaScript*](http://eloquentjavascript.net/14_event.html).
+## Propagation des événements
 
+`event.preventDefault()` stoppe l'action par défaut.
+
+**Exemple :**
+
+1. Si on clique sur le bouton "Envoyer" d'un formulaire, cela l'empèche de le
+soumettre
+
+2. Sur on clique sur un lien, cela l'empèche de suivre l'URL
+
+3. Si on clique sur une `checkbox`, elle ne se coche pas...
+
+<p class="myfootnote">
+**Biblio :**
+
+Plus de détails sur la gestion du clavier, les mouvements de la souris, le
+déroulement de la page et les actions par défaut sur le
+[site de *Eloquent JavaScript*](http://eloquentjavascript.net/14_event.html).
+</p>
 
 </section>
 <section>
@@ -536,7 +646,9 @@ Plus de détails sur la gestion du clavier, les mouvements de la souris, le dér
 
 <!-- HERE ICI -->
 
-La fonction `setTimeout` permet de lancer une fonction après un intervalle de temps donné en millisecondes. On peut arrêter le compte à rebours à l'aide de `clearTimeout`.
+La fonction `setTimeout` permet de lancer une fonction après un intervalle de
+temps donné en ms.  
+`clearTimeout` arrête le compte à rebours.
 
 
 ```html
@@ -565,98 +677,8 @@ if (Math.random() < 0.5) {  // 50% chance
   });
 </script>
 
-
-
-`setInterval` permet de répéter une fonction indéfiniment après un laps de temps. On l'interrompt avec `clearInterval`.
-
-</section>
-<!--
-<section>
-
-## Summary
-
-Event handlers make it possible to detect and react to events we have no direct control over. The addEventListener method is used to register such a handler.
-
-Each event has a type ("keydown", "focus", and so on) that identifies it. Most events are called on a specific DOM element and then propagate to that element’s ancestors, allowing handlers associated with those elements to handle them.
-
-When an event handler is called, it is passed an event object with additional information about the event. This object also has methods that allow us to stop further propagation (stopPropagation) and prevent the browser’s default handling of the event (preventDefault).
-
-Only one piece of JavaScript program can run at a time. Thus, event handlers and other scheduled scripts have to wait until other scripts finish before they get their turn.
-
-</section>
--->
-
-<section>
-
-## Structure du code
-
-De la même manière que nous séparons le style CSS du document HTML, nous voulons séparer les actions JavaScript du document HTML.
-
-
-**Question :** Pourquoi séparait-on le style du document HTML ?
-
-* *Clarté :* Cela donne de la structure au code.
-   * Le document HTML décrit la structure du document et son sens (sa *sémantique*). Par exemple, tel élément est un titre `<h1>`, tel élément est un menu `class=menu`. 
-   * Le CSS associe un style à chaque élément en fonction de son sens.
-* *Maintenabilité :* Le style étant regroupé dans les feuilles CSS, il est plus simple de le retrouver et l'éditer. De plus, on évite les répétitions en associant plusieurs fois le même style à des éléments différents.
-{:.incremental}
-
-<!-- Permet d'utiliser le même code sur plusieurs pages. Le code JS peut être mis en cache -->
-
-**Structuration du code JavaScript :**
-
-* Dans un fichier JavaScript séparé
-   * Définition des actions
-   * Association des actions aux éléments HTML à l'aide des sélecteurs CSS.
-
-* Ainsi, nous séparons le style, les actions et le contenu.
-</section>
-<section>
-
-## Chargement des pages Web
-
-<!-- Reprendre le stack overflow
-** Spécifique à Chrome - V8 ** ?
--->
-
-1. Récupération de la page HTML
-2. Lecture du document HTML au fur et à mesure
-   1. On crée les nœuds *balise*, *texte*, ... du DOM au fur et à mesure
-   2. En cas de feuille CSS, on charge la feuille et ses règles en parallèle du DOM
-   3. En cas de balise `<script>`, on charge le JavaScript et on l'exécute immédiatement
-      **Attention :** Bloque la construction du DOM et du CSS !
-   4. En cas de chargement d'image, vidéo, le fichier est chargé de manière non bloquante
-
-<!-- 
-
-Impossibilité d'interagir avec un document si JavaScript est occupé (bloquant)
-
-lier explication avec l'affichage Network de Chrome Voir "load event" de Eloquent JavaScript 
-
-https://developer.chrome.com/devtools/docs/network#resource-network-timing
-DOMContentLoad event marker ... 
-
-http://stackoverflow.com/questions/1795438/load-and-execution-sequence-of-a-web-page 
-http://wprof.cs.washington.edu/tests/
-https://developers.google.com/web/fundamentals/performance/critical-rendering-path/
-http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/
--->
-
-</section>
-<section>
-
-## Exemples de chargement
-
-<a href="{{site.baseurl}}/assets/DOMLoadingError.html">Erreur en cas d'interaction trop tôt</a>.
-
-<a href="{{site.baseurl}}/assets/DOMLoading.html">Page montrant le chargement progressif</a>.
-
-**Conséquences :**
-
-* Ne pas interagir avec le document avant qu'il soit chargé
-* Attendre l'événement `DOMContentLoaded` pour interagir.  
-  Voir l'onglet *Network* pour une visualisation.
-
+`setInterval` permet de répéter une fonction indéfiniment après un laps de
+temps. On l'interrompt avec `clearInterval`.
 
 </section>
 <section>
