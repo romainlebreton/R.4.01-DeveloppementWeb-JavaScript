@@ -1,17 +1,50 @@
 ---
 title: TD2 &ndash; Qui veut gagner des millions
-subtitle: Gestion des évènements
+subtitle: Gestion des événements
 layout: tutorial
 ---
 
 <!--
-Les questions sont plutôt détaillés. Ceux qui veulent être plus libre peuvent
+Les questions sont plutôt détaillés. Ceux qui veulent être plus libres peuvent
 essayer de construire leur jeu en suivant le déroulé global
 -->
 
-## Etapes :
 
-ils partent de Quizz.html, Quizz.css et bootstrap.min.css
+## Brève présentation du jeu
+
+Dans ce jeu jouable sur un navigateur, le joueur doit répondre à des
+questions à choix multiples en un temps limité. Une fois la série de
+questions écoulée, le jeu se termine et affiche le nombre de bonnes
+réponses.
+
+Pour aider le joueur, mais compliquer la vie du développeur, deux
+fonctions d'aide seront disponibles : le fiftyfifty, qui enlève deux
+mauvaises réponses sur les quatre choix, et l'appel à un ami qui sera
+simulé par un appel aléatoire (biaisé dans le bon sens !).
+
+La figure suivante donne une idée de ce que vous allez devoir coder.
+
+![Qui veut gagner des millions]({{site.baseurl}}/assets/millions.png)
+
+## Etapes et architecture générale
+
+Récupérer d'abord le fichier html et les fichiers de style suivants :
+
+- [Quizz.html](../assets/Quizz/Quizz.html)
+
+- [Quizz.css](../assets/Quizz/Quizz.css)
+
+- [bootstrap.min.css](../assets/Quizz/bootstrap.min.css)
+
+#### Quizz.html
+
+Ce fichier contient deux **div** principaux. 
+
+Le div d'id **game** contient le jeu principal, c'est-à-dire la
+question courante et les 4 réponses possibles. Tout en bas, le div
+d'id **results** permettra d'afficher le score final, un commentaire
+et de recommencer à jouer en cliquant sur un bouton restart.
+
 
 On leur explique les différents champs :
 - div id game contient le jeu, càd les questions et les réponses
@@ -27,6 +60,7 @@ On leur explique les différents champs :
 - les boutons bonus
   - la balise d'identifiant call
   - la balise d'identifiant fifty
+
 
 Premières fonctions :
 
@@ -212,19 +246,20 @@ Idées / Question R
 
  Besoin de this ou implicite ?
 
- Rajouter un évènement avec du temps, genre un temps limite de réponse à la question
+ Rajouter un événement avec du temps, genre un temps limite de réponse à la question
  Commencer par sélectionner (unselect, selected du bon, et enlève disabled du bouton valider)
 
 Ordre des questions aléatoire
 
- This dans les gestionnaires d'évènements ?
+ This dans les gestionnaires d'événements ?
  elt.onclick = function (e) {
     console.log(this);
-	};
+  };
 
  Est-ce que la ligne suivante ne marche pas à cause du bind de this ?
+
  game.callButton.onclick = game.callFriend.bind(game);
-game.callButton.onclick = function () {
-    game.callFriend();
+ game.callButton.onclick = function () {
+ game.callFriend();
 };
  -->
