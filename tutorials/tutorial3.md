@@ -6,6 +6,22 @@ layout: tutorial
 
 <!-- Proposer d'étendre le quizz avec de l'asynchronisme . Un serveur gererait les questions et les réponses -->
 
+<!-- Rajouter async et/ou defer -->
+
+<!-- Rajouter du DOMContentloaded -->
+<!-- Constatez que cela produit -->
+<!-- une erreur qui s'affiche dans la console des outils développeurs. Rajoutez un -->
+<!-- affichage de **resultsContainer** dans **start** pour comprendre d'où vient -->
+<!-- l'erreur. -->
+<!-- <\!-- console.log(resultsContainer) doit renvoyer null -\-> -->
+<!-- 1. En fait, le JS ne trouve pas **resultsContainer** car il n'a pas été -->
+<!--    construit dans la page Web au moment où le JavaScript est exécuté. Nous -->
+<!--    allons donc attendre que la page ait fini de se construire avant d'appeler -->
+<!--    **start**. Pour cela, associer notre fonction à l'évènement -->
+<!--    [`DOMContentLoaded`](https://developer.mozilla.org/fr/docs/Web/Events/DOMContentLoaded) -->
+<!--    (lisez sa documentation) avec le code suivant -->
+
+
 ## Brève présentation du TD
 
 Nous souhaitons coder une fonction d'autocomplétion pour des entrées de formulaire. Aujourd’hui, notre formulaire va demander de renseigner son pays et sa ville. Nous allons développer deux mécanismes différents d'aide à la complétion :
