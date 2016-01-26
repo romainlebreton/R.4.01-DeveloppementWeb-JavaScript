@@ -283,63 +283,61 @@ afficher le jeu aussi.
 
 # Fonctionalités avancées
 
-## Konami Code
+## Code Konami
 
-Le principe du konami code est que si vous tapez le code secret haut haut bas
-bas gauche droite gauche droite b a dans le jeu, la bonne réponse s'affiche
-https://fr.wikipedia.org/wiki/Code_Konami
+Le principe du code "Konami" est que si vous tapez le code secret haut haut bas
+bas gauche droite gauche droite b a dans le jeu, la bonne réponse s'affiche :
+[code Konami](https://fr.wikipedia.org/wiki/Code_Konami)
 
-Créer une méthode cheat qui affiche avec alert la bonne réponse
+Créer une méthode **cheat** qui affiche la bonne réponse en utlisant **alert**.
 
-Faites en sorte que toute touche pressé déclenche la (future) méthode konamiCode 
+Faites en sorte que toute touche pressée déclenche une méthode **konamiCode** 
 <!-- addEventListener de "keydown" ou "keypress" -->
 
-Créez un méthode konamiCode qui va concaténer les keycode des touches pressés
-dans une chaine de caractère. Il restera à tester si la chaine de caractère
-correspondant au konamicode est présente dans la chaine des touches pressés
+Créer une méthode konamiCode qui va concaténer les keycode des touches pressées
+dans une chaîne de caractères. Il restera à tester si la chaîne de caractères
+correspondant au code Konami est présente dans la chaîne des touches pressées.
 
-<!--
+**Conseils :**
 
-les keycode du konami code sont 38 38 40 40 37 39 37 39 66 65
+- Les codes ASCII (keycodes) du code Conami sont 38 38 40 40 37 39 37 39 66 65.
+Idéalement, on écrit tous les keycodes sur trois chiffres pour éviter toute ambiguïté.
 
-Idéalement, on écrit tous les keycode sur trois chiffres (le keycode donne le
-code ASCII w= 256 d'un caractère) pour éviter toute ambiguité
+- On pourra utiliser la méthode **indexOf** pour rechercher une chaîne de caractères dans une autre.
 
-Recherche d'une chaine de caractère dans une autre avec indexOf
+## Chronomètre (*timer*) de 5 secondes pour répondre aux questions
 
--->
+Observer d'abord la **div** de classe **progress-bar** dans le fichier
+`Quizz.html`. Le principe consiste à lui attribuer le style
+"width:60%" pour la remplir à 60%, etc... et c'est tout, l'affichage
+étant géré par bootstrap. Il faut aussi bien-sûr incrémenter ce
+pourcentage au cours du temps imparti (5 secondes) entre 0% et 100%.
 
-
-## Timer de 5sec pour les questions
-
-J'ai rajouté un div de classe progress-bar. On lui met le style "width:60%" pour
-la remplir à 60%.
-
-Concernant le mécanisme de barre :
-- une fonction animateBar(percentage) qui écrit la width de la progress-bar
-- un attribut startTime vide par défaut ou qui contient un temps en ms
-- un attribut questionDuration qui prend la durée en ms pour répondre à une question
-- une fonction updateBar (timestamp) qui prend le temps courant en ms. Cette
-  fonction initialise startTime=timestamp si startTime est vide. Puis elle
+Suggestion pour la gestion de la barre. On implante :
+ 
+- une fonction `animateBar(percentage)` qui met à jour la **width** de la progress-bar ;
+- un attribut **startTime** vide par défaut ou qui contient un temps en millisecondes ;
+- un attribut **questionDuration** qui prend la durée en millisecondes pour répondre à une question ;
+- une fonction **updateBar**  prenant en paramètre le temps courant (*timestamp*) en millisecondes. Cette
+  fonction initialise *startTime=timestamp* si **startTime** est vide. Puis elle
   calcule le pourcentage de la progress-bar à afficher et appelle
-  animateBar(percentage).  
+  `animateBar(percentage)` pour modifier la **width** de la barre.
 
-- le jeu est lancé par start (gameRunning=true) et arrété par endGame (gameRunning=false)
-- updateBar est lancée par displayNextQuestion qui initialise aussi
-startTime="";  
-ATTENTION, updateBar attend un timestamp donc il faut mieux l'appeler par
-  requestAnimationFrame comme indiqué ci-après
-<!-- window.requestAnimationFrame(this.updateBar.bind(this)); -->
-- updateBar s'appelle lors du prochain rafraichissement si il reste du temps et
-que le jeu est en cours (gameRunning). Pour ceci, utiliser
-window.requestAnimationFrame qui prend une fonction à un argument (le timestamp)
-et l'appelle une fois lors du prochain rafraîchissement
-  https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame  
-- updateBar ne fait rien si le jeu est arrété
-- updateBar appelle validate si le jeu est en cours et le temps imparti est dépassé
+Le jeu est lancé par **start** (qui affecte *gameRunning=true*) et est arrêté par **endGame** (*gameRunning=false*).
+
+- La fonction **updateBar** est lancée par **displayNextQuestion** qui initialise aussi
+*startTime=""*. 
+ATTENTION, updateBar attend un timestamp, donc il vaut mieux l'appeler par
+  **requestAnimationFrame** comme indiqué ci-après.
+<!-- window.requestAnimationFrame(this.updateBar.bind(this)); 
+-->
+- **updateBar** est également appelée lors du prochain rafraîchissement (demandé dans **updateBar**) s'il reste du temps et
+que le jeu est en cours (*gameRunning*). Pour ceci, utiliser
+window.[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) prenant une fonction à un argument (le **timestamp**)
+qui sera appelée (une fois) lors du prochain rafraîchissement.
+- **updateBar** ne fait rien si le jeu est arrêté.
+- **updateBar** appelle **validate** si le jeu est en cours et le temps imparti est dépassé.
   
-
-
 
 ## Bouton fiftyfifty
 
