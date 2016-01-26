@@ -4,6 +4,8 @@ subtitle : un tour d'horizon
 layout : slideshow
 ---
 
+<!-- durée ~1h05 -->
+
 <!-- for (var i in array) -->
 
 <section>
@@ -161,6 +163,8 @@ var x = "John";      // Now x is a String
 <section>
 
 ## Les types en JavaScript 2/2
+
+<!-- Et les fonctions !!! -->
 
 Il y a 6 types en JavaScript :
 

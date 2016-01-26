@@ -4,6 +4,8 @@ subtitle : Une interface JavaScript avec le HTML
 layout : slideshow
 ---
 
+<!-- durée ~= 45 min -->
+
 <section>
 
 ## Plan du cours

@@ -1,288 +1,299 @@
 ---
-title: TD2 &ndash; Qui veut gagner des millions
-subtitle: Gestion des événements
+title: TD2 &ndash; Qui veut gagner de l'argent en masse ?
+subtitle: Gestion des évènements
 layout: tutorial
 ---
 
-<!--
-Les questions sont plutôt détaillés. Ceux qui veulent être plus libres peuvent
-essayer de construire leur jeu en suivant le déroulé global
--->
+<!-- rajouter un konami code sur cette page de TD qui renvoie sur la page de qui
+veut gagner de l'argent en masse -->
 
-# Jeu de base
+## Jeu de base
 
-## Brève présentation du jeu
+### Brève présentation du jeu
 
-Dans ce jeu jouable sur un navigateur, le joueur doit répondre à des
-questions à choix multiples en un temps limité. Une fois la série de
-questions écoulée, le jeu se termine et affiche le nombre de bonnes
-réponses.
+Dans ce jeu jouable sur un navigateur, le joueur doit répondre à des questions à
+choix multiples en un temps limité. Une fois la série de questions écoulée, le
+jeu se termine et affiche le nombre de bonnes réponses.
 
-Pour aider le joueur, mais compliquer la vie du développeur, deux
-fonctions d'aide seront disponibles : le fiftyfifty, qui enlève deux
-mauvaises réponses sur les quatre choix, et l'appel à un ami qui sera
-simulé par un appel aléatoire (biaisé dans le bon sens !).
+Pour aider le joueur, mais compliquer la vie du développeur, deux fonctions
+d'aide seront disponibles : le fiftyfifty, qui enlève deux mauvaises réponses
+sur les quatre choix, et l'appel à un ami qui sera simulé par un appel aléatoire
+(biaisé dans le bon sens !).
 
 La figure suivante donne une idée de ce que vous allez devoir coder.
 
+<div class="centered">
 ![Qui veut gagner des millions]({{site.baseurl}}/assets/millions.png)
+</div>
 
-## Récupération des fichiers
+### Récupération des fichiers
 
-Récupérer le fichier **html** et les fichiers de style suivants :
+Récupérer le fichier **HTML** et les fichiers de style suivants :
 
 - [Quizz.html](../assets/Quizz/Quizz.html)
 - [Quizz.css](../assets/Quizz/Quizz.css)
 - [bootstrap.min.css](../assets/Quizz/bootstrap.min.css)
 
-Le fichier `Quizz.html` contient deux **div** principaux. 
+Le fichier `Quizz.html` contient deux **div** principaux:
 
-Le div d'id **game** contient le jeu principal, c'est-à-dire la
+1. Le `<div>` d'identifiant **game** contient le jeu principal, c'est-à-dire la
 question courante et les 4 réponses possibles :
+   - Le paragraphe d'identifiant **question** est à remplir avec le texte de la
+     question.
+   - Les `<div>` de classe **answer** :
+     - Dans leur fils `<p>`, on doit mettre les réponses possibles.
+     - Leur identifiant correspond au nom de la réponse (A, B, C ou D).
 
-- Le paragraphe d'id **question** est à remplir avec le texte de la question.
-- Les div de class **answer** :
-  - Dans leur fils p, on doit mettre les réponses possibles.
-  - Leur id correspond au nom de la réponse (A, B, C ou D).
+2. En bas du fichier, le `<div>` d'identifiant **results** permettra d'afficher
+le score final, un commentaire et de recommencer à jouer en cliquant sur un
+bouton restart. Plus précisément :
+   - Le bouton d'identifiant **ok** validera une réponse.
+   - Le bouton d'identifiant **restart** permettra de recommencer le jeu.
 
-En bas du fichier, le div d'id **results** permettra d'afficher le
-score final, un commentaire et de recommencer à jouer en cliquant sur
-un bouton restart. Plus précisément :
+L'étudiant qui aura fini le développement du jeu pourra s'occuper de gérer les
+deux jokers proposés, dont on peut voir les balises d'identifiants `call` (appel
+à un ami) et `fifty` (50/50).
 
-- Le bouton d'id **ok** validera une réponse.
-- Le bouton d'id **restart** permettra de recommencer le jeu.
+### Architecture générale et premières fonctions
 
-L'étudiant qui aura fini le développement du jeu pourra s'occuper de
-gérer les deux jokers proposés, dont on peut voir les balises
-d'identifiants `call` (appel à un ami) et `fifty` (50/50).
+On va mettre pratiquement tout le code JavaScript dans un objet **game**, dont
+les méthodes lanceront le jeu, changeront la question, inscriront les
+résultats...
 
-## Architecture générale et premières fonctions
+<!-- La fin du fichier contiendra l'appel de la fonction **start**. Les dernières -->
+<!-- instructions correspondent à des branchements d'évènements à des fonctions de -->
+<!-- traitement (handler). -->
 
-On va mettre pratiquement tout le code du fichier `Quizz.js` dans un
-objet **game**. La fin du fichier contiendra l'appel de la fonction
-**start**. Les dernières instructions correspondent à des branchements
-d'événements à des fonctions de traitement (handler).
+En guise d'échauffement, nous allons créer notre objet **game** avec un premier
+attribut et une première méthode. Aidez-vous du
+[Cours 1]({{site.baseurl}}/classes/class1.html) pour retrouver la syntaxe des
+objets en JavaScript.
 
-Dans l'objet **game**, créer un premier attribut **resultsContainer**
-qui sélectionne l'élément des résultats à l'aide d'un `querySelector`.
-Créer une première version de la méthode start qui cache
-**resultsContainer** en lui ajoutant la classe **hidden**.
+<div class="exercise">
+1. Dans l'objet **game**, créer un premier attribut **resultsContainer** qui
+sélectionne le `<div>` des résultats à l'aide d'un `querySelector`.
+1. Créer une première version de la méthode **start** qui cache
+**resultsContainer** en lui ajoutant la classe **hidden** (déjà codée dans le
+CSS).
+1. Tester votre code dans la console.
+</div>
 
-Lier le fichier JavaScript `Quizz.js` à la page `Quizz.html` avec la balise **script**, en fin de page Web (juste avant `</body>`). Lancer la fonction **start** en fin de fichier JS.
+Nous souhaitons maintenant regrouper notre code JavaScript dans un fichier
+externe `Quizz.js`.
 
-Ajouter à l'objet **game** l'attribut **answerContainers** qui
-contient **toutes** les balises de classe answer.  Ajouter à l'objet
-**game** les attributs suivants qui correspondent aux autres éléments
-utiles de la page Web.
+<!--
 
-    questionContainer: document.querySelector("#question"),
-	
-    validateButton: document.querySelector("#ok"),
-    restartButton:  document.querySelector("#restart"),
-	
-    callButton:  document.querySelector("#call"),	
-    fiftyButton: document.querySelector("#fifty"),
-	
-    gameContainer: document.querySelector("#game"),
+DOMContentLoaded
+
+À la fin de game.js, associer notre fonction loadGame à l’évènement DOMContentLoaded. Cet évènement se produit quand la page a fini de se construire. Quelques rappels sur les gestionnaires d’évènements.
+
+-->
+
+<div class="exercise">
+1. Créer un fichier JavaScript `Quizz.js` avec le code précédent.
+1. Lier le fichier JavaScript `Quizz.js` à la page `Quizz.html` avec la balise
+`<script>` en fin de page Web (juste avant `</body>`).
+<!-- dans l'en-tête de la page Web. -->
+1. Exécutez la fonction **start** dans le fichier JS.
+
+</div>
 
 
-## Les données des questions et des réponses
+<div class="exercise">
+1. Ajouter à l'objet **game** l'attribut **answerContainers** qui contient
+**toutes** les balises de classe answer.
+1. Ajouter à l'objet **game** les attributs suivants qui correspondent aux
+autres éléments utiles de la page Web.
+
+   ~~~
+   questionContainer: document.querySelector("#question"),
+   validateButton: document.querySelector("#ok"),
+   restartButton:  document.querySelector("#restart"),
+   callButton:  document.querySelector("#call"),	
+   fiftyButton: document.querySelector("#fifty"),
+   gameContainer: document.querySelector("#game"),
+   ~~~
+   {:.javascript}
+</div>
+
+### Les données des questions et des réponses
 
 Les données des questions sont présentes dans le fichier
-[QA.js](../assets/Quizz/QA.js).  Etablir un lien entre ce fichier et
-`Quizz.html`. Etablir ce lien juste avant le lien avec `Quizz.js`.
+[QA.js](../assets/Quizz/QA.js).
 
-Inspecter le fichier `QA.js`.
+<div class="exercise">
+1. Établir un lien entre ce fichier et `Quizz.html` juste avant le lien avec
+`Quizz.js`.
+1. Inspecter le fichier `QA.js` pour comprendre sa structure.
+1. Tester dans la console votre maîtrise du code en récupérant la 1ère question,
+puis la 2ème réponse possible à la 1ère question et enfin l'identifiant de la
+bonne réponse à la 1ère question.
+</div>
 
-Tester dans la console votre maîtrise du code en récupérant la 1ère
-question, puis la 2ème réponse possible à la 1ère question et enfin
-l'identifiant de la bonne réponse à la 1ère question.
-
-
-## Afficher la prochaine question du jeu
+### Afficher la prochaine question du jeu
 
 On souhaite créer une méthode **displayNextQuestion** qui affiche la prochaine
-question. Ajoutez un attribut **questionID** initialisé à -1 dans
-**start**. 
+question. Cette fonction se servira d'un attribut **questionID** qui stockera
+l'indice de la question courante.
 
-**displayNextQuestion** incrémente **questionID** puis affiche le
-texte de la question et des réponses possibles au bon endroit à
-l'intérieur des balises stockées dans **answerContainers** et
-**questionContainer**. On pourra utiliser l'attribut **innerHTML**
-pour accrocher les textes aux balises.
+<!-- Ajoutez un attribut **questionID** initialisé à -1 dans **start**. -->
 
-<!-- Attention, il faut écrire dans la balise p des answerContainers[i] -->
+<div class="exercise">
+1. Inspectez les balises contenues dans **questionContainer** et
+**answerContainers** pour repérer l'endroit adéquat où inscrire les questions et
+les réponses. Quelle solution vue lors du T1 permet d'accéder facilement à la
+balise enfante d'un **answerContainers** où il faut écrire le texte ?
+<!--
+Attention, il faut écrire dans la balise p des answerContainers[i]
+this.answerContainers[a_i].querySelector("p")
+-->
+1. Coder **displayNextQuestion** pour qu'elle affiche le texte de la question et
+des réponses possibles au bon endroit à l'intérieur des balises stockées dans
+**answerContainers** et **questionContainer**.  
+  **Astuces :** On pourra utiliser l'attribut
+[`innerHTML`](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML)
+pour accrocher rajouter facilement du texte aux balises. N'oubliez pas
+d'initialiser **questionID** dans **start** et de la gérer dans
+**displayNextQuestion**.
 
-Appeler **displayNextQuestion** à la fin de la fonction **start**.
+1. Appeler **displayNextQuestion** à la fin de la fonction **start** et vérifiez
+que la première question s'affiche. Appelez de nouveau **displayNextQuestion**
+dans la console pour tester que cela passe bien à la question d'après.
+</div>
 
-## Gérer la sélection d'une réponse
+### Gérer la sélection d'une réponse
 
 Nous souhaitons pouvoir sélectionner une réponse. Pour cela, nous
 ajouterons la classe **selected** à l'**answerContainer**
 correspondant (ce qui aura aussi pour effet de changer sa
 couleur). 
 
+<div class="exercise">
 Nous allons procéder en plusieurs étapes :
 
-1. Créer un gestionnaire d'événement **click** associé à chacun des
-**answerContainer**. Ce gestionnaire appellera une fonction anonyme à un argument et
-l'affichera dans la console. Tester la fonction.
-**Note :** Comme l'on a vu en cours, la fonction donnée au gestionnaire reçoit
-comme paramètre l’objet événement. Cf. classes/class2.html#lobjet-vnement
+1. On souhaite créer un gestionnaire d'évènement **click** associé à chacun des
+**answerContainer**. Comme
+[on l'a vu en cours]({{site.baseurl}}/classes/class2.html#lobjet-vnement), la
+fonction donnée au gestionnaire reçoit comme paramètre l’objet évènement.  Pour
+mieux comprendre cet objet évènement, créez un gestionnaire qui appellera une
+fonction anonyme à un argument (l'objet évènement) et affichera cet argument
+dans la console. Tester la fonction et inspectez les attributs de l'objet
+évènement.  
+**Note :** Une fonction anonyme est une déclaration de fonction sans nom comme
+par exemple
 
-2. En utilisant l'attribut **currentTarget** de l'objet événement, retrouver l'élément HTML qui a vu
-son gestionnaire d'événement appeler la fonction de traitement. Ajoutez la
+   ~~~
+   function () {
+     alert("Leblanc, c'est son nom, et c'est Juste, son prénom.");
+   };
+   ~~~
+   {:.javascript}
+
+2. En utilisant l'attribut **currentTarget** de l'objet évènement, retrouver l'élément HTML qui a vu
+son gestionnaire d'évènement appeler la fonction de traitement. Ajoutez la
 classe **selected** à cet élément. Tester la fonction.
 
 3. Nous souhaitons que le code de la fonction soit plutôt dans l'objet **game** dans
 une méthode appelée **select**. Créer la méthode et y déplacer votre code. Donner
-la fonction **select** au gestionnaire d'événement.
+la fonction **select** au gestionnaire d'évènement.
 
 4. Actuellement, les cases restent sélectionnées indéfiniment. Créer
 une méthode **unselectAll** qui enlève la classe **selected** de tous
 les **answerContainers**. Appeler cette méthode au début de la
 fonction **select**.
-   
 
-## APARTÉ
-
-Attention, par défaut le code suivant pose un problème classique du Javascript
+<span style="color:red">**Attention**</span>, vous devez être arrivés à un code comme suit qui pose un problème classique en JavaScript. Faisons donc un aparté sur ce problème.
 
 ~~~
-game =
-{unselectAll : function () {...},
-select : function (e) {this.unselectAll(); ...);
-}
+game = {
+  unselectAll : function () {...},
+  select : function (e) {
+    this.unselectAll();
+    ...
+	}
+};
 
-game.answerContainers[0].addEventListener("click", game.select(e) );
+var ac = game.answerContainers[0];
+ac.addEventListener("click", game.select );
 ~~~
 {:.javascript}
 
-Le problème est que quand la fonction select est appelée, elle a été déplacée
-dans une autre objet. Autrement dit, on a copié la fonction ailleurs que dans
-l'objet game.  Donc la variable this (qui est résolu au moment de l'éxécution)
-ne pointe plus sur l'objet game). Et this.unselectAll(); ne fait plus du tout ce
-que l'on veut.
+</div>
+
+Le problème est que quand la fonction **select** est appelée, elle a été
+déplacée dans une autre objet. Autrement dit, on a copié la fonction ailleurs
+que dans l'objet **game**.  Donc la variable **this** de **select** (qui est
+résolu au moment de l'exécution) ne pointe plus sur l'objet **game**. Et
+`this.unselectAll()` n'appelle plus la fonction **unselectAll** de **game**.
 
 <!-- En pratique, le this devient l'HTMLElement avec le gestionnaire
 d'évènement, càd game.answerContainers[0] dans notre cas -->
 
-Voici un autre exemple pour illustrer le problème
+**Solution simple :**
+
+Si on écrit
 
 ~~~
-var o1 = {x:1, getX: function () { console.log(this.x); }};
-var o2 = {x:2, getX: function () { console.log(this.x); }};
-o1.getX();
-o1.getX = o2.getX;
-o1.getX();
-~~~
-{:.javascript}
-
-La 4ème ligne copie la fonction o2.getX dans o1. Erreur classique : On pourrait
-croire que l'exécution de o1.getX() exécute la fonction o2.getX et renvoie o2.x
-(=2). Or on a copié le code de la fonction dans o1. Donc o1.getX() exécute
-console.log(this.x) dans le contexte de l'objet o1 ( et renvoie o1.x (=1)).
-
-Solution simple :
-
-Si on écrit o1.getX = function () { o2.getX(); } dans le code précédent, alors
-o1.getX() exécute la fonction anonyme, qui elle-même exécute o2.getX(), càd la
-fonction getX de o2 (dans le contexte de o2). Ainsi elle renvoie o2.x (=2).
-
-Solution plus complète :
-
-Les méthodes peuvent être vues comme des fonctions avec un argument this en plus.
-
-On peut voir le code précédent
-
-o1.getX = function (this) { console.log(this.x); } 
-à la place de 
-var o1 = {getX: function () { console.log(this.x); }};
-
-et alors
-o1.getX();
-devient un raccourci pour
-o1.getX(o1);
-
-Du coup on comprend mieux le code précédent
-
-~~~
-var o1 = {x:1, getX: function (this) { console.log(this.x); }};
-var o2 = {x:2, getX: function (this) { console.log(this.x); }};
-o1.getX(o1); // équivaut à l'appel de la fonction o1.getX sur l'argument this=o1
-o1.getX = o2.getX2;
-o1.getX(o1); // équivaut à l'appel de la fonction o1.getX (maintenant égal à o2.getX) sur l'argument this=o1, ce qui renvoie o1.x
+ac.addEventListener("click", function (e) {
+                               game.select(e);
+                             } );
 ~~~
 {:.javascript}
 
-L'autre solution consiste donc à expliciter quel est l'argument this que l'on
-passe à une fonction
+alors on exécute bien la méthode **select** de **game** et nos problèmes
+disparaissent. Pour ceux qui veulent creuser le problème, allez voir la
+[dernière section](#plus-de-dtails-sur-larrachage-de-fonction).
 
-~~~
-var o1 = {x:1, getX: function () { console.log(this.x); }};
-var o2 = {x:2, getX: function () { console.log(this.x); }};
-o1.getX();
-o1.getX = o2.getX.bind(o2); // Force l'argument this à être o2
-o1.getX();
-~~~
-{:.javascript}
-
-Pour mieux comprendre le bind, explicitons les arguments this
-
-var o2 = {x:2, getX: function (this) { console.log(this.x); }};
-
-o1.getX = o2.getX.bind(o2);
-signifie alors que o1.getX reçoit une fonction à zéro argument qui exécute o2.getX(o2);
-C'est donc un synonyme de notre solution précédente :
-
-o1.getX = function () { o2.getX(o2); };
-
----- FIN DE L'APARTÉ ---
-
-5. Corriger votre problème de la fin de la question 4
+<div class="exercise">
+5. Corriger votre problème de la fin de la question précédente.
 <!-- game.answerContainers[0].addEventListener("click", function (e) { -->
 <!--         game.select(e); -->
 <!--     }); -->
 
 
 6. Faites en sorte que le bouton Valider soit désactivé au début de chaque
-question. Et qu'il s'active dès qu'une question est validée.
+question. Et qu'il s'active dès qu'une réponse est sélectionnée.
 <!--
 Désactiver à la fin de displayNextQuestion
 Activer à la fin de select
 -->
+</div>
 
-Activer le bouton Valider à la fin de select
+### Validation d'une question 
 
+<div class="exercise">
+1. La validation est la fonction déclenchée par un clic sur le bouton
+**Valider**. Cette fonction doit incrémenter le nombre de bonne réponses
+**nbGood** si la bonne réponse (écrite dans **data**) est égale à l'identifiant
+de la question sélectionnée. (En profiter pour initialiser **nbGood** à 0 dans
+**start**.)  Le jeu doit alors passer à la question suivante.
 
-## Validation d'une question 
-
-La validation est la fonction déclenchée par un clic sur le bouton
-**Valider**. Cette fonction doit incrémenter le nombre de bonne réponses **nbGood** si la
-bonne réponse (écrite dans **data**) est égale à l'identifiant de la question
-selectionnée. (En profiter pour initialiser **nbGood** à 0 dans **start**.)
-Le jeu doit alors passer à la question suivante.
-
-Profitons-en pour enlever une éventuelle sélection faite à la question
+1. Profitons-en pour enlever une éventuelle sélection faite à la question
 précédente en ajoutant l'appel à une méthode `unselectAll` au début de
 **displayNextQuestion**.
+</div>
 
-## Fin du jeu 
+### Fin du jeu 
 
-Si la dernière question a déjà été traitée, **displayNextQuestion** appelle une
-nouvelle méthode **endGame**.
+<div class="exercise">
+1. Si la dernière question a déjà été traitée, **displayNextQuestion** appelle
+une nouvelle méthode **endGame**.
 
-La fonction **endGame** :
+   La fonction **endGame** :
 
-- cache la partie jeu ;
-- affiche la partie résultat ;
-- affiche dans le paragraphe idoine la proportion de bonnes réponses.
+   - cache la partie jeu ;
+   - affiche la partie résultat ;
+   - affiche dans le paragraphe idoine la proportion de bonnes réponses.
 
-Le bouton **Recommencer** appelle la fonction **start**. Du coup, la fonction **start** doit 
-afficher le jeu aussi.
+1. Le bouton **Recommencer** appelle la fonction **start**. Du coup, la fonction
+**start** doit afficher le jeu aussi.
+</div>
 
-# Fonctionalités avancées
+## Fonctionnalités avancées
 
+### Code Konami
+
+<<<<<<< HEAD
 ## Code Konami
 
 Le principe du code "Konami" est que si vous tapez le code secret haut haut bas
@@ -292,8 +303,72 @@ bas gauche droite gauche droite b a dans le jeu, la bonne réponse s'affiche :
 Créer une méthode **cheat** qui affiche la bonne réponse en utlisant **alert**.
 
 Faites en sorte que toute touche pressée déclenche une méthode **konamiCode** 
-<!-- addEventListener de "keydown" ou "keypress" -->
+=======
+Le principe du [code "Konami"](https://fr.wikipedia.org/wiki/Code_Konami) est
+que si vous tapez le code secret
 
+~~~
+haut haut bas bas gauche droite gauche droite b a
+~~~
+
+dans le jeu, la bonne réponse s'affiche.
+
+<div class="exercise">
+1. Créer une méthode **cheat** qui affiche la bonne réponse en utilisant **alert**.
+1. Faites en sorte que toute touche pressée déclenche une méthode **konamiCode** 
+>>>>>>> 5db63fff5aa955cbc40b56fddb37096e10ebd502
+<!-- addEventListener de "keydown" ou "keypress" -->
+1. Créer une méthode **konamiCode** qui va concaténer les keycode des touches pressées
+dans une chaîne de caractères. Il restera à tester si la chaîne de caractères
+correspondant au code Konami est présente dans la chaîne des touches pressées.  
+   **Conseils :**
+   
+   - Les codes ASCII (keycodes) du code Konami sont 38 38 40 40 37 39 37 39
+   66 65.  Comme un code ASCII peut aller jusqu'à 255, on écrit tous les
+   keycodes sur trois chiffres pour éviter toute ambiguïté.
+   - On pourra utiliser la méthode
+     [**indexOf**](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/indexOf)
+     pour rechercher une chaîne de caractères dans une autre.  </div>
+
+### Chronomètre (*timer*) de 5 secondes pour répondre aux questions
+
+Observer d'abord la **div** de classe **progress-bar** dans le fichier
+`Quizz.html`. Le principe consiste à lui attribuer le style "width:60%" pour la
+remplir à 60%, etc... et c'est tout, l'affichage étant géré par le CSS (plus
+précisément le framework Bootstrap). Il faut aussi bien sûr incrémenter ce
+pourcentage au cours du temps imparti (5 secondes) entre 0% et 100%.
+
+Voici quelques suggestions pour l'implantation du chronomètre. Sentez-vous
+libre de partir sur votre idée si vous le souhaitez.
+ 
+- une fonction `animateBar(percentage)` qui met à jour la **width** de la
+  progress-bar ;
+- un attribut **startTime** qui contient un temps en millisecondes (ou `""` par
+  défaut) ;
+- un attribut **questionDuration** qui prend la durée en millisecondes pour
+  répondre à une question ;
+- une fonction **updateBar** prenant en paramètre le temps courant (*timestamp*)
+  en millisecondes. Cette fonction initialise `startTime=timestamp` si
+  **startTime** est vide (càd non initialisé). Puis elle calcule le pourcentage
+  de la progress-bar à afficher et appelle `animateBar(percentage)` pour
+  modifier la **width** de la barre.
+- Le jeu est lancé par **start** (qui affecte un attribut `gameRunning` à
+`true`) et est arrêté par **endGame** (`gameRunning=false`).
+- La fonction **updateBar** est lancée par **displayNextQuestion** qui
+  initialise aussi
+`startTime=""`.   
+**ATTENTION**, `updateBar` attend un *timestamp*, donc il vaut mieux l'appeler par
+  **requestAnimationFrame** comme indiqué ci-après.
+<!-- window.requestAnimationFrame(this.updateBar.bind(this)); 
+-->
+- **updateBar** est également appelée lors du prochain rafraîchissement (demandé dans **updateBar**) s'il reste du temps et
+que le jeu est en cours (*gameRunning*). Pour ceci, utiliser
+window.[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) prenant une fonction à un argument (le **timestamp**)
+qui sera appelée (une fois) lors du prochain rafraîchissement.
+- **updateBar** ne fait rien si le jeu est arrêté.
+- **updateBar** appelle **validate** si le jeu est en cours et le temps imparti est dépassé.
+
+<<<<<<< HEAD
 Créer une méthode konamiCode qui va concaténer les keycode des touches pressées
 dans une chaîne de caractères. Il restera à tester si la chaîne de caractères
 correspondant au code Konami est présente dans la chaîne des touches pressées.
@@ -338,40 +413,34 @@ qui sera appelée (une fois) lors du prochain rafraîchissement.
 - **updateBar** ne fait rien si le jeu est arrêté.
 - **updateBar** appelle **validate** si le jeu est en cours et le temps imparti est dépassé.
   
+=======
+### Bouton fiftyfifty
 
-## Bouton fiftyfifty
-
-Associer le bouton à une fonction fiftyFifty.
-
-désactiver le bouton. Tirer au hasard 2 mauvaises réponses et les cacher (avec
-disabled).
+Associer le bouton à une méthode fiftyFifty qui désactive le bouton et tire au
+hasard 2 mauvaises réponses pour les cacher (avec la classe `disabled`).
 <!-- Personnellement, besoin des fonctions indexOf, push  -->
 
-De plus, réafficher les réponses au début de chaque question (e.g. créer
-fonction unhideAll similaire à unselectAll)
+De plus, ré-afficher les réponses au début de chaque question (e.g. créer
+fonction `unhideAll` similaire à `unselectAll`).
 
 
+### Bouton Call
 
-## Bouton Call
-
-Associer le bouton à une fonction callFriend.
-
-Désactiver le bouton. Affiche une réponse au hasard (ou plus de chance d'avoir
-la bonne réponse). Utilise alert qui affiche le message dans une fenêtre
-
-
+Associer le bouton à une fonction `callFriend` qui désactive le bouton et
+affiche une réponse au hasard (avec quand même plus de chance d'avoir la bonne
+réponse). Utiliser `alert` pour afficher le message dans une fenêtre.
 
 <!--
 Idées / Question R
 
  Besoin de this ou implicite ?
 
- Rajouter un événement avec du temps, genre un temps limite de réponse à la question
+ Rajouter un évènement avec du temps, genre un temps limite de réponse à la question
  Commencer par sélectionner (unselect, selected du bon, et enlève disabled du bouton valider)
 
 Ordre des questions aléatoire
 
- This dans les gestionnaires d'événements ?
+ This dans les gestionnaires d'évènements ?
  elt.onclick = function (e) {
     console.log(this);
   };
@@ -383,3 +452,99 @@ Ordre des questions aléatoire
  game.callFriend();
 };
  -->
+
+## Plus de détails sur l'arrachage de fonction
+>>>>>>> 5db63fff5aa955cbc40b56fddb37096e10ebd502
+
+Voici un autre exemple pour illustrer le problème
+
+~~~
+var o1 = {x:1, getX: function () { console.log(this.x); }};
+var o2 = {x:2, getX: function () { console.log(this.x); }};
+o1.getX();  // → 1
+o1.getX = o2.getX;
+o1.getX();  // → 2
+~~~
+{:.javascript}
+
+La 4ème ligne copie la fonction `o2.getX` dans `o1`. L'erreur classique est de
+croire que l'exécution de `o1.getX()` exécute la fonction `o2.getX` et renvoie
+`o2.x` (`=2`). Or on a copié le code de la fonction dans `o1`. Donc `o1.getX()`
+exécute `console.log(this.x`) dans le contexte de l'objet `o1` et renvoie `o1.x`
+(`=1`).
+
+#### Solution simple
+
+Si on écrit
+
+~~~
+o1.getX = function () { o2.getX(); }
+~~~
+{:.javascript}
+
+dans le code précédent, alors `o1.getX()` exécute la fonction anonyme, qui
+elle-même exécute `o2.getX()`, càd la fonction `getX` de `o2` (dans le contexte
+de `o2`). Ainsi elle renvoie `o2.x` (`=2`).
+
+#### Solution plus complète :
+
+Les méthodes d'un objet peuvent être vues comme des fonctions avec un argument
+`this` en plus. On peut donc voir le code précédent
+
+~~~
+var o1 = {getX: function () { console.log(this.x); }};
+~~~
+{:.javascript}
+
+comme étant équivalent au code suivant
+
+~~~
+o1.getX = function (this) { console.log(this.x); } 
+~~~
+{:.javascript}
+
+Alors `o1.getX()` devient un raccourci pour `o1.getX(o1);`.  En interprétant le
+code précédent de cette manière, on comprend mieux son comportement :
+
+~~~
+var o1 = {x:1, getX: function (this) { console.log(this.x); }};
+var o2 = {x:2, getX: function (this) { console.log(this.x); }};
+// la fonction o1.getX s'exécute avec l'argument this=o1
+o1.getX(o1); 
+o1.getX = o2.getX2;
+// la fonction o1.getX (maintenant égal à o2.getX)
+// s'exécute sur l'argument this=o1, ce qui renvoie o1.x
+o1.getX(o1);
+// o2.getX(o1) aurait fait exactement la même chose
+~~~
+{:.javascript}
+
+L'autre solution consiste donc à expliciter quel est l'argument `this` que l'on
+passe à une fonction, ce qui est fait en utilisant `bind` comme dans l'exemple
+suivant :
+
+~~~
+var o1 = {x:1, getX: function () { console.log(this.x); }};
+var o2 = {x:2, getX: function () { console.log(this.x); }};
+o1.getX();
+o1.getX = o2.getX.bind(o2); // Force l'argument this à être o2
+o1.getX();
+~~~
+{:.javascript}
+
+Ainsi
+
+~~~
+o1.getX = o2.getX.bind(o2);
+~~~
+{:.javascript}
+
+signifie alors que `o1.getX` reçoit une fonction à zéro argument qui exécute
+`o2.getX(o2);` comme dans le code suivant.
+
+~~~
+o1.getX = function () { this = o2; o2.getX(this); };
+~~~
+{:.javascript}
+
+Remarquons que cette solution est similaire à la solution *simple*.

@@ -20,6 +20,13 @@ layout : slideshow
 
 <section>
 
+<!--
+http://stackoverflow.com/questions/436411/where-is-the-best-place-to-put-script-tags-in-html-markup
+https://developers.google.com/speed/docs/insights/BlockingJS
+async
+defer
+-->
+
 ## Chargement des pages Web
 
 <!-- Reprendre le stack overflow
