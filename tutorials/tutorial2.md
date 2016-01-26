@@ -1,6 +1,6 @@
 ---
-title: TD2 &ndash; Qui veut gagner des millions
-subtitle: Gestion des événements
+title: TD2 &ndash; Qui veut gagner de l'argent en masse ?
+subtitle: Gestion des évènements
 layout: tutorial
 ---
 
@@ -13,48 +13,48 @@ essayer de construire leur jeu en suivant le déroulé global
 
 ## Brève présentation du jeu
 
-Dans ce jeu jouable sur un navigateur, le joueur doit répondre à des
-questions à choix multiples en un temps limité. Une fois la série de
-questions écoulée, le jeu se termine et affiche le nombre de bonnes
-réponses.
+Dans ce jeu jouable sur un navigateur, le joueur doit répondre à des questions à
+choix multiples en un temps limité. Une fois la série de questions écoulée, le
+jeu se termine et affiche le nombre de bonnes réponses.
 
-Pour aider le joueur, mais compliquer la vie du développeur, deux
-fonctions d'aide seront disponibles : le fiftyfifty, qui enlève deux
-mauvaises réponses sur les quatre choix, et l'appel à un ami qui sera
-simulé par un appel aléatoire (biaisé dans le bon sens !).
+Pour aider le joueur, mais compliquer la vie du développeur, deux fonctions
+d'aide seront disponibles : le fiftyfifty, qui enlève deux mauvaises réponses
+sur les quatre choix, et l'appel à un ami qui sera simulé par un appel aléatoire
+(biaisé dans le bon sens !).
 
 La figure suivante donne une idée de ce que vous allez devoir coder.
 
+<div class="centered">
 ![Qui veut gagner des millions]({{site.baseurl}}/assets/millions.png)
+</div>
 
 ## Récupération des fichiers
 
-Récupérer le fichier **html** et les fichiers de style suivants :
+Récupérer le fichier **HTML** et les fichiers de style suivants :
 
 - [Quizz.html](../assets/Quizz/Quizz.html)
 - [Quizz.css](../assets/Quizz/Quizz.css)
 - [bootstrap.min.css](../assets/Quizz/bootstrap.min.css)
 
-Le fichier `Quizz.html` contient deux **div** principaux. 
+Le fichier `Quizz.html` contient deux **div** principaux: 
 
-Le div d'id **game** contient le jeu principal, c'est-à-dire la
+1. Le `<div>` d'identifiant **game** contient le jeu principal, c'est-à-dire la
 question courante et les 4 réponses possibles :
+   - Le paragraphe d'identifiant **question** est à remplir avec le texte de la
+     question.
+   - Les `<div>` de classe **answer** :
+     - Dans leur fils `<p>`, on doit mettre les réponses possibles.
+     - Leur identifiant correspond au nom de la réponse (A, B, C ou D).
 
-- Le paragraphe d'id **question** est à remplir avec le texte de la question.
-- Les div de class **answer** :
-  - Dans leur fils p, on doit mettre les réponses possibles.
-  - Leur id correspond au nom de la réponse (A, B, C ou D).
+2. En bas du fichier, le `<div>` d'identifiant **results** permettra d'afficher
+le score final, un commentaire et de recommencer à jouer en cliquant sur un
+bouton restart. Plus précisément :
+   - Le bouton d'identifiant **ok** validera une réponse.
+   - Le bouton d'identifiant **restart** permettra de recommencer le jeu.
 
-En bas du fichier, le div d'id **results** permettra d'afficher le
-score final, un commentaire et de recommencer à jouer en cliquant sur
-un bouton restart. Plus précisément :
-
-- Le bouton d'id **ok** validera une réponse.
-- Le bouton d'id **restart** permettra de recommencer le jeu.
-
-L'étudiant qui aura fini le développement du jeu pourra s'occuper de
-gérer les deux jokers proposés, dont on peut voir les balises
-d'identifiants `call` (appel à un ami) et `fifty` (50/50).
+L'étudiant qui aura fini le développement du jeu pourra s'occuper de gérer les
+deux jokers proposés, dont on peut voir les balises d'identifiants `call` (appel
+à un ami) et `fifty` (50/50).
 
 ## Architecture générale et premières fonctions
 
@@ -89,8 +89,8 @@ utiles de la page Web.
 ## Les données des questions et des réponses
 
 Les données des questions sont présentes dans le fichier
-[QA.js](../assets/Quizz/QA.js).  Etablir un lien entre ce fichier et
-`Quizz.html`. Etablir ce lien juste avant le lien avec `Quizz.js`.
+[QA.js](../assets/Quizz/QA.js).  Établir un lien entre ce fichier et
+`Quizz.html`. Établir ce lien juste avant le lien avec `Quizz.js`.
 
 Inspecter le fichier `QA.js`.
 
@@ -146,7 +146,7 @@ fonction **select**.
 
 ## APARTÉ
 
-Attention, par défaut le code suivant pose un problème classique du Javascript
+Attention, par défaut le code suivant pose un problème classique du JavaScript
 
 ~~~
 game =
@@ -160,7 +160,7 @@ game.answerContainers[0].addEventListener("click", game.select(e) );
 
 Le problème est que quand la fonction select est appelée, elle a été déplacée
 dans une autre objet. Autrement dit, on a copié la fonction ailleurs que dans
-l'objet game.  Donc la variable this (qui est résolu au moment de l'éxécution)
+l'objet game.  Donc la variable this (qui est résolu au moment de l'exécution)
 ne pointe plus sur l'objet game). Et this.unselectAll(); ne fait plus du tout ce
 que l'on veut.
 
@@ -260,7 +260,7 @@ Activer le bouton Valider à la fin de select
 La validation est la fonction déclenchée par un clic sur le bouton
 **Valider**. Cette fonction doit incrémenter le nombre de bonne réponses **nbGood** si la
 bonne réponse (écrite dans **data**) est égale à l'identifiant de la question
-selectionnée. (En profiter pour initialiser **nbGood** à 0 dans **start**.)
+sélectionnée. (En profiter pour initialiser **nbGood** à 0 dans **start**.)
 Le jeu doit alors passer à la question suivante.
 
 Profitons-en pour enlever une éventuelle sélection faite à la question
@@ -281,65 +281,63 @@ La fonction **endGame** :
 Le bouton **Recommencer** appelle la fonction **start**. Du coup, la fonction **start** doit 
 afficher le jeu aussi.
 
-# Fonctionalités avancées
+# Fonctionnalités avancées
 
-## Konami Code
+## Code Konami
 
-Le principe du konami code est que si vous tapez le code secret haut haut bas
-bas gauche droite gauche droite b a dans le jeu, la bonne réponse s'affiche
-https://fr.wikipedia.org/wiki/Code_Konami
+Le principe du code "Konami" est que si vous tapez le code secret haut haut bas
+bas gauche droite gauche droite b a dans le jeu, la bonne réponse s'affiche :
+[code Konami](https://fr.wikipedia.org/wiki/Code_Konami)
 
-Créer une méthode cheat qui affiche avec alert la bonne réponse
+Créer une méthode **cheat** qui affiche la bonne réponse en utilisant **alert**.
 
-Faites en sorte que toute touche pressé déclenche la (future) méthode konamiCode 
+Faites en sorte que toute touche pressée déclenche une méthode **konamiCode** 
 <!-- addEventListener de "keydown" ou "keypress" -->
 
-Créez un méthode konamiCode qui va concaténer les keycode des touches pressés
-dans une chaine de caractère. Il restera à tester si la chaine de caractère
-correspondant au konamicode est présente dans la chaine des touches pressés
+Créer une méthode konamiCode qui va concaténer les keycode des touches pressées
+dans une chaîne de caractères. Il restera à tester si la chaîne de caractères
+correspondant au code Konami est présente dans la chaîne des touches pressées.
 
-<!--
+**Conseils :**
 
-les keycode du konami code sont 38 38 40 40 37 39 37 39 66 65
+- Les codes ASCII (keycodes) du code Konami sont 38 38 40 40 37 39 37 39 66 65.
+Idéalement, on écrit tous les keycodes sur trois chiffres pour éviter toute ambiguïté.
 
-Idéalement, on écrit tous les keycode sur trois chiffres (le keycode donne le
-code ASCII w= 256 d'un caractère) pour éviter toute ambiguité
+- On pourra utiliser la méthode **indexOf** pour rechercher une chaîne de caractères dans une autre.
 
-Recherche d'une chaine de caractère dans une autre avec indexOf
+## Chronomètre (*timer*) de 5 secondes pour répondre aux questions
 
--->
+Observer d'abord la **div** de classe **progress-bar** dans le fichier
+`Quizz.html`. Le principe consiste à lui attribuer le style
+"width:60%" pour la remplir à 60%, etc... et c'est tout, l'affichage
+étant géré par bootstrap. Il faut aussi bien-sûr incrémenter ce
+pourcentage au cours du temps imparti (5 secondes) entre 0% et 100%.
 
-
-## Timer de 5sec pour les questions
-
-J'ai rajouté un div de classe progress-bar. On lui met le style "width:60%" pour
-la remplir à 60%.
-
-Concernant le mécanisme de barre :
-- une fonction animateBar(percentage) qui écrit la width de la progress-bar
-- un attribut startTime vide par défaut ou qui contient un temps en ms
-- un attribut questionDuration qui prend la durée en ms pour répondre à une question
-- une fonction updateBar (timestamp) qui prend le temps courant en ms. Cette
-  fonction initialise startTime=timestamp si startTime est vide. Puis elle
+Suggestion pour la gestion de la barre. On implante :
+ 
+- une fonction `animateBar(percentage)` qui met à jour la **width** de la progress-bar ;
+- un attribut **startTime** vide par défaut ou qui contient un temps en millisecondes ;
+- un attribut **questionDuration** qui prend la durée en millisecondes pour répondre à une question ;
+- une fonction **updateBar**  prenant en paramètre le temps courant (*timestamp*) en millisecondes. Cette
+  fonction initialise *startTime=timestamp* si **startTime** est vide. Puis elle
   calcule le pourcentage de la progress-bar à afficher et appelle
-  animateBar(percentage).  
+  `animateBar(percentage)` pour modifier la **width** de la barre.
 
-- le jeu est lancé par start (gameRunning=true) et arrété par endGame (gameRunning=false)
-- updateBar est lancée par displayNextQuestion qui initialise aussi
-startTime="";  
-ATTENTION, updateBar attend un timestamp donc il faut mieux l'appeler par
-  requestAnimationFrame comme indiqué ci-après
-<!-- window.requestAnimationFrame(this.updateBar.bind(this)); -->
-- updateBar s'appelle lors du prochain rafraichissement si il reste du temps et
-que le jeu est en cours (gameRunning). Pour ceci, utiliser
-window.requestAnimationFrame qui prend une fonction à un argument (le timestamp)
-et l'appelle une fois lors du prochain rafraîchissement
-  https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame  
-- updateBar ne fait rien si le jeu est arrété
-- updateBar appelle validate si le jeu est en cours et le temps imparti est dépassé
+Le jeu est lancé par **start** (qui affecte *gameRunning=true*) et est arrêté par **endGame** (*gameRunning=false*).
+
+- La fonction **updateBar** est lancée par **displayNextQuestion** qui initialise aussi
+*startTime=""*. 
+ATTENTION, updateBar attend un timestamp, donc il vaut mieux l'appeler par
+  **requestAnimationFrame** comme indiqué ci-après.
+<!-- window.requestAnimationFrame(this.updateBar.bind(this)); 
+-->
+- **updateBar** est également appelée lors du prochain rafraîchissement (demandé dans **updateBar**) s'il reste du temps et
+que le jeu est en cours (*gameRunning*). Pour ceci, utiliser
+window.[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) prenant une fonction à un argument (le **timestamp**)
+qui sera appelée (une fois) lors du prochain rafraîchissement.
+- **updateBar** ne fait rien si le jeu est arrêté.
+- **updateBar** appelle **validate** si le jeu est en cours et le temps imparti est dépassé.
   
-
-
 
 ## Bouton fiftyfifty
 
@@ -349,7 +347,7 @@ désactiver le bouton. Tirer au hasard 2 mauvaises réponses et les cacher (avec
 disabled).
 <!-- Personnellement, besoin des fonctions indexOf, push  -->
 
-De plus, réafficher les réponses au début de chaque question (e.g. créer
+De plus, ré-afficher les réponses au début de chaque question (e.g. créer
 fonction unhideAll similaire à unselectAll)
 
 
