@@ -11,8 +11,6 @@ essayer de construire leur jeu en suivant le déroulé global
 
 # Jeu de base
 
-## Étapes :
-
 ## Brève présentation du jeu
 
 Dans ce jeu jouable sur un navigateur, le joueur doit répondre à des
@@ -29,117 +27,121 @@ La figure suivante donne une idée de ce que vous allez devoir coder.
 
 ![Qui veut gagner des millions]({{site.baseurl}}/assets/millions.png)
 
-## Etapes et architecture générale
+## Récupération des fichiers
 
-Récupérer d'abord le fichier html et les fichiers de style suivants :
+Récupérer le fichier **html** et les fichiers de style suivants :
 
 - [Quizz.html](../assets/Quizz/Quizz.html)
-
 - [Quizz.css](../assets/Quizz/Quizz.css)
-
 - [bootstrap.min.css](../assets/Quizz/bootstrap.min.css)
 
-#### Quizz.html
-
-Ce fichier contient deux **div** principaux. 
+Le fichier `Quizz.html` contient deux **div** principaux. 
 
 Le div d'id **game** contient le jeu principal, c'est-à-dire la
-question courante et les 4 réponses possibles. Tout en bas, le div
-d'id **results** permettra d'afficher le score final, un commentaire
-et de recommencer à jouer en cliquant sur un bouton restart.
+question courante et les 4 réponses possibles :
 
+- Le paragraphe d'id **question** est à remplir avec le texte de la question.
+- Les div de class **answer** :
+  - Dans leur fils p, on doit mettre les réponses possibles.
+  - Leur id correspond au nom de la réponse (A, B, C ou D).
 
-On leur explique les différents champs :
-- div id game contient le jeu, càd les questions et les réponses
-  - p id question : à remplir du texte de la question
-  - div class answer :
-    - dans leur fils p, on doit mettre les réponses possibles
-    - leur id contient le nom de la réponse (A, B, C ou D)
-  
-- div id results doit afficher les résultats
-- le bouton d'id ok doit valider une réponse 
-- le bouton d'id restart doit permettre de recommencer le jeu
+En bas du fichier, le div d'id **results** permettra d'afficher le
+score final, un commentaire et de recommencer à jouer en cliquant sur
+un bouton restart. Plus précisément :
 
-- les boutons bonus
-  - la balise d'identifiant call
-  - la balise d'identifiant fifty
+- Le bouton d'id **ok** validera une réponse.
+- Le bouton d'id **restart** permettra de recommencer le jeu.
 
-## Premières fonctions :
+L'étudiant qui aura fini le développement du jeu pourra s'occuper de
+gérer les deux jokers proposés, dont on peut voir les balises
+d'identifiants `call` (appel à un ami) et `fifty` (50/50).
 
-Déjà, on va tout mettre dans un objet game (lien vers la partie du cours sur les objets)
-Créer un premier attribut resultsContainer qui sélectionne l'élément des résultats à l'aide d'un querySelector
-Créer une première méthode start qui cache resultsContainer en lui rajoutant la classe hidden
+## Architecture générale et premières fonctions
 
-Lier le fichier JavaScript Quizz.js à la page avec la balise script en fin de page Web (juste avant /body)
-Lancer la fonction start en fin de fichier JS
+On va mettre pratiquement tout le code du fichier `Quizz.js` dans un
+objet **game**. La fin du fichier contiendra l'appel de la fonction
+**start**. Les dernières instructions correspondent à des branchements
+d'événements à des fonctions de traitement (handler).
 
+Dans l'objet **game**, créer un premier attribut **resultsContainer**
+qui sélectionne l'élément des résultats à l'aide d'un `querySelector`.
+Créer une première version de la méthode start qui cache
+**resultsContainer** en lui ajoutant la classe **hidden**.
 
-Rajouter à l'objet game l'attribut answerContainers qui contient **toutes** les balises de classe answer
-Rajouter à l'objet game les attributs suivants qui correspondent aux autres éléments utiles de la page Web
+Lier le fichier JavaScript `Quizz.js` à la page `Quizz.html` avec la balise **script**, en fin de page Web (juste avant `</body>`). Lancer la fonction **start** en fin de fichier JS.
+
+Ajouter à l'objet **game** l'attribut **answerContainers** qui
+contient **toutes** les balises de classe answer.  Ajouter à l'objet
+**game** les attributs suivants qui correspondent aux autres éléments
+utiles de la page Web.
 
     questionContainer: document.querySelector("#question"),
 	
     validateButton: document.querySelector("#ok"),
-    restartButton: document.querySelector("#restart"),
+    restartButton:  document.querySelector("#restart"),
 	
-    callButton: document.querySelector("#call"),	
+    callButton:  document.querySelector("#call"),	
     fiftyButton: document.querySelector("#fifty"),
 	
     gameContainer: document.querySelector("#game"),
 
 
-## Les questions :
+## Les données des questions et des réponses
 
-Les données des questions sont présentes dans le fichier QA.js ci-joint
+Les données des questions sont présentes dans le fichier
+[QA.js](../assets/Quizz/QA.js).  Etablir un lien entre ce fichier et
+`Quizz.html`. Etablir ce lien juste avant le lien avec `Quizz.js`.
 
-Liez le fichier à votre HTML juste avant Quizz.js Inspectez le fichier QA.js.
+Inspecter le fichier `QA.js`.
 
-Testez dans la console que vous maitrisez le code pour récupérer la 1ère
-question, la 2ème réponse possible à la 1ère question et l'identifiant de la
-bonne réponse à la 1ère question.
+Tester dans la console votre maîtrise du code en récupérant la 1ère
+question, puis la 2ème réponse possible à la 1ère question et enfin
+l'identifiant de la bonne réponse à la 1ère question.
 
 
-## Écrire les questions :
+## Afficher la prochaine question du jeu
 
-On souhaite créer une méthode displayNextQuestion qui affiche la prochaine
-question. Rajoutez un attribut questionID que vous initialiserez à -1 dans
-start. Alors displayNextQuestion incrémente questionID puis affiche le texte des
-questions et réponse au bon endroit à l'intérieur des balises stockées dans
-answerContainers et questionContainer.
+On souhaite créer une méthode **displayNextQuestion** qui affiche la prochaine
+question. Ajoutez un attribut **questionID** initialisé à -1 dans
+**start**. 
 
-<!-- utiliser innerHTML pour faciliter -->
+**displayNextQuestion** incrémente **questionID** puis affiche le
+texte de la question et des réponses possibles au bon endroit à
+l'intérieur des balises stockées dans **answerContainers** et
+**questionContainer**. On pourra utiliser l'attribut **innerHTML**
+pour accrocher les textes aux balises.
+
 <!-- Attention, il faut écrire dans la balise p des answerContainers[i] -->
 
-Appeler displayNextQuestion à la fin de start.
+Appeler **displayNextQuestion** à la fin de la fonction **start**.
 
+## Gérer la sélection d'une réponse
 
-## Gérer la sélection d'une réponse :
+Nous souhaitons pouvoir sélectionner une réponse. Pour cela, nous
+ajouterons la classe **selected** à l'**answerContainer**
+correspondant (ce qui aura aussi pour effet de changer sa
+couleur). 
 
-Nous souhaitons pouvoir sélectionner un réponse. Pour cela, nous rajouterons la
-classe selected au bon answerContainer (ce qui aura aussi pour effet de changer
-sa couleur). Nous allons procéder en plusieurs étapes:
+Nous allons procéder en plusieurs étapes :
 
-1. Créer un gestionnaire d'évènement click associé à chacun des
-answerContainer. Ce gestionnaire appelera une fonction anonyme à un argument et
-l'affichera dans la console. Testez votre fonction.
-
+1. Créer un gestionnaire d'événement **click** associé à chacun des
+**answerContainer**. Ce gestionnaire appellera une fonction anonyme à un argument et
+l'affichera dans la console. Tester la fonction.
 **Note :** Comme l'on a vu en cours, la fonction donnée au gestionnaire reçoit
-un paramètre : l’objet événement.
-classes/class2.html#lobjet-vnement
+comme paramètre l’objet événement. Cf. classes/class2.html#lobjet-vnement
 
-2. Retrouvez l'attribut de l'objet évènement qui indique quel élément HTML a vu
-son gestionnaire d'évènement appeler la fonction de traitement. Ajoutez la
-classe selected à cet élément. Testez votre fonction.
+2. En utilisant l'attribut **currentTarget** de l'objet événement, retrouver l'élément HTML qui a vu
+son gestionnaire d'événement appeler la fonction de traitement. Ajoutez la
+classe **selected** à cet élément. Tester la fonction.
 
-<!-- e.currentTarget -->
+3. Nous souhaitons que le code de la fonction soit plutôt dans l'objet **game** dans
+une méthode appelée **select**. Créer la méthode et y déplacer votre code. Donner
+la fonction **select** au gestionnaire d'événement.
 
-3. Nous souhaitons que le code de la fonction soit plutôt dans l'objet game dans
-une méthode appelée select. Créez la méthode et déplacez-ici votre code. Donnez
-la fonction select au gestionnaire d'évènement.
-
-4. Actuellement, les cases restent sélectionnées indéfiniment. Créez une méthode
-   unselectAll qui enlève la classe selected de tous les
-   answerContainers. Appelez cette méthode au début de select.
+4. Actuellement, les cases restent sélectionnées indéfiniment. Créer
+une méthode **unselectAll** qui enlève la classe **selected** de tous
+les **answerContainers**. Appeler cette méthode au début de la
+fonction **select**.
    
 
 ## APARTÉ
@@ -238,7 +240,6 @@ o1.getX = function () { o2.getX(o2); };
 ---- FIN DE L'APARTÉ ---
 
 5. Corriger votre problème de la fin de la question 4
-
 <!-- game.answerContainers[0].addEventListener("click", function (e) { -->
 <!--         game.select(e); -->
 <!--     }); -->
@@ -246,7 +247,6 @@ o1.getX = function () { o2.getX(o2); };
 
 6. Faites en sorte que le bouton Valider soit désactivé au début de chaque
 question. Et qu'il s'active dès qu'une question est validée.
-
 <!--
 Désactiver à la fin de displayNextQuestion
 Activer à la fin de select
@@ -255,42 +255,35 @@ Activer à la fin de select
 Activer le bouton Valider à la fin de select
 
 
-## Validation d'une question :
+## Validation d'une question 
 
-La validation est la fonction déclenchée par un click sur le bouton
-Valider. Cette fonction doit incrémenter le nombre de bonne réponse nbGood si la
-bonne réponse (écrite dans data) est égaleq à l'identifiant de la question
-selectionnée. (En profiter pour initialiser nbGood à 0 dans start).
-Puis le jeu doit passer à la question suivante.
+La validation est la fonction déclenchée par un clic sur le bouton
+**Valider**. Cette fonction doit incrémenter le nombre de bonne réponses **nbGood** si la
+bonne réponse (écrite dans **data**) est égale à l'identifiant de la question
+selectionnée. (En profiter pour initialiser **nbGood** à 0 dans **start**.)
+Le jeu doit alors passer à la question suivante.
 
-Au passage, on voit que l'on doit rajouter de la réinitialisation au début de
-displayNextQuestion.
+Profitons-en pour enlever une éventuelle sélection faite à la question
+précédente en ajoutant l'appel à une méthode `unselectAll` au début de
+**displayNextQuestion**.
 
-<!-- Il manque unselectAll() -->
+## Fin du jeu 
 
-## Fin du jeu :
+Si la dernière question a déjà été traitée, **displayNextQuestion** appelle une
+nouvelle méthode **endGame**.
 
-si on est arrivé à la dernière question, displayNextQuestion appelle une
-nouvelle méthode endGame.
+La fonction **endGame** :
 
-endGame
+- cache la partie jeu ;
+- affiche la partie résultat ;
+- affiche dans le paragraphe idoine la proportion de bonnes réponses.
 
-Cacher la partie jeu
-Afficher la partie résultat
-Affiche dans le bon paragraphe le résultat de la proportion de bonne réponse.
-
-
-Bouton recommencer
-
-Appel la fonction start
-(et du coup, start doit afficher le jeu aussi)
-
-
+Le bouton **Recommencer** appelle la fonction **start**. Du coup, la fonction **start** doit 
+afficher le jeu aussi.
 
 # Fonctionalités avancées
 
 ## Konami Code
-
 
 Le principe du konami code est que si vous tapez le code secret haut haut bas
 bas gauche droite gauche droite b a dans le jeu, la bonne réponse s'affiche
