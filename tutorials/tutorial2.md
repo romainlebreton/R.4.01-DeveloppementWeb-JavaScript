@@ -1,6 +1,6 @@
 ---
 title: TD2 &ndash; Qui veut gagner de l'argent en masse ?
-subtitle: Gestion des évènements
+subtitle: Gestion des événements
 layout: tutorial
 ---
 
@@ -61,7 +61,7 @@ les méthodes lanceront le jeu, changeront la question, inscriront les
 résultats...
 
 <!-- La fin du fichier contiendra l'appel de la fonction **start**. Les dernières -->
-<!-- instructions correspondent à des branchements d'évènements à des fonctions de -->
+<!-- instructions correspondent à des branchements d'événements à des fonctions de -->
 <!-- traitement (handler). -->
 
 En guise d'échauffement, nous allons créer notre objet **game** avec un premier
@@ -85,7 +85,7 @@ externe `Quizz.js`.
 
 DOMContentLoaded
 
-À la fin de game.js, associer notre fonction loadGame à l’évènement DOMContentLoaded. Cet évènement se produit quand la page a fini de se construire. Quelques rappels sur les gestionnaires d’évènements.
+À la fin de game.js, associer notre fonction loadGame à l’événement DOMContentLoaded. Cet événement se produit quand la page a fini de se construire. Quelques rappels sur les gestionnaires d’événements.
 
 -->
 
@@ -94,7 +94,7 @@ DOMContentLoaded
 1. Lier le fichier JavaScript `Quizz.js` à la page `Quizz.html` avec la balise
 `<script>` en fin de page Web (juste avant `</body>`).
 <!-- dans l'en-tête de la page Web. -->
-1. Exécutez la fonction **start** dans le fichier JS.
+1. Exécuter la fonction **start** dans le fichier JS.
 
 </div>
 
@@ -139,7 +139,7 @@ l'indice de la question courante.
 <!-- Ajoutez un attribut **questionID** initialisé à -1 dans **start**. -->
 
 <div class="exercise">
-1. Inspectez les balises contenues dans **questionContainer** et
+1. Inspecter les balises contenues dans **questionContainer** et
 **answerContainers** pour repérer l'endroit adéquat où inscrire les questions et
 les réponses. Quelle solution vue lors du T1 permet d'accéder facilement à la
 balise enfante d'un **answerContainers** où il faut écrire le texte ?
@@ -152,12 +152,12 @@ des réponses possibles au bon endroit à l'intérieur des balises stockées dan
 **answerContainers** et **questionContainer**.  
   **Astuces :** On pourra utiliser l'attribut
 [`innerHTML`](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML)
-pour accrocher rajouter facilement du texte aux balises. N'oubliez pas
+pour ajouter facilement du texte aux balises. Ne pas oublier
 d'initialiser **questionID** dans **start** et de la gérer dans
 **displayNextQuestion**.
 
-1. Appeler **displayNextQuestion** à la fin de la fonction **start** et vérifiez
-que la première question s'affiche. Appelez de nouveau **displayNextQuestion**
+1. Appeler **displayNextQuestion** à la fin de la fonction **start** et vérifier
+que la première question s'affiche. Appeler de nouveau **displayNextQuestion**
 dans la console pour tester que cela passe bien à la question d'après.
 </div>
 
@@ -171,14 +171,14 @@ couleur).
 <div class="exercise">
 Nous allons procéder en plusieurs étapes :
 
-1. On souhaite créer un gestionnaire d'évènement **click** associé à chacun des
+1. On souhaite créer un gestionnaire d'événement **click** associé à chacun des
 **answerContainer**. Comme
 [on l'a vu en cours]({{site.baseurl}}/classes/class2.html#lobjet-vnement), la
-fonction donnée au gestionnaire reçoit comme paramètre l’objet évènement.  Pour
-mieux comprendre cet objet évènement, créez un gestionnaire qui appellera une
-fonction anonyme à un argument (l'objet évènement) et affichera cet argument
+fonction donnée au gestionnaire reçoit comme paramètre l’objet événement.  Pour
+mieux comprendre cet objet événement, créez un gestionnaire qui appellera une
+fonction anonyme à un argument (l'objet événement) et affichera cet argument
 dans la console. Tester la fonction et inspectez les attributs de l'objet
-évènement.  
+événement.  
 **Note :** Une fonction anonyme est une déclaration de fonction sans nom comme
 par exemple
 
@@ -189,28 +189,30 @@ par exemple
    ~~~
    {:.javascript}
 
-2. En utilisant l'attribut **currentTarget** de l'objet évènement, retrouver l'élément HTML qui a vu
-son gestionnaire d'évènement appeler la fonction de traitement. Ajoutez la
+2. En utilisant l'attribut **currentTarget** de l'objet événement, retrouver l'élément HTML qui a vu
+son gestionnaire d'événement appeler la fonction de traitement. Ajouter la
 classe **selected** à cet élément. Tester la fonction.
 
 3. Nous souhaitons que le code de la fonction soit plutôt dans l'objet **game** dans
 une méthode appelée **select**. Créer la méthode et y déplacer votre code. Donner
-la fonction **select** au gestionnaire d'évènement.
+la fonction **select** au gestionnaire d'événement.
 
 4. Actuellement, les cases restent sélectionnées indéfiniment. Créer
 une méthode **unselectAll** qui enlève la classe **selected** de tous
 les **answerContainers**. Appeler cette méthode au début de la
 fonction **select**.
 
-<span style="color:red">**Attention**</span>, vous devez être arrivés à un code comme suit qui pose un problème classique en JavaScript. Faisons donc un aparté sur ce problème.
+<span style="color:red">**Attention**</span>, vous devez être arrivés
+à un code comme suit qui pose un problème classique en
+JavaScript. Faisons donc un aparté sur ce problème.
 
 ~~~
 game = {
   unselectAll : function () {...},
   select : function (e) {
-    this.unselectAll();
-    ...
-	}
+             this.unselectAll();
+             ...
+           }
 };
 
 var ac = game.answerContainers[0];
@@ -221,13 +223,13 @@ ac.addEventListener("click", game.select );
 </div>
 
 Le problème est que quand la fonction **select** est appelée, elle a été
-déplacée dans une autre objet. Autrement dit, on a copié la fonction ailleurs
+déplacée dans un autre objet. Autrement dit, on a copié la fonction ailleurs
 que dans l'objet **game**.  Donc la variable **this** de **select** (qui est
 résolu au moment de l'exécution) ne pointe plus sur l'objet **game**. Et
 `this.unselectAll()` n'appelle plus la fonction **unselectAll** de **game**.
 
 <!-- En pratique, le this devient l'HTMLElement avec le gestionnaire
-d'évènement, càd game.answerContainers[0] dans notre cas -->
+d'événement, càd game.answerContainers[0] dans notre cas -->
 
 **Solution simple :**
 
@@ -241,7 +243,7 @@ ac.addEventListener("click", function (e) {
 {:.javascript}
 
 alors on exécute bien la méthode **select** de **game** et nos problèmes
-disparaissent. Pour ceux qui veulent creuser le problème, allez voir la
+disparaissent. Pour ceux qui veulent creuser le problème, aller voir la
 [dernière section](#plus-de-dtails-sur-larrachage-de-fonction).
 
 <div class="exercise">
@@ -254,8 +256,8 @@ disparaissent. Pour ceux qui veulent creuser le problème, allez voir la
 6. Faites en sorte que le bouton Valider soit désactivé au début de chaque
 question. Et qu'il s'active dès qu'une réponse est sélectionnée.
 <!--
-Désactiver à la fin de displayNextQuestion
-Activer à la fin de select
+Désactiver-le à la fin de **displayNextQuestion**
+Activer-le à la fin de **select**.
 -->
 </div>
 
@@ -293,17 +295,6 @@ une nouvelle méthode **endGame**.
 
 ### Code Konami
 
-<<<<<<< HEAD
-## Code Konami
-
-Le principe du code "Konami" est que si vous tapez le code secret haut haut bas
-bas gauche droite gauche droite b a dans le jeu, la bonne réponse s'affiche :
-[code Konami](https://fr.wikipedia.org/wiki/Code_Konami)
-
-Créer une méthode **cheat** qui affiche la bonne réponse en utlisant **alert**.
-
-Faites en sorte que toute touche pressée déclenche une méthode **konamiCode** 
-=======
 Le principe du [code "Konami"](https://fr.wikipedia.org/wiki/Code_Konami) est
 que si vous tapez le code secret
 
@@ -313,22 +304,22 @@ haut haut bas bas gauche droite gauche droite b a
 
 dans le jeu, la bonne réponse s'affiche.
 
-<div class="exercise">
 1. Créer une méthode **cheat** qui affiche la bonne réponse en utilisant **alert**.
 1. Faites en sorte que toute touche pressée déclenche une méthode **konamiCode** 
->>>>>>> 5db63fff5aa955cbc40b56fddb37096e10ebd502
 <!-- addEventListener de "keydown" ou "keypress" -->
-1. Créer une méthode **konamiCode** qui va concaténer les keycode des touches pressées
+1. Créer une méthode **konamiCode** qui va concaténer les keycodes des touches pressées
 dans une chaîne de caractères. Il restera à tester si la chaîne de caractères
 correspondant au code Konami est présente dans la chaîne des touches pressées.  
-   **Conseils :**
+   
+**Conseils :**
    
    - Les codes ASCII (keycodes) du code Konami sont 38 38 40 40 37 39 37 39
    66 65.  Comme un code ASCII peut aller jusqu'à 255, on écrit tous les
    keycodes sur trois chiffres pour éviter toute ambiguïté.
    - On pourra utiliser la méthode
      [**indexOf**](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/indexOf)
-     pour rechercher une chaîne de caractères dans une autre.  </div>
+     pour rechercher une chaîne de caractères dans une autre.  
+
 
 ### Chronomètre (*timer*) de 5 secondes pour répondre aux questions
 
@@ -352,8 +343,7 @@ libre de partir sur votre idée si vous le souhaitez.
   **startTime** est vide (càd non initialisé). Puis elle calcule le pourcentage
   de la progress-bar à afficher et appelle `animateBar(percentage)` pour
   modifier la **width** de la barre.
-- Le jeu est lancé par **start** (qui affecte un attribut `gameRunning` à
-`true`) et est arrêté par **endGame** (`gameRunning=false`).
+- Le jeu est lancé par **start** (qui affecte un attribut `gameRunning=true`) et est arrêté par **endGame** (`gameRunning=false`).
 - La fonction **updateBar** est lancée par **displayNextQuestion** qui
   initialise aussi
 `startTime=""`.   
@@ -368,52 +358,6 @@ qui sera appelée (une fois) lors du prochain rafraîchissement.
 - **updateBar** ne fait rien si le jeu est arrêté.
 - **updateBar** appelle **validate** si le jeu est en cours et le temps imparti est dépassé.
 
-<<<<<<< HEAD
-Créer une méthode konamiCode qui va concaténer les keycode des touches pressées
-dans une chaîne de caractères. Il restera à tester si la chaîne de caractères
-correspondant au code Konami est présente dans la chaîne des touches pressées.
-
-**Conseils :**
-
-- Les codes ASCII (keycodes) du code Conami sont 38 38 40 40 37 39 37 39 66 65.
-Idéalement, on écrit tous les keycodes sur trois chiffres pour éviter toute ambiguïté.
-
-- On pourra utiliser la méthode **indexOf** pour rechercher une chaîne de caractères dans une autre.
-
-## Chronomètre (*timer*) de 5 secondes pour répondre aux questions
-
-Observer d'abord la **div** de classe **progress-bar** dans le fichier
-`Quizz.html`. Le principe consiste à lui attribuer le style
-"width:60%" pour la remplir à 60%, etc... et c'est tout, l'affichage
-étant géré par bootstrap. Il faut aussi bien-sûr incrémenter ce
-pourcentage au cours du temps imparti (5 secondes) entre 0% et 100%.
-
-Suggestion pour la gestion de la barre. On implante :
- 
-- une fonction `animateBar(percentage)` qui met à jour la **width** de la progress-bar ;
-- un attribut **startTime** vide par défaut ou qui contient un temps en millisecondes ;
-- un attribut **questionDuration** qui prend la durée en millisecondes pour répondre à une question ;
-- une fonction **updateBar**  prenant en paramètre le temps courant (*timestamp*) en millisecondes. Cette
-  fonction initialise *startTime=timestamp* si **startTime** est vide. Puis elle
-  calcule le pourcentage de la progress-bar à afficher et appelle
-  `animateBar(percentage)` pour modifier la **width** de la barre.
-
-Le jeu est lancé par **start** (qui affecte *gameRunning=true*) et est arrêté par **endGame** (*gameRunning=false*).
-
-- La fonction **updateBar** est lancée par **displayNextQuestion** qui initialise aussi
-*startTime=""*. 
-ATTENTION, updateBar attend un timestamp, donc il vaut mieux l'appeler par
-  **requestAnimationFrame** comme indiqué ci-après.
-<!-- window.requestAnimationFrame(this.updateBar.bind(this)); 
--->
-- **updateBar** est également appelée lors du prochain rafraîchissement (demandé dans **updateBar**) s'il reste du temps et
-que le jeu est en cours (*gameRunning*). Pour ceci, utiliser
-window.[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) prenant une fonction à un argument (le **timestamp**)
-qui sera appelée (une fois) lors du prochain rafraîchissement.
-- **updateBar** ne fait rien si le jeu est arrêté.
-- **updateBar** appelle **validate** si le jeu est en cours et le temps imparti est dépassé.
-  
-=======
 ### Bouton fiftyfifty
 
 Associer le bouton à une méthode fiftyFifty qui désactive le bouton et tire au
@@ -421,7 +365,7 @@ hasard 2 mauvaises réponses pour les cacher (avec la classe `disabled`).
 <!-- Personnellement, besoin des fonctions indexOf, push  -->
 
 De plus, ré-afficher les réponses au début de chaque question (e.g. créer
-fonction `unhideAll` similaire à `unselectAll`).
+une fonction `unhideAll` similaire à `unselectAll`).
 
 
 ### Bouton Call
@@ -435,12 +379,12 @@ Idées / Question R
 
  Besoin de this ou implicite ?
 
- Rajouter un évènement avec du temps, genre un temps limite de réponse à la question
+ Rajouter un événement avec du temps, genre un temps limite de réponse à la question
  Commencer par sélectionner (unselect, selected du bon, et enlève disabled du bouton valider)
 
 Ordre des questions aléatoire
 
- This dans les gestionnaires d'évènements ?
+ This dans les gestionnaires d'événements ?
  elt.onclick = function (e) {
     console.log(this);
   };
@@ -454,7 +398,6 @@ Ordre des questions aléatoire
  -->
 
 ## Plus de détails sur l'arrachage de fonction
->>>>>>> 5db63fff5aa955cbc40b56fddb37096e10ebd502
 
 Voici un autre exemple pour illustrer le problème
 
