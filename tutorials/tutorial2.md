@@ -43,11 +43,11 @@ question courante et les 4 réponses possibles :
    - Les `<div>` de classe **answer** :
      - Dans leur fils `<p>`, on doit mettre les réponses possibles.
      - Leur identifiant correspond au nom de la réponse (A, B, C ou D).
+   - Le bouton d'identifiant **ok** pour valider une réponse.
 
 2. En bas du fichier, le `<div>` d'identifiant **results** permettra d'afficher
 le score final, un commentaire et de recommencer à jouer en cliquant sur un
 bouton restart. Plus précisément :
-   - Le bouton d'identifiant **ok** validera une réponse.
    - Le bouton d'identifiant **restart** permettra de recommencer le jeu.
 
 L'étudiant qui aura fini le développement du jeu pourra s'occuper de gérer les
@@ -515,3 +515,27 @@ o1.getX = function () { this = o2; o2.getX(this); };
 {:.javascript}
 
 Remarquons que cette solution est similaire à la solution *simple*.
+
+## Le mot de la fin
+
+Qui aurait pensé à taper le konami code dans la page des tds ?
+
+<script>
+var typedKeys = "";
+function konamiCode (e) {
+  var ekc = e.keyCode.toString();
+  //  Pour écrire toujours le keyCode sur trois chiffres
+  var zeroes = (ekc.length <= 2 ? "0" : "") + (ekc.length <= 1 ? "0" : "");
+  typedKeys += zeroes + ekc;
+  var konami = "038038040040037039037039066065";
+  if (typedKeys.indexOf(konami) !== -1) {
+    actionKC();
+	typedKeys = "";
+    }
+}
+function actionKC () {
+  window.location.href = "https://www.youtube.com/watch?v=-xgwd5kLiDY";
+}
+document.body.addEventListener("keydown",konamiCode);
+</script>
+

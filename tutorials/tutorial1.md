@@ -247,7 +247,7 @@ IDE préféré).
 3. Pour accéder en lecture/écriture aux classes de `enfants`, nous allons
    utiliser sa propriété `enfants.classList`
    ([documentation](https://developer.mozilla.org/fr/docs/Web/API/Element/classList),
-   [Ne marche pas sur IE <=9](http://caniuse.com/#search=classlist)).
+   [Ne marche pas sur IE &le; 9](http://caniuse.com/#search=classlist)).
    Une fonction très pratique de `classList` est la fonction `toggle()` qui agit
    comme un interrupteur&nbsp;: il active/désactive la classe selon si elle
    était désactivée/activée
