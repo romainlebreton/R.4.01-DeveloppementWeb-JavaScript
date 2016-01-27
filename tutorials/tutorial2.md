@@ -325,7 +325,7 @@ correspondant au code Konami est présente dans la chaîne des touches pressées
 
 Observer d'abord la **div** de classe **progress-bar** dans le fichier
 `Quizz.html`. Le principe consiste à lui attribuer le style "width:60%" pour la
-remplir à 60%, etc... et c'est tout, l'affichage étant géré par le CSS (plus
+remplir à 60% et ... c'est tout, l'affichage étant géré par le CSS (plus
 précisément le framework Bootstrap). Il faut aussi bien sûr incrémenter ce
 pourcentage au cours du temps imparti (10 secondes) de 0% à 100%.
 
@@ -342,35 +342,42 @@ progress-bar. Tester dans la console.
 </div>
 
 <div class="exercise">
-
-Créer un attribut **questionDuration** affecté au temps imparti pour
-  répondre à une question (en millisecondes).
-Définir une fonction `updateBar(timestamp)` prenant en paramètre le temps courant (*timestamp*)
-  en millisecondes. Cette fonction initialise un attribut `startTime=timestamp` si
-  **startTime** est vide (c'est-à-dire non initialisé). Puis elle calcule le pourcentage
-  de la progress-bar à afficher et appelle `animateBar(percentage)` pour
-  modifier la **width** de la barre.
-
-**updateBar** ne fait rien si le jeu est arrêté.  **updateBar** appelle
-**validate** si le jeu est en cours et que le temps imparti est dépassé.
-
+1. Créer un attribut **questionDuration** affecté au temps imparti pour répondre
+  à une question (en millisecondes).
+1. Définir une fonction `updateBar(timestamp)` prenant en paramètre le temps
+  courant (*timestamp*) en millisecondes. Cette fonction initialise un attribut
+  `startTime=timestamp` si **startTime** est vide (c'est-à-dire non
+  initialisé). Puis elle calcule le pourcentage de la progress-bar à afficher et
+  appelle `animateBar(percentage)` pour modifier la **width** de la barre.
+1. Testez votre fonction en l'appelant depuis la console avec de faux
+`timestamp` (par exemple, `0` puis `1000` puis `2000` jusqu'à `10000`).
 </div>
 
+Cherchons maintenant à animer cette barre en déclenchant **updateBar** à chaque
+frame de l'écran. Pour ceci, nous allons utiliser
+[window.requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+qui prend une fonction à un argument (le **timestamp**) qui sera appelée (une
+fois) lors du prochain rafraîchissement de l'écran.
+
 <div class="exercise">
-Cherchons maintenant à animer cette barre en déclenchant **updateBar**. Rappelons d'abord que Le jeu est lancé par **start** (qui affecte un attribut `gameRunning=true`) et est arrêté par **endGame** (`gameRunning=false`).
+1. Faites en sorte de **updateBar** finisse par se rappeler elle-même lors du
+prochain rafraîchissement de l'écran.
 
-- La fonction **updateBar** est lancée par **displayNextQuestion** qui
-  initialise aussi `startTime=""`.  **ATTENTION**, `updateBar` attend
-  un *timestamp*, donc il vaut mieux l'appeler par
-  **requestAnimationFrame** comme indiqué ci-après.  <!--
-  window.requestAnimationFrame(this.updateBar.bind(this)); -->
+1. Il ne reste plus qu'à lancer **updateBar** dans **displayNextQuestion**, qui
+   doit aussi réinitialiser la barre à `0%`.  
+   **Attention :** Comme `updateBar` est fait pour recevoir des *timestamp*
+   cohérents entre eux, donc il faut l'appeler par **requestAnimationFrame**
+   comme précédemment.
+   <!-- window.requestAnimationFrame(function(ts) {this.updateBar(ts);}); -->
+1. Testez votre fonction et regardez, la larme à l'oeil, votre barre prendre vie.
 
-- La fonction **updateBar** est également appelée lors du prochain
-rafraîchissement (demandé dans **updateBar**!) s'il reste du temps et
-que le jeu est en cours (*gameRunning*). Pour ceci, utiliser
-window.[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
-prenant une fonction à un argument (le **timestamp**) qui sera appelée
-(une fois) lors du prochain rafraîchissement.
+1. Il ne reste plus qu'à gérer les conditions de lancement et d'arrêt de la
+barre :
+   * Faites en sorte que votre barre s'arrête quand le jeu est fini
+   <!-- Avec e.g. un attribut isGameRunning -->
+   * Quand le temps est dépassé (et que le jeu est en cours), on doit valider la
+   réponse actuelle (et gérer dans **validate** la possibilité qu'aucune réponse
+   n'ait été sélectionnée).
 
 Tout devrait fonctionner maintenant ! 
 </div>
