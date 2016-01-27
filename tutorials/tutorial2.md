@@ -321,46 +321,63 @@ correspondant au code Konami est présente dans la chaîne des touches pressées
      pour rechercher une chaîne de caractères dans une autre.  
 
 
-### Chronomètre (*timer*) de 5 secondes pour répondre aux questions
+### Chronomètre (*timer*) de 10 secondes pour répondre aux questions
 
 Observer d'abord la **div** de classe **progress-bar** dans le fichier
 `Quizz.html`. Le principe consiste à lui attribuer le style "width:60%" pour la
 remplir à 60%, etc... et c'est tout, l'affichage étant géré par le CSS (plus
 précisément le framework Bootstrap). Il faut aussi bien sûr incrémenter ce
-pourcentage au cours du temps imparti (5 secondes) entre 0% et 100%.
+pourcentage au cours du temps imparti (10 secondes) de 0% à 100%.
 
 Voici quelques suggestions pour l'implantation du chronomètre. Sentez-vous
 libre de partir sur votre idée si vous le souhaitez.
  
-- une fonction `animateBar(percentage)` qui met à jour la **width** de la
-  progress-bar ;
-- un attribut **startTime** qui contient un temps en millisecondes (ou `""` par
-  défaut) ;
-- un attribut **questionDuration** qui prend la durée en millisecondes pour
-  répondre à une question ;
-- une fonction **updateBar** prenant en paramètre le temps courant (*timestamp*)
-  en millisecondes. Cette fonction initialise `startTime=timestamp` si
-  **startTime** est vide (càd non initialisé). Puis elle calcule le pourcentage
+<div class="exercise">
+
+Récupérer la **div** de classe **progress-bar** dans un attribut
+**progressBarContainer** de **game**.  Ecrire une fonction
+`animateBar(percentage)` qui met à jour la **width** de la
+progress-bar. Tester dans la console.
+
+</div>
+
+<div class="exercise">
+
+Créer un attribut **questionDuration** affecté au temps imparti pour
+  répondre à une question (en millisecondes).
+Définir une fonction `updateBar(timestamp)` prenant en paramètre le temps courant (*timestamp*)
+  en millisecondes. Cette fonction initialise un attribut `startTime=timestamp` si
+  **startTime** est vide (c'est-à-dire non initialisé). Puis elle calcule le pourcentage
   de la progress-bar à afficher et appelle `animateBar(percentage)` pour
   modifier la **width** de la barre.
-- Le jeu est lancé par **start** (qui affecte un attribut `gameRunning=true`) et est arrêté par **endGame** (`gameRunning=false`).
+
+**updateBar** ne fait rien si le jeu est arrêté.  **updateBar** appelle
+**validate** si le jeu est en cours et que le temps imparti est dépassé.
+
+</div>
+
+<div class="exercise">
+Cherchons maintenant à animer cette barre en déclenchant **updateBar**. Rappelons d'abord que Le jeu est lancé par **start** (qui affecte un attribut `gameRunning=true`) et est arrêté par **endGame** (`gameRunning=false`).
+
 - La fonction **updateBar** est lancée par **displayNextQuestion** qui
-  initialise aussi
-`startTime=""`.   
-**ATTENTION**, `updateBar` attend un *timestamp*, donc il vaut mieux l'appeler par
-  **requestAnimationFrame** comme indiqué ci-après.
-<!-- window.requestAnimationFrame(this.updateBar.bind(this)); 
--->
-- **updateBar** est également appelée lors du prochain rafraîchissement (demandé dans **updateBar**) s'il reste du temps et
+  initialise aussi `startTime=""`.  **ATTENTION**, `updateBar` attend
+  un *timestamp*, donc il vaut mieux l'appeler par
+  **requestAnimationFrame** comme indiqué ci-après.  <!--
+  window.requestAnimationFrame(this.updateBar.bind(this)); -->
+
+- La fonction **updateBar** est également appelée lors du prochain
+rafraîchissement (demandé dans **updateBar**!) s'il reste du temps et
 que le jeu est en cours (*gameRunning*). Pour ceci, utiliser
-window.[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) prenant une fonction à un argument (le **timestamp**)
-qui sera appelée (une fois) lors du prochain rafraîchissement.
-- **updateBar** ne fait rien si le jeu est arrêté.
-- **updateBar** appelle **validate** si le jeu est en cours et le temps imparti est dépassé.
+window.[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+prenant une fonction à un argument (le **timestamp**) qui sera appelée
+(une fois) lors du prochain rafraîchissement.
 
-### Bouton fiftyfifty
+Tout devrait fonctionner maintenant ! 
+</div>
 
-Associer le bouton à une méthode fiftyFifty qui désactive le bouton et tire au
+### Bouton Fiftyfifty
+
+Associer le bouton à une méthode **fiftyFifty** qui désactive le bouton et tire au
 hasard 2 mauvaises réponses pour les cacher (avec la classe `disabled`).
 <!-- Personnellement, besoin des fonctions indexOf, push  -->
 
