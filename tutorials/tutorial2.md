@@ -259,11 +259,9 @@ disparaissent. Pour ceux qui veulent creuser le problème, aller voir la
 
 
 6. Faites en sorte que le bouton Valider soit désactivé au début de chaque
-question. Et qu'il s'active dès qu'une réponse est sélectionnée.
-<!--
-Désactiver-le à la fin de **displayNextQuestion**
-Activer-le à la fin de **select**.
--->
+question (en lui rajoutant la classe `disabled`). Et qu'il s'active dès qu'une
+réponse est sélectionnée.
+
 </div>
 
 ### Validation d'une question 
