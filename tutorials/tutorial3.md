@@ -45,7 +45,8 @@ Nous allons démarrer avec un squelette de la page de formulaire. Veuillez donc 
 Voici un aperçu du scénario que nous allons coder :
 
 1. L'utilisateur tape les premières lettres de sa ville dans le champ texte *Ville* ;
-2. Le JavaScript va envoyer au serveur ces premières lettres sur une page spécifique **cityRequest.php** ;
+2. Le JavaScript va envoyer au serveur ces premières lettres en les passant en
+   paramètre de la page spécifique **cityRequest.php** ;
 3. Le serveur répondra en envoyant la liste des villes commençant par ces lettres ;
 4. Le JavaScript affichera ces villes.
 
@@ -86,7 +87,12 @@ Les langages de programmation Web implémentent les fonctions qui permettent d'e
 La base de données des villes françaises a déjà été mise en place sur **infolimon**. Dans un élan de bonté, nous vous donnons déjà les fonctions liées à la base de données dans le squelette **cityRequest.php**. 
 
 <div class="exercise">
-C'est à vous de compléter la page **cityRequest.php** pour qu'elle suive le cahier des charges précédent.
+
+C'est à vous de compléter la page **cityRequest.php** pour qu'elle suive le
+cahier des charges précédent.  
+**Aide :** On vous a maché le boulot puisque la fonction `selectByName($name)`
+vous fait la requête SQL et renvoie le tableau des villes commençant par la
+chaîne de caractères dans `$name`.
 </div>
 
 
@@ -129,6 +135,13 @@ Cette manière de procéder est dite *asynchrone*, car le chargement de la page 
 
 
 <div class="exercise">
+
+1. Créer votre fichier **cityAutocomplete.js** avec le code suivant. Lions le
+   script à la page HTML **dans son en-tête** (c'est une bonne pratique pour
+   voir facilement tous les fichiers externes requis par le HTML à un seul
+   endroit). Puis rajoutez l'attribut `async` à `<script>` pour que le
+   chargement du JS ne bloque pas la construction du DOM (cf Cours 3).
+
 1. Expérimentez avec la fonction `myajax`. Par exemple, donnez-lui l'URL de la page actuelle et une fonction `callback` qui affiche la variable httpRequest pour voir ce qu'elle contient.
 
 2. Créez une fonction `cityRequest` qui prend en argument une chaîne de caractères (les premières lettres d'un nom de ville). Cette fonction va appeler `cityRequest.php` avec les bons paramètres en *query string*. Le callback de `myajax` sera la fonction `cityResponse` suivante.
@@ -196,7 +209,7 @@ Ce fichier déclare une variable `countries` qui va contenir les continents, qui
 Voici ce que vous devez implémenter dans un nouveau fichier **countryAutoSelect.js** qui vous n'oublierez pas de charger dans votre page Web.
 
 1. Au chargement de la page, vous devez lire la liste des continents de `countries` et créer les `<option>` correspondants du `<select>` *Continents*.  
-  **Indice :** Quel est le bon événement à écouter pour détecter la fin du chargement de la page ? On en parlait dans le TD précédent.  
+  **Indice :** Quel est le bon événement à écouter pour détecter la fin du chargement de la page (cf Cours 2 & 3) ?  
   **Indice :** Comment accède-t-on à la liste des continents de `countries` ? La page [suivante sur la syntaxe du JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements) peut vous aider.
 
 2. Lors d'un changement de valeur du `<select>` *Continents*, il faut modifier les valeurs du `<select>` *Pays*. L'[événement suivant](https://developer.mozilla.org/en-US/docs/Web/Events/change) devrait satisfaire vos besoins.
