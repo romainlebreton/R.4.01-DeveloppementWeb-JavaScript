@@ -1,38 +1,33 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Chargement du DOM</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <script src="script0.js"></script>
+        <script>console.log("Script n°0 : ", document.body.innerHTML);</script>
         <div>
             <p>First paragraph</p>
-            <script src="script1.js"></script>
+            <script>console.log("Script n°1 : ", document.body.innerHTML);</script>
             <ol>
                 <li>List 1</li>
 
                 <li>List 2</li>
             </ol>
-            <script src="script2.js"></script>
+            <script>console.log("Script n°2 : ", document.body.innerHTML);</script>
         </div>
 <pre style="border:1px solid #000;">
-// Script 0
+&lt;script&gt;console.log("Script n°0 : ", document.body.innerHTML);&lt;/script&gt;
 &lt;div&gt;
     &lt;p&gt;First paragraph&lt;/p&gt;
-    // Script 1
+    &lt;script&gt;console.log("Script n°1 : ", document.body.innerHTML);&lt;/script&gt;
     &lt;ol&gt;
         &lt;li&gt;List 1&lt;/li&gt;
 
         &lt;li&gt;List 2&lt;/li&gt;
     &lt;/ol&gt;
-    // Script 2
+    &lt;script&gt;console.log("Script n°2 : ", document.body.innerHTML);&lt;/script&gt;
 &lt;/div&gt;
 // Les scripts ne font qu'afficher 
 // document.body.innerHTML.

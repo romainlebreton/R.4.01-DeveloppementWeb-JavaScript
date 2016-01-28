@@ -8,6 +8,8 @@ layout : slideshow
 
 ## Plan du cours
 
+1. Chargement des pages Web
+
 1. Bref rappel sur le protocole *HTTP*
 
 2. Requête synchrone avec XMLHttpRequest (XHR) et ses défauts
@@ -17,7 +19,6 @@ layout : slideshow
  - via le format JSON
 
 </section>
-
 <section>
 
 <!--
@@ -35,11 +36,16 @@ defer
 
 1. Récupération de la page HTML
 2. Lecture du document HTML au fur et à mesure
-   1. On crée les nœuds *balise*, *texte*, ... du DOM au fur et à mesure
-   2. En cas de feuille CSS, on charge la feuille et ses règles en parallèle du DOM
-   3. En cas de balise `<script>`, on charge le JavaScript et on l'exécute immédiatement
+   1. Nœuds *balise*, *texte* :  
+      rajoutée au DOM au fur et à mesure
+   2. Feuille CSS externe :  
+      chargement de la feuille et application de ses règles **en
+      parallèle** du DOM (non bloquant)
+   3. JavaScript :  
+      chargement du fichier JS puis exécution  
       **Attention :** Bloque la construction du DOM et du CSS !
-   4. En cas de chargement d'image, vidéo, le fichier est chargé de manière non bloquante
+   4. Balises images, vidéos :  
+      le fichier est chargé **en parallèle** (non bloquant)
 
 <!-- 
 
@@ -64,17 +70,54 @@ http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/
 </section>
 <section>
 
+<!--
+Record
+Throttle
+DOMContentLoaded & load event fired
+https://developers.google.com/web/tools/chrome-devtools/profile/network-performance/resource-loading#resource-network-timing
+-->
+
 ## Exemples de chargement
 
+<br>
 <a href="{{site.baseurl}}/assets/DOMLoadingError.html">Erreur en cas d'interaction trop tôt</a>.
+
+<br>
+<br>
 
 <a href="{{site.baseurl}}/assets/DOMLoading.html">Page montrant le chargement progressif</a>.
 
-**Conséquences :**
+</section>
+<section>
 
-* Ne pas interagir avec le document avant qu'il soit chargé
-* Attendre l'événement `DOMContentLoaded` pour interagir.  
-  Voir l'onglet *Network* pour une visualisation.
+## Solutions
+
+* Attendre la fin de la chargement du `DOM` avant d'interagir avec lui
+
+  **Rappel :** L'événement `DOMContentLoaded` est lancé quand le document a été
+  chargé et analysé, sans attendre le chargement des CSS, images, ...
+
+* `<script src="..." async></script>` :  
+  Le script est chargé en paralèlle de la lecture du DOM. Une fois chargé, le
+  script est exécuté (ce qui met en pause le reste).  
+  <!--
+  Du coup, on ne perd plus le temps de chargement
+  Attention, l'ordre d'exécution des scripts n'est plus garanti
+  -->
+
+* `<script src="..." defer></script>` :  
+   Le script est chargé en paralèlle de la lecture du DOM. Il ne sera exécuté
+   qu'après la lecture du document.
+{:.incremental}
+
+<!--
+Voir l'onglet *Network* pour une visualisation :
+Décocher tout, afficher juste name & timeline, Throttling GPRS
+Montrer DOMContentLoaded & load
+On voit que DOMContentLoaded n'attend pas les images (ni le CSS??)
+Contrairement à load (qui n'attend pas les fontes externes)
+
+-->
 
 
 </section>
@@ -82,56 +125,70 @@ http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/
 
 <section>
 
-# Bref rappel sur le protocole *HTTP*
+## Bref rappel sur *HTTP*
 
-</section>
-<section>
+Demander une page Web, c'est envoyer une requête HTTP à un serveur HTTP :
 
-Quand on saisit une URL sur un navigateur, une requête HTTP est envoyée au serveur pour renvoyer au client une page Web. Techniquement, si on se souvient des cours de réseaux de l'an dernier :
+~~~
+GET /page.html HTTP/1.1 
+Host: truc.net
+~~~
+{:.http}
 
- - Un message TCP  est envoyé du client au serveur (domaine) sur le port 80.  
-Le message contient des lignes du genre :
+Le serveur renvoie alors sa réponse HTTP, qui contient la page Web demandée dans
+son *corps* :
 
-   ~~~
-   GET /page.html HTTP/1.1 
-   Host: truc.net
-   User-Agent: firefox
-   ~~~
-   {:.http}
+~~~
+HTTP/1.1 200 OK
+Content-Length: 65585
+Content-Type: text/html
+Last-Modified: Wed, 09 Apr 2014 10:48:09 GMT
 
- - Un message TCP est renvoyé du serveur vers le client.
+<!doctype html>
+<html>...
+~~~
+{:.http}
 
-   ~~~
-   HTTP/1.1 200 OK
-   Content-Length: 65585
-   Content-Type: text/html
-   Last-Modified: Wed, 09 Apr 2014 10:48:09 GMT
-   <!doctype html>
-   ...
-   ~~~
-   {:.http}
+<!-- Quand on saisit une URL sur un navigateur, une requête HTTP est envoyée au -->
+<!-- serveur pour renvoyer au client une page Web. Techniquement, si on se souvient -->
+<!-- des cours de réseaux de l'an dernier : -->
+
+<!--  - Un message TCP  est envoyé du client au serveur (domaine) sur le port 80.   -->
+<!-- Le message contient des lignes du genre : -->
+
+<!--  - Un message TCP est renvoyé du serveur vers le client. -->
+
+<!--    ~~~ -->
+<!--    HTTP/1.1 200 OK -->
+<!--    Content-Length: 65585 -->
+<!--    Content-Type: text/html -->
+<!--    Last-Modified: Wed, 09 Apr 2014 10:48:09 GMT -->
+<!--    <!doctype html> -->
+<!--    ... -->
+<!--    ~~~ -->
+<!--    {:.http} -->
 
 </section>
 <section>
 ## Remarques
 
-*Requête :* La première ligne indique :
+*Requête :*
 
-- la *méthode* de la requête (GET, POST,
-  DELETE, PUT)  
-  GET : requête sans effet de bord sur le serveur  
-  POST : requête pouvant modifier le serveur
-- le chemin de la ressource 
-- la version du protocole HTTP 
- 
-Le reste de l'entête fournit diverses informations.
+- la *méthode* de la requête (GET, POST, DELETE, PUT)
+  <!-- GET : requête sans effet de bord sur le serveur -->
+  <!-- POST : requête pouvant modifier le serveur -->
+- le chemin de la ressource
+- la version du protocole HTTP
+- le *Host*, càd le serveur HTTP
 
-*Réponse :* La première ligne indique :
+*Réponse :*
 
 - la version du protocole HTTP
-- l'état (*status*) de la réponse  
-  sous forme numérique (erreur si >= 400) et  
-  sous forme d'une chaîne de caractères.
+- l'état (*status*) de la réponse sous forme numérique et texte  (erreur si &ge; 400) :
+  - 200 OK
+  - 304 Not Modified
+  - 404 Not Found
+  - 500 Internal Server Error
 
 </section>
 <section>
@@ -139,9 +196,10 @@ Le reste de l'entête fournit diverses informations.
 ## Encodage d'une URL
 
 Une URI ne contient que des caractères ASCII.  
-D'où un encodage/décodage grâce aux fonctions `encodeURIComponent` et `decodeURIComponent`.
+D'où un encodage/décodage grâce aux fonctions `encodeURIComponent` et
+`decodeURIComponent`.
 
-**Exemple**
+**Exemple :**
 
 <div style="font-size:80%">
 ~~~
@@ -153,64 +211,218 @@ console.log(decodeURIComponent("Black%20%26%20White"));
 {:.javascript}
 </div>
 
-- 20 est le code ASCII du caractère espace
-- 26 est le code ASCII du caractère &
+**Remarque :**
+
+- 20 est le code ASCII hexadécimal du caractère espace
+- 26 est le code ASCII hexadécimal du caractère &
 
 </section>
 <section>
 
-# Requête synchrone avec `XMLHttpRequest`
+# `XMLHttpRequest`
 
 </section>
 <section>
 
-## Utilisation de `XMLHttpRequest`  
-Il suffit de :  
-- créer une instance de cette classe ;  
-- configurer la requête (préparer l'ouverture d'une URL) : méthode `open` ;   
-- envoyer la requête : méthode `send`.  
+## Requête synchrone avec `XHR` 
+Il suffit de :
 
-Après la requête, le document résultant (ainsi que l'entête, *status*, etc.) est disponible dans cet objet.
+- créer une instance de la classe `XMLHttpRequest`
+- initialiser la requête et écriture son en-tête avec `open`
+- écrire le corps de la requête et l'envoyer avec `send`
+
+Après `send`, la réponse HTTP (le *status*, le document) est écrit cet
+objet.
 
 <div style="font-size:80%">
 ~~~
 var req = new XMLHttpRequest();
-req.open('GET', 'http://www.mozilla.org/', false); 
-req.send(null); // null: pas de paramètre ajouté à l'URL
+req.open('GET', 'http://romainlebreton.github.io/', false); 
+req.send(null); // null: corps de la requête vide si GET
+
 console.log(req.status, req.statusText); // -> 200 OK
-console.log(req.getResponseHeader("content-type"); // -> text/html
+console.log(req.getResponseHeader("content-type")); //->text/html
 if (req.status == 200)
-   console.log(req.responseText); // -> body de la page
+   console.log(req.responseText); // -> page Web retournée
 ~~~
 {:.javascript}
 </div>
 
-**Remarque :** pas terrible d'un point de vue du génie logiciel de récupérer le résultat dans le même objet !
+<!-- **Remarque :** pas terrible d'un point de vue du génie logiciel de récupérer le -->
+<!--   résultat dans le même objet ! -->
+
+<!--
+Faire la démo mais attention :
+
+XHR ne permet que de faire des requêtes sur le même domaine pour des questions
+de sécurité
+
+-->
 
 </section>
 <section>
 
-## Défauts d'une requête synchrone
+## Format d'échange
 
-C'est le `false` en dernier argument de la méthode `open` de l'objet XHR qui indique que la requête n'est *pas* asynchrone 
-et est donc synchrone.  
-Autrement dit, le `send` est bloquant.
+Donc `XMLHttpRequest` permet de lancer une communication avec le serveur à tout
+moment.
+
+**Quelles informations échanger entre le serveur et le client ?**
+
+Naturellement, des pages Web. Mais pas que !
+
+Si je veux que le serveur m'échange des informations plus simples (nombres,
+tableaux, chaînes de caractères), il me faut une langue commune au serveur et au
+JavaScript (client) :
+
+1. Historiquement, le format XML (mais très proche du HTML)
+
+1. Plus récemment, le format JSON
+
+</section>
+<section>
+
+## Informations échangées au format XML
+
+Exemple d'un fichier *fruits.xml* produit par une requête :
+
+<div style="font-size:80%">
+~~~
+<fruits >
+    <fruit name="banana" color="yellow"/>
+    <fruit name="lemon" color="yellow"/>
+    <fruit name="cherry" color="red"/>
+</fruits>
+~~~
+{:.xml}
+</div>
+
+Récupération de l'information :
+
+<div style="font-size:80%">
+~~~
+var req = new XMLHttpRequest();
+req.open("GET", "../assets/fruit.xml", false);
+req.send(null);
+req.responseXML.querySelectorAll("fruit").length;
+// → 3
+~~~
+{:.javascript}
+</div>
+
+L'objet *req.responseXML* contient le document structuré
+(un peu comme le DOM).
+
+</section>
+<section>
+
+## Le format JSON
+
+**Qu'est-ce que JSON ?**
+
+**JSON** signifie *JavaScript Object Notation*. C'est un format d'échange de
+données (nombres, tableaux, objets ...) qui est ressemble fortement au
+JavaScript.
+
+**Exemple :**
+<!-- La chaîne de caractères `{banana: "yellow", lemon: "yellow", -->
+<!-- cherry: "red"}` encode un objet avec trois attributs ... -->
+
+<div style="font-size:80%">
+~~~
+JSON.parse('{"banana":"yellow","lemon":"yellow","cherry":"red"}');
+// transforme le texte précédent en l'objet JavaScript
+// {banana: "yellow", lemon: "yellow", cherry: "red"}
+~~~
+{:.javascript}
+</div>
+
+<br>
+
+**Remarque :** PHP sait aussi lire et écrire le JSON
+<!-- Comment envoyer l'info à partir du serveur Web, en PHP par exemple : -->
+
+~~~
+echo JSON_encode($var_php);
+~~~
+{:.javascript}
+
+Donc JSON permet à PHP et JS de communiquer !
+
+
+</section>
+<section>
+
+## Informations échangées au format JSON
+
+Exemple d'un fichier *fruits.json* produit par une requête :
+
+~~~
+{"banana":"yellow","lemon":"yellow","cherry":"red"}
+~~~
+{:.json}
+
+Récupération de l'information :
+
+<div style="font-size:80%">
+~~~
+var req = new XMLHttpRequest();
+req.open("GET", "../assets/fruit.json", false); 
+req.send(null); 
+console.log(JSON.parse(req.responseText));
+// → {banana: "yellow", lemon: "yellow", cherry: "red"}
+~~~
+{:.javascript}
+</div>
+
+</section>
+<section>
+
+## Défaut d'une requête synchrone
+
+<!-- C'est le `false` en dernier argument de la méthode `open` de l'objet XHR qui indique que la requête n'est *pas* asynchrone  -->
+<!-- et est donc synchrone.  -->
 
 Inconvénients d'une requête synchrone :
 
-- Programme client bloqué tant que le navigateur et le serveur communiquent.  
-D'autant plus gênant que la connexion est mauvaise, le serveur est lent ou le fichier renvoyé est gros !
+- **Le `send` est bloquant**, c'est-à-dire que le JavaScript reste bloqué sur
+`send` tant que l'on a pas reçu la réponse du serveur.
+
+- C'est d'autant plus gênant que la connexion est mauvaise, le serveur est lent
+  ou le fichier renvoyé est gros !
 
 - Même les événements ne se déclenchent pas sur le navigateur ! **Pourquoi ??**
+
+<div class="myfootnote">
+**Remarque :** C'est le `false` de `req.open('GET', url, false)` qui fait que la
+  requête est asynchrone.
+</div>
 
 </section>
 <section>
 
-## Défauts d'une requête synchrone
+## Défaut d'une requête synchrone
 
 **Parce que les événements en Javascript ne sont déclenchés que lorsque la pile des appels de fonctions est vide !**
 
-[Visualisation de la queue des événements avec l'outil Loupe](http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
+[Visualisation de la queue des événements avec l'outil Loupe](http://sameoldmadness.github.io/loupe/)
+
+<!-- (http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) -->
+
+<!--
+Autre demo :
+function a() { b(); }
+function b() { c(); }
+function c() { d(); }
+function d() { console.log('hi'); }
+document.body.addEventListener('click',
+  function () {
+    setTimeout(function () {
+    a();
+  }, 1000);
+});
+
+-->
 
 [Exemple de blocage avec une requête synchrone](http://www.lirmm.fr/~lebreton/PWCR/ExempleBlocageAJAX/)
 
@@ -229,18 +441,25 @@ function myajax(url, callBack) {
 </section>
 <section>
 
-# Requête `a`synchrone avec `XMLHttpRequest` (AJAX)
+## Requête `a`synchrone avec `XHR`
 
-</section>
-<section>
+On active l'`a`synchronisme avec `req.open('GET', url, true)`
 
-Tout, c'est-à-dire l'`a`synchronisme, est dans le `true` !  
-Mais il faut un mécanisme pour notifier au client que la requête est terminée : écoute de l'événement `"load"`
+<br>
 
-<div style="font-size:80%">
+Mais il faut un mécanisme pour notifier au client que la requête est terminée :
+
+<div class="centered">
+Écoute de l'événement `"load"`
+</div>
+
+<br>
+
+**Exemple :**
+<div style="font-size:90%">
 ~~~
 var req = new XMLHttpRequest(); 
-req.open ("GET", "example/data.txt", true); 
+req.open ("GET", "http://romainlebreton.github.io", true); 
 req.addEventListener (
       "load", 
       function() { console.log ("Done: ", req.status); }
@@ -265,65 +484,6 @@ en modifiant un sous-arbre seulement ;
 - L'objet XHR sert au dialogue asynchrone avec le serveur Web ;
 
 - XML (ou JSON ou ...) structure les informations transmises entre le serveur Web et le navigateur.
-
-</section>
-<section>
-
-## Informations échangées au format XML
-
-Exemple d'un fichier *example/fruits.xml* produit par une requête :
-
-<div style="font-size:80%">
-~~~
-<fruits >
-    <fruit name="banana" color="yellow"/> 
-    <fruit name="lemon" color="yellow"/> 
-    <fruit name="cherry" color="red"/>
-</fruits>
-~~~
-{:.html}
-</div>
-
-Récupération de l'information :
-
-<div style="font-size:80%">
-~~~
-var req = new XMLHttpRequest();
-req.open("GET", "example/fruit.xml", false);
-req.send(null); 
-console.log(req.responseXML.querySelectorAll("fruit").length); 
-// → 3
-~~~
-{:.javascript}
-</div>
-
-L'objet *req.responseXML* contient le document structuré  
-(un peu comme le DOM).
-
-</section>
-<section>
-
-## Informations échangées au format JSON
-
-<div style="font-size:80%">
-~~~
-var req = new XMLHttpRequest();
-req.open("GET", "example/fruit.json", false); 
-req.send(null); 
-console.log(JSON.parse(req.responseText));
-// → {banana: "yellow", lemon: "yellow", cherry: "red"}
-~~~
-{:.javascript}
-</div>
-
-Comment envoyer l'info à partir du serveur Web, en PHP par exemple :
-
-<div style="font-size:80%">
-~~~
-echo JSON_encode($resultat_requete_sql);
-~~~
-{:.javascript}
-</div>
 
 </section>
 <section>
