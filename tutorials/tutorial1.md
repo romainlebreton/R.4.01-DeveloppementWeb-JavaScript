@@ -391,8 +391,10 @@ un formulaire en cliquant sur un bouton.
 
 ## Exercices pour les plus avancés
 
-* Rajoutez un bouton pour réinitialiser le formulaire (ceci ne nécessite pas de
-  JavaScript)
+* Rajoutez un bouton pour réinitialiser le formulaire. Le gros du travail ne
+  nécessite pas de JavaScript car il suffit de mettre le bon bouton. Complétez
+  l'action par défaut du navigateur en réinitialisant le formulaire enfant
+  (caché, avec un seul enfant, champs texte vides).
 <!-- <button type="reset"> -->
 * Sur le bouton envoyer, rajouter un gestionnaire pour l'évènement `click` qui
 empêchera l'action par défaut (qui est d'envoyer le formulaire) si les deux
@@ -421,7 +423,7 @@ Afficher un truc propre comme le fait Fundation Abide
 
 ### Version de Chrome trop ancienne
 
-Si votre version de Chrome/Chromium est trop ancienne à l'IUT&nbsp;:
+Si votre version de Chrome/Chromium sur Windows est trop ancienne à l'IUT&nbsp;:
 identifiez-vous sur le
 [site de l'IUT](https://iutdepinfo.iutmontp.univ-montp2.fr/), puis téléchargez
 [l'archive suivante](https://infolimon.iutmontp.univ-montp2.fr/public/windows/chrome-win32.zip)

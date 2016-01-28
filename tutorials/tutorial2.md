@@ -163,22 +163,22 @@ dans la console pour tester que cela passe bien à la question d'après.
 
 ### Gérer la sélection d'une réponse
 
-Nous souhaitons pouvoir sélectionner une réponse. Pour cela, nous
-ajouterons la classe **selected** à l'**answerContainer**
-correspondant (ce qui aura aussi pour effet de changer sa
-couleur). 
+Nous souhaitons pouvoir sélectionner une réponse. Pour cela, nous ajouterons la
+classe **selected** à l'**answerContainer** correspondant (ce qui aura aussi
+pour effet de changer sa couleur).
 
 <div class="exercise">
-Nous allons procéder en plusieurs étapes :
 
-1. On souhaite créer un gestionnaire d'événement **click** associé à chacun des
-**answerContainer**. Comme
+On souhaite créer un gestionnaire d'événement **click** associé à chacun des
+**answerContainer** avec pour effet de changer la couleur du `<div>`
+cliqué. Nous allons procéder en plusieurs étapes. Comme
 [on l'a vu en cours]({{site.baseurl}}/classes/class2.html#lobjet-vnement), la
-fonction donnée au gestionnaire reçoit comme paramètre l’objet événement.  Pour
-mieux comprendre cet objet événement, créez un gestionnaire qui appellera une
-fonction anonyme à un argument (l'objet événement) et affichera cet argument
-dans la console. Tester la fonction et inspectez les attributs de l'objet
-événement.  
+fonction donnée au gestionnaire reçoit comme paramètre l’objet événement.
+
+1. Pour mieux comprendre cet objet événement, créez un gestionnaire pour chacun
+des **answerContainer** qui appellera une fonction (anonyme) à un argument
+(l'objet événement) et affichera cet argument dans la console. Tester la
+fonction et inspectez les attributs de l'objet événement pour mieux le comprendre.  
 **Note :** Une fonction anonyme est une déclaration de fonction sans nom comme
 par exemple
 
@@ -189,9 +189,14 @@ par exemple
    ~~~
    {:.javascript}
 
-2. En utilisant l'attribut **currentTarget** de l'objet événement, retrouver l'élément HTML qui a vu
-son gestionnaire d'événement appeler la fonction de traitement. Ajouter la
-classe **selected** à cet élément. Tester la fonction.
+1. En particulier, faites des `console.log` des attributs `target` et
+`currentTarget` de l'objet événement. Quelle est la différence entre les deux ?
+Confirmez votre réponse en lisant la documentation des fonctions sur le Mozilla
+Developper Network par exemple.
+
+2. En utilisant l'attribut **currentTarget** de l'objet événement, retrouver
+l'élément HTML qui a vu son gestionnaire d'événement appeler la fonction de
+traitement. Ajouter la classe **selected** à cet élément. Tester la fonction.
 
 3. Nous souhaitons que le code de la fonction soit plutôt dans l'objet **game** dans
 une méthode appelée **select**. Créer la méthode et y déplacer votre code. Donner
