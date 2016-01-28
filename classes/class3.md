@@ -1,5 +1,5 @@
 ---
-title : Cours 3 <br> Asynchronisme en Javascript
+title : Cours 3 <br> Asynchronisme en JavaScript
 subtitle : Ajax, JSON... et les concepts
 layout : slideshow
 ---
@@ -96,7 +96,7 @@ https://developers.google.com/web/tools/chrome-devtools/profile/network-performa
   chargé et analysé, sans attendre le chargement des CSS, images, ...
 
 * `<script src="..." async></script>` :  
-  Le script est chargé en paralèlle de la lecture du DOM. Une fois chargé, le
+  Le script est chargé en parallèle de la lecture du DOM. Une fois chargé, le
   script est exécuté (ce qui met en pause le reste).  
   <!--
   Du coup, on ne perd plus le temps de chargement
@@ -108,7 +108,7 @@ https://developers.google.com/web/tools/chrome-devtools/profile/network-performa
   -->
 
 * `<script src="..." defer></script>` :  
-   Le script est chargé en paralèlle de la lecture du DOM. Il ne sera exécuté
+   Le script est chargé en parallèle de la lecture du DOM. Il ne sera exécuté
    qu'après la lecture du document.
 {:.incremental}
 
@@ -447,7 +447,7 @@ Même les événements ne se déclenchent pas sur le navigateur ! **Pourquoi ??*
 <div class="incremental">
 <div>
 
-**Parce que les événements en Javascript ne sont déclenchés que lorsque la pile des appels de fonctions est vide !**
+**Parce que les événements en JavaScript ne sont déclenchés que lorsque la pile des appels de fonctions est vide !**
 
 [Visualisation de la queue des événements avec l'outil Loupe](http://sameoldmadness.github.io/loupe/)
 
