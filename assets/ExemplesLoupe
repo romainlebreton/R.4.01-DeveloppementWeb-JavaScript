@@ -1,0 +1,43 @@
+// Call Stack
+// Settings
+// delay : 2000 ms
+
+function a() { b(); }
+function b() { c(); }
+function c() { d(); }
+function d() { console.log('hi'); }
+a();
+
+/////////////////
+// SetTimeOut
+// WebApi and callback queue
+// Settings : show event loop
+
+function a() { b(); }
+function b() { c(); }
+function c() { d(); }
+function d() { console.log('hi'); }
+a();
+
+setTimeout(function timeout() {
+    console.log("Click the button!");
+}, 5000);
+
+a();
+
+/////////////////
+// More
+
+$.on('button', 'click', function onClick() {
+    setTimeout(function timer() {
+        console.log('You clicked the button!');    
+    }, 2000);
+});
+
+console.log("Hi!");
+
+setTimeout(function timeout() {
+    console.log("Click the button!");
+}, 5000);
+
+console.log("Welcome to loupe.");
