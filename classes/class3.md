@@ -15,8 +15,6 @@ layout : slideshow
 2. Requête synchrone avec XMLHttpRequest (XHR) et ses défauts
 
 3. Requête asynchrone avec XHR
- - via le format XML
- - via le format JSON
 
 </section>
 <section>
@@ -102,6 +100,10 @@ https://developers.google.com/web/tools/chrome-devtools/profile/network-performa
   script est exécuté (ce qui met en pause le reste).  
   <!--
   Du coup, on ne perd plus le temps de chargement
+  
+  On ne peut pas couper au fait que l'exécution du JS bloque le reste puisque le
+  JS classique (synchrone) ne fait qu'un truc à la fois
+  
   Attention, l'ordre d'exécution des scripts n'est plus garanti
   -->
 
@@ -213,8 +215,8 @@ console.log(decodeURIComponent("Black%20%26%20White"));
 
 **Remarque :**
 
-- 20 est le code ASCII hexadécimal du caractère espace
-- 26 est le code ASCII hexadécimal du caractère &
+- `0x20` est le code ASCII (hexadécimal) du caractère espace
+- `0x26` est le code ASCII (hexadécimal) du caractère &
 
 </section>
 <section>
@@ -231,8 +233,8 @@ Il suffit de :
 - initialiser la requête et écriture son en-tête avec `open`
 - écrire le corps de la requête et l'envoyer avec `send`
 
-Après `send`, la réponse HTTP (le *status*, le document) est écrit cet
-objet.
+Après `send`, la réponse HTTP (le *status*, le document ...) est écrit dans ce
+même objet.
 
 <div style="font-size:80%">
 ~~~
@@ -284,7 +286,7 @@ JavaScript (client) :
 
 ## Informations échangées au format XML
 
-Exemple d'un fichier *fruits.xml* produit par une requête :
+Exemple d'un fichier *fruits.xml* :
 
 <div style="font-size:80%">
 ~~~
@@ -297,7 +299,7 @@ Exemple d'un fichier *fruits.xml* produit par une requête :
 {:.xml}
 </div>
 
-Récupération de l'information :
+Récupération de l'information auprès du serveur :
 
 <div style="font-size:80%">
 ~~~
@@ -321,8 +323,7 @@ L'objet *req.responseXML* contient le document structuré
 **Qu'est-ce que JSON ?**
 
 **JSON** signifie *JavaScript Object Notation*. C'est un format d'échange de
-données (nombres, tableaux, objets ...) qui est ressemble fortement au
-JavaScript.
+données (nombres, tableaux, objets ...) qui reprend la syntaxe du JavaScript.
 
 **Exemple :**
 <!-- La chaîne de caractères `{banana: "yellow", lemon: "yellow", -->
@@ -355,14 +356,16 @@ Donc JSON permet à PHP et JS de communiquer !
 
 ## Informations échangées au format JSON
 
-Exemple d'un fichier *fruits.json* produit par une requête :
+Exemple d'un fichier *fruits.json* :
 
 ~~~
 {"banana":"yellow","lemon":"yellow","cherry":"red"}
 ~~~
 {:.json}
 
-Récupération de l'information :
+<br>
+
+Récupération de l'information auprès du serveur :
 
 <div style="font-size:80%">
 ~~~
@@ -391,8 +394,6 @@ Inconvénients d'une requête synchrone :
 - C'est d'autant plus gênant que la connexion est mauvaise, le serveur est lent
   ou le fichier renvoyé est gros !
 
-- Même les événements ne se déclenchent pas sur le navigateur ! **Pourquoi ??**
-
 <div class="myfootnote">
 **Remarque :** C'est le `false` de `req.open('GET', url, false)` qui fait que la
   requête est asynchrone.
@@ -403,13 +404,60 @@ Inconvénients d'une requête synchrone :
 
 ## Défaut d'une requête synchrone
 
+<br>
+
+[Exemple de blocage avec une requête synchrone](http://www.lirmm.fr/~lebreton/PWCR/ExempleBlocageAJAX/)
+
+<br>
+
+<div style="font-size:80%">
+~~~
+url = "cityRequest.php?name=Vi";
+var httpRequest = new XMLHttpRequest();
+// false désactive l'asynchronisme
+httpRequest.open("GET", url, false);
+httpRequest.send(null);
+console.log(httpRequest.response);
+~~~
+{:.javascript}
+
+<!-- ~~~ -->
+<!-- function myajax(url, callBack) { -->
+<!--     var httpRequest = new XMLHttpRequest(); -->
+<!--     // false désactive l'asynchronisme -->
+<!--     httpRequest.open("GET", url, false); -->
+<!--     httpRequest.send(null); -->
+<!--     callBack(httpRequest); -->
+<!-- } -->
+<!-- ~~~ -->
+<!-- {:.javascript} -->
+
+</div>
+
+
+</section>
+<section>
+
+## Défaut d'une requête synchrone
+
+Même les événements ne se déclenchent pas sur le navigateur ! **Pourquoi ??**
+
+<br>
+
+<div class="incremental">
+<div>
+
 **Parce que les événements en Javascript ne sont déclenchés que lorsque la pile des appels de fonctions est vide !**
 
 [Visualisation de la queue des événements avec l'outil Loupe](http://sameoldmadness.github.io/loupe/)
 
-<!-- (http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) -->
+</div>
+</div>
 
 <!--
+Ancien lien :
+(http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
+
 Autre demo :
 function a() { b(); }
 function b() { c(); }
@@ -424,20 +472,6 @@ document.body.addEventListener('click',
 
 -->
 
-[Exemple de blocage avec une requête synchrone](http://www.lirmm.fr/~lebreton/PWCR/ExempleBlocageAJAX/)
-
-<div style="font-size:80%">
-~~~
-function myajax(url, callBack) {
-    var httpRequest = new XMLHttpRequest();
-    // false désactive l'asynchronisme
-    httpRequest.open("GET", url, false);
-    httpRequest.send(null);
-    callBack(httpRequest);
-}
-~~~
-{:.javascript}
-</div>
 </section>
 <section>
 
