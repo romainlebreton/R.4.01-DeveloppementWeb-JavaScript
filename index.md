@@ -10,9 +10,12 @@ Cours à l'IUT de Montpellier - 2ème année
 
 ## Cours
 
-1. Mardi 26 Janvier 2016 -- [Cours 1](classes/class1.html) -- Le langage Javascript
-2. Mercredi 27 Janvier 2016 -- [Cours 2](classes/class2.html) -- Le Document Object Model
-3. Vendredi 29 Janvier 2016 -- [Cours 3](classes/class3.html) -- Asynchronisme en JavaScript
+1. Mardi 26 Janvier 2016 -- [Cours 1](classes/class1.html) -- Le langage
+   Javascript
+2. Mercredi 27 Janvier 2016 -- [Cours 2](classes/class2.html) -- Le Document
+   Object Model
+3. Vendredi 29 Janvier 2016 -- [Cours 3](classes/class3.html) -- Asynchronisme
+   en JavaScript
 
 ## TDs
 1. Mardi 26 Janvier 2016 -- [TD 1](tutorials/tutorial1.html) -- Prise en main de Javascript
