@@ -90,14 +90,15 @@ https://developers.google.com/web/tools/chrome-devtools/profile/network-performa
 
 ## Solutions
 
-* Attendre la fin de la chargement du `DOM` avant d'interagir avec lui
+* Attendre la fin du chargement du `DOM` avant d'interagir avec lui
 
   **Rappel :** L'événement `DOMContentLoaded` est lancé quand le document a été
   chargé et analysé, sans attendre le chargement des CSS, images, ...
 
 * `<script src="..." async></script>` :  
   Le script est chargé en parallèle de la lecture du DOM. Une fois chargé, le
-  script est exécuté (ce qui met en pause le reste).  
+  script est exécuté (ce qui met en pause le reste).
+  
   <!--
   Du coup, on ne perd plus le temps de chargement
   
@@ -396,7 +397,7 @@ Inconvénients d'une requête synchrone :
 
 <div class="myfootnote">
 **Remarque :** C'est le `false` de `req.open('GET', url, false)` qui fait que la
-  requête est asynchrone.
+  requête est synchrone.
 </div>
 
 </section>
