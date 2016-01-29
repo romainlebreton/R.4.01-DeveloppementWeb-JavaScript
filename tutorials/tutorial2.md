@@ -352,6 +352,10 @@ progress-bar. Tester dans la console.
   `startTime=timestamp` si **startTime** est vide (c'est-à-dire non
   initialisé). Puis elle calcule le pourcentage de la progress-bar à afficher et
   appelle `animateBar(percentage)` pour modifier la **width** de la barre.
+
+   **Attention :** La fonction `animateBar(percentage)` ne marche que pour des
+  `percentage` entiers. La fonction `Math.floor` peut vous aider.
+
 1. Testez votre fonction en l'appelant depuis la console avec de faux
 `timestamp` (par exemple, `0` puis `1000` puis `2000` jusqu'à `10000`).
 </div>
