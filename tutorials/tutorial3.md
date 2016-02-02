@@ -139,8 +139,15 @@ Cette manière de procéder est dite *asynchrone*, car le chargement de la page 
 1. Créer votre fichier **cityAutocomplete.js** avec le code suivant. Lions le
    script à la page HTML **dans son en-tête** (c'est une bonne pratique pour
    voir facilement tous les fichiers externes requis par le HTML à un seul
-   endroit). Puis rajoutez l'attribut `async` à `<script>` pour que le
-   chargement du JS ne bloque pas la construction du DOM (cf Cours 3).
+   endroit). Puis rajoutez l'attribut `defer` à `<script>` pour que le
+   chargement du JS ne bloque pas la construction du DOM (cf Cours 3)
+
+   **Note :** Nous utilisons l'attribut `defer` sans `async` pour deux
+     raisons. Premièrement, `defer` conserve l'ordre d'exécution des
+     scripts. Enfin, `defer` exécute le script avant de lancer
+     `DOMContentLoaded` (mais après la construction de la page). Vous êtes donc
+     assurés que vos `addEventListener("DOMContentLoaded",...)` n'arrivent pas
+     trop tard.
 
 1. Expérimentez avec la fonction `myajax`. Par exemple, donnez-lui l'URL de la page actuelle et une fonction `callback` qui affiche la variable httpRequest pour voir ce qu'elle contient.
 
