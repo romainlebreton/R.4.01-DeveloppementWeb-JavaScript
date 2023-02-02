@@ -1,4 +1,4 @@
-baseurl: /ProgWeb-ClientRiche
+baseurl: /R.4.01-DeveloppementWeb-JavaScript
 permalink: /:categories/:title
 
 kramdown:
