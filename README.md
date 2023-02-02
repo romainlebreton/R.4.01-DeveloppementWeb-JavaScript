@@ -1,4 +1,4 @@
-# Programmation Web - ClientRiche
+# R4.01 -- Développement Web (JavaScript)
 
-Notes de cours pour le cours *Programmation Web - ClientRiche* en
+Notes pour la partie développement Web du cours *R4.01 -- Architecture logicielle* en
 2ème année d'IUT par [Romain Lebreton](http://www.lirmm.fr/~lebreton)
