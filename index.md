@@ -1,26 +1,26 @@
 ---
-title: Programmation Web - Client Riche
+title: R4.01 &ndash; Développement Web (JavaScript)
 layout: main
+lang: fr
 ---
 
 # Programmation Web - Client Riche
-Cours à l'IUT de Montpellier - 2ème année
 
-**Mots clés :** Javascript, DOM, JSON, Jquery, AJAX
+Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
+2ème année d'IUT par [Romain Lebreton](http://www.lirmm.fr/~lebreton)
+
+**Mots clés :** Javascript, DOM, JSON, AJAX
 
 ## Cours
 
-1. Mardi 26 Janvier 2016 -- [Cours 1](classes/class1.html) -- Le langage
-   Javascript
-2. Mercredi 27 Janvier 2016 -- [Cours 2](classes/class2.html) -- Le Document
-   Object Model
-3. Vendredi 29 Janvier 2016 -- [Cours 3](classes/class3.html) -- Asynchronisme
-   en JavaScript
+1. Lundi 6 février 2023 -- Cours 1 -- Le langage JavaScript  
+   [Slides](classes/cours1.html)  
+   [Cours en ligne sur Moodle](https://moodle.umontpellier.fr/mod/bigbluebuttonbn/view.php?id=662676)
+
 
 ## TDs
-1. Mardi 26 Janvier 2016 -- [TD 1](tutorials/tutorial1.html) -- Prise en main de Javascript
-2. Mercredi 27 Janvier 2016 --  [TD 2](tutorials/tutorial2.html) -- Qui veut gagner des millions ?
-3. Vendredi 29 Janvier 2016 -- [TD 3](tutorials/tutorial3.html) -- Auto-complétion par requêtes asynchrones
-4. Mardi 2 Février 2016 <!-- -- Fins des [TD 2](tutorials/tutorial2.html) et [TD 3](tutorials/tutorial3.html) -->
+1. Lundi 6 février 2023 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
 
-**Bonus :** [TD sur le jeu du serpent de l'an dernier](tutorials/oldtutorial2.html).
+## Notes complémentaires 
+
+1. [Notes complémentaires du Cours 1]({{ site.baseurl }}/assets/class1-complement.html)

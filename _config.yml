@@ -7,6 +7,6 @@ kramdown:
   input: GFM
   parse_block_html: true
   hard_wrap: false
+  syntax_highlighter: disable
 
 livereload: true
-reload_port: 5676
