@@ -8,42 +8,17 @@ lang: fr
 <section>
 
 <!-- 
-Voir Notes prises sur l'amphi 1 en 2021
-
 TODO Notes :
-* Où executer JS : dans node ou dans le navigateur > Dev Tools > Console
-* node <-> PHP terminal et Console navigateur <-> PHP lié à Apache
-  dans le sens où il y a un contexte déjà présent (soit les variables globales
-  $_GET/$_POST/$_SERVER, soit l'objet document)
 * Comparer les portées avec Java, C/C++, Python, PHP
 * Montrer le débuggage JS dans VsCode (cf. tldr node)
-* chaines de caractères avec remplacement en JS `bla : ${var}`
-  autres syntaxes : "", '' équivalentes ? 
-  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
-  String literals can be specified using single or double quotes, which are treated identically, or using the backtick character `. This last form specifies a template literal: with this form you can interpolate expressions.
 * type hinting pour autocomplétion dans VSCode / WebStorm
 * convention de nommage
 * affichage dans la console / node (dernière valeur retournée vs affichage avec console.log())
   console.log(x) affiche d'abord x avant d'afficher la dernière valeur retournée = undefined
-* fonction avec tab plutôt qu'avec le prototype ! ?
 * p.__proto__.constructor.name, p.__proto__.__proto__.constructor.name 
-* tab[i] avec i flottant ? → Tronque i pour avoir un entier 
+* présenter les 3 systèmes de module (natif, node, ?)
 
  -->
-<!-- ## Plan du cours
-
-1. Généralités sur JavaScript
-
-2. Variables en JavaScript
-
-3. Tableaux en JavaScript
-
-4. Fonctions en JavaScript
-
-5. Objets en JavaScript
-
-</section>
-<section> -->
 
 # Généralités sur JavaScript
 
@@ -83,6 +58,11 @@ TODO Notes :
   -   Tendance actuelle : un seul langage dans la pile web, par exemple
       remplacer PHP par JavaScript.
   -   Node.js pour des serveurs web écrits en JavaScript.
+
+<div role="note">
+Node.js ~ PHP terminal CLI  
+Console navigateur ~ PHP lié au serveur Web Apache
+</div>
 
 </section>
 <section>
@@ -184,6 +164,11 @@ pi = 3;
 // → TypeError: Assignment to constant variable.
 ```
 
+
+<div role="note">
+Montrer la console de développement
+</div>
+
 </section>
 <section>
 
@@ -206,6 +191,11 @@ console.log(i)
 **Remarque :** 
 * JS permet des fois d'omettre le `;` à la fin de l'instruction.  
 * Bonne pratique : Toujours mettre `;` à la fin.
+
+
+<div role="note">
+Montrer node.js
+</div>
 
 </section>
 <section>
@@ -272,7 +262,9 @@ console.log(i_global);
 ```
 
 </section>
-<!-- <section>
+
+<!-- 
+<section>
 
 ## Opérateurs classiques
 
@@ -292,7 +284,8 @@ et `**=`
 | `**`          | puissance      |
 {: .centered}
 
-</section> -->
+</section> 
+-->
 <section>
 
 ## Opérateurs logiques
@@ -341,7 +334,13 @@ console.log (8 * null);
 // → 0
 ```
 
+<div class="incremental">
+<div>
+
 En effet, `*` est nécessairement la multiplication de deux nombres donc `null` est converti en un nombre
+
+</div>
+<div>
 
 ```javascript
 Number(null);
@@ -355,6 +354,8 @@ Number(undefined);
 // → NaN
 ```
 
+</div>
+</div>
 </section>
 <section>
 
@@ -408,25 +409,36 @@ if (p !== null && p.nom == 'Eich')
 
 (comme en PHP, Java, C++, ... voir aussi le [chainage optionnel `?.`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining) )
 
+<div role="note">
+Considérez l'expression `(expr1 || expr2)` ...
+</div>
+
 </section>
 <section>
 
 ## Méthodes du type `Number`
 
-<!-- **Type Number (voir le `__proto__` en détail !)** -->
+<div style="font-size:large">
+
 ```js
 let x = 3.141592653589793;
 typeof(x); // → 'number'
 x.__proto__;
 ```
-<!-- donne ceci dans la console des outils de développement -->
-![Prototype methods]({{site.baseurl}}/assets/class1/proto.png)  
-<!-- On sait alors que l'on peut appeler -->
+</div>
+donne ceci dans la console des outils de développement
+
+![Prototype methods]({{site.baseurl}}/assets/class1/proto.png)
+{: .centered}
+
+On sait alors que l'on peut appeler
+<div style="font-size:large">
+
 ```js
 x.toPrecision(4); // → '3.142'
 x.toFixed(4); // → '3.1416'
-x.toString(); // → '3.141592653589793'
 ```
+</div>
 
 </section>
 <section>
@@ -439,6 +451,8 @@ Syntaxe entre guillemets simples `'coucou'` ou `"coucou"` doubles :
   * `\"` → `"` si délimiteur double
 * saut de ligne avec `\n`, ...
 
+<div class="incremental">
+<div>
 Syntaxe entre accent grave ``` `coucou` ```. Permet le remplacement de variables avec `$ {...}` : 
 
 ```js
@@ -447,7 +461,8 @@ let p = `<p> Bonjour ${nom} </p>`;
 console.log(p);
 // <p> Bonjour Juste Leblanc </p>
 ```
-
+</div>
+</div>
 </section>
 <section>
 
@@ -488,32 +503,6 @@ let tab = ["bonjour","salut","hello"];
 ```
 
 </section>
-
-<!-- 
-<section>
-
-## Contenu d’un tableau et accès au contenu
-
-Même si concrètement les tableaux utilisés sont plutôt «monotypes», on
-peut envisager des tableaux JavaScript contenant des éléments de types
-variés
-
-```js
-let tab = ["bonjour",3.14159,true,[1,2,"salut"],6];
-```
-
-On accède à un élément de manière classique, par un système d’indices à
-partir de 0.
-
-```js
-tab[0] // → "bonjour"
-tab[3] // → Array(1,2,"salut")
-tab[3][1] // → 2
-tab[3][2] // → "salut"
-``` 
-
-</section> 
--->
 <section>
 
 ## Parcours d’un tableau
@@ -601,8 +590,9 @@ retourne la chaîne de caractères obtenue par concaténation des
 
 Regarder le `__proto__` pour d’autres méthodes intéressantes…
 
-<!-- Object.getOwnPropertyNames([].__proto__) -->
 <!-- 
+Object.getOwnPropertyNames([].__proto__) 
+
 ```js
 ['length', 'constructor', 'at', 'concat', 'copyWithin', 'fill', 'find', 'findIndex', 'lastIndexOf', 'pop', 'push', 'reverse', 'shift', 'unshift', 'slice', 'sort', 'splice', 'includes', 'indexOf', 'join', 'keys', 'entries', 'values', 'forEach', 'filter', 'flat', 'flatMap', 'map', 'every', 'some', 'reduce', 'reduceRight', 'toLocaleString', 'toString', 'findLast', 'findLastIndex']
 ``` -->
@@ -904,7 +894,7 @@ typeof capitaine.__proto__ // → object
 <div>
 
 Donc le prototype a aussi son prototype, ce qui crée 
-une chaîne prototypale. 
+une chaîne de prototypes. 
 
 </div>
 <div>
@@ -928,6 +918,9 @@ capitaine.__proto__ === tournesol.__proto__;
 ```
 
 </div>
+</div>
+<div role="note">
+Chaine prototypale ~ héritage (liste des classes mères)
 </div>
 </section>
 <section>
@@ -1019,7 +1012,7 @@ Du coup, extensible après coup en modifiant le proto.
 
 ## Parcours des attributs / méthodes
 
-On peut parcourir l’objet par une boucle `for` :
+On peut parcourir l’objet par une boucle `for...in` :
 <div style="font-size:large">
 
 ```js
