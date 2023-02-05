@@ -24,6 +24,7 @@ Pêle-mêle, quelques spécificités avancées du langage JavaScript :
     Manière dont une fonction garde en mémoire les variables de son scope englobant.
 * [`this` en Javascript](https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3)  
     Explication des règles de résolution de `this`.
+* Listes des [ajouts au standard ECMAScript](https://github.com/tc39/proposals/blob/main/finished-proposals.md) par année.
 
 Les références sur le site [Eloquent JavaScript](https://eloquentjavascript.net) existent aussi [en français](https://fr.eloquentjavascript.net/) dans une version plus ancienne du livre.
 

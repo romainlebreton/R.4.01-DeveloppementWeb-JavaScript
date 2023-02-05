@@ -26,9 +26,11 @@ TODO Notes :
 * affichage dans la console / node (dernière valeur retournée vs affichage avec console.log())
   console.log(x) affiche d'abord x avant d'afficher la dernière valeur retournée = undefined
 * fonction avec tab plutôt qu'avec le prototype ! ?
+* p.__proto__.constructor.name, p.__proto__.__proto__.constructor.name 
+* tab[i] avec i flottant ? → Tronque i pour avoir un entier 
 
  -->
-## Plan du cours
+<!-- ## Plan du cours
 
 1. Généralités sur JavaScript
 
@@ -41,7 +43,7 @@ TODO Notes :
 5. Objets en JavaScript
 
 </section>
-<section>
+<section> -->
 
 # Généralités sur JavaScript
 
@@ -50,34 +52,31 @@ TODO Notes :
 
 ## Bref historique
 
-Années 1990 - Dynamic HTML – effets sur les pages web :
+**Années 1990** - Dynamic HTML – effets sur les pages web :
+<img alt="Brendan EICH" src="{{site.baseurl}}/assets/class1/Brendan%20EICH.jpg" height="110" style="float:right; margin-left:10px;">
 
-- Langage écrit en 1995 par Brendan EICH chez Netscape, pour associer des scripts à des éléments HTML. 
-  <!-- ![Brendan EICH]({{site.baseurl}}/assets/class1/Brendan%20EICH.jpg) -->
+-  Langage écrit en 1995 par Brendan EICH chez Netscape, pour associer des scripts à des éléments HTML. 
   
-- Permet d’obtenir des pages web dynamiques, en interaction avec l’utilisateur. Action sur la structure du document HTML.
+- Permet d’avoir des programmes en plus des pages Web dans le navigateur.  
+  Ces programmes permettent d'agir directement avec la page Web, sans rechargement. 
   
-- Adoption générale et très rapide du concept de dynamisation du HTML par des scripts côté client.
-  
-- Standard 96-97 (ECMAScript) aujourd’hui version 8
-  
-- Déclinaison d’ECMAScript suivant les navigateurs :
-  -   Mozilla  : JavaScript
-  -   Microsoft : JScript
+- Standard 96-97 (ECMAScript)  
+    actuellement version 13 (juin 2022),  
+    nouvelle version tous les ans
 
 </section>
 <section>
 
 ##  **Bref historique**
 
-Années 2000 – Librairies évoluées :
+**Années 2000** – Librairies évoluées :
 
 -   Jquery, MooTools, AngularJS, … : proposent un   ensemble de fonctions, ou
   même un cadre de travail   complet pour JavaScript.
 -   AJAX (utilisation « asynchrone » de JavaScript pour  gérer des appels au
   serveur de données). Voir TD5 et suivants.
 
-Années 2010 – Ère moderne :
+**Années 2010** – Ère moderne :
 
   -   Évolution de JavaScript : utilisation du langage  côté serveur (retour aux
       origines).
@@ -90,42 +89,49 @@ Années 2010 – Ère moderne :
 
 ## Environnement de travail
 
-1.  la console du navigateur
+**Environnement d'exécution**
 
-    Endroit idéal pour tester le code, en interaction directe avec la page
-    web. Outil indispensable. Les exemples du cours sont testés dans la
-    console.
+* la console des *DevTools* du navigateur :  
+Endroit idéal pour tester le code, en interaction directe avec la page
+web. Outil indispensable. Les exemples du cours sont testés dans la
+console.
 
-2. l’éditeur de texte
+* `Node.js` :  
+Permet, entre autres, d'exécuter du JS dans un terminal.  
+⚠️ Non lié à une page Web
 
-    Comme pour tous les autres langages web, on peut se contenter d’un
-    éditeur de texte pour coder.
+**Environnement de développement**
 
-3. sites dédiés
+Nous vous conseillons `WebStorm` ou `VSCode`.
 
-    Certains sites permettent l’élaboration et le test du code client :
-    html, css et JavaScript. Par ex :
+<!-- **Sites dédiés**
 
-    -   <https://codepen.io/>
-    -   <https://jsbin.com/>
+Certains sites permettent l’élaboration et le test du code client :
+html, css et JavaScript. Par ex :
+
+-   <https://codepen.io/>
+-   <https://jsbin.com/> -->
 
 </section>
 <section>
 
-## Caractéristiques générales de JavaScript
+## Caractéristiques générales
 
 1. langage qui dynamise les pages web côté client
 
-     Au moyen de scripts interprétés au niveau du navigateur, la page web
-     est rendue dynamique côté client (voir TD1), souvent par une gestion
-     des événements (clics, ...). Ceci est un point de vue différent de
-     la dynamique côté serveur (PHP), où on gère des informations
-     envoyées (formulaires) ou en provenance de la base de données.
+    *  Scripts interprétés dans le navigateur.  
+       Page web dynamique côté client (voir TD1), souvent par une gestion
+     des événements (clics, ...). 
+    *  Différent des pages dynamiques côté serveur (PHP),  
+       où on gère des informations envoyées (formulaires) ou en provenance de la
+       base de données.
 
 2. langage interprété
  
      JavaScript est interprété au niveau du navigateur, sans la moindre
-     compilation. L’exécution des scripts dépend de l’activation, côté
+     compilation. 
+     
+     L’exécution des scripts dépend de l’activation, côté
      client, de l’interpréteur JavaScript.
 
 </section>
@@ -138,16 +144,18 @@ Années 2010 – Ère moderne :
 
 ## Les types principaux
 
- * JavaScript propose 7 types différents, nous en utiliserons essentiellement
+ * JavaScript propose 8 types différents, nous en utiliserons essentiellement
    4 :
 
-   -   `Number` (les nombres, quels qu’ils soient)
-   -   ``String`` (chaînes de caractères)
+   -   `Number` (les nombres flottants `double`)  
+   -   ``String`` (chaînes de caractères)  
+        Immuable (comme Java, Python, à l'inverse de C++, PHP)
    -   `Boolean` (les booléens)
-   -   `Object` (tous les objets JavaScript)
+   -   `Object` (tous les objets JavaScript)  
+        Dont les tableaux, stockés par référence (comme Java, ...)
 
-* Les 3 autres types (`Null`, `Undefined` et `Symbol`) sont pour nous moins
-  communs.
+* Les 4 autres types (`BigInt`, `Null`, `Undefined` et `Symbol`) sont pour nous
+  moins communs.
 
 * Le typage JavaScript est :
 
@@ -194,6 +202,10 @@ for(let i = 0; i < 2; i++) {
 console.log(i)
 // → Uncaught ReferenceError: i is not defined
 ```
+
+**Remarque :** 
+* JS permet des fois d'omettre le `;` à la fin de l'instruction.  
+* Bonne pratique : Toujours mettre `;` à la fin.
 
 </section>
 <section>
@@ -249,16 +261,18 @@ pour portée tout le script : c’est une variable globale
 
 ```js
 let i_global = 0;
+
 function f(nb) {
-i_global = nb;
+    i_global = nb;
 }
+
 f(8);
 console.log(i_global);
 // → 8
 ```
 
 </section>
-<section>
+<!-- <section>
 
 ## Opérateurs classiques
 
@@ -278,51 +292,128 @@ et `**=`
 | `**`          | puissance      |
 {: .centered}
 
-</section>
+</section> -->
 <section>
 
-## Opérateurs classiques
+## Opérateurs logiques
 
-**Opérateurs logiques (entre variables de type `Boolean`)**
+Entre variables de type `Boolean`
 
-| **Opérateur** | **Opération**                   |
+* `==` / `!=` : égalité en valeur  ⚠️ Danger ! ⚠️  
+    Relation est symétrique, mais pas transitive en JS (ni en PHP)
+
+    ```js
+    console.log([] == false); // → true
+    console.log(false == "0"); // → true
+    console.log("0" == []); // → false
+    ```
+
+* `===` / `!==` : égalité en valeur et en type  
+  À privilégier.
+    ```js
+    console.log([] === false); 
+    // → false car types différents
+    console.log(false === "0"); // → false
+    console.log("0" === []); // → false
+    ```
+
+<!-- | **Opérateur** | **Opération**                   |
 | ------------- | ------------------------------- |
 | `&&`          | "ET" logique                    |
-| `\|\|`        | "OU" logique                    |
+| `||`          | "OU" logique                    |
 | `!`           | "NON" logique                   |
 | `==`          | égalité en valeur               |
 | `!=`          | différence en valeur            |
 | `===`         | égalité en valeur et en type    |
 | `!==`         | différence en valeur ou en type |
-{: .centered}
+{: .centered  .pretty} -->
+
 
 </section>
 <section>
 
-## Opérateurs classiques
+## JavaScript est très permissif !
 
-**Concaténation (entres variables de type `String`)**
+Conversions automatiques de type
 
--   La concaténation de chaînes de caractères se fait au moyen de
-  l’opérateur `+` mais…
--   ⚠️ ATTENTION : JavaScript est permissif…  
-  Pour maîtriser le résultat de la concaténation, faire attention à
-  l’interprétation de l’opérateur `+`
+```javascript
+console.log (8 * null);
+// → 0
+```
 
-    | **opération**  | **résultat** |
-    | -------------- | ------------ |
-    | `"abc" + "de"` | `"abcde"`    |
-    | `"3" + 1`      | `"31"`       |
-    | `3 + 1 + "5"`  | `"45"`       |
-    | `"5" + 3 + 1`  | `"531"`      |
-    {: .centered}
+En effet, `*` est nécessairement la multiplication de deux nombres donc `null` est converti en un nombre
+
+```javascript
+Number(null);
+// → 0
+// ATTENTION : çà ne marche que dans les cas simples
+Number("five");
+// → NaN
+Number("5");
+// → 5
+Number(undefined);
+// → NaN
+```
 
 </section>
 <section>
 
-## Quelques méthodes intéressantes
+## Quizz 1/2
 
-**Type Number (voir le `__proto__` en détail !)**
+**Question :** Que rend le code suivant ?
+
+```javascript
+console.log ("5" - 1);
+```
+
+<div class="incremental">
+**Réponse :** `4`, car `-` est nécessairement la soustraction de deux nombres donc `"5"` est converti en un nombre
+</div>
+</section>
+<section>
+
+## Quizz 2/2
+
+
+**Question :** Que rend le code suivant ?
+
+```javascript
+console.log ("5" + 1);
+```
+
+<div class="incremental">
+**Réponse :** `"51"` ! <br>
+Il y a ambiguïté entre addition de nombres et concaténation de chaînes de caractères. L'opérateur le plus prioritaire en JavaScript est la concaténation.
+</div>
+</section>
+<section>
+
+## Évaluation paresseuse de `||` et `&&`
+
+Si `expr1` est vrai, alors 
+* `(expr1 || expr2)` est vrai
+* et `expr2` n'est pas évalué
+
+
+Si `expr1` est faux, alors 
+* `(expr1 && expr2)` est faux
+* et `expr2` n'est pas évalué
+
+**Intérêt :**
+```js
+if (p !== null && p.nom == 'Eich')
+// Si p est null, alors p.nom n'est pas évalué
+// (donc pas de TypeError) 
+```
+
+(comme en PHP, Java, C++, ... voir aussi le [chainage optionnel `?.`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining) )
+
+</section>
+<section>
+
+## Méthodes du type `Number`
+
+<!-- **Type Number (voir le `__proto__` en détail !)** -->
 ```js
 let x = 3.141592653589793;
 typeof(x); // → 'number'
@@ -333,16 +424,35 @@ x.__proto__;
 <!-- On sait alors que l'on peut appeler -->
 ```js
 x.toPrecision(4); // → '3.142'
-x.toFixed(4) // → '3.1416'
-x.toString() // → '3.141592653589793'
+x.toFixed(4); // → '3.1416'
+x.toString(); // → '3.141592653589793'
 ```
 
 </section>
 <section>
 
-## Quelques méthodes intéressantes
+## Type `String`
 
-**Type String (voir *vraiment* le** \_\_proto\_\_ **en détail !)**
+Syntaxe entre guillemets simples `'coucou'` ou `"coucou"` doubles : 
+* même comportement, sauf échappement du délimiteur : 
+  * `\'` → `'` si délimiteur simple
+  * `\"` → `"` si délimiteur double
+* saut de ligne avec `\n`, ...
+
+Syntaxe entre accent grave ``` `coucou` ```. Permet le remplacement de variables avec `$ {...}` : 
+
+```js
+let nom = 'Juste Leblanc';
+let p = `<p> Bonjour ${nom} </p>`;
+console.log(p);
+// <p> Bonjour Juste Leblanc </p>
+```
+
+</section>
+<section>
+
+## Méthodes du type `String`
+
 ```js
 let password = "@P9GXpXuF%sy";
 password.length; // → 12
@@ -352,28 +462,7 @@ password.indexOf("%"); // → 9
 password.split("X"); // → [ '@P9G', 'p', 'uF%sy' ]
 ```
 
-</section>
-<section>
-
-## Quelques méthodes intéressantes
-
-**Type `String`**
-
-On peut aussi faire du remplacement de variables dans des chaînes de
-caractères.
-
-Il faut utiliser le délimiteur ``` ` ``` (accent grave).
-
-```js
-let nom = 'Juste Leblanc';
-let p = `<p>
-    Bonjour ${nom}
-</p>`;
-console.log(p);
-// <p>
-//     Bonjour Juste Leblanc
-// </p>
-```
+(voir le `__proto__` en détail !)
 
 </section>
 <section>
@@ -399,6 +488,8 @@ let tab = ["bonjour","salut","hello"];
 ```
 
 </section>
+
+<!-- 
 <section>
 
 ## Contenu d’un tableau et accès au contenu
@@ -421,18 +512,19 @@ tab[3][1] // → 2
 tab[3][2] // → "salut"
 ``` 
 
-</section>
+</section> 
+-->
 <section>
 
 ## Parcours d’un tableau
 
-On peut parcourir un tableau par une boucle `for` classique qui
-utilise la longueur du tableau :
+Boucle `for` classique :
 
 ```js
 let tab=["bonjour", "hello", "salut", "coucou"];
+
 for (let i=0; i < tab.length; i++) {
-    console.log(`mot n°${i} : ${tab[i]}`)
+    console.log(`mot n°${i} : ${tab[i]}`);
 }
 // mot n°0 : bonjour
 // mot n°1 : hello
@@ -440,17 +532,25 @@ for (let i=0; i < tab.length; i++) {
 // mot n°3 : coucou
 ```
 
+<br>
+
+**Question :** Comment JS évalue `tab[i]` alors que `i` est un flottant ?
+
+Réponse : Il tronque `i` pour garder sa partie entière.
+{: .incremental}
+
 </section>
 <section>
 
 ## Parcours d’un tableau
 
-On peut aussi parcourir un tableau par une boucle `for` particulière :
+Boucle `for...of` :
 
 ```js
 let tab=["bonjour", "hello", "salut", "coucou"];
+
 for (let mot of tab) {
-    console.log(mot)
+    console.log(mot);
 }
 // bonjour
 // hello
@@ -461,51 +561,33 @@ for (let mot of tab) {
 </section>
 <section>
 
-## Méthodes et attributs classiques d’un tableau
+## Méthodes des tableaux
 
-**Insertions :**
+```js
+// Insertion
+let tab = [1];
+tab.push(2); // En fin de tableau
+tab.unshift(3); // En début de tableau
+console.log(tab); // → [3, 1, 2]
 
-- en fin de tableau : `tab.push(elt1,elt2,...)`
+// Supression
+let fin = tab.pop(); // En fin de tableau
+console.log(tab); // → [3, 1]
+console.log(fin); // → 2
+let debut = tab.shift() // En début de tableau
 
-- en début de tableau : `tab.unshift(elt1,elt2,...)`
+// Concaténation
+let tabconcat = tab.concat([6,7]);
+console.log(tabconcat); // → [ 3, 1, 6, 7 ]
+```
 
-    Ces 2 méthodes retournent la nouvelle taille de `tab`
-
-- en général : `tab.splice(i,j,elt1,elt2,...)`
-
-  *   `i` : endroit d’insertion
-  *   `j` : nombre d’éléments à supprimer à partir de i
-  *   `elt1`, `elt2`, … : éléments à insérer à partir de i
-
-  Cette méthode retourne le sous-tableau composé des j éléments supprimés
-
-</section>
-<section>
-
-## Méthodes et attributs classiques d’un tableau
-
-**Suppressions**
-
-  - en fin de tableau : `tab.pop()`
-  - en début de tableau : `tab.shift()`
-  - Ces 2 méthodes retournent l’élément supprimé
-
+<!-- 
 **Extractions**
 
   - en fin de tableau : `tab.slice(i)`  
     retourne le sous-tableau des indices k, k ≥ i
   - en milieu de tableau : `tab.slice(i,j)`  
     retourne le sous-tableau des indices k, i ≤ k \< j
-
-</section>
-<section>
-
-## Méthodes et attributs classiques d’un tableau
-
-**Agglomération**
-
-- `tab1.concat(tab2)`  
-retourne le tableau des éléments de `tab1` puis `tab2`
     
 **Concaténation**
 
@@ -515,203 +597,155 @@ retourne la chaîne de caractères obtenue par concaténation des
    
 **Longueur**
 
-- Longueur du tableau : `tab.length`
+- Longueur du tableau : `tab.length` -->
 
-
-</section>
-<section>
-
-## Autres méthodes d’un tableau
-
-Le `__proto__` d’un tableau est riche et sa lecture vous montrera
-d’autres méthodes intéressantes…
+Regarder le `__proto__` pour d’autres méthodes intéressantes…
 
 <!-- Object.getOwnPropertyNames([].__proto__) -->
-
+<!-- 
 ```js
 ['length', 'constructor', 'at', 'concat', 'copyWithin', 'fill', 'find', 'findIndex', 'lastIndexOf', 'pop', 'push', 'reverse', 'shift', 'unshift', 'slice', 'sort', 'splice', 'includes', 'indexOf', 'join', 'keys', 'entries', 'values', 'forEach', 'filter', 'flat', 'flatMap', 'map', 'every', 'some', 'reduce', 'reduceRight', 'toLocaleString', 'toString', 'findLast', 'findLastIndex']
+``` -->
+
+</section>
+<section>
+
+# Fonctions
+
+</section>
+<section>
+
+## Syntaxe
+
+Déclaration comme en Java, C++, ...
+
+```javascript
+function square(x) {
+    return x * x;
+};
+```
+
+<br>
+Les variables **peuvent stocker** des fonctions ! <br>
+Le code ci-dessus est équivalent à
+
+```javascript
+let square = function (x) {
+    return x * x;
+};
 ```
 
 </section>
 <section>
 
-## Fonctions natives importantes
+## Fonctions anonymes
 
-JavaScript propose un ensemble de fonctions nâtives qu’on utilisera régulièrement (voir TD1)
+On appelle *fonction anonyme* une déclaration de fonction sans nom.
 
-Quelques exemples :
+Exemple : 
 
--   `Math.random()`
--   `Math.floor(3.14)`
--   `"Dupont".replace("t","d")`
-
-</section>
-<section>
-
-## Fonctions construites
-
-On peut aussi construire nos propres fonctions, comme dans le TD1.
-
-Utilisées dans la gestion des événements (clics de souris,…), elles
-se déclencheront si l’événement en question se produit. C’est ainsi
-qu’on rendra dynamiques (côté client) nos pages web.
-
-La syntaxe habituelle :
 ```js
-function suivant(n) {
-    // Nombre suivant modulo 6
-    return (n+1)%6;
+setTimeout(
+    function () { console.log("Boum"); },
+    2000
+);
+```
+
+<div class="incremental">
+<div>
+Syntaxe raccourcie : *Fonctions fléchées* (*arrow function* en anglais)
+
+```javascript
+setTimeout( () => {console.log(Boum);}, 2000);
+```
+</div>
+
+<div>
+Les 2 syntaxes suivantes sont équivalentes
+
+```javascript
+const square1 = (x) => { return x * x; };
+const square2 = x => x * x;
+```
+</div>
+</div>
+
+</section>
+<section>
+
+## Fonctions
+
+Les fonctions sont des **objets de &laquo;première classe&raquo;** : elles
+peuvent être manipulées et échangées comme tous les autres objets JavaScript.
+
+<br>
+**Exemple :** Mettons une valeur *fonction* dans une variable
+
+```javascript
+function square(x) {
+    return x * x;
+};
+// Affectation de la variable
+let varfonc = square;
+// Exécution de la fonction avec l'opérateur ()
+varfonc(2);
+// → 4
+```
+
+</section>
+<section>
+
+## Fonctions
+
+Une fonction peut prendre en argument une fonction
+
+```javascript
+function boum() {
+    console.log('Boum!');
 }
-suivant(1) // → 2
-suivant(5) // → 0
+// setTimeout execute la fonction boum après 2s
+setTimeout(boum, 2000);
 ```
+
+<br>
+
+Une fonction peut aussi renvoyer une fonction.
 
 </section>
+
+<!-- 
 <section>
 
-## Utilisation classique d’une fonction
+## Fonctions
 
-Cas classique (pas le plus évolué) d’utilisation d’une fonction :
+**here** : Attention, on ne parle pas de nested scope, ni de closure**
 
-<div style="font-size:large">
+Une fonction peut renvoyer une fonction
 
-```html
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Utilisation de fonction</title>
-</head>
-<body>
-  <p id="p1" onclick="f1()">Paragraphe 1</p>
-  <p id="p2" ondblclick="f2()">Paragraphe 2</p>
-  <script type="text/javascript">
-    function f1() { alert("Vous avez cliqué sur p1"); }
-    function f2() { alert("Vous avez double-cliqué sur p2"); }
-  </script>
-</body>
-</html>
+```javascript
+function puissance (x) {
+  function puissancex (y) {
+    // Math.pow(y,x) calcule y^x
+    return Math.pow(y,x);
+  }
+  return puissancex;
+}
+let square = puissance(2);
+let cube = puissance(3);
+console.log(square(256),cube(256));
 ```
 
-<!-- Démo -->
-
+<div class="incremental">
+**Note :** Nous reviendrons plus tard sur le fait que `puissancex(y)` utilise bien
+  la variable `x` de sa fonction parente.
 </div>
 
-</section>
-<section>
+</section> 
+-->
 
-## Fonctions anonymes
-
-On peut déclarer une fonction sans lui donner de nom explicite, elle est
-donc anonyme.
-
-Cette situation peut se produire dans 3 cas :
-
--   On déclare la fonction anonymement, mais on l’affecte à une
-    variable… Ce qui revient en gros à donner un nom à la fonction…
-
-    ```js
-    let toto = function() {
-        console.log("coucou");
-    }
-    toto(); // Affiche "coucou"
-    typeof(toto); // → 'function'
-    ```
-
-</section>
-<section>
-
-## Fonctions anonymes
-
-On peut déclarer une fonction sans lui donner de nom explicite, elle est
-donc anonyme.
-
-Cette situation peut se produire dans 3 cas :
-
--   On «auto-invoque» la fonction, c’est-à-dire on l’exécute
-    immédiatement après sa déclaration.  
-    La fonction est alors entourée de parenthèses, et suivie d’une paire
-    de parenthèses, ce qui donne une syntaxe assez inhabituelle :
-    ```js
-    (function() {
-        console.log("coucou");
-    })();
-    ```
-
-</section>
-<section>
-
-## Fonctions anonymes
-
-<!-- On peut déclarer une fonction sans lui donner de nom explicite, elle est
-donc anonyme.
-
-Cette situation peut se produire dans 3 cas : -->
-
-*3ème cas :* On utilise la fonction anonyme associée à un événement (**le cas
-classique**), par ex. un clic :
-
-<div style="font-size:large">
-
-```html
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Utilisation de fonction</title>
-</head>
-<body>
-    <input type="button" value="OK" id="bouton">
-    <script type="text/javascript">
-        let b = document.getElementById("bouton");
-        b.addEventListener("click", function () {
-            alert("coucou");
-        });
-    </script>
-</body>
-</html>        
-```
-
-</div>
-
-</section>
 <section>
 
 # Objets en JavaScript
-
-</section>
-<section>
-
-## Objets en JavaScript
-
-JavaScript est orienté objet, nous allons donc nous retrouver en terrain
-relativement connu. Mais il y a quelques différences avec Java par
-exemple…
-
-En Java, on définit de façon statique les classes qui servent à
-instancier les objets. Les objets sont instanciés au moyen des classes
-par appel à un constructeur :
-
-
-```java
-Personne p = new Personne("toto")
-```
-
-</section>
-<section>
-
-## Particularité en JavaScript
-
--   Les objets JavaScript ont la particularité de ne pas dépendre d’une
-    définition de classe comme en Java.
--   Les versions récentes de JavaScript adoptent néanmoins la maquette de
-    *classe* mais les objets JavaScript gardent une vraie nature indépendante.
--   Ils n’instancient pas de façon pure et dure une maquette de classe, mais
-    sont insérés dans une chaîne de prototypage, qui permet de savoir quel est
-    leur héritage et la généalogie de cet héritage.
--   Il faut retenir qu’un objet JavaScript n’est pas contraint par un modèle de
-    classe, mais nos habitudes de programmation objet de Java nous permettront
-    de reproduire certaines pratiques classiques...
 
 </section>
 <section>
@@ -721,15 +755,41 @@ Personne p = new Personne("toto")
 On peut définir un objet en donnant des paires clés-valeurs :
 ```js
 let p = {nom: "Haddock", prenom: "Archibald"};
-p.nom // → "Haddock
-```
-`p` a été défini de façon littérale et complètement indépendante. Il
-peut être complété à tout moment :
-```js
+p.nom; // → "Haddock
+
+// p peut être complété
 p.profession = "marin";
 console.log(p);
 // → { nom: 'Haddock', prenom: 'Archibald', profession: 'marin' }
 ```
+
+<div class="incremental">
+<div>
+**Note :** PHP permettait aussi d'ajouter des attributs :
+```php
+$p = new stdClass();
+$p->nom = "Haddock";
+$p->prenom = "Archibald";
+```
+
+</div>
+</div>
+
+<!-- 
+En JS, le prototype est Object
+En PHP, crée un objet de la stdClass
+Autres syntaxes PHP : 
+$o = (object) ["tata" => "blop"];
+$o2 = json_decode('{"foo":"bar"}');
+
+https://www.php.net/manual/en/class.stdclass.php
+
+Marche aussi avec les méthodes
+php > $p = new stdClass();
+php > $p->parler = function () { echo "bla";};
+php > ($p->parler)();
+
+ -->
 
 </section>
 <section>
@@ -742,10 +802,12 @@ après coup :
 p.parler = function () {
     console.log("mille sabords !");
 }
-p.parler() // → "mille sabords !"
+p.parler(); // → "mille sabords !"
 ```
 
 </section>
+
+<!-- 
 <section>
 
 ## Création par constructeur
@@ -768,13 +830,13 @@ function Personne(nom, prenom, profession) {
 }
 // Appel au constructeur avec `new ...`
 let capitaine = new Personne("Haddock", "Archibald", "marin");
-capitaine.nom // → "Haddock"
-capitaine.parler() // → "mille sabords !"
+capitaine.nom; // → "Haddock"
+capitaine.parler(); // → "mille sabords !"
 ```
 </div>  
+</section> 
+-->
 
-
-</section>
 <section>
 
 ## Création selon un modèle
@@ -794,10 +856,13 @@ class Personne {
     parler() {
         console.log("mille sabords !");
     }
+    
+    static espece = "humain";
 }
 let capitaine = new Personne("Haddock", "Archibald", "marin");
-capitaine.nom // → "Haddock"
-capitaine.parler() // → "mille sabords !"
+capitaine.nom; // → "Haddock"
+capitaine.parler(); // → "mille sabords !"
+Personne.espece; // → "humain"
 ```
 
 </div>
@@ -805,10 +870,158 @@ capitaine.parler() // → "mille sabords !"
 </section>
 <section>
 
+## Langage basé sur les prototypes
+
+
+-   JavaScript n'est pas basé sur les classes, mais sur les prototypes
+-   Un prototype est comme une *maquette de classe* **dynamique**  
+    On peut modifier le prototype après coup :
+    ```js
+    Personne.prototype.aurevoir = function() {
+        console.log("Bon vent !");
+    }
+    ```
+-   `capitaine` hérite **dynamiquement** des méthodes du
+    prototype de `Personne`...
+    ```js
+    capitaine.aurevoir();
+    // → "Bon vent !"
+    ```
+
+
+</section>
+<section>
+
+## Fonctionnement des prototypes
+
+Chaque objet se voit rattaché un prototype, qui est un objet.
+
+```js
+typeof capitaine.__proto__ // → object
+```
+
+<div class="incremental">
+<div>
+
+Donc le prototype a aussi son prototype, ce qui crée 
+une chaîne prototypale. 
+
+</div>
+<div>
+
+À la fin, on arrive au prototype `Object` dont
+le prototype est `null`.
+
+```js
+capitaine.__proto__.__proto__.__proto__ // → null
+```
+
+</div>
+<div>
+Deux instances de la même classe ont le même prototype
+
+```js
+let capitaine = new Personne("Haddock", "", "");
+let tournesol = new Personne("Triffon", "", "");
+capitaine.__proto__ === tournesol.__proto__;
+// → true
+```
+
+</div>
+</div>
+</section>
+<section>
+
+## Fonctionnement des prototypes
+
+
+
+Chaque prototype contient les méthodes de son type
+
+<div style="font-size:large">
+
+```js
+Object.getOwnPropertyNames(capitaine)
+// → ['nom', 'prenom', 'profession']
+Object.getOwnPropertyNames(capitaine.__proto__)
+// → ['constructor', 'parler']
+Object.getOwnPropertyNames(capitaine.__proto__.__proto__)
+// → ['constructor', 'hasOwnProperty', 'toString', ...]
+```
+
+</div>
+
+<div class="incremental">
+<div>
+
+Quand on tape `capitaine.parler()`, l'objet va chercher la méthode dans son prototype, sinon dans le prototype du prototype...
+
+</div>
+<div>
+Du coup, `capitaine` hérite **dynamiquement** des méthodes du
+prototype de `Personne`.
+
+<div style="font-size:large">
+```js
+capitaine.__proto__.aurevoir = function() {
+    console.log("Bon vent !");
+}
+capitaine.aurevoir(); // → "Bon vent !"
+```
+</div>
+
+
+</div>
+</div>
+
+<!-- 
+C'est un peu similaire à une suite d'héritages.
+
+Le prototype est un objet qui contient toutes les méthodes en commun.
+C'est une sorte de maquette de classe.
+
+Mais c'est une maquette **dynamique** !
+
+On peut la changer.
+
+Donc tous les objets ont une méthode toString(), car elle appartient au prototype de `Object\.
+
+Le proto est un objet rattaché à chaque objet
+(jusqu'au proto de Object dont le prototype est `null`)
+
+Pour chercher un attribut / une méthode, on teste si l'objet l'a, 
+sinon le proto, sinon le proto du proto, ....
+
+Du coup, extensible après coup en modifiant le proto. 
+-->
+
+</section>
+
+<!-- 
+<section>
+
+## Particularité en JavaScript
+
+-   Les objets JavaScript ont la particularité de ne pas dépendre d’une
+    définition de classe comme en Java.
+-   Les versions récentes de JavaScript adoptent néanmoins la maquette de
+    *classe* mais les objets JavaScript gardent une vraie nature indépendante.
+-   Ils n’instancient pas de façon pure et dure une maquette de classe, mais
+    sont insérés dans une chaîne de prototypage, qui permet de savoir quel est
+    leur héritage et la généalogie de cet héritage.
+-   Il faut retenir qu’un objet JavaScript n’est pas contraint par un modèle de
+    classe, mais nos habitudes de programmation objet de Java nous permettront
+    de reproduire certaines pratiques classiques...
+
+</section> 
+-->
+<section>
+
 ## Parcours des attributs / méthodes
 
 On peut parcourir l’objet par une boucle `for` :
 <div style="font-size:large">
+
 ```js
 let gaston = {
     nom:"Lagaffe",
@@ -821,6 +1034,7 @@ for(attribut in gaston)
 // Gaston possède l'attribut prenom
 // Gaston possède l'attribut profession
 ```
+
 </div>
     
 
@@ -833,33 +1047,53 @@ Les objets JavaScript peuvent être aussi vus comme des «tableaux
 associatifs» en lisant autrement leurs attributs :
 
 ```js
-let p = {nom:"Dupont",prenom:"Pierre",age:35}
-p.nom // → "Dupont"
-p.prenom // → "Pierre"
-p.age // → 35
-p["nom"] // → "Dupont"
-p["prenom"] // → "Pierre"
-p["age"] // → 35
+let p = {nom:"Dupont",prenom:"Pierre",age:35};
+p.nom; // → "Dupont"
+p.prenom; // → "Pierre"
+p.age; // → 35
+p["nom"]; // → "Dupont"
+p["pre" + "nom"]; // → "Pierre"
+p["age"]; // → 35
 ```
 
+<br>
+
+**Avantage** de la syntaxe `obj[expr]` : `expr` est évalué
+
 </section>
-<section>
 
-## Langage basé sur les prototypes
+<!--
 
--   JavaScript n’élabore pas les objets sur le concept de classes, mais sur le
-    concept plus complexe de prototype.
--   `capitaine` et `professeur` sont construits selon le prototype de
-    `Personne` (et donc héritent des attributs et méthodes).
--   On peut modifier le prototype après coup :
-    ```js
-    Personne.prototype.aurevoir = function() {
-        alert("Bon vent !");
+Selon la syntaxe de création d'objet, les méthodes appartiennent soit à l'objet, soit au prototype :
+* litérale : à l'objet
+* constructeur seul : constructeur au prototype, reste dans l'objet
+* classe : constructeur + méthode au prototype, reste dans l'objet
+
+On peut le vérifier en créant 2 instances et en testant l'égalité ===
+entre 2 méthodes.
+On peut le voir avec l'autocomplétion dans Node qui sépare selon l'appartenance
+On peut le voir avec l'affichage d'un objet dans la console, il faut dérouler
+pour voir les méthodes du prototype
+
+// Dans ce cas, les méthodes sont stockées dans l'objet p 
+let p = {nom: "Haddock", prenom: "Archibald", parler: function () {}};
+
+// Dans ce cas, les méthodes sont stockées dans l'objet commun __proto__
+class Personne {
+    constructor(nom, prenom, profession) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.profession = function() {};
     }
-    ```
--   `capitaine` et `professeur` héritent **dynamiquement** des méthodes du
-    prototype de `Personne`...
-    ```js
-    capitaine.aurevoir();
-    // → "Bon vent !"
-    ```
+
+    myField = 0
+
+    parler() {
+        console.log("mille sabords !");
+    }
+}
+let cap = new Personne()
+cap.__proto_ →tab list les méthodes au fur et à mesure de la chaine prototypale
+cap.__proto__. constructor/parler
+cap.__proto__.__proto__. hasOwnProperty/toString/valueOf
+ -->
