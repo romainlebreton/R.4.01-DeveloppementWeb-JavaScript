@@ -5,6 +5,8 @@ layout : slideshow
 lang: fr
 ---
 
+<!-- À lancer avec l'URL onstage.html pour profiter des notes -->
+
 <section>
 
 <!-- 
@@ -17,6 +19,10 @@ TODO Notes :
   console.log(x) affiche d'abord x avant d'afficher la dernière valeur retournée = undefined
 * p.__proto__.constructor.name, p.__proto__.__proto__.constructor.name 
 * présenter les 3 systèmes de module (natif, node, ?)
+* Parler de JS engines : V8 ? 
+    V8: A JavaScript engine used in Google Chrome and other Chromium-based browsers, Node.js, MS Edge ...
+    SpiderMonkey: Firefox
+    JavaScriptCore → WebKit → Safari
 
  -->
 
@@ -46,14 +52,14 @@ TODO Notes :
 
 **Années 2000** – Librairies évoluées :
 
--   Jquery, MooTools, AngularJS, … : proposent un   ensemble de fonctions, ou
-  même un cadre de travail   complet pour JavaScript.
--   AJAX (utilisation « asynchrone » de JavaScript pour  gérer des appels au
+-   Jquery, MooTools, AngularJS, … : proposent un ensemble de fonctions, ou
+  même un cadre de travail complet pour JavaScript.
+-   AJAX (utilisation « asynchrone » de JavaScript pour gérer des appels au
   serveur de données). Voir TD5 et suivants.
 
 **Années 2010** – Ère moderne :
 
-  -   Évolution de JavaScript : utilisation du langage  côté serveur (retour aux
+  -   Évolution de JavaScript : utilisation du langage côté serveur (retour aux
       origines).
   -   Tendance actuelle : un seul langage dans la pile web, par exemple
       remplacer PHP par JavaScript.
@@ -103,8 +109,8 @@ html, css et JavaScript. Par ex :
        Page web dynamique côté client (voir TD1), souvent par une gestion
      des événements (clics, ...). 
     *  Différent des pages dynamiques côté serveur (PHP),  
-       où on gère des informations envoyées (formulaires) ou en provenance de la
-       base de données.
+       où on gère des informations envoyées (formulaires, cookie) ou stockées dans
+       la base de données, la session.
 
 2. langage interprété
  
@@ -453,7 +459,8 @@ Syntaxe entre guillemets simples `'coucou'` ou `"coucou"` doubles :
 
 <div class="incremental">
 <div>
-Syntaxe entre accent grave ``` `coucou` ```. Permet le remplacement de variables avec `$ {...}` : 
+
+Syntaxe entre accent grave ``` `coucou` ```. Permet le remplacement de variables avec `${...}` : 
 
 ```js
 let nom = 'Juste Leblanc';
@@ -1054,6 +1061,34 @@ p["age"]; // → 35
 **Avantage** de la syntaxe `obj[expr]` : `expr` est évalué
 
 </section>
+
+<!-- 
+// Nouveaux exemples après Cours 1 JS 06/02/2023
+
+// Nouvelle méthode statique
+Personne.newMethod = () => {console.log("Nouvelle Méthode Statique")}
+Personne.newMethod()
+
+// Nouvelle méthode à la classe
+Personne.prototype.aurevoir = () => console.log("Bye !")
+capitaine.aurevoir()
+
+// Peut être redéfinie
+Personne.prototype.aurevoir = () => console.log("Bye bye !")
+capitaine.aurevoir()
+
+// Polymorphisme (avec un exemple de méthode en propre)
+let tournesol = new Personne("Triffon", "", "");
+capitaine.parler = () => console.log("Tonnerre !")
+capitaine.parler(); // Tonnerre !
+tournesol.parler(); // Mille Sabords !
+
+// Méthode en propre
+capitaine.jurer = () => console.log("bachibouzouk")
+capitaine.jurer() // → bachibouzouk
+tournesol.jurer() // → Uncaught TypeError: tournesol.arthur is not a function
+// car tournesol.jurer vaut undefined
+ -->
 
 <!--
 
