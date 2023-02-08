@@ -35,4 +35,6 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 ## SAÉ du Parcours A
 
-1. [Slides](classes/SAE4A.html) de présentation de la SAÉ 
+1. Mercredi 8 février 2023 -- Amphi de présentation de la SAÉ  
+   [Slides](classes/SAE4A.html)  
+   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/e49b10a7c1ccf0690a9d9fd7621261207c1f81ec-1675846964015)
