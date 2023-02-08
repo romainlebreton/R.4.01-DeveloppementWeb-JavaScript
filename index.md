@@ -31,4 +31,8 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 ## Notes complémentaires 
 
-1. [Notes complémentaires du Cours 1]({{ site.baseurl }}/assets/class1-complement.html)
+1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
+
+## SAÉ du Parcours A
+
+1. [Slides](classes/SAE4A.html) de présentation de la SAÉ 
