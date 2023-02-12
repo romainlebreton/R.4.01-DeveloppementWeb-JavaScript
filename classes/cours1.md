@@ -497,7 +497,7 @@ password.split("X"); // → [ '@P9G', 'p', 'uF%sy' ]
 ## Déclarations possibles d’un tableau
 
 Les tableaux JavaScript peuvent être déclarés par un appel à un
-constructeur de l’objet natif de JavaScript Array :
+constructeur de l’objet natif de JavaScript `Array `:
 
 ```js
 let tab = new Array("bonjour","salut","hello");
@@ -614,7 +614,7 @@ Object.getOwnPropertyNames([].__proto__)
 
 ## Syntaxe
 
-Déclaration comme en Java, C++, ...
+Déclaration (comme en PHP)
 
 ```javascript
 function square(x) {
@@ -1043,8 +1043,8 @@ for(attribut in gaston)
 
 ## Tableaux associatifs ?
 
-Les objets JavaScript peuvent être aussi vus comme des «tableaux
-associatifs» en lisant autrement leurs attributs :
+Les objets JavaScript peuvent être aussi vus comme des «&nbsp;tableaux
+associatifs&nbsp;» en lisant autrement leurs attributs :
 
 ```js
 let p = {nom:"Dupont",prenom:"Pierre",age:35};

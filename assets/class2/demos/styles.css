@@ -1,0 +1,20 @@
+body {
+	font-size: 1.5em;
+}
+div {
+	width:14em;
+	margin:1em 2em;
+	padding:0.2em 1em;
+	border:dashed 2px black;
+}
+
+p {
+	/*background-color:orange;*/
+	margin:10px auto;
+}
+input[type="button"] {
+	font-size: 1em;
+	width:10em;
+	margin-top:5px;
+
+}

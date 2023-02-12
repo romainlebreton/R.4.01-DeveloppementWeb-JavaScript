@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>diapo 21</title>
+	<link rel="stylesheet" type="text/css" href="style1.css">
+</head>
+<body>
+	<select id="select_css" onchange="change_css();">
+		<option value="style1.css">style 1</option>
+		<option value="style2.css">style 2</option>
+		<option value="style3.css">style 3</option>
+	</select>
+	<div>
+		<p>
+			Lorem ipsum ...
+		</p>
+	</div>
+	<script type="text/javascript">
+		function change_css() {
+			// récupération de la balise select
+			let balise_select = document.getElementById("select_css");
+			// récupération de la valeur du select
+			let style_choisi = balise_select.value;
+
+			// récupération de la balise link
+			let balise_link = document.querySelector("link");
+			// affectation de cette valeur au href de balise_link
+			balise_link.href = style_choisi;
+		}
+
+		function change_css() {
+			// Code équivalent mais plus court
+			document.querySelector("link").href = document.getElementById("select_css").value;
+		}
+	</script>
+</body>
+</html>
+
+

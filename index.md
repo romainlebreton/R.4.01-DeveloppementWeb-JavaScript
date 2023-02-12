@@ -17,11 +17,11 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
    [Slides](classes/cours1.html)  
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1675667135524)
 
-<!-- 1. Lundi 6 février 2023 -- Cours 1 -- Le langage JavaScript  
-   [Slides](classes/cours1.html)  
+2. Lundi 13 février 2023 -- Cours 2 -- DOM & Évènements  
+   [Slides](classes/class2.html)  
    [Cours en ligne sur Moodle](https://moodle.umontpellier.fr/mod/bigbluebuttonbn/view.php?id=662676)
 
-1. Lundi 6 février 2023 -- Cours 1 -- Le langage JavaScript  
+<!-- 1. Lundi 6 février 2023 -- Cours 1 -- Le langage JavaScript  
    [Slides](classes/cours1.html)  
    [Cours en ligne sur Moodle](https://moodle.umontpellier.fr/mod/bigbluebuttonbn/view.php?id=662676) -->
 
@@ -32,6 +32,7 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 ## Notes complémentaires 
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
+1. [Notes complémentaires du Cours 2](assets/class2-complement.html)
 
 ## SAÉ du Parcours A
 

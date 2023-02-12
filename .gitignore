@@ -1,4 +1,5 @@
 _site/
 *~
 tutorials/
-classes/class*.md
+classes/class1.md
+classes/class3.md
