@@ -432,6 +432,8 @@ https://firefox-source-docs.mozilla.org/devtools-user/web_console/helpers/index.
 
 ## Modification du contenu
 
+<div style="font-size:93%">
+
 Méthode `innerHTML` de `Element` : 
 * représentation texte du contenu d'une balise,  
   en lecture et en écriture
@@ -440,18 +442,20 @@ Méthode `innerHTML` de `Element` :
   ```
 * ⚠️ échappement des caractères spéciaux du HTML ⚠️ 
   ```js
-  h1.textContent = "<u>coucou</u>"
+  h1.innerHTML = "<script>alert('Boom!')</script>"
+  h1.textContent = "<script>alert('Boom!')</script>"
   ```
   `element.textContent` (équivalent de `htmlspecialchars`)  
   `encodeURI` / `encodeURIComponent` (équivalent de `urlencode`)
   [Démo]({{site.baseurl}}/assets/class2/demos/diapo13.html)  
 {: .incremental}
 
+</div>
 
 </section>
 <section>
 
-## Action sur les attributs d’une balise
+## Attributs d’une balise
 
 On peut changer la valeur de l’attribut d’une balise *HTML*. On peut
 aussi créer un attribut et lui donner une valeur, ou le supprimer.
@@ -725,6 +729,9 @@ l'*objet évènement* du type `Event`
 	event.stopPropagation();
 	}
   });
+  button.addEventListener("contextmenu", function (e) {
+    e.preventDefault()
+    });
 </script>
 
 </section>
