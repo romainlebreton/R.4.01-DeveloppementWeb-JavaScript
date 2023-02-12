@@ -8,5 +8,7 @@ kramdown:
   parse_block_html: true
   hard_wrap: false
   syntax_highlighter: disable
+  syntax_highlighter_opts:
+    disable : true
 
 livereload: true

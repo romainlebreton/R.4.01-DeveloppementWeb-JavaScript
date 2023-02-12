@@ -58,7 +58,7 @@ lang: fr
 </section>
 <section>
 
-## Insertion de JavaScript dans un document HTML
+## JavaScript dans un document HTML
 
 **Différentes syntaxes :**
 
