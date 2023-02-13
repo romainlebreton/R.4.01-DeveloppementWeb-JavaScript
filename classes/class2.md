@@ -445,8 +445,10 @@ Méthode `innerHTML` de `Element` :
   h1.innerHTML = "<script>alert('Boom!')</script>"
   h1.textContent = "<script>alert('Boom!')</script>"
   ```
-  `element.textContent` (équivalent de `htmlspecialchars`)  
-  `encodeURI` / `encodeURIComponent` (équivalent de `urlencode`)
+  `element.textContent` <span style="float:right">(équivalent de `htmlspecialchars`)</span>  
+  `encodeURI` / `encodeURIComponent` <span style="float:right">(équivalent de `urlencode`)</span>  
+  L'insertion de `<script>` ci-dessus [ne marche pas en pratique](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#security_considerations), 
+  mais il reste une faille de sécurité.  
   [Démo]({{site.baseurl}}/assets/class2/demos/diapo13.html)  
 {: .incremental}
 
@@ -515,14 +517,15 @@ insérer est simple. -->
 let div = document.querySelector("#div_p")
 let paragraphes = ["coucou", "hello", "salut"]
 for (let paragraphe of paragraphes) {
-    insertAdjacentElement(`<p>${paragraphe}</p>`)
+    pHTML = `<p> ${paragraphe} </p>`
+    div.insertAdjacentHTML('beforeend', pHTML)
     // Équivalent à (et plus rapide que)
-    // div.innerHTML += `<p>${paragraphe}</p>`
+    // div.innerHTML += pHTML
 }
-div
 ```
 
-* Préférer `insertAdjacentElement` à `innerHTML` :   
+* Préférer `insertAdjacentHTML` à `innerHTML += ...` :   
+  * équivalent à `div.innerHTML = div.innerHTML + pHTML` 
   * évite de *sérialiser* et *parser* tout le *HTML* existant
   * améliore les performances
 
@@ -846,15 +849,14 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires.
 
 ## Propagation des évènements
 
-`event.stopPropagation()` arrête la propagation vers la racine.  
+* `event.stopPropagation()` arrête la propagation vers la racine.  
 <!--
 Sauf si on clique avec le bouton droit, car on stoppe alors la propagation
 -->
 
-La propriété `target` contient la cible réelle de l'évènement.
+* `target` : cible réelle de l'évènement.
 
-
-La propriété `currentTarget` contient la balise sur laquelle on a appelé `addEventListener`.
+* `currentTarget` : balise cible de `addEventListener`.
 
 <!--
 https://developer.mozilla.org/en-US/docs/Web/API/Event
@@ -874,7 +876,7 @@ http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-thi
   });
   button.addEventListener("mousedown", function(event) {
     console.log("Gestionnaire du bouton : ", event.target);
-    if (event.which == 3)
+    if (event.button == 2)
       event.stopPropagation();
   });
 </script>
@@ -890,8 +892,11 @@ http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-thi
   });
   button.addEventListener("mousedown", function(event) {
     console.log("Gestionnaire du bouton : ", event.target);
-    if (event.which == 3)
+    if (event.button == 2)
       event.stopPropagation();
+  });
+  button.addEventListener("contextmenu", function (e) {
+    e.preventDefault()
   });
 </script>
 
