@@ -28,11 +28,13 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 ## TDs
 1. Lundi 6 février 2023 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
+1. Lundi 13 février 2023 -- [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
+1. Lundi 20 février 2023 -- [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
 
 ## Notes complémentaires 
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
-1. [Notes complémentaires du Cours 2](assets/class2-complement.html)
+2. [Notes complémentaires du Cours 2](assets/class2-complement.html)
 
 ## SAÉ du Parcours A
 

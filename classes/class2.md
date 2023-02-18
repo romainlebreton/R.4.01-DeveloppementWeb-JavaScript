@@ -607,6 +607,8 @@ div.removeChild(div.children[1])
 div
 ```
 
+<!-- Présenter Element.remove en plus de Node.removeChild -->
+
 </section>
 <section>
 
