@@ -4,12 +4,12 @@ layout: main
 lang: fr
 ---
 
-# Programmation Web - Client Riche
+# Développement Web - JavaScript
 
 Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 2ème année d'IUT par [Romain Lebreton](http://www.lirmm.fr/~lebreton)
 
-**Mots clés :** Javascript, DOM, JSON, AJAX
+**Mots clés :** JavaScript, DOM, JSON, AJAX
 
 ## Cours
 
@@ -30,6 +30,7 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 1. Lundi 6 février 2023 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
 1. Lundi 13 février 2023 -- [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
 1. Lundi 20 février 2023 -- [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
+1. Lundi 06 mars 2023 -- [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*
 
 ## Notes complémentaires 
 
