@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 655.36823 52.133827"
+   version="1.1"
+   id="svg690"
+   sodipodi:docname="asyncdeferDefer.svg"
+   width="655.36823"
+   height="52.133827"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview692"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.8743902"
+     inkscape:cx="377.72285"
+     inkscape:cy="58.952506"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g650" />
+  <style
+     id="style587"><![CDATA[
+    .dividers {
+      stroke: rgb(106, 148, 0);
+      stroke-dasharray: 1, 1;
+    }
+
+    .tag {
+      dominant-baseline: central;
+      font-family: monospace;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .label {
+      dominant-baseline: central;
+      font-family: sans-serif;
+      font-size: 10px;
+    }
+
+    .parser {
+      stroke: rgb(110, 174, 0);
+      fill: rgb(110, 174, 0);
+    }
+
+    .fetch {
+      stroke: rgb(0, 53, 255);
+      fill: rgb(0, 53, 255);
+    }
+
+    .execution {
+      stroke: rgb(255, 0, 0);
+      fill: rgb(255, 0, 0);
+    }
+
+    .progress {
+      stroke-width: 2;
+    }
+
+    .progress.parser:not(.first) {
+      marker-start: url(#parser-marker);
+    }
+    .progress.parser:not(.last) {
+      marker-end: url(#parser-marker);
+    }
+
+    .progress.fetch:not(.first) {
+      marker-start: url(#fetch-marker);
+    }
+    .progress.fetch:not(.last) {
+      marker-end: url(#fetch-marker);
+    }
+
+    .progress.execution:not(.first) {
+      marker-start: url(#execution-marker);
+    }
+    .progress.execution:not(.last) {
+      marker-end: url(#execution-marker);
+    }
+
+    marker > circle {
+      stroke-width: 0;
+    }
+
+    .connector {
+      stroke: rgb(206, 206, 206);
+      stroke-width: 1;
+    }
+  ]]></style>
+  <g
+     class="dividers"
+     id="g599"
+     transform="translate(-128.63176,-1)">
+    <line
+       x1="245.5"
+       x2="245.5"
+       y1="1"
+       y2="29"
+       id="line593" />
+  </g>
+  <defs
+     id="defs610">
+    <marker
+       id="parser-marker"
+       markerWidth="3"
+       markerHeight="3"
+       refX="1.5"
+       refY="1.5">
+      <circle
+         cx="1.5"
+         cy="1.5"
+         r="1.5"
+         class="parser"
+         id="circle601" />
+    </marker>
+    <marker
+       id="fetch-marker"
+       markerWidth="3"
+       markerHeight="3"
+       refX="1.5"
+       refY="1.5">
+      <circle
+         cx="1.5"
+         cy="1.5"
+         r="1.5"
+         class="fetch"
+         id="circle604" />
+    </marker>
+    <marker
+       id="execution-marker"
+       markerWidth="3"
+       markerHeight="3"
+       refX="1.5"
+       refY="1.5">
+      <circle
+         cx="1.5"
+         cy="1.5"
+         r="1.5"
+         class="execution"
+         id="circle607" />
+    </marker>
+  </defs>
+  <g
+     transform="translate(-128.63176,0.2313354)"
+     id="g650">
+    <text
+       x="128.07317"
+       y="16.75"
+       class="tag"
+       id="text634">&lt;script defer&gt;</text>
+    <g
+       transform="translate(252)"
+       id="g648">
+      <text
+         x="0"
+         y="9"
+         class="label"
+         id="text636">Scripting:</text>
+      <text
+         x="0"
+         y="24"
+         class="label"
+         id="text638">HTML Parser:</text>
+      <line
+         x1="484"
+         x2="484"
+         y1="9"
+         y2="24"
+         class="connector"
+         id="line640" />
+      <line
+         x1="106"
+         x2="484"
+         y1="24"
+         y2="24"
+         class="parser progress first"
+         id="line642" />
+      <line
+         x1="257"
+         x2="354"
+         y1="9"
+         y2="9"
+         class="fetch progress"
+         id="line644" />
+      <line
+         x1="484"
+         x2="532"
+         y1="9"
+         y2="9"
+         class="execution progress last"
+         id="line646" />
+    </g>
+  </g>
+  <g
+     class="legend"
+     transform="translate(228.86824,44.456093)"
+     id="g686">
+    <circle
+       cx="3"
+       cy="3"
+       r="3"
+       class="parser"
+       id="circle674" />
+    <text
+       x="9"
+       y="3"
+       class="label"
+       id="text676">parser</text>
+    <circle
+       cx="50"
+       cy="3"
+       r="3"
+       class="fetch"
+       id="circle678" />
+    <text
+       x="56"
+       y="3"
+       class="label"
+       id="text680">fetch</text>
+    <circle
+       cx="90"
+       cy="3"
+       r="3"
+       class="execution"
+       id="circle682" />
+    <text
+       x="96"
+       y="3"
+       class="label"
+       id="text684">execution</text>
+  </g>
+  <text
+     x="653.36823"
+     y="47.456093"
+     text-anchor="end"
+     class="label"
+     id="text688">runtime →</text>
+</svg>
