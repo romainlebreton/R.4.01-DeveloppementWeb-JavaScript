@@ -23,9 +23,8 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 1. Lundi 6 mars 2023 -- Cours 3 -- Asynchronisme en JavaScript  
    [Slides](classes/class3.html)  
-   [Cours en ligne sur Moodle](https://moodle.umontpellier.fr/mod/bigbluebuttonbn/view.php?id=662676)
-
-
+   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1678086028981)
+   
 ## TDs
 1. Lundi 6 février 2023 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
 1. Lundi 13 février 2023 -- [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes

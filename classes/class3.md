@@ -806,7 +806,7 @@ même objet.
 
 ```javascript
 let req = new XMLHttpRequest();
-req.open('GET', 'http://romainlebreton.github.io/', false); 
+req.open('GET', 'https://romainlebreton.github.io/', false); 
 req.send(null); // null: corps de la requête vide si GET
 
 console.log(req.status); // -> 200
@@ -815,7 +815,7 @@ console.log(req.responseText.substring(0,100));
 ```
 </div>
 <!-- let req = new XMLHttpRequest(); -->
-<!-- req.open('GET', 'http://romainlebreton.github.io/', false);  -->
+<!-- req.open('GET', 'https://romainlebreton.github.io/', false);  -->
 <!-- req.send(null); // null: corps de la requête vide si GET -->
 
 <!-- console.log(req.status, req.statusText); // -> 200 OK -->
@@ -927,7 +927,7 @@ On active l'`a`synchronisme avec `req.open('GET', url, true)`
 <div style="font-size:80%">
 ```js
 let req = new XMLHttpRequest(); 
-req.open ("GET", "http://romainlebreton.github.io", true); 
+req.open ("GET", "https://romainlebreton.github.io", true); 
 req.send(null);
 console.log("Réponse :" + req.responseText); 
 // Réponse vide !
@@ -945,7 +945,7 @@ Il faut un mécanisme pour notifier au client que la requête est terminée :
 
 ```js
 let req = new XMLHttpRequest(); 
-req.open ("GET", "http://romainlebreton.github.io", true); 
+req.open ("GET", "https://romainlebreton.github.io", true); 
 req.addEventListener("load", 
   function() { 
     console.log ("Réponse :" + req.responseText.substring(0,100)); 
@@ -978,6 +978,8 @@ xhr.addEventListener("load",
 xhr.send("nom_var=AssinMarc")
 ```
 </div>
+
+Autre façon de faire : utiliser les [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/FormData)
 
 </section>
 <section>
