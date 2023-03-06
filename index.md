@@ -29,7 +29,9 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 1. Lundi 6 février 2023 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
 1. Lundi 13 février 2023 -- [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
 1. Lundi 20 février 2023 -- [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
-1. Lundi 06 mars 2023 -- [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*
+1. Lundi 06 mars 2023 -- [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*  
+puis [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
+
 
 ## Notes complémentaires 
 
