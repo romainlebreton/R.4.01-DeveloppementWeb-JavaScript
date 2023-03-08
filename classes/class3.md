@@ -771,20 +771,24 @@ prenom=Marc&nom=Assin
 3. l’attribut `readyState`  
    Il indique l’état de réception des données :
 
-   -  `readyState = 0` : objet créé mais pas ouvert (avant `open`)
-   -  `readyState = 1` : après `open`, mais avant `send`
-   -  `readyState = 2` : après `send`, avant réception de données
-   -  `readyState = 3` : données en cours de réception
-   -  `readyState = 4` : données entièrement reçues
+   <div style="font-size:64%">
+   | Valeur | État                   | Description                                                           |
+   | ------ | ---------------------- | --------------------------------------------------------------------- |
+   | 0      | `xhr.UNSENT`           | Le client a été créé. `open()` n'a pas encore été appelé.             |
+   | 1      | `xhr.OPENED`           | `open()` a été appelé.                                                |
+   | 2      | `xhr.HEADERS_RECEIVED` | `send()` a été appelé, et les en-têtes et le statut sont disponibles. |
+   | 3      | `xhr.LOADING`          | Téléchargement ; `responseText` contient des données partielles.      |
+   | 4      | `xhr.DONE`             | L'opération est terminée.                                             |
+   {: .centered  .pretty}
+   </div>
 
-
-1. l’attribut `responseText`
+4. l’attribut `responseText`
 
    Il contient, sous forme d’une chaîne de caractères, les données en
    réponse à la requête. Il n’est complet que si `readyState` est à la valeur
    4.
 
-2. l’attribut `status`  
+5. l’attribut `status`  
    Code d'état de la réponse (par ex. `200 OK`)
 
 
