@@ -768,7 +768,7 @@ prenom=Marc&nom=Assin
 
 ## Attributs de `XMLHttpRequest`
 
-3. l’attribut `readyState`  
+3. l’attribut `readyState` : 
    Il indique l’état de réception des données :
 
    <div style="font-size:64%">
