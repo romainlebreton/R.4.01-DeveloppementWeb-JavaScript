@@ -32,8 +32,8 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 1. Lundi 20 février 2023 -- [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
 1. Lundi 06 mars 2023 -- [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*  
 puis [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
-1. Lundi 13 mars 2023 -- [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*  
-puis [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- Découverte API *REST*, `fetch`, promesses, `async`/`await`
+1. Lundi 13 mars 2023 -- [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
+puis [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- AJAX, promesses et `async`/`await`
 1. Lundi 20 mars 2023 : 
    * Parcours A : Finir le [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) 
      et/ou le TD2 de "Complément Web" et/ou le TD SAÉ "Tests avec PhpUnit".
