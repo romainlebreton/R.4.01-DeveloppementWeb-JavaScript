@@ -36,7 +36,10 @@ puis [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD
 puis [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- AJAX, promesses et `async`/`await`
 1. Lundi 20 mars 2023 : 
    * Parcours A : Finir le [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) 
-     et/ou le TD2 de "Complément Web" et/ou le TD SAÉ "Tests avec PhpUnit".
+     et/ou le 
+     [TD2 de "Complément Web"](https://romainlebreton.github.io/R4.A.10-ComplementWeb/tutorials/tutorial2) 
+     et/ou le 
+     [TD SAÉ "Tests avec PhpUnit"](https://romainlebreton.github.io/R4.A.10-ComplementWeb/tutorials/tutorial_sae_tests_archi).
    * Parcours B & D : Démarrage du mini-projet.
 
 ## Notes complémentaires 
