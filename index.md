@@ -43,9 +43,3 @@ puis [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
 2. [Notes complémentaires du Cours 2](assets/class2-complement.html)
-
-## SAÉ du Parcours A
-
-1. Mercredi 8 février 2023 -- Amphi de présentation de la SAÉ  
-   [Slides](classes/SAE4A.html)  
-   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/e49b10a7c1ccf0690a9d9fd7621261207c1f81ec-1675846964015)
