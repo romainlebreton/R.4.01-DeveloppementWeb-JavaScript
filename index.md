@@ -40,7 +40,7 @@ puis [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD
      [TD2 de "Complément Web"](https://romainlebreton.github.io/R4.A.10-ComplementWeb/tutorials/tutorial2) 
      et/ou le 
      [TD SAÉ "Tests avec PhpUnit"](https://romainlebreton.github.io/R4.A.10-ComplementWeb/tutorials/tutorial_sae_tests_archi).
-   * Parcours B & D : Démarrage du mini-projet.
+   * Parcours B & D : Démarrage du [projet médiathèque](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetMediatheque).
 
 ## Notes complémentaires 
 
