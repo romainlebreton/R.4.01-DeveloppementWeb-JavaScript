@@ -32,7 +32,10 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 ## TDs
 
 1. Lundi 6 février 2023 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
-<!-- 1. Lundi 13 février 2023 -- [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
+
+<!-- 
+
+1. Lundi 13 février 2023 -- [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
 1. Lundi 20 février 2023 -- [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
 1. Lundi 06 mars 2023 -- [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*  
 puis [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
@@ -44,9 +47,15 @@ puis [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD
      [TD2 de "Complément Web"](https://romainlebreton.github.io/R4.A.10-ComplementWeb/tutorials/tutorial2) 
      et/ou le 
      [TD SAÉ "Tests avec PhpUnit"](https://romainlebreton.github.io/R4.A.10-ComplementWeb/tutorials/tutorial_sae_tests_archi).
-   * Parcours B & D : Démarrage du [projet médiathèque](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetMediatheque). -->
+   * Parcours B & D : Démarrage du [projet médiathèque](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetMediatheque). 
 
-<!-- ## Notes complémentaires 
+-->
+
+<!-- 
+
+## Notes complémentaires 
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
-2. [Notes complémentaires du Cours 2](assets/class2-complement.html) -->
+2. [Notes complémentaires du Cours 2](assets/class2-complement.html) 
+
+-->
