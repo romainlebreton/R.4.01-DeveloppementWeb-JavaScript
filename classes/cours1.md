@@ -42,7 +42,7 @@ TODO Notes :
   Ces programmes permettent d'agir directement avec la page Web, sans rechargement. 
   
 - Standard 96-97 (ECMAScript)  
-    actuellement version 13 (juin 2022),  
+    actuellement version 14 (juin 2023),  
     nouvelle version tous les ans
 
 </section>
@@ -927,7 +927,8 @@ capitaine.__proto__ === tournesol.__proto__;
 </div>
 </div>
 <div role="note">
-Chaine prototypale ~ héritage (liste des classes mères)
+Chaine prototypale ~ héritage (liste des classes mères) <br>
+ECMAScript 2015 Object.getPrototypeOf() équivalent à la propriété non-standard JavaScript `__proto__`
 </div>
 </section>
 <section>

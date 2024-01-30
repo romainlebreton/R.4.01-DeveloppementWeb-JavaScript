@@ -14,10 +14,10 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 ## Cours
 
 1. Mardi 30 janvier 2024 -- Cours 1 -- Le langage JavaScript  
+   [Slides](classes/cours1.html)  
    
 <!-- 
 
-[Slides](classes/cours1.html)  
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1675667135524) -->
 
 <!-- 2. Lundi 13 février 2024 -- Cours 2 -- DOM & Évènements  
