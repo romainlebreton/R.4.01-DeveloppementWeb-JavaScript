@@ -51,11 +51,12 @@ puis [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD
 
 -->
 
-<!-- 
-
 ## Notes complémentaires 
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
+
+<!-- 
+
 2. [Notes complémentaires du Cours 2](assets/class2-complement.html) 
 
 -->
