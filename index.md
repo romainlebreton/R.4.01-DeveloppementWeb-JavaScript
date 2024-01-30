@@ -15,18 +15,19 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 1. Mardi 30 janvier 2024 -- Cours 1 -- Le langage JavaScript  
    [Slides](classes/cours1.html)  
+   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1706598190612)
    
+
 <!-- 
 
-   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1675667135524) -->
-
-<!-- 2. Lundi 13 février 2024 -- Cours 2 -- DOM & Évènements  
+2. Lundi 13 février 2024 -- Cours 2 -- DOM & Évènements  
    [Slides](classes/class2.html)  
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1676271733519)
 
 1. Lundi 6 mars 2024 -- Cours 3 -- Asynchronisme en JavaScript  
    [Slides](classes/class3.html)  
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1678086028981)
+   
 -->
 
 ## TDs
