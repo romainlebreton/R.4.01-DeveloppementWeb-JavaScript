@@ -384,7 +384,7 @@ window.addEventListener('load',
 			function() {
 			    Dz.init();
 			     setTimeout(function() {
-			     	Dz.play();
-			     	setTimeout(function () { Dz.onresize(); }, 100);
+			     	// Dz.play();
+			     	// setTimeout(function () { Dz.onresize(); }, 100);
 			     }, 0);
 			}, false);
