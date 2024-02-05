@@ -8,11 +8,7 @@
 	<div id="div_p">Un bloc div à remplir</div>
 	<pre>
 let div = document.querySelector("#div_p")
-let paragraphes = ["coucou", "hello", "salut"]
-for (let paragraphe of paragraphes) {
-	pHTML = `&lt;p&gt; ${paragraphe} &lt;/p&gt;`
-	div.insertAdjacentHTML('beforeend', pHTML)
-}
+div.innerHTML = ""
 	</pre>
 </body>
 </html>

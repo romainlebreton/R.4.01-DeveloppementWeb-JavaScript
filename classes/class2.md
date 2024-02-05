@@ -562,7 +562,6 @@ div.appendChild(newP)
 div
 ```
 
-[Démo]({{site.baseurl}}/assets/class2/demos/diapo26.html)
 
 <br>
 
@@ -570,6 +569,8 @@ Avantages de `createElement` sur `innerHTML` :
 * Préserve les références aux `Element` existants  
   → préserve les gestionnaires d'évènements de ces `Element`
 * Attention à l'échappement HTML au sein de `innerHTML`
+
+[Démo]({{site.baseurl}}/assets/class2/demos/diapo26_bis.html)
 
 <!--
 https://stackoverflow.com/questions/2946656/advantages-of-createelement-over-innerhtml 
@@ -591,7 +592,7 @@ let div = document.querySelector("#div_p")
 div.innerHTML = ""
 ```
 
-[Démo]({{site.baseurl}}/assets/class2/demos/diapo26.html)
+[Démo]({{site.baseurl}}/assets/class2/demos/diapo26_ter.html)
 
 
 </section>

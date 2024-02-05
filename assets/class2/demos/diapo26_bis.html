@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>insertion</title>
+</head>
+<body>
+	<p>
+		Paragraphe contenant un bouton : 
+		<button>Boom !</button>
+	</p>
+	<pre>
+let p = document.querySelector("p")
+p.innerHTML += "&lt;p&gt;Rajout d'un 2eme paragraphe&lt;/p&gt;"
+// Cela casse le clic sur le bouton
+	</pre>
+	<script>
+		let b = document.querySelector("button")
+		b.addEventListener("click", () => alert("Boom !"))
+	</script>
+</body>
+</html>
+
