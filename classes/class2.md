@@ -600,12 +600,18 @@ div.innerHTML = ""
 
 ## Suppression de balises *HTML* (2/2)
 
-`removeChild` supprime un `Element`, et retourne l’élément supprimé
+Au choix :
+
+1. `parent.removeChild(child)` supprime la balise `child`, et retourne l’élément supprimé
+2. `balise.remove()` supprime la balise `balise`
 
 ```js
-div.children
-div.removeChild(div.children[1])
-div
+let parent = document.querySelector("p")
+let child = parent.children[0]
+// Au choix
+parent.removeChild(child)
+// Ou
+child.remove()
 ```
 
 <!-- Présenter Element.remove en plus de Node.removeChild -->
@@ -778,8 +784,6 @@ DOMContentLoaded would be much more appropriate, so be cautious.
 
 ## Classes d'évènements
 
-<!-- Here ! -->
-
 **Exemples :**
 
 {: .incremental}
@@ -799,7 +803,7 @@ DOMContentLoaded would be much more appropriate, so be cautious.
     Permet de différencier un clic, d'un double clic
 
 <!-- 
-En fait, detail dans UIEvent, mais ce qu'il fait spécifiquer à MouseEvent
+En fait, detail dans UIEvent, mais ce qu'il fait spécifique à MouseEvent
 -->
 
 </section>
