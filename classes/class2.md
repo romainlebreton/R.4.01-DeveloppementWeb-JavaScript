@@ -315,9 +315,9 @@ document.body.firstElementChild.nodeType // → 1
 
 ```javascript
 // Identifiant unique donc on renvoie un élément
-var i1 = document.getElementById("id1");
+let i1 = document.getElementById("id1");
 // Tous les enfants de i1 de classe myclass
-var tab_e = i1.getElementsByClassName("myclass");
+let tab_e = i1.getElementsByClassName("myclass");
 ```
 
 <div class="incremental">
@@ -434,7 +434,7 @@ https://firefox-source-docs.mozilla.org/devtools-user/web_console/helpers/index.
 
 <div style="font-size:93%">
 
-Méthode `innerHTML` de `Element` : 
+Attribut `innerHTML` de `Element` : 
 * représentation texte du contenu d'une balise,  
   en lecture et en écriture
   ```js
@@ -690,7 +690,7 @@ addEventListener("add") -> Pourquoi çà marche pas
 Plus vicieux
 addEventListener(add())
 équivalent à 
-var x = add();
+let x = add();
 addEventListener(x);
 -> Qu'est-ce que çà fait : 
 çà exécute add() tout de suite et ne le lie pas à l'évènement
@@ -714,7 +714,7 @@ l'*objet évènement* du type `Event`
 ```html
 <button>Cliquez-moi de toutes les manières</button>
 <script>
-  var button = document.querySelector("button");
+  let button = document.querySelector("button");
   button.addEventListener("mousedown", function(event) {
     if (event.button == 0)
       console.log("Left button");
@@ -729,7 +729,7 @@ l'*objet évènement* du type `Event`
 
 <button class="eventwhich" style="font-size:large">Cliquez-moi de toutes les manières</button>
 <script>
-  var button = document.querySelector("button.eventwhich");
+  let button = document.querySelector("button.eventwhich");
   button.addEventListener("mousedown", function(event) {
     if (event.button == 0)
       console.log("Left button");
@@ -826,8 +826,8 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires.
 ```html
 <p>Un paragraphe avec un <button>bouton</button>.</p>
 <script>
-  var par = document.querySelector("p");
-  var button = document.querySelector("button");
+  let par = document.querySelector("p");
+  let button = document.querySelector("button");
 
   par.addEventListener("mousedown", function() {
     console.log("Gestionnaire du paragraphe.");
@@ -841,8 +841,8 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires.
 
 <p class="propagation">Un paragraphe avec un <button class="propagation" style="font-size:large">bouton</button>.</p>
 <script>
-  var par = document.querySelector("p.propagation");
-  var button = document.querySelector("button.propagation");
+  let par = document.querySelector("p.propagation");
+  let button = document.querySelector("button.propagation");
   par.addEventListener("mousedown", function() {
     console.log("Gestionnaire du paragraphe.");
   });
@@ -876,8 +876,8 @@ http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-thi
 ```html
 <p>Un paragraphe avec un <button>bouton</button>.</p>
 <script>
-  var par = document.querySelector("p");
-  var button = document.querySelector("button");
+  let par = document.querySelector("p");
+  let button = document.querySelector("button");
   par.addEventListener("mousedown", function(event) {
     console.log("Gestionnaire du paragraphe : ", event.target);
   });
@@ -892,8 +892,8 @@ http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-thi
 
 <p class="propagation2">Un paragraphe avec un <button class="propagation2" style="font-size:large">bouton</button>.</p>
 <script>
-  var para = document.querySelector("p.propagation2");
-  var button = document.querySelector("button.propagation2");
+  let para = document.querySelector("p.propagation2");
+  let button = document.querySelector("button.propagation2");
   para.addEventListener("mousedown", function(event) {
     console.log("Gestionnaire du paragraphe : ", event.target);
   });
@@ -980,7 +980,7 @@ temps donné en ms.
 
 ```js
 function boom () {console.log("BOOM!");}
-var bombTimer = setTimeout(boom, 500);
+let bombTimer = setTimeout(boom, 500);
 
 if (Math.random() < 0.5) {  // 50% chance
   console.log("Defused.");
@@ -991,10 +991,10 @@ if (Math.random() < 0.5) {  // 50% chance
 <button class="cleartimeout" style="font-size:large">Bombe</button>
 
 <script>
-  var b = document.querySelector("button.cleartimeout");
+  let b = document.querySelector("button.cleartimeout");
   b.addEventListener("click", function () {
     function boom () {console.log("BOOM!");}
-    var bombTimer = setTimeout(boom, 500);
+    let bombTimer = setTimeout(boom, 500);
     
     if (Math.random() < 0.5) {  // 50% chance
       console.log("Defused.");

@@ -46,7 +46,7 @@ and open the template in the editor.
         <script>
 
             function asyncRequest(url, callBack) {
-                var httpRequest = new XMLHttpRequest();
+                let httpRequest = new XMLHttpRequest();
                 httpRequest.open("GET", url, true);
                 httpRequest.addEventListener("load", function () {
                     callBack(httpRequest);
@@ -55,15 +55,15 @@ and open the template in the editor.
             }
 
             function syncRequest(url, callBack) {
-                var httpRequest = new XMLHttpRequest();
+                let httpRequest = new XMLHttpRequest();
                 httpRequest.open("GET", url, false);
                 httpRequest.send(null);
                 callBack(httpRequest);
             }
 
             function writeAnswer(a) {
-                var div = document.querySelector("#reponse");
-                var p = document.createElement("p");
+                let div = document.querySelector("#reponse");
+                let p = document.createElement("p");
                 p.innerHTML = a;
 		console.log(a);
                 div.appendChild(p);
@@ -98,7 +98,7 @@ and open the template in the editor.
                     writeAnswer("Arrivé de la réponse 3");
                 });
             }
-           
+
 	function launchRequestAsyncOrdered(){
    		writeAnswer("Lancement de la requête 1");
                 asyncRequest("myRequest.php?order=1", function (req) {
@@ -115,7 +115,7 @@ and open the template in the editor.
 
 	}
 
- 
+
             document.querySelector("#ar").addEventListener("click",launchasyncRequest);
             document.querySelector("#sr").addEventListener("click",launchsyncRequest);
   	    document.querySelector("#ar-order").addEventListener("click",launchRequestAsyncOrdered);

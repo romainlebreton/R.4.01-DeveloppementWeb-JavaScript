@@ -1,4 +1,4 @@
-var data = {
+let data = {
     questions: Array(
             "Quel film de la saga Star Wars est sorti le premier ?",
             "Qui est le père de Luke Skywalker ?",

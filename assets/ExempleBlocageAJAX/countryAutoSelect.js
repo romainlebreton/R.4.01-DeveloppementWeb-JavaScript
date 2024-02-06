@@ -1,11 +1,11 @@
 // Accès au DOM
-var sel_cont = document.querySelector("select[name=continent]");
-var sel_pays = document.querySelector("select[name=country]");
+let sel_cont = document.querySelector("select[name=continent]");
+let sel_pays = document.querySelector("select[name=country]");
 
 function initContinents() {
     sel_cont.innerHTML = "<option disabled selected>Choose your country</option>"
-    for (var continent in countries) {
-        var option = document.createElement("option");
+    for (let continent in countries) {
+        let option = document.createElement("option");
         option.appendChild(document.createTextNode(continent));
         sel_cont.appendChild(option);
     }
@@ -15,10 +15,10 @@ function initContinents() {
 document.addEventListener("DOMContentLoaded", initContinents);
 
 function loadCountries(cont) {
-    var country_list = countries[cont];
+    let country_list = countries[cont];
     sel_pays.innerHTML = "<option disabled selected>Choose your country</option>"
-    for (var i = 0; i < country_list.length; i++) {
-        var option = document.createElement("option");
+    for (let i = 0; i < country_list.length; i++) {
+        let option = document.createElement("option");
         option.appendChild(document.createTextNode(country_list[i]));
         sel_pays.appendChild(option);
     }
