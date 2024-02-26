@@ -21,11 +21,10 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
    [Slides](classes/class2.html)  
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1707204737253)
 
-<!-- 
-
-
-1. Lundi 6 mars 2024 -- Cours 3 -- Asynchronisme en JavaScript  
+3. Mardi 27 février 2024 -- Cours 3 -- Asynchronisme en JavaScript  
    [Slides](classes/class3.html)  
+
+<!-- 
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1678086028981)
    
 -->
@@ -35,13 +34,10 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 1. Mardi 30 janvier 2024 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
 2. Lundi 5 février 2024 -- [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
 3. Lundi 5 février 2024 -- [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
+4. Lundi 26 février 2024 -- [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*  
+5. Lundi 26 février 2024 -- [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
 
 <!-- 
-
-1. Lundi 06 mars 2024 -- [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*  
-puis [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
-1. Lundi 13 mars 2024 -- [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
-puis [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- AJAX, promesses et `async`/`await`
 1. Lundi 20 mars 2024 : 
    * Parcours A : Finir le [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) 
      et/ou le 
