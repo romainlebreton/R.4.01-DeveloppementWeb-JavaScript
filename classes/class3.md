@@ -8,7 +8,8 @@ lang: fr
 
 <!-- 
 
-Découper l'image asyncdefer pour la mettre au fur et à mesure
+Nouvel outil pour visualiser !
+https://www.jsv9000.app/
 
 
 Lire Event Loop : images ? 
@@ -22,16 +23,8 @@ Source à lire :
 https://frarizzi.science/journal/web-engineering/browser-rendering-queue-in-depth
 https://medium.com/@francesco_rizzi/javascript-main-thread-dissected-43c85fce7e23
 
+-->
 
-xhr POST : 
-let xhr = new XMLHttpRequest()
-xhr.open("POST", "https://webinfo.iutmontp.univ-montp2.fr/~rletud/traitementPost.php", false);
-xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-xhr.send("nom_var=Isabelle")
-xhr.responseText
-
-
- -->
 <section>
 
 ## Plan du cours
@@ -158,18 +151,6 @@ http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
 <section>
 
 ## Chargement des scripts
-
-<!--
-
-Reprendre le transparent suivant :
-async n'est peut-être pas trop utilisé
-Super dessin sur le standard
-https://html.spec.whatwg.org/multipage/scripting.html#script
-
-Autre source
-http://www.html5rocks.com/en/tutorials/speed/script-loading
-http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
--->
 
 **Solution** pour que le DOM soit prêt lors de l'exécution du script :
 
@@ -849,7 +830,7 @@ de sécurité
 Inconvénients d'une requête synchrone :
 
 - **Le `send` est bloquant**, c'est-à-dire que le JavaScript reste bloqué sur
-`send` tant que l'on a pas reçu la réponse du serveur.
+`send` tant que l'on n'a pas reçu la réponse du serveur.
 
 - C'est d'autant plus gênant que la connexion est mauvaise, le serveur est lent
   ou le fichier renvoyé est gros !
@@ -983,7 +964,7 @@ xhr.send("nom_var=AssinMarc")
 ```
 </div>
 
-Autre façon de faire : utiliser les [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/FormData)
+Autre façon de faire : utiliser les [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects)
 
 </section>
 <section>
@@ -1007,7 +988,7 @@ D'autres thread :
 -> Ces parties communiquent avec le thread principal en utilisant la boucle des évènements (Event Loop)
 
 Ex : 
-* setTimeout, attend dans un thread parallèle puis enpile une tâche qui appelle le callback sur le thread principal
+* setTimeout, attend dans un thread parallèle puis empile une tâche qui appelle le callback sur le thread principal
 * idem évènement I/O clavier, souris : click, ...
 * idem évènement réseau : XHRHttpRequest, ou sa version avec des promesses fetch
 
