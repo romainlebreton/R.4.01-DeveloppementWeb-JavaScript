@@ -81,7 +81,7 @@ defer
       chargement du fichier JS puis exécution  
       **Attention :** Bloque la construction du DOM et du CSS !
 
-![Chargement des scripts]({{site.baseurl}}/assets/asyncdeferScript.svg){:title="Chargement des scripts" .slide_image}
+![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferScript.svg){:title="Chargement des scripts" .slide_image}
 
 <!-- 
 
@@ -147,6 +147,8 @@ http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
   * Inconvénient : Ne télécharge pas le script avant d'arriver à la fin du
     document.
 
+![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferScriptFin.svg){:title="Chargement des scripts" .slide_image}
+
 </section>
 <section>
 
@@ -162,15 +164,25 @@ http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
     <!-- 
     Le téléchargement du script est lancé plus tard et pas en parallèle -->
 
-  **Rappel :** L'événement `DOMContentLoaded` est lancé quand le document a été
-  chargé et analysé, sans attendre le chargement des CSS, images, ...
 
-  ```js
-  document.addEventListener("DOMContentLoaded", 
-    function() {
-      // code qui nécessite le chargement complet du DOM 
-  });
-  ```
+![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferScriptDOMContentLoaded.svg){:title="Chargement des scripts" .slide_image}
+
+<div class="incremental">
+<div>
+
+**Rappel :** L'événement `DOMContentLoaded` est lancé quand le document a été
+chargé et analysé, sans attendre les CSS, images, ...
+
+```js
+document.addEventListener("DOMContentLoaded", 
+  function() {
+    // code qui nécessite le chargement complet du DOM 
+});
+```
+{:style="font-size:smaller"}
+
+</div>
+</div>
 
 </section>
 <section>
@@ -188,7 +200,7 @@ http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
    
 <br>
 
-![Chargement des scripts]({{site.baseurl}}/assets/asyncdeferDefer.svg){:title="Chargement des scripts" .slide_image}
+![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferDefer.svg){:title="Chargement des scripts" .slide_image}
 
 <br>
 
@@ -216,7 +228,7 @@ Pour information, autre manière de charger un script :
    
 <br>
 
-![Chargement des scripts]({{site.baseurl}}/assets/asyncdeferAsync.svg){:title="Chargement des scripts" .slide_image}
+![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferAsync.svg){:title="Chargement des scripts" .slide_image}
 
 <br>
       
@@ -243,7 +255,7 @@ Attention, l'ordre d'exécution des scripts n'est plus garanti
 
 <br>
 
-![Chargement des scripts]({{site.baseurl}}/assets/asyncdefer.svg){:title="Chargement des scripts" .slide_image}
+![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdefer.svg){:title="Chargement des scripts" .slide_image}
 
 <br>
 
