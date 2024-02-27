@@ -23,11 +23,8 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 3. Mardi 27 février 2024 -- Cours 3 -- Asynchronisme en JavaScript  
    [Slides](classes/class3.html)  
+   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1709020247983)
 
-<!-- 
-   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1678086028981)
-   
--->
 
 ## TDs
 
