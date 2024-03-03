@@ -28,29 +28,27 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 ## TDs
 
-1. Mardi 30 janvier 2024 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
-2. Lundi 5 février 2024 -- [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
-3. Lundi 5 février 2024 -- [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
-4. Lundi 26 février 2024 -- [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*  
-5. Lundi 26 février 2024 -- [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
+1. Semaine du mardi 30 janvier 2024 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
+2. Semaine du lundi 5 février 2024 : 
+   1. [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
+   2. [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
+3. Semaine du lundi 26 février 2024 : 
+   1. [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*
+   2. [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
+4. Semaine du lundi 4 mars 2024 : 
+   1. [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- *AJAX*, promesses et `async`/`await`
+   2. [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) -- Programmation réactive (séance 1/2)
 
 <!-- 
-1. Lundi 20 mars 2024 : 
-   * Parcours A : Finir le [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) 
-     et/ou le 
-     [TD2 de "Complément Web"](https://romainlebreton.github.io/R4.A.10-ComplementWeb/tutorials/tutorial2) 
-     et/ou le 
-     [TD SAÉ "Tests avec PhpUnit"](https://romainlebreton.github.io/R4.A.10-ComplementWeb/tutorials/tutorial_sae_tests_archi).
-   * Parcours B & D : Démarrage du [projet médiathèque](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetMediatheque). 
-
+5. Semaine du lundi 11 mars 2024 : 
+   1. Fin du [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) (séance 2/2)
+   2. 
+      * Parcours A : Finir les TDs de JavaScript et/ou de Complément Web et/ou travailler sur la SAÉ
+      * Parcours B & D : Démarrage du [projet Cinéclub](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetCineclub).   
 -->
+
 
 ## Notes complémentaires 
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
 2. [Notes complémentaires du Cours 2](assets/class2-complement.html) 
-
-<!-- 
-
-
--->
