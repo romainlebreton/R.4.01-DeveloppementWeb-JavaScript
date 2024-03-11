@@ -38,14 +38,14 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 4. Semaine du lundi 4 mars 2024 : 
    1. [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- *AJAX*, promesses et `async`/`await`
    2. [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) -- Programmation réactive (séance 1/2)
-
-<!-- 
 5. Semaine du lundi 11 mars 2024 : 
    1. Fin du [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) (séance 2/2)
    2. 
       * Parcours A : Finir les TDs de JavaScript et/ou de Complément Web et/ou travailler sur la SAÉ
-      * Parcours B & D : Démarrage du [projet Cinéclub](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetCineclub).   
--->
+      * Parcours B & D : Démarrage du projet
+      
+        <!-- [projet Cinéclub](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetCineclub).    -->
+
 
 
 ## Notes complémentaires 
