@@ -43,8 +43,7 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
    2. 
       * Parcours A : Finir les TDs de JavaScript et/ou de Complément Web et/ou travailler sur la SAÉ
       * Parcours B & D : Démarrage du projet
-      
-        <!-- [projet Cinéclub](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetCineclub).    -->
+        [projet Cinéclub](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetCineclub).   
 
 
 
