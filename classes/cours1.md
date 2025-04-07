@@ -31,44 +31,99 @@ TODO Notes :
 </section>
 <section>
 
-## Bref historique
+## Années 1990 : Les débuts
 
-**Années 1990** - Dynamic HTML – effets sur les pages web :
-<img alt="Brendan EICH" src="{{site.baseurl}}/assets/class1/Brendan%20EICH.jpg" height="110" style="float:right; margin-left:10px;">
 
--  Langage écrit en 1995 par Brendan EICH chez Netscape, pour associer des scripts à des éléments HTML. 
-  
-- Permet d’avoir des programmes en plus des pages Web dans le navigateur.  
-  Ces programmes permettent d'agir directement avec la page Web, sans rechargement. 
-  
-- Standard 96-97 (ECMAScript)  
-    actuellement version 14 (juin 2023),  
-    nouvelle version tous les ans
+- <img alt="Brendan EICH" src="{{site.baseurl}}/assets/class1/Brendan%20EICH.jpg" height="110" style="float:right; margin-left:10px;"> 
+  **1995** : Création de JavaScript par **Brendan Eich** chez Netscape, en seulement 10 jours.
+
+- Le langage s'appelle **JavaScript** pour des raisons marketing (surf sur la popularité de Java).
+
+- Objectif : rendre les pages web interactives côté **client** (animations, validations de formulaire, etc.).
+
+- JavaScript s’exécute uniquement dans le navigateur Netscape Navigator.
+
+- **1996** : Microsoft lance sa propre version (JScript) pour Internet Explorer.
+
+- **1997** : Standardisation par l’**ECMA** sous le nom **ECMAScript** (ES1).
+
+⚠️ Problèmes : compatibilité limitée entre navigateurs, langage perçu comme peu sérieux.
 
 </section>
 <section>
 
-##  **Bref historique**
+## Années 2000 : DHTML et Ajax
 
-**Années 2000** – Librairies évoluées :
+- JavaScript devient central dans les **interfaces dynamiques** via le **DHTML** (HTML + CSS + JS) 
+  <span style="position: absolute;right: 40px;">→ **TD1 à TD3**</span>
 
--   Jquery, MooTools, AngularJS, … : proposent un ensemble de fonctions, ou
-  même un cadre de travail complet pour JavaScript.
--   AJAX (utilisation « asynchrone » de JavaScript pour gérer des appels au
-  serveur de données). Voir TD5 et suivants.
+- Apparition d’**Ajax** (Asynchronous JavaScript and XML) vers 2005 :
+  - Permet de faire des requêtes HTTP **sans recharger la page**.
+  - Utilisé notamment par **Gmail** et **Google Maps**.
+  - **TD4 et TD5**
 
-**Années 2010** – Ère moderne :
+- Début des **frameworks JavaScript** pour masquer les incompatibilités :
+  - **jQuery** (2006) devient très populaire.
+  - D’autres : Prototype, MooTools...
 
-  -   Évolution de JavaScript : utilisation du langage côté serveur (retour aux
-      origines).
-  -   Tendance actuelle : un seul langage dans la pile web, par exemple
-      remplacer PHP par JavaScript.
-  -   Node.js pour des serveurs web écrits en JavaScript.
+<br>
+
+⚠️ Le langage reste limité (pas de classes, pas de modules, pas de typage) mais est de plus en plus utilisé.
+
+</section>
+<section>
+
+## Années 2010 : ES6, frameworks
+
+- **2015 (ES6 / ECMAScript 2015)** : Révolution du langage, nouvelles syntaxes modernes
+  - `let`, `const`, arrow functions `=>`, classes,
+    <span style="position: absolute;right: 40px;">→ **Amphi 1**</span>
+  - modules (`import/export`), 
+    <span style="position: absolute;right: 40px;">→ **Amphi 4 (?)**</span>
+  - `Promise`.
+    <span style="position: absolute;right: 40px;">→ **TD6**</span>
+- **Node.js** (2009) permet d’utiliser JS **côté serveur**.
+- **npm** : le gestionnaire de paquets JavaScript.
+- Explosion des frameworks front-end :
+  - **Angular** (2010, Google).
+  - **React** (2013, Facebook).
+  - **Vue.js** (2014)
+    <span style="position: absolute;right: 40px;">→ **TD7 (prog. réactive), semestre 5 (A&D)**</span>
+- Arrivée d’**outils modernes** : Webpack, Babel (transpileur), ESLint…
+
+🔧 L’écosystème devient très riche mais aussi complexe : montée des besoins en **outillage**.
 
 <div role="note">
 Node.js ~ PHP terminal CLI  
 Console navigateur ~ PHP lié au serveur Web Apache
 </div>
+
+</section>
+<section>
+
+## Années 2020 - Full-stack
+
+- **Standards ES6+** : modules, async/await
+    <span style="position: absolute;right: 40px;">→ **TD6**</span>
+
+- **Frameworks JS fullstack** : **Next.js**, **Nuxt.js**, **SvelteKit**, **Remix**
+  
+- **TypeScript** (2012) : JS + typage statique
+    <span style="position: absolute;right: 40px;">→ **semestre 5 (A&D)**</span>
+
+- Modernisation des navigateurs (support natif des modules JS).
+  
+- **Deno** (2020) : nouveau runtime sécurisé pour JavaScript/TypeScript, concurrent de Node.js
+  
+- Retour à la **simplicité** avec des outils comme **Vite**, **ESBuild**.
+  
+- JavaScript est désormais un **langage universel** (client, serveur, mobile, IoT, desktop…).
+
+<br>
+
+📊 Aujourd’hui, JavaScript est incontournable dans le développement web moderne.
+
+*(merci ChatGPT pour l'amélioration de l'historique)*
 
 </section>
 <section>
@@ -343,7 +398,7 @@ console.log (8 * null);
 <div class="incremental">
 <div>
 
-En effet, `*` est nécessairement la multiplication de deux nombres donc `null` est converti en un nombre
+En effet, `*` est nécessairement la multiplication de deux nombres donc `null` est converti en un nombre :
 
 </div>
 <div>
@@ -351,7 +406,7 @@ En effet, `*` est nécessairement la multiplication de deux nombres donc `null` 
 ```javascript
 Number(null);
 // → 0
-// ATTENTION : çà ne marche que dans les cas simples
+// ATTENTION : ça ne marche que dans les cas simples
 Number("five");
 // → NaN
 Number("5");
@@ -365,7 +420,7 @@ Number(undefined);
 </section>
 <section>
 
-## Quizz 1/2
+## Quiz 1/2
 
 **Question :** Que rend le code suivant ?
 
@@ -379,7 +434,7 @@ console.log ("5" - 1);
 </section>
 <section>
 
-## Quizz 2/2
+## Quiz 2/2
 
 
 **Question :** Que rend le code suivant ?
@@ -672,7 +727,7 @@ const square2 = x => x * x;
 
 ## Fonctions
 
-Les fonctions sont des **objets de &laquo;première classe&raquo;** : elles
+Les fonctions sont des **objets de &laquo;&nbsp;première classe&nbsp;&raquo;** : elles
 peuvent être manipulées et échangées comme tous les autres objets JavaScript.
 
 <br>
@@ -749,7 +804,7 @@ console.log(square(256),cube(256));
 
 ## Création de façon littérale
 
-On peut définir un objet en donnant des paires clés-valeurs :
+On peut définir un objet en donnant des paires clés valeurs :
 ```js
 let p = {nom: "Haddock", prenom: "Archibald"};
 p.nom; // → "Haddock
