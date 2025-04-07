@@ -33,7 +33,7 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 ## TDs
 
-1. Semaine du mardi 30 janvier 2024 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
+1. Semaine du mardi 08 avril 2025 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
 
 <!--
 
