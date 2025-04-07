@@ -54,9 +54,14 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
         [projet Cinéclub](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetCineclub).   
 
 
+-->
+
 ## Notes complémentaires 
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
+
+<!--
+
 2. [Notes complémentaires du Cours 2](assets/class2-complement.html) 
 
 -->

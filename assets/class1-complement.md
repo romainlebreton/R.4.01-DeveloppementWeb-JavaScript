@@ -7,6 +7,11 @@ lang: fr
 
 ## Quelques points supplémentaires
 
+Liens externes / Bibliographie :
+* [Mozilla Developper Network](https://developer.mozilla.org/fr/docs/Web/JavaScript) : la référence
+* [JavaScript.info](https://fr.javascript.info/) : *The Modern JavaScript Tutorial*
+* [Eloquent JavaScript](https://eloquentjavascript.net) ou sa [version française](https://fr.eloquentjavascript.net/) plus ancienne.
+
 Pêle-mêle, quelques spécificités avancées du langage JavaScript :
 
 * [Property accessor using bracket notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#bracket_notation)  
@@ -25,8 +30,6 @@ Pêle-mêle, quelques spécificités avancées du langage JavaScript :
 * [`this` en Javascript](https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3)  
     Explication des règles de résolution de `this`.
 * Listes des [ajouts au standard ECMAScript](https://github.com/tc39/proposals/blob/main/finished-proposals.md) par année.
-
-Les références sur le site [Eloquent JavaScript](https://eloquentjavascript.net) existent aussi [en français](https://fr.eloquentjavascript.net/) dans une version plus ancienne du livre.
 
 <!-- 
 Voir aussi Eloquent JS : Higher order functions : Map.foreach/filter/map/some/findIndex ...
