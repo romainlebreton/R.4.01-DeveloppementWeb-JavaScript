@@ -13,7 +13,7 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 ## Cours
 
-1. Mardi 30 janvier 2024 -- Cours 1 -- Le langage JavaScript  
+1. Mardi 08 avril 2025 -- Cours 1 -- Le langage JavaScript  
    [Slides](classes/cours1.html)  
 
 <!--
