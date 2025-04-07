@@ -15,20 +15,28 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 1. Mardi 30 janvier 2024 -- Cours 1 -- Le langage JavaScript  
    [Slides](classes/cours1.html)  
+
+<!--
+
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1706598190612)
    
-2. Mardi 6 février 2024 -- Cours 2 -- DOM & Évènements  
+
+1. Mardi 6 février 2024 -- Cours 2 -- DOM & Évènements  
    [Slides](classes/class2.html)  
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1707204737253)
 
-3. Mardi 27 février 2024 -- Cours 3 -- Asynchronisme en JavaScript  
+2. Mardi 27 février 2024 -- Cours 3 -- Asynchronisme en JavaScript  
    [Slides](classes/class3.html)  
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1709020247983)
+-->
 
 
 ## TDs
 
 1. Semaine du mardi 30 janvier 2024 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
+
+<!--
+
 2. Semaine du lundi 5 février 2024 : 
    1. [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
    2. [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
@@ -46,8 +54,9 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
         [projet Cinéclub](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/ProjetCineclub).   
 
 
-
 ## Notes complémentaires 
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
 2. [Notes complémentaires du Cours 2](assets/class2-complement.html) 
+
+-->
