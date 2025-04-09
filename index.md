@@ -15,6 +15,7 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 1. Mardi 08 avril 2025 -- Cours 1 -- Le langage JavaScript  
    [Slides](classes/cours1.html)  
+   [Enregistrement du cours](https://umontpellier.scalelite.bbb.numerique-esr.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1744097455124)
 
 <!--
 
