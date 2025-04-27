@@ -32,5 +32,112 @@ Pêle-mêle :
 * [Duck typing](https://medium.com/@eamonocallaghan/what-is-duck-typing-in-javascript-f3eb10853361)  
   Les interfaces n'existent pas en JavaScript. En effet, un prototype est dynamique et peut voir ses méthodes évoluer.  
   On peut tout de même émuler les interfaces en vérifiant la présence des méthodes voulues.
-* [Que vaut `this` dans un gestionnaire d'évènement](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#the_value_of_this_within_the_handler)  
+* [Que vaut `this` dans un gestionnaire d'évènement ?](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#the_value_of_this_within_the_handler)  
 
+## Vulnérabilité XSS au TD2
+
+Lors du TD2, vous avez pu être amenés à écrire le code suivant pour l'affichage
+du tableau de score du championnat de football
+
+```js
+class Equipe {
+  toHTML() {
+    return `<tr><td>${this.classement}</td><td>${this.nom}</td></tr>`
+  }
+}
+
+// championnat.js
+class Championnat {
+  afficherClassement() {
+    document.querySelectorAll("#bloc-classement tbody").insertAdjacentHTML(
+      'beforeend', 
+      this.tabEquipes[i].toHTML()
+    )
+  } 
+}
+```
+
+Or, ce code a une vulnérabilité XSS. Le nom de l'équipe est saisi un
+utilisateur, qui pourrait provoquer un comportement non souhaité du navigateur.
+
+### Solution 1
+
+On utilise une variante personnalisée des ``template string : `string text ${expression} string text` ``.
+Ces variantes récupèrent les morceaux de chaines de caractères du template string, ainsi que les valeurs des expressions.
+Puis, il peut les traiter comme il le souhaite. Dans notre cas, nous allons échapper *à la main* les valeurs des expressions.
+
+```js
+// library.js
+function escapeHtml(text) {
+  return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+}
+
+function safeTag(strings, ...values) {
+  let out = ""
+  for (let i = 0; i < strings.length; i++) {
+    out += strings[i]
+    if (i < values.length) {
+      safeValue = escapeHtml(values[i])
+      out += safeValue
+    }
+  }
+  return out        
+}
+
+// equipe.js
+class Equipe {
+  toHTML() {
+    return safeTag`<tr><td>${this.classement}</td><td>${this.nom}</td></tr>`
+  }
+}
+```
+
+[Source sur MDN pour les *tagged templates* ``tagFunction`string text ${expression} string text` ``](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates)
+
+
+### Solution 2
+
+L'utilisation de la balise HTML `<template>` peut faciliter la mise en place d'une solution.
+Le `<template>` permet de cloner facilement un morceau de page Web.
+On peut alors cibler certaines balises, par exemple grâce à leur identifiant, pour modifier leur `textContent`.
+
+```html
+<!-- championnat.html -->
+<template id="ligne">
+  <tr>
+    <td id="classement"></td>
+    <td id="nom"></td>
+  </tr>
+</template>
+```
+
+```js
+// equipe.js
+class Equipe {
+  toHTMLElement() {
+    let template = document.getElementById("ligne");
+    let ligne = template.content.cloneNode(true);
+    ligne.getElementById("classement").textContent = this.classement;
+    ligne.getElementById("nom").textContent = this.nom;
+    return ligne;
+  }
+}
+
+// championnat.js
+class Championnat {
+  afficherClassement() {
+    document.querySelectorAll("#bloc-classement tbody").insertAdjacentElement(
+      'beforeend', 
+      this.tabEquipes[i].toHTMLElement()
+    )
+  } 
+}
+```
+
+
+[Source de l'ANSSI](https://cyber.gouv.fr/sites/default/files/2013/05/anssi-guide-recommandations_mise_en_oeuvre_site_web_maitriser_standards_securite_cote_navigateur-v2.0.pdf)

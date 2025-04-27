@@ -8,6 +8,8 @@ lang: fr
 
 <!-- 
 
+Prendre des bouts d'explications de https://javascript.info/event-loop
+
 Nouvel outil pour visualiser !
 https://www.jsv9000.app/
 

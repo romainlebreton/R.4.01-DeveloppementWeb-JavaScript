@@ -17,16 +17,13 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
    [Slides](classes/cours1.html)  
    [Enregistrement du cours](https://umontpellier.scalelite.bbb.numerique-esr.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1744097455124)
 
-<!--
-
-   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1706598190612)
-   
-
-1. Mardi 6 février 2024 -- Cours 2 -- DOM & Évènements  
+2. Mardi 29 avril 2025 -- Cours 2 -- DOM & Évènements  
    [Slides](classes/class2.html)  
+
+<!--
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1707204737253)
 
-2. Mardi 27 février 2024 -- Cours 3 -- Asynchronisme en JavaScript  
+1. Mardi **27 février 2024** -- Cours 3 -- Asynchronisme en JavaScript  
    [Slides](classes/class3.html)  
    [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1709020247983)
 -->
@@ -38,16 +35,16 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 2. Semaine du lundi 28 avril 2025 : 
    1. [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
+   2. [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
 
 <!--
-   2. [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
-2. Semaine du lundi 26 février 2024 : 
+2. Semaine du lundi **26 février 2024** : 
    1. [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*
    2. [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
-3. Semaine du lundi 4 mars 2024 : 
+3. Semaine du lundi **4 mars 2024** : 
    1. [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- *AJAX*, promesses et `async`/`await`
    2. [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) -- Programmation réactive (séance 1/2)
-4. Semaine du lundi 11 mars 2024 : 
+4. Semaine du lundi **11 mars 2024** : 
    1. Fin du [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) (séance 2/2)
    2. 
       * Parcours A : Finir les TDs de JavaScript et/ou de Complément Web et/ou travailler sur la SAÉ
@@ -60,9 +57,5 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 ## Notes complémentaires 
 
 1. [Notes complémentaires du Cours 1](assets/class1-complement.html)
-
-<!--
-
 2. [Notes complémentaires du Cours 2](assets/class2-complement.html) 
 
--->
