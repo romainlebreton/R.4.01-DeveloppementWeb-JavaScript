@@ -432,7 +432,7 @@ https://firefox-source-docs.mozilla.org/devtools-user/web_console/helpers/index.
 
 ## Modification par `innerHTML` (1/2)
 
-**Attribut `innerHTML` de `Element` :**  
+**Attribut `innerHTML` de `Element` :**
 Représentation texte du contenu d'une balise, en lecture et en écriture
 ```js
 h1.innerHTML = "<u>coucou</u>"
@@ -662,7 +662,7 @@ que l'évènement associé se produit.
 **Il y a 3 manières d'associer une action à un évènement**
 
 <!-- Il y a plusieurs façons d'associer une action à un évènement sur un
-élément. --> Par exemple, pour exécuter la fonction `act()` lors d'un clic sur
+élément. --> Par exemple, pour exécuter la fonction `listener()` lors d'un clic sur
 un `<button>` (variable `b`) :
 
 <!-- RL : Hack to have the numbering displayed correctly in Chrome -->
@@ -671,15 +671,15 @@ un `<button>` (variable `b`) :
 </style>
 
 1. ```javascript
-   b.addEventListener('click',act);
+   b.addEventListener('click',listener);
    ```
 
 2. ```javascript
-   b.onclick = act;
+   b.onclick = listener;
    ```
 
 2. ```html
-   <button onclick='act()'>
+   <button onclick='listener()'>
    ```
 
 </section>
@@ -690,7 +690,7 @@ un `<button>` (variable `b`) :
 **Utilisez la première syntaxe**
 
 ```javascript
-b.addEventListener('click',act);
+b.addEventListener('click',listener);
 ```
 
 car
@@ -699,7 +699,7 @@ car
 * on peut supprimer une action d'un évènement
 
   ```javascript
-  b.removeEventListener('click',act);
+  b.removeEventListener('click',listener);
   ```
 * on peut ajouter des [options avancées](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#parameters) : `once`, ... 
 
@@ -720,7 +720,7 @@ addEventListener(x);
 
 ## L'objet évènement
 
-La fonction donnée au gestionnaire reçoit un paramètre :  
+La fonction *listener* donnée au gestionnaire est exécutée avec un argument :  
 <p style="text-align:center">
 l'*objet évènement* du type `Event`
 </p>
@@ -832,7 +832,10 @@ En fait, detail dans UIEvent, mais ce qu'il fait spécifique à MouseEvent
 
 <!-- Rajouter la capture d'évènement cf http://www.w3.org/TR/DOM-Level-2-Events/events.html -->
 
-Un gestionnaire d'évènement va recevoir les évènements qui se produisent sur ses fils.
+Les évènements remontent de la cible jusqu'à la racine du document : 
+Un évènement déclenche les *listener* de sa cible, puis du père de la cible, et ainsi de suite.
+
+<!-- Un gestionnaire d'évènement va recevoir les évènements qui se produisent sur ses fils. -->
 
 <!--
 En fait, un évènement déclenche d'abord le nœud sur lequel il s'est déroulé, puis il déclenche son nœud parent, son nœud grands-parents et ainsi de suite jusqu'à la racine de l'évènement.
