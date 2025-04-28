@@ -52,7 +52,7 @@ lang: fr
   
 * Web 2.0 (*Cours prochain*)  
   Communications asynchrones (non liés au chargement des pages) entre le serveur et le client  
-  XMLHttpRequest, Ajax, WebSocket ...
+  XMLHttpRequest / `fetch`, Ajax, WebSocket ...
 {:.incremental}
 
 </section>
@@ -430,29 +430,118 @@ https://firefox-source-docs.mozilla.org/devtools-user/web_console/helpers/index.
 </section>
 <section>
 
-## Modification du contenu
+## Modification par `innerHTML` (1/2)
 
-<div style="font-size:93%">
+**Attribut `innerHTML` de `Element` :**  
+Représentation texte du contenu d'une balise, en lecture et en écriture
+```js
+h1.innerHTML = "<u>coucou</u>"
+```
 
-Attribut `innerHTML` de `Element` : 
-* représentation texte du contenu d'une balise,  
-  en lecture et en écriture
+**Problème de `innerHTML` :**  
+Pas d'échappement des caractères spéciaux du HTML ⚠️ 
+```js
+h1.innerHTML = "<script>alert('Boom!')</script>"
+```
+L'insertion de `<script>` ci-dessus [ne marche pas en pratique](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#security_considerations), 
+mais il reste une faille de sécurité. <span style="float:right">→ [Démo]({{site.baseurl}}/assets/class2/demos/diapo13.html)</span>
+
+**Solution**
+```js
+h1.textContent = "<script>alert('Boom!')</script>"
+```
+
+</section>
+<section>
+
+## Modification par `innerHTML` (2/2)
+
+**Autre problème de `innerHTML` :** 
+* `innerHTML += ...` est équivalent à 
   ```js
-  h1.innerHTML = "<u>coucou</u>"
+  div.innerHTML = div.innerHTML + pHTML
   ```
-* ⚠️ échappement des caractères spéciaux du HTML ⚠️ 
-  ```js
-  h1.innerHTML = "<script>alert('Boom!')</script>"
-  h1.textContent = "<script>alert('Boom!')</script>"
-  ```
-  `element.textContent` <span style="float:right">(équivalent de `htmlspecialchars`)</span>  
-  `encodeURI` / `encodeURIComponent` <span style="float:right">(équivalent de `urlencode`)</span>  
-  L'insertion de `<script>` ci-dessus [ne marche pas en pratique](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#security_considerations), 
-  mais il reste une faille de sécurité.  
-  [Démo]({{site.baseurl}}/assets/class2/demos/diapo13.html)  
-{: .incremental}
+  Il *sérialise* et *parse* donc tout le *HTML* existant.  
+  &nbsp; <span style="float:right">→ Impact sur les performances ([Source](https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/))</span>
 
-</div>
+* Du coup, il casse toutes références aux `Element` existants, notamment les gestionnaires d'évènements de ces `Element`.  
+  → [Démo]({{site.baseurl}}/assets/class2/demos/diapo26_bis.html)
+
+</section>
+<section>
+
+## Alternative à `innerHTML` (1/2)
+
+<!-- On peut insérer brutalement des balises *HTML* en modifiant de façon
+textuelle le `innerHTML` de la balise englobante :
+
+Cette façon de faire est efficace quand la hiérarchie des balises à
+insérer est simple. -->
+
+```js
+let div = document.querySelector("#div_p")
+let paragraphes = ["coucou", "hello", "salut"]
+for (let paragraphe of paragraphes) {
+    pHTML = `<p> ${paragraphe} </p>`
+    div.insertAdjacentHTML('beforeend', pHTML)
+    // Équivalent à div.innerHTML += pHTML
+}
+```
+
+`insertAdjacentHTML` *parse* juste `pHTML` en un `Element`, qui est inséré avant
+la fin de `div`.
+* ✅ Meilleure performance
+* ✅ Ancien `Element` pas touchés  
+  (donc pas de pb de gestionnaire d'évènements)
+* ❌ Pas d'échappement des caractères spéciaux du HTML 
+
+[Démo]({{site.baseurl}}/assets/class2/demos/diapo26.html)
+
+
+<!-- 
+https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/
+
+innerHTML += serialize pour lire innerHTML et reparse tout pour l'écrire
+
+Sérialiser : transformer en texte
+Parser : transformer depuis un texte (vers un arbre de balises)
+-->
+
+</section>
+<section>
+
+## Modification du contenu (3/3)
+
+<!-- On crée un élément `<p>`, on lui donne un `textContent` et des
+attributs, on crée le `div_p` qui va l’adopter et on procède à
+l’adoption (en fin de fratrie) : -->
+
+```js
+let div = document.querySelector("#div_p")
+let paragraphes = ["coucou", "hello", "salut"]
+for (let paragraphe of paragraphes) {
+  let pElement = document.createElement("p")
+  pElement.textContent = paragraphe
+  // insertAdjacentElement comme insertAdjacentHTML
+  // mais pour des Element
+  div.insertAdjacentElement('beforeend', pElement)
+}
+```
+
+
+* ✅ Meilleure performance
+* ✅ Ancien `Element` pas touchés  
+  (donc pas de pb de gestionnaire d'évènements)
+* ✅ Échappement des caractères spéciaux du HTML 
+
+Autres solutions dans les [notes complémentaires]({{site.baseurl}}/assets/class2-complement.html#vulnérabilité-xss-au-td2) 
+
+
+<!--
+https://stackoverflow.com/questions/2946656/advantages-of-createelement-over-innerhtml 
+Avantage / inconvénient ?
+* performance à cause du parsing ?
+ -->
 
 </section>
 <section>
@@ -472,6 +561,12 @@ input.removeAttribute("min")
 
 [Démo]({{site.baseurl}}/assets/class2/demos/diapo18.html)
 
+<br>
+<br>
+
+**Remarque :** `setAttribute` ne permet que des noms d'attributs limités, et ne
+risque pas de manipuler le HTML (pas besoin de `htmlspecialchars`).
+
 <!-- 
 Attention à value d'un input ! Live vs défaut 
 Cf notes complémentaires
@@ -486,7 +581,7 @@ diagramme de classe HTMLInputElement -> HTMLElement -> Element
 
 ## Modification des classes
 
-On peut accéder à la liste des classes d’une balise *HTML* (voir
+On peut accéder à la liste des classes d’une balise (voir
 TD1) :
 
 ```js
@@ -501,82 +596,6 @@ div.classList.replace("c4", "c2")
 
 [Démo]({{site.baseurl}}/assets/class2/demos/diapo24.html)
 
-
-</section>
-<section>
-
-## Insertion de balises *HTML* (1/2)
-
-<!-- On peut insérer brutalement des balises *HTML* en modifiant de façon
-textuelle le `innerHTML` de la balise englobante :
-
-Cette façon de faire est efficace quand la hiérarchie des balises à
-insérer est simple. -->
-
-```js
-let div = document.querySelector("#div_p")
-let paragraphes = ["coucou", "hello", "salut"]
-for (let paragraphe of paragraphes) {
-    pHTML = `<p> ${paragraphe} </p>`
-    div.insertAdjacentHTML('beforeend', pHTML)
-    // Équivalent à (et plus rapide que)
-    // div.innerHTML += pHTML
-}
-```
-
-* Préférer `insertAdjacentHTML` à `innerHTML += ...` :   
-  * équivalent à `div.innerHTML = div.innerHTML + pHTML` 
-  * évite de *sérialiser* et *parser* tout le *HTML* existant
-  * améliore les performances
-
-[Démo]({{site.baseurl}}/assets/class2/demos/diapo26.html)
-
-<p class="myfootnote">
-[Source](https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/)
-</p>
-
-<!-- 
-https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/
-
-innerHTML += serialize pour lire innerHTML et reparse tout pour l'écrire
-
-Sérialiser : transformer en texte
-Parser : transformer depuis un texte (vers un arbre de balises)
--->
-
-</section>
-<section>
-
-## Insertion de balises *HTML* (2/2)
-
-<!-- On crée un élément `<p>`, on lui donne un `textContent` et des
-attributs, on crée le `div_p` qui va l’adopter et on procède à
-l’adoption (en fin de fratrie) : -->
-
-```js
-let newP = document.createElement("p")
-newP.setAttribute("id","p2")
-newP.textContent = "paragraphe 2"
-let div = document.getElementById("div_p")
-div.appendChild(newP)
-div
-```
-
-
-<br>
-
-Avantages de `createElement` sur `innerHTML` : 
-* Préserve les références aux `Element` existants  
-  → préserve les gestionnaires d'évènements de ces `Element`
-* Attention à l'échappement HTML au sein de `innerHTML`
-
-[Démo]({{site.baseurl}}/assets/class2/demos/diapo26_bis.html)
-
-<!--
-https://stackoverflow.com/questions/2946656/advantages-of-createelement-over-innerhtml 
-Avantage / inconvénient ?
-* performance à cause du parsing ?
- -->
 
 </section>
 <section>
