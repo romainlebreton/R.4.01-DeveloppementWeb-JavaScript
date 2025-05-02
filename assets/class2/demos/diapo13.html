@@ -14,9 +14,10 @@
 	</p>
 	<pre>
 let h1 = $("h1");
-h1.textContent = "&lt;script&gt;alert('Boom!')&lt;/script&gt;"
 h1.innerHTML = "&lt;script&gt;alert('Boom!')&lt;/script&gt;"
 h1.innerHTML = `&lt;img src="x" onerror="alert('Boom!')"&gt;`
+// Solution
+h1.textContent = "&lt;script&gt;alert('Boom!')&lt;/script&gt;"
 	</pre>
 </body>
 </html>

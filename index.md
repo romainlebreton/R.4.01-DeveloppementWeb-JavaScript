@@ -19,9 +19,9 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 2. Mardi 29 avril 2025 -- Cours 2 -- DOM & Évènements  
    [Slides](classes/class2.html)  
+   [Enregistrement du cours](https://umontpellier.scalelite.bbb.numerique-esr.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1745911805706)
 
 <!--
-   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1707204737253)
 
 1. Mardi **27 février 2024** -- Cours 3 -- Asynchronisme en JavaScript  
    [Slides](classes/class3.html)  

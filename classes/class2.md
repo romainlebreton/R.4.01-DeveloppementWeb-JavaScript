@@ -334,17 +334,15 @@ Les *sélecteurs* en CSS permettent de faire des recherches avancées par nom de
 
 **Sélecteurs simples (`tag` est toujours optionnel)**
 
-<div style="font-size:80%">
 ~~~css
 *                   /* Sélectionne tout                         */
 tag                 /* Toute balise <tag>                       */
-tag.class           /* Tout <tag> de classe class               */
+.class              /* Toute balise de classe class             */
 #id                 /* La balise identifiée par id              */
 tag:pseudoclass     /* Sélection de contenu spécial             */
 tag[att=val]        /* Tout <tag> ayant attribut att égal à val */
 ~~~
 {:.css}
-</div>
 
 **Exemples:**
 
@@ -359,7 +357,6 @@ tag[att=val]        /* Tout <tag> ayant attribut att égal à val */
 
 **Combinateurs de sélecteurs**
 
-<div style="font-size:80%">
 ~~~css
 sel1, sel2        /* Chacun des sélecteurs                   */
 parent child      /* child s'il est un fils de parent        */
@@ -368,7 +365,6 @@ sister ~ brother  /* brother s'il suit sister                */
 sister + brother  /* brother s'il suit immédiatement sister  */
 ~~~
 {:.css}
-</div>
 
 **Exemples:**
 
@@ -390,7 +386,6 @@ sister + brother  /* brother s'il suit immédiatement sister  */
 
 ## Recherche avancée
 
-<div style="font-size:95%">
 
 * `querySelectorAll(selector)` :  
   **tous** les `Element` satisfaisant le sélecteur, 
@@ -415,8 +410,6 @@ sister + brother  /* brother s'il suit immédiatement sister  */
   // Indique si `element` satisfait le sélecteur 
   element.matches(selector)
   ```
-
-</div>
 
 <!-- 
 querySelector et querySelectorAll sont des méthodes du mixin (ParentNode = Document ou Element) 
@@ -457,7 +450,7 @@ h1.textContent = "<script>alert('Boom!')</script>"
 ## Modification par `innerHTML` (2/2)
 
 **Autre problème de `innerHTML` :** 
-* `innerHTML += ...` est équivalent à 
+* `div.innerHTML += pHTML` est équivalent à 
   ```js
   div.innerHTML = div.innerHTML + pHTML
   ```
@@ -728,8 +721,6 @@ l'*objet évènement* du type `Event`
 
 **Exemple:** La propriété `button` indique le bouton cliqué de la souris
 
-<div style="font-size:80%">
-
 ```html
 <button>Cliquez-moi de toutes les manières</button>
 <script>
@@ -744,7 +735,6 @@ l'*objet évènement* du type `Event`
   });
 </script>
 ```
-</div>
 
 <button class="eventwhich" style="font-size:large">Cliquez-moi de toutes les manières</button>
 <script>
@@ -843,8 +833,6 @@ En fait, un évènement déclenche d'abord le nœud sur lequel il s'est déroul�
 Par exemple, un clic sur le bouton va déclencher les deux gestionnaires. 
 -->
 
-<div style="font-size:90%">
-
 ```html
 <p>Un paragraphe avec un <button>bouton</button>.</p>
 <script>
@@ -859,7 +847,6 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires.
   });
 </script>
 ```
-</div>
 
 <p class="propagation">Un paragraphe avec un <button class="propagation" style="font-size:large">bouton</button>.</p>
 <script>
@@ -893,7 +880,6 @@ L'élément qui a reçu l'évènement est dans currenttarget (et this ?)
 http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-this
 -->
 
-<div style="font-size:80%">
 
 ```html
 <p>Un paragraphe avec un <button>bouton</button>.</p>
@@ -910,7 +896,6 @@ http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-thi
   });
 </script>
 ```
-</div>
 
 <p class="propagation2">Un paragraphe avec un <button class="propagation2" style="font-size:large">bouton</button>.</p>
 <script>
