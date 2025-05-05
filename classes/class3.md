@@ -85,6 +85,7 @@ defer
 
 ![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferScript.svg){:title="Chargement des scripts" .slide_image}
 
+
 <!-- 
 
 Impossibilité d'interagir avec un document si JavaScript est occupé (bloquant)
@@ -144,30 +145,21 @@ http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
 
 **Solution** pour que le DOM soit prêt lors de l'exécution du script :
 
-* Mettre la balise `<script>` à la fin : 
+* Mettre la balise `<script>` à la fin :  
   <!-- * Avantage : Le DOM est prêt. -->
+  ![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferScriptFin.svg){:title="Chargement des scripts" .slide_image}
   * Inconvénient : Ne télécharge pas le script avant d'arriver à la fin du
     document.
 
-![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferScriptFin.svg){:title="Chargement des scripts" .slide_image}
-
-</section>
-<section>
-
-## Chargement des scripts
-
-**Solution** pour que le DOM soit prêt lors de l'exécution du script :
-
 * Attendre la fin du chargement du `DOM` (événement `DOMContentLoaded`) avant de
-  lancer le script :
+  lancer le script :  
+  ![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferScriptDOMContentLoaded.svg){:title="Chargement des scripts" .slide_image}
   * Avantage : balise `<script>` où l'on veut.
   * Inconvénient : Le téléchargement du script ne se fait pas en parallèle  du
     chargement du DOM.
     <!-- 
     Le téléchargement du script est lancé plus tard et pas en parallèle -->
-
-
-![Chargement des scripts]({{site.baseurl}}/assets/class3/asyncdeferScriptDOMContentLoaded.svg){:title="Chargement des scripts" .slide_image}
+{:.incremental}
 
 <div class="incremental">
 <div>
@@ -181,7 +173,6 @@ document.addEventListener("DOMContentLoaded",
     // code qui nécessite le chargement complet du DOM 
 });
 ```
-{:style="font-size:smaller"}
 
 </div>
 </div>
@@ -425,6 +416,10 @@ On vous conseille généralement de privilégier `defer`.
 **Exemple d'un fichier de données au format JSON** 
 
 ![Alt text](../assets/class3/img27.png){: .slide_image}
+
+Quelques différences entre un objet encodé en JSON et un objet littéral :
+* Les chaînes utilisent des guillemets doubles, pas de guillemet simple ni d'accent grave.
+* Les propriété d’objet sont obligatoirement entre guillemets doubles.
 
 </section>
 <section>
@@ -766,7 +761,6 @@ prenom=Marc&nom=Assin
 3. l’attribut `readyState` : 
    Il indique l’état de réception des données :
 
-   <div style="font-size:64%">
    | Valeur | État                   | Description                                                           |
    | ------ | ---------------------- | --------------------------------------------------------------------- |
    | 0      | `xhr.UNSENT`           | Le client a été créé. `open()` n'a pas encore été appelé.             |
@@ -775,7 +769,6 @@ prenom=Marc&nom=Assin
    | 3      | `xhr.LOADING`          | Téléchargement ; `responseText` contient des données partielles.      |
    | 4      | `xhr.DONE`             | L'opération est terminée.                                             |
    {: .centered  .pretty}
-   </div>
 
 4. l’attribut `responseText`
 
@@ -798,10 +791,9 @@ Il suffit de :
 - initialiser la requête et écriture son en-tête avec `open`
 - écrire le corps de la requête et l'envoyer avec `send`
 
-Après `send`, la réponse HTTP (le *status*, le document ...) est écrit dans ce
+Après `send`, la réponse HTTP (le *status*, le document ...) est écrite dans ce
 même objet.
 
-<div style="font-size:80%">
 
 ```javascript
 let req = new XMLHttpRequest();
@@ -812,7 +804,6 @@ console.log(req.status); // -> 200
 console.log(req.responseText.substring(0,100)); 
 // -> <!DOCTYPE html><html>...
 ```
-</div>
 <!-- let req = new XMLHttpRequest(); -->
 <!-- req.open('GET', 'https://romainlebreton.github.io/', false);  -->
 <!-- req.send(null); // null: corps de la requête vide si GET -->
@@ -863,7 +854,6 @@ Inconvénients d'une requête synchrone :
 
 [Exemple de blocage avec une requête synchrone](https://webinfo.iutmontp.univ-montp2.fr/~lebreton/ExempleBlocageAJAX/)
 
-<div style="font-size:80%">
 ```js
 url = "cityRequest.php?name=Vi";
 let httpRequest = new XMLHttpRequest();
@@ -884,7 +874,6 @@ console.log(httpRequest.response);
 <!-- ``` -->
 <!-- {:.javascript} -->
 
-</div>
 
 <br>
 
@@ -923,7 +912,6 @@ On active l'`a`synchronisme avec `req.open('GET', url, true)`
 
 **Piège :**
 
-<div style="font-size:80%">
 ```js
 let req = new XMLHttpRequest(); 
 req.open ("GET", "https://romainlebreton.github.io", true); 
@@ -931,7 +919,6 @@ req.send(null);
 console.log("Réponse :" + req.responseText); 
 // Réponse vide !
 ```
-</div>
 <div class="incremental">
 <div>
 **Solution :**
@@ -940,7 +927,6 @@ Il faut un mécanisme pour notifier au client que la requête est terminée :
 </div>
 <div>
 **Exemple :**
-<div style="font-size:80%">
 
 ```js
 let req = new XMLHttpRequest(); 
@@ -954,7 +940,6 @@ req.send(null);
 ```
 </div>
 </div>
-</div>
 </section>
 <section>
 
@@ -962,7 +947,6 @@ req.send(null);
 
 Pour ressembler à l'envoi d'un formulaire `POST`
 
-<div style="font-size:73%">
 
 ```js
 let xhr = new XMLHttpRequest()
@@ -971,12 +955,11 @@ xhr.open("POST", url);
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 xhr.addEventListener("load", 
   function() { 
-    console.log ("Réponse :" + xhr.responseText.substring(0,100)); 
+    console.log ("Réponse :" + xhr.responseText); 
   }
 );
 xhr.send("nom_var=AssinMarc")
 ```
-</div>
 
 Autre façon de faire : utiliser les [`FormData`](https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects)
 
@@ -1058,13 +1041,11 @@ d'événements » :
 
 **Exemple :** Qu'affiche le programme suivant ?
 
-<div style="font-size:80%">
 ```js
 console.log("Étape 1.");
 setTimeout(function etape2 () { console.log("Étape 2.");}, 0);
 console.log("Étape 3.");
 ```
-</div>
 
 
 <div class="incremental">
