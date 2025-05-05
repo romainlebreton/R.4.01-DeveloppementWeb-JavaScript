@@ -738,8 +738,8 @@ l'*objet évènement* du type `Event`
 
 <button class="eventwhich" style="font-size:large">Cliquez-moi de toutes les manières</button>
 <script>
-  let button = document.querySelector("button.eventwhich");
-  button.addEventListener("mousedown", function(event) {
+  let button_evtwhich = document.querySelector("button.eventwhich");
+  button_evtwhich.addEventListener("mousedown", function(event) {
     if (event.button == 0)
       console.log("Left button");
     else if (event.button == 1)
@@ -750,7 +750,7 @@ l'*objet évènement* du type `Event`
 	event.stopPropagation();
 	}
   });
-  button.addEventListener("contextmenu", function (e) {
+  button_evtwhich.addEventListener("contextmenu", function (e) {
     e.preventDefault()
     });
 </script>
@@ -850,12 +850,12 @@ Par exemple, un clic sur le bouton va déclencher les deux gestionnaires.
 
 <p class="propagation">Un paragraphe avec un <button class="propagation" style="font-size:large">bouton</button>.</p>
 <script>
-  let par = document.querySelector("p.propagation");
-  let button = document.querySelector("button.propagation");
-  par.addEventListener("mousedown", function() {
+  let par_prog = document.querySelector("p.propagation");
+  let button_prog = document.querySelector("button.propagation");
+  par_prog.addEventListener("mousedown", function() {
     console.log("Gestionnaire du paragraphe.");
   });
-  button.addEventListener("mousedown", function() {
+  button_prog.addEventListener("mousedown", function() {
     console.log("Gestionnaire du bouton.");
   });
 </script>
@@ -899,17 +899,17 @@ http://stackoverflow.com/questions/5125926/javascript-event-currenttarget-vs-thi
 
 <p class="propagation2">Un paragraphe avec un <button class="propagation2" style="font-size:large">bouton</button>.</p>
 <script>
-  let para = document.querySelector("p.propagation2");
-  let button = document.querySelector("button.propagation2");
-  para.addEventListener("mousedown", function(event) {
+  let para_prog2 = document.querySelector("p.propagation2");
+  let button_prog2 = document.querySelector("button.propagation2");
+  para_prog2.addEventListener("mousedown", function(event) {
     console.log("Gestionnaire du paragraphe : ", event.target);
   });
-  button.addEventListener("mousedown", function(event) {
+  button_prog2.addEventListener("mousedown", function(event) {
     console.log("Gestionnaire du bouton : ", event.target);
     if (event.button == 2)
       event.stopPropagation();
   });
-  button.addEventListener("contextmenu", function (e) {
+  button_prog2.addEventListener("contextmenu", function (e) {
     e.preventDefault()
   });
 </script>
