@@ -26,20 +26,33 @@
                         <input type="text" name="city"/>
                         <div id="myac"></div>
                     </div>
-                    <img src="url.gif" alt="loading" height="21px">
+                    <img src="frame_1.png" id="loading" alt="loading" height="21px">
+                    <!-- <img src="url.gif" alt="loading" height="21px"> -->
                 </div>
                 <p>
                     <input type="submit" value="Envoyer"/>
                 </p>
             </fieldset>
         </form>
+        <h3>Requête synchrone bloquante</h3>
         <p>
             Lors du chargement de l'autocomplétion, la requête AJAX est ici synchrone donc bloquante. <br>
             En pratique, tant que le serveur n'a pas renvoyé sa page, le JavaScript est bloqué en attente. <br>
             Du coup, l'interaction avec la page est suspendu : déroulement de la page, animation GIF, sélection des pays ...
         </p>
+        <h3>Blocage lors des calculs</h3>
+        <p>Si le JavaScript est occupé par un calcul, la mise à jour de l'affichage ne peut pas se faire.</p>
+        <pre style="border: 1px solid black">
+$("fieldset").style.backgroundColor = "yellow"
+let i = 0; 
+let start = Date.now();
+for (let j = 0; j < 3e9; j++) {
+  i++;
+}
+alert("Effectué en " + (Date.now() - start) + 'ms');</pre>
         <script src="cityAutocomplete.js"></script>
         <script src="countries.js"></script>
         <script src="countryAutoSelect.js"></script>
+        <script src="loadingAnimation.js"></script>
     </body>
 </html>
