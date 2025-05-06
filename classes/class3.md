@@ -852,7 +852,7 @@ Inconvénients d'une requête synchrone :
 
 <br>
 
-[Exemple de blocage avec une requête synchrone](https://webinfo.iutmontp.univ-montp2.fr/~lebreton/ExempleBlocageAJAX/)
+Démo : [Exemple de blocage avec une requête synchrone](https://webinfo.iutmontp.univ-montp2.fr/~lebreton/ExempleBlocageAJAX/)
 
 ```js
 url = "cityRequest.php?name=Vi";
@@ -1019,20 +1019,32 @@ Des exemples !
 
 ## Boucle des évènements
 
-La programmation asynchrone amène des tâches à s'exécuter en parallèle :
-* Sur le *thread* principal : *DOM*, affichage, JavaScript
-* Sur des *thread* parallèles : réseau, clavier, souris, cryptographie
+Sur le *thread* principal, *DOM*, affichage, JavaScript s'exécutent à la suite.
 
+<br>
 
-JavaScript gère la concurrence entre tâches parallèles grâce à une « boucle
-d'événements » :
-* Les `callback` des évènements asynchrones sont empilés dans la pile de tâches
-* Boucle des évènements (`Event loop`): 
-  * Exécution du JavaScript dans le thread principal jusqu'à son terme
-  * Quand le thread principal n'a plus de code à exécuter, 
-    il dépile une tâche et l'exécute jusqu'à son terme
-  * Et il boucle ainsi de suite
+La programmation asynchrone amène des tâches à s'exécuter sur des *thread*
+parallèles :
+<p>
+réseau, clavier, souris, cryptographie, ...
+</p>
+{: .centered}
 
+<br>
+
+JavaScript gère la concurrence entre tâches parallèles grâce à une *boucle d'événements* :
+> 1. Tant qu’il y a des tâches :  
+     > il exécute la tâche la plus ancienne (file d'attente / `queue`) jusqu'à son terme.
+     <!-- Mise à jour du rendu -->
+> 2. Attend jusqu’à ce qu’une tâche apparaisse, puis repasse à 1.
+
+<br>
+
+Les `callback` des évènements asynchrones vont dans la file de tâches.
+
+<br>
+
+<!-- **Problème :** L'exécution d'une tâche bloque le rendu de la page, le traitement des évènements utilisateurs... -->
 
 </section>
 <section>
