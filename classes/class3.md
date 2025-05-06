@@ -1034,15 +1034,21 @@ réseau, clavier, souris, cryptographie, ...
 
 JavaScript gère la concurrence entre tâches parallèles grâce à une *boucle d'événements* :
 > 1. Tant qu’il y a des tâches :  
-     > il exécute la tâche la plus ancienne (file d'attente / `queue`) jusqu'à son terme.
-     <!-- Mise à jour du rendu -->
+     1. Exécution de la tâche la plus ancienne (file d'attente / `queue`) jusqu'à son terme.
+     2. Mise à jour du rendu
 > 2. Attend jusqu’à ce qu’une tâche apparaisse, puis repasse à 1.
 
 <br>
 
-Les `callback` des évènements asynchrones vont dans la file de tâches.
+Les `callback` des évènements asynchrones vont dans la file d'attente des tâches.
 
 <br>
+
+Visualisation de la file des tâches avec l'outil `Loupe` :
+* [Démo 1 - Le *thread* principal et la pile des appels de fonctions](http://latentflip.com/loupe/?code=CmZ1bmN0aW9uIGEoKSB7IGIoKTsgfQpmdW5jdGlvbiBiKCkgeyBjKCk7IH0KZnVuY3Rpb24gYygpIHsgZCgpOyB9CmZ1bmN0aW9uIGQoKSB7IAogICAgbGV0IGogPSAyOyAKICAgIGogPSBqICsgMTsKICAgIGNvbnNvbGUubG9nKCdoaScpOyAKfQphKCk%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
+* [Démo 2 - La file d'attente des tâches](http://latentflip.com/loupe/?code=CiQub24oJ2J1dHRvbicsICdjbGljaycsIGZ1bmN0aW9uIG9uQ2xpY2soKSB7CiAgICBjb25zb2xlLmxvZygnWW91IGNsaWNrZWQgdGhlIGJ1dHRvbiEnKTsgIAp9KTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
+
+
 
 <!-- **Problème :** L'exécution d'une tâche bloque le rendu de la page, le traitement des évènements utilisateurs... -->
 
@@ -1077,7 +1083,7 @@ console.log("Étape 3.");
 Parce que le *callback* de `setTimeout` est rajouté sur la pile des
 tâches, et ne sera exécuté qu'à la fin du JavaScript "principal".
 
-[Visualisation de la pile des tâches avec l'outil `Loupe`](http://latentflip.com/loupe/?code=Y29uc29sZS5sb2coIsl0YXBlIDEuIik7CnNldFRpbWVvdXQoZnVuY3Rpb24gZXRhcGUyICgpIHsgCiAgICBjb25zb2xlLmxvZygiyXRhcGUgMi4iKTt9LAogICAgMCk7CmNvbnNvbGUubG9nKCLJdGFwZSAzLiIpOw%3D%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
+[Visualisation de la file des tâches avec l'outil `Loupe`](http://latentflip.com/loupe/?code=CmZ1bmN0aW9uIGYoKSB7CiAgY29uc29sZS5sb2coIsl0YXBlIDEuIik7CiAgc2V0VGltZW91dChmdW5jdGlvbiBldGFwZTIgKCkgeyAKICAgICAgY29uc29sZS5sb2coIsl0YXBlIDIuIik7fSwKICAgICAgMCk7CiAgY29uc29sZS5sb2coIsl0YXBlIDMuIik7Cn0KZigp!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
 
 </div>
 </div>
