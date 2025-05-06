@@ -1050,7 +1050,17 @@ Visualisation de la file des tâches avec l'outil `Loupe` :
 
 
 
-<!-- **Problème :** L'exécution d'une tâche bloque le rendu de la page, le traitement des évènements utilisateurs... -->
+<!-- 
+latentflip : 3 parties
+* thread principal : avec sa call stack - Démo 1
+* thread parallèles (Web APIs (DOM, ajax, settimeout): dont les callback vont dans la 
+* file d'attente des taches (callback queue (ou task queue) )
+  - Démo 2
+
+1. exécution d'un code normal, sur le thread principal avec la call stack
+2. exécution d'un callback (clavier ou settimeout)
+3. Emélement des 2
+-->
 
 </section>
 <section>
