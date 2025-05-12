@@ -23,11 +23,7 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 3. Mardi 06 mai 2025 -- Cours 3 -- Asynchronisme en JavaScript  
    [Slides](classes/class3.html)  
-
-<!--
-   [Enregistrement du cours](https://scalelite.umontpellier.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1709020247983)
--->
-
+   [Enregistrement du cours](https://umontpellier.scalelite.bbb.numerique-esr.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1746516100130)
 
 ## TDs
 
@@ -39,11 +35,11 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 3. Semaine du lundi 05 mai 2025 : 
    1. [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*
    2. [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
-
-<!--
-3. Semaine du lundi **4 mars 2024** : 
+4. Semaine du lundi 12 mai 2025 : 
    1. [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- *AJAX*, promesses et `async`/`await`
    2. [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) -- Programmation réactive (séance 1/2)
+
+<!--
 4. Semaine du lundi **11 mars 2024** : 
    1. Fin du [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) (séance 2/2)
    2. 
