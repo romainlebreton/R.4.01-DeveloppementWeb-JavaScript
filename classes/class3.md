@@ -1090,7 +1090,7 @@ console.log("Étape 3.");
 <div>
 
 **Pourquoi ?**  
-Parce que le *callback* de `setTimeout` est rajouté sur la pile des
+Parce que le *callback* de `setTimeout` est rajouté sur la file d'attente des
 tâches, et ne sera exécuté qu'à la fin du JavaScript "principal".
 
 [Visualisation de la file des tâches avec l'outil `Loupe`](http://latentflip.com/loupe/?code=CmZ1bmN0aW9uIGYoKSB7CiAgY29uc29sZS5sb2coIsl0YXBlIDEuIik7CiAgc2V0VGltZW91dChmdW5jdGlvbiBldGFwZTIgKCkgeyAKICAgICAgY29uc29sZS5sb2coIsl0YXBlIDIuIik7fSwKICAgICAgMCk7CiAgY29uc29sZS5sb2coIsl0YXBlIDMuIik7Cn0KZigp!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
