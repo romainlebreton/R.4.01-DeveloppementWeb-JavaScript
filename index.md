@@ -25,6 +25,9 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
    [Slides](classes/class3.html)  
    [Enregistrement du cours](https://umontpellier.scalelite.bbb.numerique-esr.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1746516100130)
 
+4. Mardi 20 mai 2025 -- Cours 4 -- Modules, Promesses, Sécurité  
+   [Slides](classes/class4.html)  
+
 ## TDs
 
 1. Semaine du mardi 08 avril 2025 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="620"
+   height="633"
+   viewBox="0 0 620 633"
+   version="1.1"
+   id="svg25"
+   sodipodi:docname="xhr-preflight.svg"
+   inkscape:version="1.4.2 (2aeb623e1d, 2025-05-12)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview25"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.8420221"
+     inkscape:cx="310.25686"
+     inkscape:cy="316.5"
+     inkscape:window-width="2560"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg25" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">@import url(https://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic%7CPT+Mono);@font-face{font-family:'PT Mono';font-weight:700;font-style:normal;src:local('PT MonoBold'),url(/font/PTMonoBold.woff2) format('woff2'),url(/font/PTMonoBold.woff) format('woff'),url(/font/PTMonoBold.ttf) format('truetype')}</style>
+  </defs>
+  <path
+     id="Rectangle-227"
+     fill="#fbf2ec"
+     stroke="#dbaf88"
+     stroke-width="2"
+     d="M 1,16 H 129 V 80 H 1 Z"
+     style="fill-rule:evenodd" />
+  <text
+     id="JavaScript"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="33"
+       y="50"
+       id="tspan1">JavaScript</tspan></text>
+  <path
+     id="Rectangle-228"
+     fill="#fbf2ec"
+     stroke="#dbaf88"
+     stroke-width="2"
+     d="M 240,16 H 368 V 80 H 240 Z"
+     style="fill-rule:evenodd" />
+  <text
+     id="Browser"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-8.1432247"><tspan
+       x="269.85678"
+       y="48"
+       id="tspan2">Navigateur</tspan></text>
+  <path
+     id="Rectangle-229"
+     fill="#fbf2ec"
+     stroke="#dbaf88"
+     stroke-width="2"
+     d="M 491,16 H 619 V 80 H 491 Z"
+     style="fill-rule:evenodd" />
+  <text
+     id="Server"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-3.8001716"><tspan
+       x="530.19983"
+       y="50"
+       id="tspan3">Serveur</tspan></text>
+  <path
+     id="Line"
+     stroke="#7e7c7b"
+     stroke-linecap="square"
+     d="M 66,82 V 602 M 305,82 V 602 M 556,82 v 520"
+     style="fill:none;fill-rule:evenodd;stroke-width:1" />
+  <path
+     id="path3"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 291,133 14,7 -14,7 -10e-4,-6 H 67 v -2 h 223.999 z"
+     style="stroke:none;stroke-width:1" />
+  <text
+     id="fetch()"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="166"
+       y="131"
+       id="tspan4">fetch()</tspan></text>
+  <text
+     id="OPTIONS"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-3.7724609"><tspan
+       x="396.22754"
+       y="173"
+       id="tspan5">OPTIONS</tspan></text>
+  <text
+     id="Origin-Access-Contro"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="406.72101"
+       y="198"
+       id="tspan6">Origin</tspan><tspan
+       x="321.866"
+       y="216"
+       id="tspan7">Access-Control-Request-Method</tspan><tspan
+       x="320"
+       y="234"
+       id="tspan8">Access-Control-Request-Headers</tspan></text>
+  <path
+     id="path8"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 319,285.5 v 6 h 237 v 2 H 319 v 6 l -14,-7 z"
+     style="stroke:none;stroke-width:1" />
+  <text
+     id="200-OK"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-4.534668"><tspan
+       x="402.46533"
+       y="285"
+       id="tspan9">200 OK</tspan></text>
+  <path
+     id="Line-4"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 542,173 14,7 -14,7 -10e-4,-6 H 305 v -2 h 236.999 z"
+     style="stroke:none;stroke-width:1" />
+  <path
+     id="Line-2"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 319,495 v 6 h 237 v 2 H 319 v 6 l -14,-7 z"
+     style="stroke:none;stroke-width:1" />
+  <path
+     id="Line-3"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 90.5,544.5 v 8 h 214 v 3 h -214 v 8 l -19,-9.5 z"
+     style="stroke:none;stroke-width:1" />
+  <text
+     id="Access-Control-Allow"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="0.59423828"><tspan
+       x="336.59424"
+       y="522"
+       id="tspan10">Access-Control-Allow-Origin</tspan></text>
+  <text
+     id="Main-HTTP-response"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-10.233398"><tspan
+       x="344.7666"
+       y="495"
+       id="tspan11">Réponse HTTP principale</tspan></text>
+  <text
+     id="otherwise-error"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="130"
+       y="570"
+       id="tspan12">sinon erreur</tspan></text>
+  <text
+     id="if-allowed:-success,"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="115.5"
+       y="545"
+       id="tspan13">Accès si autorisé</tspan></text>
+  <path
+     id="Line-5"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 542,429 14,7 -14,7 -10e-4,-6 H 304 v -2 h 237.999 z"
+     style="stroke:none;stroke-width:1" />
+  <text
+     id="Origin"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="1.5361328"><tspan
+       x="406.53613"
+       y="454"
+       id="tspan14">Origin</tspan></text>
+  <text
+     id="Main-HTTP-request"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-14.064453"><tspan
+       x="345.93555"
+       y="429"
+       id="tspan15">Requête HTTP principale</tspan></text>
+  <text
+     id="preflight"
+     fill="#7e7c7b"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="22px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="210.145"
+       y="186"
+       id="tspan16">preflight</tspan></text>
+  <text
+     id="if-allowed"
+     fill="#7e7c7b"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="22px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-4.8859348"><tspan
+       x="193.45206"
+       y="441"
+       id="tspan17">si autorisé</tspan></text>
+  <text
+     id="1"
+     fill="#181717"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="24px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="570.13898"
+       y="186"
+       id="tspan18">1</tspan></text>
+  <text
+     id="2"
+     fill="#181717"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="24px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="570.13898"
+       y="302"
+       id="tspan19">2</tspan></text>
+  <text
+     id="3"
+     fill="#181717"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="24px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="570.13898"
+       y="443"
+       id="tspan20">3</tspan></text>
+  <text
+     id="4"
+     fill="#181717"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="24px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="570.13898"
+       y="509"
+       id="tspan21">4</tspan></text>
+  <text
+     id="text25"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-4.5385742"><tspan
+       x="336.35144"
+       y="311.32999"
+       id="tspan22">Access-Control-Allow-Origin</tspan><tspan
+       x="327.46143"
+       y="329.32999"
+       id="tspan23">Access-Control-Allow-Methods</tspan><tspan
+       x="328.93442"
+       y="347.32999"
+       id="tspan24">Access-Control-Allow-Headers</tspan><tspan
+       x="347.90442"
+       y="365.32999"
+       id="tspan25">Access-Control-Max-Age</tspan></text>
+</svg>

@@ -139,6 +139,15 @@ section[aria-selected] ~ section { left: +150%; }
 /* The items to-be-selected */
 .incremental > *[aria-selected] ~ * { opacity: 0; }
 
+
+/* Switch elements with display none */
+
+/* By default, visible */
+.incremental.switch > * { display: none;  opacity: 1;}
+
+/* The current item */
+.incremental.switch > *[aria-selected] { display: initial; }
+
 /* The progressbar, at the bottom of the slides, show the global
    progress of the presentation. */
 #progress-bar {

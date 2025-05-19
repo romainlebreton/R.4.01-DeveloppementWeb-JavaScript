@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="633"
+   height="411"
+   viewBox="0 0 633 411"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="xhr-another-domain.svg"
+   inkscape:version="1.4.2 (2aeb623e1d, 2025-05-12)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showguides="false"
+     inkscape:zoom="1.9610706"
+     inkscape:cx="316.40881"
+     inkscape:cy="205.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg11" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">@import url(https://fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic%7CPT+Mono);@font-face{font-family:'PT Mono';font-weight:700;font-style:normal;src:local('PT MonoBold'),url(/font/PTMonoBold.woff2) format('woff2'),url(/font/PTMonoBold.woff) format('woff'),url(/font/PTMonoBold.ttf) format('truetype')}</style>
+  </defs>
+  <path
+     id="Rectangle-227"
+     fill="#fbf2ec"
+     stroke="#dbaf88"
+     stroke-width="2"
+     d="M 1,16 H 129 V 80 H 1 Z"
+     style="fill-rule:evenodd"
+     sodipodi:nodetypes="ccccc" />
+  <text
+     id="JavaScript"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="35"
+       y="50"
+       id="tspan1">JavaScript</tspan></text>
+  <path
+     id="Rectangle-228"
+     fill="#fbf2ec"
+     stroke="#dbaf88"
+     stroke-width="2"
+     d="M 261,16 H 389 V 80 H 261 Z"
+     style="fill-rule:evenodd"
+     sodipodi:nodetypes="ccccc" />
+  <text
+     id="Browser"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-5.0992556"><tspan
+       x="290.90076"
+       y="50"
+       id="tspan2">Navigateur</tspan></text>
+  <path
+     id="Rectangle-229"
+     fill="#fbf2ec"
+     stroke="#dbaf88"
+     stroke-width="2"
+     d="M 504,16 H 632 V 80 H 504 Z"
+     style="fill-rule:evenodd"
+     sodipodi:nodetypes="ccccc" />
+  <text
+     id="Server"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-1.0198511"><tspan
+       x="542.98016"
+       y="50"
+       id="tspan3">Serveur</tspan></text>
+  <path
+     id="Line"
+     stroke="#7e7c7b"
+     stroke-linecap="square"
+     d="M 26.772544,81.036812 V 400.96319 M 326.53504,81.036812 V 400.96319 M 606.69768,81.036812 V 400.96319"
+     style="fill:none;fill-rule:evenodd;stroke-width:1.07362"
+     sodipodi:nodetypes="cccccc" />
+  <path
+     id="path3"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 309.45821,133 16.03186,7 -16.03186,7 v -6 H 27.755583 v -2 H 309.45821 Z"
+     style="stroke:none;stroke-width:1.07011"
+     sodipodi:nodetypes="cccccccc" />
+  <text
+     id="Origin:-https://java"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-26.516129"><tspan
+       x="327.79684"
+       y="205"
+       id="tspan4">Origin: https://romainlebreton.github.io/</tspan></text>
+  <text
+     id="HTTP-request"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="401.01501"
+       y="174"
+       id="tspan5">HTTP-request</tspan></text>
+  <text
+     id="fetch()"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-12.748137"><tspan
+       x="158.25186"
+       y="131"
+       id="tspan6">fetch()</tspan></text>
+  <text
+     id="HTTP-response"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="398.41901"
+       y="250"
+       id="tspan7">HTTP-response</tspan></text>
+  <text
+     id="Access-Control-Allow"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"><tspan
+       x="347"
+       y="287"
+       id="tspan8">Access-Control-Allow-Origin: *</tspan><tspan
+       x="364.14099"
+       y="305"
+       id="tspan9">(ou https://romainlebreton.github.io)</tspan></text>
+  <text
+     id="if-the-header-allows"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-14.277916"><tspan
+       x="70.722084"
+       y="325"
+       id="tspan10">Si l'en-tête le permet, autorisation</tspan></text>
+  <text
+     id="otherwise-fail"
+     fill="#af6e24"
+     font-family="OpenSans-Regular, 'Open Sans'"
+     font-size="14px"
+     font-weight="normal"
+     style="fill-rule:evenodd;stroke:none;stroke-width:1"
+     x="-76.488831"><tspan
+       x="71.511169"
+       y="353"
+       id="tspan11">sinon échec</tspan></text>
+  <path
+     id="path11"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 589.53331,180 16.20118,7 -16.20118,7 v -6 H 328 v -2 h 261.53331 z"
+     style="stroke:none;stroke-width:1.07574"
+     sodipodi:nodetypes="cccccccc" />
+  <path
+     id="Line-2"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 342.27149,258 v 6 h 264.99278 v 2 H 342.27149 v 6 L 326,265 Z"
+     style="stroke:none;stroke-width:1.07808"
+     sodipodi:nodetypes="cccccccc" />
+  <path
+     id="Line-3"
+     fill="#c06334"
+     fill-rule="nonzero"
+     d="m 44.289581,326 v 6 H 327 v 2 H 44.289581 v 6 l -16.024072,-7 z"
+     style="stroke:none;stroke-width:1.06985"
+     sodipodi:nodetypes="cccccccc" />
+</svg>
