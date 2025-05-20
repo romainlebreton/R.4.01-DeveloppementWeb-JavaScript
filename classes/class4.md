@@ -188,18 +188,20 @@ import func from '/path/to/func.js';
 ## Caractéristiques de base des modules
 
 * Toujours `use strict` : 
-  * Variante moderne mais plus restrictive de JavaScript
-  * Lève des exceptions à la place de certaines erreurs silencieuses, par exemple l'affectation de variables non déclarées
-  * Permet aux moteurs JavaScript d'effectuer des optimisations
-  * Prévoit les prochaines versions d'ECMAScript
+  * Variante moderne mais plus restrictive de JavaScript.
+  * Lève des exceptions à la place de certaines erreurs silencieuses, par exemple l'affectation de variables non déclarées.
+  * Permet aux moteurs JavaScript d'effectuer des optimisations.
+  * Prévoit les prochaines versions d'ECMAScript.
 
-* Portée limitée au niveau du module  
-  Les variables et fonctions globales d’un module ne sont pas visibles dans les autres scripts.
+* Portée limitée au niveau du module : Les variables et fonctions globales d’un module ne sont pas visibles dans les autres scripts.
 
-* Le chargement des modules est différé, comme `defer`
+* Le chargement des modules est différé, comme `defer`.
   
-* Pas de module avec le protocole `file://`, sinon erreur CORS (*cf.* suite du cours)
-  
+* À la différence des scripts classiques, les scripts des modules qui
+  proviennent d'une autre origine nécessitent une autorisation CORS (*cf.* suite du cours).
+
+  En particulier, pas de module avec le protocole `file://`, sinon erreur CORS.
+
 <!-- * Dans le navigateur, aucun module *bare* (*brut*) n'est autorisé :
 l'importation doit obtenir une URL relative ou absolue.  
   TODO: repousser au moment des autres syntaxes ? -->
@@ -1331,20 +1333,23 @@ https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including
 
 ## Sources
 
-* Certaines parties sont reprises de [JavaScript.info](https://javascript.info),
-  avec l'aimable autorisation d'Ilya Kantor :  
-  [`modules`](https://fr.javascript.info/modules-intro),
-  [`fetch`, requêtes cross-origin](https://fr.javascript.info/network), 
-  [Promesses, `async`/`await`](https://fr.javascript.info/async),
-  [cookies](https://fr.javascript.info/cookie),
-  [la boucle d'événement](https://fr.javascript.info/event-loop).
-* Mozilla Developper Network :
-  [Same-origin_policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy),
-  [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF),
-  [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch),
-  [Options de `fetch`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit),
-  [`<script type="module">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type).
-* [ANSSI : Guide & recommandations pour maitriser les standards de sécurité côté navigateur](https://cyber.gouv.fr/sites/default/files/2013/05/anssi-guide-recommandations_mise_en_oeuvre_site_web_maitriser_standards_securite_cote_navigateur-v2.0.pdf)
+* Certaines parties sont reprises de [JavaScript.info](https://javascript.info)
+  sous licence
+  [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/legalcode), avec
+  l'aimable autorisation d'Ilya Kantor&nbsp;:  
+  * [`modules`](https://fr.javascript.info/modules-intro),
+  * [`fetch`, requêtes cross-origin](https://fr.javascript.info/network), 
+  * [Promesses, `async`/`await`](https://fr.javascript.info/async),
+  * [cookies](https://fr.javascript.info/cookie),
+  * [la boucle d'événement](https://fr.javascript.info/event-loop).
+* Mozilla Developper Network, par les Contributrices et contributeurs de Mozilla est sous licence [CC-BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/) :
+  * [Same-origin_policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy),
+  * [CSRF](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF),
+  * [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch),
+  * [Options de `fetch`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit),
+  * [`<script type="module">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type).
+* [ANSSI : Guide & recommandations pour maitriser les standards de sécurité côté navigateur](https://cyber.gouv.fr/sites/default/files/2013/05/anssi-guide-recommandations_mise_en_oeuvre_site_web_maitriser_standards_securite_cote_navigateur-v2.0.pdf) 
+  sous licence ouverte (Étalab - v2.0).
 
 
 </section>

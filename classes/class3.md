@@ -1,6 +1,6 @@
 ---
 title : Cours 3 <br> Asynchronisme en JavaScript
-subtitle : Ajax, JSON, Event loop
+subtitle : Ajax, JSON, Boucle d'évènement
 layout : slideshow
 lang: fr
 ---
