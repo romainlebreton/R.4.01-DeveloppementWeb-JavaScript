@@ -182,6 +182,23 @@ import LoginForm from './loginForm.js';
 import func from '/path/to/func.js';
 ```
 
+<!--  
+Rq: https://javascript.info/import-export
+* For a default export, we always choose the name when importing:
+* 
+  ```js
+  // same as if we added "export default" before the function
+  export {sayHi as default};
+  ```
+
+  ```js
+  // 📁 main.js
+  import {default as User, sayHi} from './user.js';
+  
+  new User('John');
+  ```
+-->
+
 </section>
 <section>
 
@@ -1256,7 +1273,7 @@ Un cookie est lié au *hostname* (ou un sous-domaine) du serveur qui l'a dépos�
 
 * Option *SameSite* des cookies, valeur :
   * `Strict` : cookie n'est envoyé que si *same-site*
-  * `Lax` : `Strict` + requêtes "sûres" (requêtes de navigation (qui change l'URL de la page) de méthode `GET`)
+  * `Lax` (par défaut) : cookie envoyé si *same-site* ou requêtes "sûres" (=requêtes `GET` de navigation (qui change l'URL de la page))  
     Utile pour apparaître connecté quand on arrive sur un site.
   * `None` : pas de contraintes, nécessite `Secure` activé, exemple : cookies publicitaires, de suivi...
 

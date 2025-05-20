@@ -27,6 +27,7 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 4. Mardi 20 mai 2025 -- Cours 4 -- Modules, Promesses, Sécurité  
    [Slides](classes/class4.html)  
+   [Enregistrement du cours](https://umontpellier.scalelite.bbb.numerique-esr.fr/playback/presentation/2.3/f3749475eeefcd6e7248f92b167e0730df706e85-1747725705797) 
 
 ## TDs
 
