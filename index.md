@@ -31,18 +31,18 @@ Partie *Développement Web* du cours *R4.01 -- Architecture logicielle* en
 
 ## TDs
 
-1. Semaine du mardi 08 avril 2025 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
+1. Semaine du mardi 26 janvier 2026 -- [TD 1](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD1) -- Prise en main de JavaScript
 
-2. Semaine du lundi 28 avril 2025 : 
+2. Semaine du lundi 2 février 2026 : 
    1. [TD 2](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD2) -- Objets et classes
    2. [TD 3](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD3) -- Gestion d'événements par des écouteurs
-3. Semaine du lundi 05 mai 2025 : 
+3. Semaine du lundi 9 février 2026 : 
    1. [TD 4](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD4) -- Objet `XMLHttpRequest`, requêtes *AJAX*
    2. [TD 5](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD5) -- *AJAX* pour un formulaire avec autocomplétion
-4. Semaine du lundi 12 mai 2025 : 
+4. Semaine du lundi 16 février 2026 : 
    1. [TD 6](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD6) -- *AJAX*, promesses et `async`/`await`
    2. [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) -- Programmation réactive (séance 1/2)
-4. Semaine du lundi 19 mai 2025 : 
+4. Semaine du lundi 23 février 2026 : 
    1. Fin du [TD 7](https://gitlabinfo.iutmontp.univ-montp2.fr/r4.01-developpementweb/TD7) (séance 2/2)
    2. 
       * Parcours A : Finir les TDs de JavaScript et/ou de Complément Web et/ou travailler sur la SAÉ
